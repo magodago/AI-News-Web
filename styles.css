@@ -254,6 +254,7 @@ header {
   top: 3px;
   color: #0ff;
   font-size: 0.8rem;
+  z-index: 2; /* Para asegurarnos de que se vea por encima */
 }
 
 .country-fill {
@@ -268,6 +269,7 @@ header {
   box-sizing: border-box;
   color: #000;
   font-weight: bold;
+  z-index: 1;
 }
 
 /* ANÁLISIS Y TENDENCIAS */
@@ -297,24 +299,6 @@ header {
   padding: 20px;
   box-shadow: 0 0 10px #0ff;
   text-align: left;
-}
-
-/* COMUNIDAD */
-.comunidad {
-  margin: 40px auto;
-  width: 90%;
-  max-width: 700px;
-  text-align: center;
-}
-
-.comunidad a {
-  color: #0ff;
-  text-decoration: none;
-  margin: 0 5px;
-}
-
-.comunidad a:hover {
-  text-shadow: 0 0 5px #0ff;
 }
 
 /* CONTACTO */
