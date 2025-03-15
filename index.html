@@ -1,35 +1,179 @@
-<!-- Sección Widgets Futuristas -->
-<section class="widgets">
-  <h2>Widgets Futuristas</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI FUTURO</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-  <div class="widget" id="quote-widget">
-    <h3>🤖 Cita sobre IA</h3>
-    <p id="ai-quote">"La inteligencia artificial no reemplazará a los humanos, sino que nos hará más eficientes."</p>
-  </div>
+  <!-- Barra superior con efecto Matrix (60px de alto) -->
+  <div id="matrix-bar"></div>
 
-  <div class="widget" id="patents-widget">
-    <h3>🔬 Patentes de IA</h3>
-    <p id="patent-count">Cargando...</p>
-  </div>
+  <!-- Encabezado con título glitch y frase typed -->
+  <header>
+    <h1 class="glitch">AI FUTURO</h1>
+    <div class="typing-container">
+      <span id="typing-text"></span>
+    </div>
+  </header>
 
-  <div class="widget" id="future-predictions">
-    <h3>🔮 Predicciones de IA</h3>
-    <p id="prediction-text">Cargando...</p>
-  </div>
+  <!-- Sección de noticias (6 estáticas) -->
+  <section class="noticias">
+    <h2>Últimas Noticias de IA</h2>
+    <div id="news-container">
+      <div class="news-box">
+        <h3>Robot educativo revoluciona las aulas</h3>
+        <p>
+          Un nuevo robot con IA está cambiando la forma de aprender en las escuelas.
+          Ofrece clases interactivas y adaptadas a cada alumno, facilitando
+          el trabajo de los profesores.
+        </p>
+      </div>
 
-  <div class="widget" id="innovation-map">
-    <h3>🌍 Mapa de Innovación en IA</h3>
-    <div id="map-container">Cargando...</div>
-  </div>
+      <div class="news-box">
+        <h3>IA de diagnóstico médico mejora la precisión</h3>
+        <p>
+          Un sistema de inteligencia artificial logra un 95% de acierto 
+          al diagnosticar enfermedades complejas, reduciendo tiempos de espera 
+          y evitando diagnósticos erróneos.
+        </p>
+      </div>
 
-  <div class="widget" id="surprise-widget">
-    <h3>⚡ Sorpresa Diaria</h3>
-    <p id="surprise-text">Cargando sorpresa...</p>
-    <button id="reveal-surprise">Descúbrelo</button>
-  </div>
+      <div class="news-box">
+        <h3>Hologramas inteligentes para videollamadas</h3>
+        <p>
+          Una startup crea HoloMeet, un sistema de hologramas con IA
+          que ofrece reuniones casi presenciales, abriendo nuevas posibilidades
+          en la comunicación virtual.
+        </p>
+      </div>
 
-  <div class="widget" id="countries-widget">
-    <h3>🌎 Países con Mayor Inversión en IA</h3>
-    <div id="countries-container">Cargando...</div>
-  </div>
-</section>
+      <div class="news-box">
+        <h3>Robots de limpieza inundan centros comerciales</h3>
+        <p>
+          Grandes superficies cuentan ahora con robots autónomos de limpieza,
+          equipados con sensores avanzados y algoritmos de planificación de rutas,
+          que operan sin supervisión humana.
+        </p>
+      </div>
+
+      <div class="news-box">
+        <h3>Automóviles autónomos ganan terreno</h3>
+        <p>
+          Varias ciudades autorizan pruebas masivas de vehículos sin conductor.
+          Las empresas confían en que la IA reducirá accidentes y atascos.
+        </p>
+      </div>
+
+      <div class="news-box">
+        <h3>Chatbots conversacionales más humanos</h3>
+        <p>
+          Nuevos modelos de lenguaje permiten mantener diálogos 
+          naturales y contextuales, revolucionando la atención al cliente 
+          y el soporte técnico en diversas plataformas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección del juego de adivinar la palabra -->
+  <section class="word-challenge">
+    <h2>Desafío: Adivina la Palabra</h2>
+    <p id="hint">Pista: ...</p>
+    <div id="word-display">_ _ _</div>
+    <input type="text" id="letter-input" maxlength="1" placeholder="Introduce una letra">
+    <button id="check-letter">Comprobar</button>
+    <p id="message"></p>
+    <p id="attempts-remaining"></p>
+  </section>
+
+  <!-- Sección de Widgets Futuristas (6 Widgets) -->
+  <section class="widgets">
+    <h2>Widgets Futuristas</h2>
+
+    <div class="widget" id="quote-widget">
+      <h3>🤖 Cita sobre IA</h3>
+      <p id="ai-quote">"La inteligencia artificial no reemplazará a los humanos."</p>
+    </div>
+
+    <div class="widget" id="patents-widget">
+      <h3>🔬 Patentes de IA</h3>
+      <p id="patent-count">Cargando...</p>
+    </div>
+
+    <div class="widget" id="future-predictions">
+      <h3>🔮 Predicciones de IA</h3>
+      <p id="prediction-text">Cargando...</p>
+    </div>
+
+    <div class="widget" id="innovation-map">
+      <h3>🌍 Mapa de Innovación en IA</h3>
+      <div id="map-container">Cargando...</div>
+    </div>
+
+    <div class="widget" id="surprise-widget">
+      <h3>⚡ Sorpresa Diaria</h3>
+      <p id="surprise-text">Cargando sorpresa...</p>
+      <button id="reveal-surprise">Descúbrelo</button>
+    </div>
+
+    <div class="widget" id="countries-widget">
+      <h3>🌎 Países con Mayor Inversión en IA</h3>
+      <div id="countries-container">Cargando...</div>
+    </div>
+  </section>
+
+  <!-- Sección de Análisis y Tendencias -->
+  <section class="analisis">
+    <h2>Análisis y Tendencias</h2>
+    <div id="analisis-container">
+      <article>
+        <h3>¿Hacia dónde se dirige la IA?</h3>
+        <p>
+          Explora los avances más prometedores en inteligencia artificial:
+          desde el aprendizaje profundo hasta la computación cuántica que
+          podría cambiarlo todo.
+        </p>
+      </article>
+      <article>
+        <h3>Predicciones 2030</h3>
+        <p>
+          Descubre qué opinan los expertos sobre cómo la IA alterará la industria,
+          la educación y la sociedad en la próxima década.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Sección Comunidad -->
+  <section class="comunidad">
+    <h2>Comunidad</h2>
+    <p>
+      ¿Te apasiona la inteligencia artificial? Únete a nuestra comunidad y comparte
+      tus ideas, proyectos y descubrimientos. ¡Te esperamos!
+    </p>
+    <p>
+      <a href="https://discord.com" target="_blank">Únete a nuestro Discord</a> |
+      <a href="https://reddit.com/r/AI" target="_blank">Reddit IA</a>
+    </p>
+  </section>
+
+  <!-- Sección Contacto -->
+  <section class="contacto">
+    <h2>Contacto</h2>
+    <p>¿Tienes preguntas o sugerencias? Escríbenos.</p>
+    <form>
+      <input type="text" placeholder="Tu nombre" required><br><br>
+      <input type="email" placeholder="Tu correo" required><br><br>
+      <textarea placeholder="Tu mensaje" required></textarea><br><br>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Script principal con todos los efectos y lógica -->
+  <script src="script.js"></script>
+</body>
+</html>
+
