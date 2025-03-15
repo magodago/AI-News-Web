@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Cargar fuente Orbitron
+  // 1. Cargar la fuente Orbitron
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
   linkOrbitron.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap";
@@ -68,29 +68,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("mousemove", (e) => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
-  });
-
-  // 5. Pop-up de noticias (estáticas)
-  const popup = document.getElementById("news-popup");
-  const popupTitle = document.getElementById("popup-title");
-  const popupSummary = document.getElementById("popup-summary");
-  const closePopupBtn = document.getElementById("close-popup");
-
-  // Seleccionar todos los botones “Ver más”
-  const verMasButtons = document.querySelectorAll(".ver-mas");
-  verMasButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const t = button.getAttribute("data-title");
-      const s = button.getAttribute("data-summary");
-
-      popupTitle.textContent = t;
-      popupSummary.textContent = s;
-      popup.style.display = "block";
-    });
-  });
-
-  // Cerrar pop-up
-  closePopupBtn.addEventListener("click", () => {
-    popup.style.display = "none";
   });
 });
