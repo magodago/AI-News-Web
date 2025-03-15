@@ -15,24 +15,87 @@
     <h1 class="glitch">AI NEWS</h1>
   </header>
 
-  <!-- Sección de noticias -->
-  <section class="noticias" id="noticias">
+  <!-- Sección de noticias estáticas -->
+  <section class="noticias">
     <h2>Últimas Noticias de IA</h2>
-    <div id="news-container">Cargando noticias...</div>
+    <div id="news-container">
+      <!-- Cuatro noticias con 3-4 líneas cada una -->
+      <div class="news-box">
+        <h3>1. Robot educativo revoluciona las aulas</h3>
+        <p>
+          Un nuevo robot con IA está cambiando la forma de aprender en las escuelas.
+          Ofrece clases interactivas y personalizadas, ayudando a los profesores a
+          dedicarse más al acompañamiento de los alumnos.
+        </p>
+        <button class="ver-mas" data-title="Robot educativo revoluciona las aulas"
+          data-summary="El robot, llamado EduBot, utiliza algoritmos de aprendizaje profundo
+          para adaptarse al ritmo de cada estudiante. Desde su lanzamiento, se han
+          observado mejoras significativas en la participación de los alumnos."
+        >
+          Ver más
+        </button>
+      </div>
+
+      <div class="news-box">
+        <h3>2. IA de diagnóstico médico acierta más que los doctores</h3>
+        <p>
+          Una inteligencia artificial está sorprendiendo al lograr un 95% de precisión
+          al diagnosticar enfermedades raras. Los expertos en salud celebran este
+          avance, que podría salvar miles de vidas.
+        </p>
+        <button class="ver-mas" data-title="IA de diagnóstico médico"
+          data-summary="La herramienta analiza millones de registros clínicos e imágenes
+          médicas para ofrecer un diagnóstico rápido y fiable. Los hospitales
+          esperan integrar este sistema para agilizar la atención y reducir costes."
+        >
+          Ver más
+        </button>
+      </div>
+
+      <div class="news-box">
+        <h3>3. Crean hologramas inteligentes para videollamadas</h3>
+        <p>
+          Una startup ha desarrollado hologramas con IA que permiten reuniones
+          casi presenciales. La tecnología, llamada HoloMeet, promete cambiar
+          la forma en que nos comunicamos en el trabajo.
+        </p>
+        <button class="ver-mas" data-title="Hologramas inteligentes"
+          data-summary="HoloMeet utiliza visión por computador y redes neuronales para 
+          recrear el entorno del interlocutor en 3D. Empresas tecnológicas de todo 
+          el mundo se han interesado en invertir en la próxima generación de 
+          videollamadas."
+        >
+          Ver más
+        </button>
+      </div>
+
+      <div class="news-box">
+        <h3>4. Robots de limpieza dominan centros comerciales</h3>
+        <p>
+          Grandes superficies comerciales han implementado robots de limpieza
+          con IA para abaratar costes y mejorar la eficiencia. Los robots operan
+          día y noche, sin supervisión humana.
+        </p>
+        <button class="ver-mas" data-title="Robots de limpieza en centros comerciales"
+          data-summary="Estos robots, equipados con sensores LIDAR y algoritmos de
+          planificación automática, detectan zonas sucias y planifican la ruta 
+          de limpieza más eficiente. Los fabricantes aseguran un 40% de 
+          reducción en costes."
+        >
+          Ver más
+        </button>
+      </div>
+    </div>
   </section>
 
-  <!-- Pop-up para mostrar la noticia completa -->
+  <!-- Pop-up para mostrar detalles de la noticia -->
   <div class="news-popup" id="news-popup">
     <div class="news-popup-content">
       <span class="news-popup-close" id="close-popup">&times;</span>
       <h3 id="popup-title"></h3>
       <p id="popup-summary"></p>
-      <a id="popup-link" href="#" target="_blank">Leer la noticia completa</a>
     </div>
   </div>
 
-  <!-- JS principal: efecto Matrix en la barra, glitch en título, cursor, noticias -->
-  <script src="script.js"></script>
-</body>
-</html>
+  <!-- JS principal: Efecto Matrix en la barra, glitch título, cursor, pop-u
 
