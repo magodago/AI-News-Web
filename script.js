@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        // Reiniciar cascada en un 2.5% de probabilidad
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  // 5. Cargar Noticias en Cajas con Botón "Ver más"
+  // 5. Cargar Noticias (6 noticias) en Cajas con Botón "Ver más"
   const RSS_URL = "https://news.google.com/rss/search?q=inteligencia+artificial&hl=es&gl=ES&ceid=ES:es";
   const newsContainer = document.getElementById("news-container");
   const popup = document.getElementById("news-popup");
@@ -86,16 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const items = xml.querySelectorAll("item");
 
       let html = "";
+      // Mostramos 6 noticias
       items.forEach((item, index) => {
-        if (index < 5) {
+        if (index < 6) {
           const title = item.querySelector("title")?.textContent || "Noticia sin título";
           const link = item.querySelector("link")?.textContent || "#";
           const description = item.querySelector("description")?.textContent || "Sin descripción";
 
+          // Recortamos el texto de la descripción
+          const resumen = description.replace(/<[^>]+>/g, '') // quitar etiquetas HTML si las hay
+                                     .substring(0, 80) // primeros 80 caracteres
+                                     .trim();
+
           html += `
             <div class="news-box">
               <h3>${title}</h3>
-              <p>${description.substring(0, 80)}...</p>
+              <p>${resumen}...</p>
               <button class="ver-mas"
                 data-title="${title}"
                 data-summary="${description}"
@@ -131,9 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Llamada inicial
   cargarNoticias();
-
-  // Refrescar noticias cada hora (3600000 ms)
-  setInterval(cargarNoticias, 3600000);
 
   // Cerrar el pop-up
   closePopupBtn.addEventListener("click", () => {
