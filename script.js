@@ -1,34 +1,49 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Animación de carga para las noticias
+    // Animación de entrada para las noticias con glitch
     const noticias = document.querySelectorAll(".noticia");
     noticias.forEach((noticia, index) => {
         setTimeout(() => {
-            noticia.style.opacity = "1";
-            noticia.style.transform = "translateY(0)";
+            noticia.classList.add("visible");
         }, index * 300);
     });
 
-    // Botón para cambiar entre modo oscuro y claro
-    const toggleModeButton = document.createElement("button");
-    toggleModeButton.textContent = "Modo Oscuro/Claro";
-    toggleModeButton.style.position = "fixed";
-    toggleModeButton.style.top = "20px";
-    toggleModeButton.style.right = "20px";
-    toggleModeButton.style.padding = "10px";
-    toggleModeButton.style.background = "#0ff";
-    toggleModeButton.style.border = "none";
-    toggleModeButton.style.borderRadius = "5px";
-    toggleModeButton.style.cursor = "pointer";
-    toggleModeButton.style.fontFamily = "Orbitron, sans-serif";
+    // Efecto de glitch en el título
+    const title = document.querySelector("h1");
+    setInterval(() => {
+        title.classList.toggle("glitch");
+    }, 2000);
 
-    document.body.appendChild(toggleModeButton);
+    // Agregar partículas en el fondo
+    const particlesContainer = document.createElement("div");
+    particlesContainer.classList.add("particles");
+    document.body.appendChild(particlesContainer);
 
-    toggleModeButton.addEventListener("click", function() {
-        document.body.classList.toggle("light-mode");
+    for (let i = 0; i < 50; i++) {
+        let particle = document.createElement("div");
+        particle.classList.add("particle");
+        particlesContainer.appendChild(particle);
+    }
+
+    // Cursor futurista con resplandor
+    const cursor = document.createElement("div");
+    cursor.classList.add("custom-cursor");
+    document.body.appendChild(cursor);
+
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = `${e.pageX}px`;
+        cursor.style.top = `${e.pageY}px`;
     });
 
-    // Mensaje de bienvenida
+    // Modo "Hacker" al presionar CTRL+H
+    document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "h") {
+            document.body.classList.toggle("hacker-mode");
+            alert("🔥 Modo Hacker Activado 🔥");
+        }
+    });
+
+    // Mensaje de bienvenida con IA
     setTimeout(() => {
-        alert("Bienvenido a AI News. ¡Explora las últimas noticias de IA!");
+        alert("👋 Bienvenido a AI News. Prepárate para explorar las últimas noticias de IA con estilo futurista.");
     }, 500);
 });
