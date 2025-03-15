@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const words = [
     { word: "robot", hint: "Máquina programada para tareas humanas." },
     { word: "red", hint: "Conjunto de nodos interconectados." },
-    { word: "algoritmo", hint: "Conjunto de reglas para resolver problemas." },
+    { word: "algoritmo", hint: "Reglas para resolver problemas." },
     { word: "datos", hint: "El combustible de la IA." }
   ];
   const randomIndex = Math.floor(Math.random() * words.length);
