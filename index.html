@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Barra superior con efecto Matrix (60px de alto) -->
+  <!-- Barra superior con efecto Matrix -->
   <div id="matrix-bar"></div>
 
   <header>
@@ -19,62 +19,11 @@
     </div>
   </header>
 
-  <!-- Sección de noticias (6 estáticas) -->
+  <!-- Sección de noticias (6 al azar en cada recarga) -->
   <section class="noticias">
     <h2>Últimas Noticias de IA</h2>
     <div id="news-container">
-      <div class="news-box">
-        <h3>Robot educativo revoluciona las aulas</h3>
-        <p>
-          Un nuevo robot con IA está cambiando la forma de aprender en las escuelas.
-          Ofrece clases interactivas y adaptadas a cada alumno, facilitando
-          el trabajo de los profesores.
-        </p>
-      </div>
-
-      <div class="news-box">
-        <h3>IA de diagnóstico médico mejora la precisión</h3>
-        <p>
-          Un sistema de inteligencia artificial logra un 95% de acierto 
-          al diagnosticar enfermedades complejas, reduciendo tiempos de espera 
-          y evitando diagnósticos erróneos.
-        </p>
-      </div>
-
-      <div class="news-box">
-        <h3>Hologramas inteligentes para videollamadas</h3>
-        <p>
-          Una startup crea HoloMeet, un sistema de hologramas con IA
-          que ofrece reuniones casi presenciales y abre 
-          un mundo de posibilidades en la comunicación virtual.
-        </p>
-      </div>
-
-      <div class="news-box">
-        <h3>Robots de limpieza inundan centros comerciales</h3>
-        <p>
-          Grandes superficies cuentan ahora con robots autónomos de limpieza,
-          equipados con sensores avanzados y algoritmos de planificación de rutas,
-          que operan sin supervisión humana.
-        </p>
-      </div>
-
-      <div class="news-box">
-        <h3>Automóviles autónomos ganan terreno</h3>
-        <p>
-          Varias ciudades autorizan pruebas masivas de vehículos sin conductor.
-          Las empresas confían en que la IA reducirá accidentes y atascos.
-        </p>
-      </div>
-
-      <div class="news-box">
-        <h3>Chatbots conversacionales más humanos</h3>
-        <p>
-          Nuevos modelos de lenguaje permiten mantener diálogos 
-          naturales y contextuales, revolucionando la atención al cliente 
-          y el soporte técnico en diversas plataformas.
-        </p>
-      </div>
+      <!-- Se llenará al azar desde script.js -->
     </div>
   </section>
 
@@ -89,7 +38,7 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- Sección de Widgets Futuristas (6 Widgets) -->
+  <!-- Sección de Widgets Futuristas (6) -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
 
@@ -174,20 +123,29 @@
     </div>
   </section>
 
-  <!-- Sección Contacto (mailto tu email) -->
-  <section class="contacto">
-    <h2>Contacto</h2>
-    <p>¿Tienes preguntas o sugerencias? Escríbenos.</p>
-    <!-- Form con action mailto -->
-    <form action="mailto:tu_email@ejemplo.com" method="post" enctype="text/plain">
-      <input type="text" name="nombre" placeholder="Tu nombre" required><br><br>
-      <input type="email" name="correo" placeholder="Tu correo" required><br><br>
-      <textarea name="mensaje" placeholder="Tu mensaje" required></textarea><br><br>
-      <button type="submit">Enviar</button>
-    </form>
+  <!-- NUEVA SECCIÓN: Chatbot IA -->
+  <section class="chatbot">
+    <h2>Chatbot IA</h2>
+    <div id="chatbot-container">
+      <div id="chatbot-messages"></div>
+      <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+      <button id="chatbot-send">Enviar</button>
+    </div>
   </section>
 
-  <!-- Script principal con todos los efectos y lógica -->
+  <!-- NUEVA SECCIÓN: Trivia IA -->
+  <section class="trivia-ia">
+    <h2>Trivia IA</h2>
+    <div id="trivia-container">
+      <p id="trivia-question">Cargando pregunta...</p>
+      <div id="trivia-answers"></div>
+      <p id="trivia-result"></p>
+      <button id="trivia-next">Siguiente Pregunta</button>
+    </div>
+  </section>
+
+  <!-- Quitamos la sección de Contacto -->
+
   <script src="script.js"></script>
 </body>
 </html>
