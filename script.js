@@ -1,23 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /*************************************
-   * 1. Cargar la fuente Orbitron
-   *************************************/
+  // 1. Fuente Orbitron
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
   linkOrbitron.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap";
   document.head.appendChild(linkOrbitron);
 
-  /*************************************
-   * 2. Efecto glitch en el título
-   *************************************/
+  // 2. Efecto glitch en el título
   const title = document.querySelector(".glitch");
   setInterval(() => {
     if (title) title.classList.toggle("glitch-active");
   }, 2000);
 
-  /*************************************
-   * 3. Efecto Matrix en la barra (#matrix-bar)
-   *************************************/
+  // 3. Efecto Matrix en la barra
   function iniciarEfectoMatrix() {
     const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
@@ -57,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setInterval(drawMatrix, 50);
 
-    // Ajustar el tamaño del canvas al cambiar el tamaño de la ventana
     window.addEventListener("resize", () => {
       canvas.width = bar.offsetWidth;
       canvas.height = bar.offsetHeight;
@@ -65,9 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   iniciarEfectoMatrix();
 
-  /*************************************
-   * 4. Cursor Futurista
-   *************************************/
+  // 4. Cursor Futurista
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
@@ -76,10 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  /*************************************
-   * 5. Texto "Follow the white rabbit..."
-   * Aparece letra a letra en bucle
-   *************************************/
+  // 5. "Follow the white rabbit..."
   const typingTextElem = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
   let idx = 0;
@@ -89,19 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!typingTextElem) return;
     typingTextElem.textContent = phrase.substring(0, idx);
     idx++;
-
-    // Pequeño glitch aleatorio
     if (Math.random() > 0.9) {
       typingTextElem.classList.add("typing-glitch");
       setTimeout(() => {
         typingTextElem.classList.remove("typing-glitch");
       }, 100);
     }
-
-    // Cuando terminamos la frase
     if (idx > phrase.length) {
       clearInterval(showPhraseInterval);
-      // Espera 1.5s y reinicia
       setTimeout(() => {
         idx = 0;
         typingTextElem.textContent = "";
@@ -109,12 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1500);
     }
   }
-
   showPhraseInterval = setInterval(typePhrase, 100);
 
-  /*************************************
-   * 6. Juego de adivinar la palabra
-   *************************************/
+  // 6. Juego de adivinar la palabra
   const words = [
     { word: "robot", hint: "Máquina programada para tareas humanas." },
     { word: "red", hint: "Conjunto de nodos interconectados." },
@@ -158,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     wordDisplay.textContent = wordArray.join(" ");
     attemptsElem.textContent = `Intentos restantes: ${attempts}`;
 
-    // Comprobamos si se acertó
     if (!wordArray.includes("_")) {
       messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
       checkBtn.disabled = true;
@@ -170,11 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /*************************************
-   * 7. Widgets Futuristas (6)
-   *************************************/
+  // 7. Widgets Futuristas (6)
 
-  // 7.1 Citas sobre IA (rotatorias)
+  // 7.1 Citas sobre IA
   const quotes = [
     "La IA es la nueva electricidad.",
     "Los datos son el nuevo petróleo.",
@@ -252,26 +229,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!countriesContainer) return;
     let html = "";
     countriesData.forEach((pais) => {
+      // Insertamos el nombre + % dentro de la barra
       html += `
         <div class="country-bar">
-          <div class="country-label">${pais.name}</div>
-          <div class="country-fill" style="width: 0%;">0%</div>
+          <div class="country-fill" style="width: 0%;">
+            <span>${pais.name}: 0%</span>
+          </div>
         </div>
       `;
     });
     countriesContainer.innerHTML = html;
 
-    // Animar las barras
     const fillElems = countriesContainer.querySelectorAll(".country-fill");
     fillElems.forEach((fill, index) => {
       const inv = countriesData[index].investment;
       setTimeout(() => {
         fill.style.width = inv + "%";
-        fill.textContent = inv + "%";
+        fill.querySelector("span").textContent = `${countriesData[index].name}: ${inv}%`;
       }, 200);
     });
   }
   mostrarPaisesInversion();
-
-  // Hasta aquí toda la lógica
 });
