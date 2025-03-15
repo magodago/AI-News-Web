@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 2000);
 
-  // 3. Efecto Matrix dentro de la barra (height 60px)
+  // 3. Efecto Matrix en la barra (height 60px)
   function iniciarEfectoMatrix() {
     const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
@@ -68,5 +68,96 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("mousemove", (e) => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
+  });
+
+  // 5. Texto "Follow the white rabbit..." apareciendo letra a letra con glitch
+  const typingTextElem = document.getElementById("typing-text");
+  const phrase = "Follow the white rabbit...";
+  let idx = 0;
+  let showPhraseInterval = null;
+
+  function typePhrase() {
+    if (!typingTextElem) return;
+
+    typingTextElem.textContent = phrase.substring(0, idx);
+    idx++;
+
+    // Añadir una clase glitch aleatoriamente
+    if (Math.random() > 0.9) {
+      typingTextElem.classList.add("typing-glitch");
+      setTimeout(() => {
+        typingTextElem.classList.remove("typing-glitch");
+      }, 100);
+    }
+
+    if (idx > phrase.length) {
+      // Esperar un poco y reiniciar
+      clearInterval(showPhraseInterval);
+      setTimeout(() => {
+        idx = 0;
+        typingTextElem.textContent = "";
+        showPhraseInterval = setInterval(typePhrase, 100);
+      }, 1500);
+    }
+  }
+
+  // Empezar a mostrar la frase
+  showPhraseInterval = setInterval(typePhrase, 100);
+
+  // 6. Juego de adivinar la palabra
+  const words = [
+    { word: "robot", hint: "Máquina programada para realizar tareas humanas." },
+    { word: "red", hint: "Conjunto de nodos interconectados, clave en la IA." },
+    { word: "algoritmo", hint: "Conjunto de reglas para resolver problemas." },
+    { word: "datos", hint: "El combustible de la inteligencia artificial." }
+  ];
+
+  const randomIndex = Math.floor(Math.random() * words.length);
+  const selectedWord = words[randomIndex].word;
+  const hint = words[randomIndex].hint;
+
+  const wordDisplay = document.getElementById("word-display");
+  const hintElem = document.getElementById("hint");
+  const messageElem = document.getElementById("message");
+  const attemptsElem = document.getElementById("attempts-remaining");
+  const letterInput = document.getElementById("letter-input");
+  const checkBtn = document.getElementById("check-letter");
+
+  let wordArray = Array.from(selectedWord).map(() => "_");
+  let attempts = selectedWord.length + 3;
+
+  hintElem.textContent = "Pista: " + hint;
+  wordDisplay.textContent = wordArray.join(" ");
+  attemptsElem.textContent = `Intentos restantes: ${attempts}`;
+
+  checkBtn.addEventListener("click", () => {
+    const letter = letterInput.value.toLowerCase();
+    letterInput.value = "";
+
+    if (!letter || letter.length !== 1) return;
+
+    let found = false;
+    for (let i = 0; i < selectedWord.length; i++) {
+      if (selectedWord[i] === letter) {
+        wordArray[i] = letter;
+        found = true;
+      }
+    }
+
+    if (!found) attempts--;
+
+    wordDisplay.textContent = wordArray.join(" ");
+    attemptsElem.textContent = `Intentos restantes: ${attempts}`;
+
+    // Comprobamos si se acertó
+    if (!wordArray.includes("_")) {
+      messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
+      checkBtn.disabled = true;
+      letterInput.disabled = true;
+    } else if (attempts <= 0) {
+      messageElem.textContent = `❌ Sin intentos. La palabra era: ${selectedWord}`;
+      checkBtn.disabled = true;
+      letterInput.disabled = true;
+    }
   });
 });
