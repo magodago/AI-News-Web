@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Página Futurista</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -10,10 +10,24 @@
   <header>
     <h1 class="glitch">AI FUTURISTA</h1>
   </header>
-  
-  <!-- Lienzo del efecto Matrix se inyectará mediante script.js -->
-  
-  <!-- Scripts -->
+
+  <!-- Sección de noticias -->
+  <section class="noticias" id="noticias">
+    <h2>Últimas Noticias de IA</h2>
+    <div id="news-container">Cargando noticias...</div>
+  </section>
+
+  <!-- Pop-up para mostrar la noticia completa -->
+  <div class="news-popup" id="news-popup">
+    <div class="news-popup-content">
+      <span class="news-popup-close" id="close-popup">&times;</span>
+      <h3 id="popup-title"></h3>
+      <p id="popup-summary"></p>
+      <a id="popup-link" href="#" target="_blank">Leer la noticia completa</a>
+    </div>
+  </div>
+
+  <!-- Efecto Matrix, glitch, cursor futurista y lógica de las noticias -->
   <script src="script.js"></script>
 </body>
 </html>
