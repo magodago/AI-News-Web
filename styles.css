@@ -248,28 +248,22 @@ header {
   height: 24px;
 }
 
-.country-label {
-  position: absolute;
-  left: 10px;
-  top: 3px;
-  color: #0ff;
-  font-size: 0.8rem;
-  z-index: 2; /* Para asegurarnos de que se vea por encima */
-}
-
+/* Etiqueta sobre la barra en color negro */
 .country-fill {
-  height: 100%;
   background: #0ff;
   width: 0%; 
+  height: 100%;
   transition: width 1s ease;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 5px;
-  box-sizing: border-box;
-  color: #000;
+  justify-content: center; /* para centrar el texto en la barra */
+  color: #000; /* Nombre y % en color negro */
   font-weight: bold;
-  z-index: 1;
+  font-size: 0.8rem;
+}
+
+.country-fill span {
+  pointer-events: none;
 }
 
 /* ANÁLISIS Y TENDENCIAS */
