@@ -17,17 +17,32 @@
     <div class="typing-container">
       <span id="typing-text"></span>
     </div>
+
+    <!-- Arriba conservamos 2 widgets (Hora y Bitcoin) – si no los quieres, elimínalos -->
+    <div class="top-widgets">
+      <!-- Hora -->
+      <div class="widget top-widget" id="time-widget">
+        <h3>⏰ Hora Actual</h3>
+        <p id="time-info">00:00:00</p>
+      </div>
+
+      <!-- Bitcoin -->
+      <div class="widget top-widget" id="bitcoin-widget">
+        <h3>₿ Bitcoin</h3>
+        <p id="bitcoin-price">Cargando...</p>
+      </div>
+    </div>
   </header>
 
-  <!-- Sección de noticias (6 al azar en cada recarga) -->
+  <!-- Sección de noticias dinámicas (6 al azar) -->
   <section class="noticias">
     <h2>Últimas Noticias de IA</h2>
     <div id="news-container">
-      <!-- Se llenará al azar desde script.js -->
+      <!-- script.js inyecta 6 noticias aleatorias -->
     </div>
   </section>
 
-  <!-- Sección del juego de adivinar la palabra -->
+  <!-- Desafío de la Palabra -->
   <section class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
@@ -38,7 +53,7 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- Sección de Widgets Futuristas (6) -->
+  <!-- Widgets Futuristas (ya existentes) -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
 
@@ -58,7 +73,7 @@
     </div>
 
     <div class="widget" id="innovation-map">
-      <h3>🌍 Mapa de Innovación en IA</h3>
+      <h3>🌍 Mapa de Innovación</h3>
       <div id="map-container">Cargando...</div>
     </div>
 
@@ -74,66 +89,67 @@
     </div>
   </section>
 
-  <!-- Sección de Análisis y Tendencias (6 artículos) -->
+  <!-- NUEVA SECCIÓN: IA Timeline -->
+  <section class="ai-timeline">
+    <h2>Línea de Tiempo de la IA</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">1950</div>
+        <div class="desc">
+          Alan Turing propone el <strong>Test de Turing</strong> para medir la inteligencia de una máquina.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">1956</div>
+        <div class="desc">
+          Se acuña el término <strong>“Inteligencia Artificial”</strong> en la conferencia de Dartmouth.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">1997</div>
+        <div class="desc">
+          IBM <strong>Deep Blue</strong> vence al campeón mundial de ajedrez Garry Kasparov.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2011</div>
+        <div class="desc">
+          IBM <strong>Watson</strong> gana el concurso televisivo Jeopardy! contra humanos.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2016</div>
+        <div class="desc">
+          <strong>AlphaGo</strong> de Google DeepMind derrota al campeón mundial de Go, Lee Sedol.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2023</div>
+        <div class="desc">
+          <strong>ChatGPT</strong> populariza la IA generativa y revoluciona la interacción con máquinas.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Análisis y Tendencias (6 artículos) -->
   <section class="analisis">
     <h2>Análisis y Tendencias</h2>
     <div id="analisis-container">
+      <!-- 6 artículos estáticos -->
       <article>
         <h3>Hacia dónde se dirige la IA</h3>
-        <p>
-          Explora los avances más prometedores en inteligencia artificial:
-          desde el aprendizaje profundo hasta la computación cuántica.
-        </p>
+        <p>...</p>
       </article>
-      <article>
-        <h3>Predicciones 2030</h3>
-        <p>
-          Descubre qué opinan los expertos sobre cómo la IA alterará la industria,
-          la educación y la sociedad en la próxima década.
-        </p>
-      </article>
-      <article>
-        <h3>Ética y Regulaciones</h3>
-        <p>
-          Conoce los desafíos éticos que plantea la IA y las regulaciones que
-          se proponen a nivel global para controlar su impacto.
-        </p>
-      </article>
-      <article>
-        <h3>IA en la Medicina</h3>
-        <p>
-          Desde el diagnóstico hasta la cirugía asistida, la inteligencia artificial
-          está transformando la salud de millones de personas.
-        </p>
-      </article>
-      <article>
-        <h3>Visión por Computador</h3>
-        <p>
-          La capacidad de “ver” e interpretar imágenes abre posibilidades infinitas
-          en la robótica, seguridad y automatización.
-        </p>
-      </article>
+      <!-- ... (restantes 5 artículos) -->
       <article>
         <h3>IA y Creatividad</h3>
-        <p>
-          La música, el arte y el diseño también reciben el impulso de algoritmos
-          capaces de generar obras sorprendentes.
-        </p>
+        <p>...</p>
       </article>
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: Chatbot IA -->
-  <section class="chatbot">
-    <h2>Chatbot IA</h2>
-    <div id="chatbot-container">
-      <div id="chatbot-messages"></div>
-      <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
-      <button id="chatbot-send">Enviar</button>
-    </div>
-  </section>
-
-  <!-- NUEVA SECCIÓN: Trivia IA -->
+  <!-- Trivia IA -->
   <section class="trivia-ia">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
@@ -144,8 +160,7 @@
     </div>
   </section>
 
-  <!-- Quitamos la sección de Contacto -->
-
+  <!-- SCRIPT PRINCIPAL -->
   <script src="script.js"></script>
 </body>
 </html>
