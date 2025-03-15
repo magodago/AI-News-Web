@@ -1,44 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Cargar la fuente Orbitron
+  // 1. Cargar fuente Orbitron
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
   linkOrbitron.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap";
   document.head.appendChild(linkOrbitron);
 
-  // 2. Efecto Glitch en el Título
+  // 2. Efecto glitch en el título
   const title = document.querySelector(".glitch");
   setInterval(() => {
-    title.classList.toggle("glitch-active");
+    if (title) {
+      title.classList.toggle("glitch-active");
+    }
   }, 2000);
 
-  // 3. Efecto Matrix en el Fondo
+  // 3. Efecto Matrix en la barra superior (#matrix-bar)
   function iniciarEfectoMatrix() {
+    const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
-    canvas.id = "matrixCanvas";
-    canvas.style.position = "fixed";
-    canvas.style.top = "0";
-    canvas.style.left = "0";
-    canvas.style.width = "100vw";
-    canvas.style.height = "100vh";
-    canvas.style.zIndex = "-1";
-    document.body.appendChild(canvas);
+    canvas.width = bar.offsetWidth;
+    canvas.height = bar.offsetHeight;
+    canvas.style.display = "block";
+    canvas.style.position = "absolute";
+    bar.style.position = "relative";
+    bar.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    const letters = "0123456789AI智能人工智能未来";
-    const fontSize = 16;
+    const letters = "0123456789AI智能未来";
+    const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
 
-    function drawMatrixEffect() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "#0ff";
@@ -46,15 +39,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
         drops[i]++;
       }
     }
-    setInterval(drawMatrixEffect, 50);
+
+    setInterval(drawMatrix, 50);
+
+    // Ajustar tamaño del canvas cuando se cambie el tamaño de la ventana
+    window.addEventListener("resize", () => {
+      canvas.width = bar.offsetWidth;
+      canvas.height = bar.offsetHeight;
+    });
   }
   iniciarEfectoMatrix();
 
@@ -67,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  // 5. Cargar Noticias (6 noticias) en Cajas con Botón "Ver más"
+  // 5. Cargar Noticias (en cajas con botón 'Ver más')
   const RSS_URL = "https://news.google.com/rss/search?q=inteligencia+artificial&hl=es&gl=ES&ceid=ES:es";
   const newsContainer = document.getElementById("news-container");
   const popup = document.getElementById("news-popup");
@@ -85,17 +88,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const items = xml.querySelectorAll("item");
 
       let html = "";
-      // Mostramos 6 noticias
       items.forEach((item, index) => {
         if (index < 6) {
           const title = item.querySelector("title")?.textContent || "Noticia sin título";
           const link = item.querySelector("link")?.textContent || "#";
-          const description = item.querySelector("description")?.textContent || "Sin descripción";
+          let description = item.querySelector("description")?.textContent || "Sin descripción";
 
-          // Recortamos el texto de la descripción
-          const resumen = description.replace(/<[^>]+>/g, '') // quitar etiquetas HTML si las hay
-                                     .substring(0, 80) // primeros 80 caracteres
-                                     .trim();
+          // Quitar HTML y recortar a 80 caracteres
+          description = description.replace(/<[^>]+>/g, '');
+          const resumen = description.substring(0, 80).trim();
 
           html += `
             <div class="news-box">
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       newsContainer.innerHTML = html;
 
-      // Agregar el evento para abrir el pop-up
+      // Evento para abrir el pop-up
       const verMasButtons = document.querySelectorAll(".ver-mas");
       verMasButtons.forEach(button => {
         button.addEventListener("click", () => {
@@ -134,10 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Llamada inicial
   cargarNoticias();
 
-  // Cerrar el pop-up
+  // Cerrar pop-up
   closePopupBtn.addEventListener("click", () => {
     popup.style.display = "none";
   });
