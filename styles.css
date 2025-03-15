@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Fondo general negro */
+/* Fondo negro */
 html, body {
   height: 100%;
   background: #000;
@@ -13,18 +13,20 @@ html, body {
   color: #0ff;
 }
 
-/* Barra fija donde irá el efecto Matrix, altura 60px */
+/* Barra superior para Matrix (altura 60px) */
 #matrix-bar {
   width: 100%;
   height: 60px;
   position: relative;
   overflow: hidden;
+  /* Para ver un claro contraste */
+  background: #000;
 }
 
 /* Título centrado */
 header {
   text-align: center;
-  margin-top: 40px;
+  margin: 40px auto 20px auto;
 }
 
 /* Efecto glitch */
@@ -61,9 +63,9 @@ header {
   }
 }
 
-/* Noticias */
+/* Sección de noticias */
 .noticias {
-  margin: 40px auto;
+  margin: 20px auto;
   width: 90%;
   max-width: 1200px;
   text-align: center;
@@ -103,6 +105,7 @@ header {
   margin-bottom: 10px;
 }
 
+/* Botón de ver más */
 .news-box button {
   padding: 10px;
   background: #0ff;
@@ -146,7 +149,7 @@ header {
 
 .news-popup-content h3 {
   color: #0ff;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .news-popup-content p {
@@ -164,20 +167,6 @@ header {
   color: #fff;
 }
 
-#popup-link {
-  display: inline-block;
-  margin-top: 15px;
-  background: #0ff;
-  color: #000;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-#popup-link:hover {
-  background: #fff;
-  color: #000;
-}
-
 /* Cursor futurista */
 .custom-cursor {
   position: fixed;
@@ -191,12 +180,5 @@ header {
   mix-blend-mode: difference;
   z-index: 9999;
   transition: transform 0.2s ease;
-}
-
-/* Ajustes responsive */
-@media (max-width: 600px) {
-  .news-box {
-    width: 90%;
-  }
 }
 
