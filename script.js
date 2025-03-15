@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 2000);
 
-  // 3. Efecto Matrix en la barra superior (#matrix-bar)
+  // 3. Efecto Matrix dentro de la barra (height 60px)
   function iniciarEfectoMatrix() {
     const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bar.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
-    const letters = "0123456789AI智能未来";
+    const letters = "0123456789AI";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setInterval(drawMatrix, 50);
 
-    // Ajustar tamaño del canvas cuando se cambie el tamaño de la ventana
+    // Ajustar tamaño del canvas al redimensionar la ventana
     window.addEventListener("resize", () => {
       canvas.width = bar.offsetWidth;
       canvas.height = bar.offsetHeight;
@@ -70,72 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  // 5. Cargar Noticias (en cajas con botón 'Ver más')
-  const RSS_URL = "https://news.google.com/rss/search?q=inteligencia+artificial&hl=es&gl=ES&ceid=ES:es";
-  const newsContainer = document.getElementById("news-container");
+  // 5. Pop-up de noticias (estáticas)
   const popup = document.getElementById("news-popup");
   const popupTitle = document.getElementById("popup-title");
   const popupSummary = document.getElementById("popup-summary");
-  const popupLink = document.getElementById("popup-link");
   const closePopupBtn = document.getElementById("close-popup");
 
-  async function cargarNoticias() {
-    try {
-      const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(RSS_URL)}`);
-      const data = await response.json();
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(data.contents, "text/xml");
-      const items = xml.querySelectorAll("item");
+  // Seleccionar todos los botones “Ver más”
+  const verMasButtons = document.querySelectorAll(".ver-mas");
+  verMasButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const t = button.getAttribute("data-title");
+      const s = button.getAttribute("data-summary");
 
-      let html = "";
-      items.forEach((item, index) => {
-        if (index < 6) {
-          const title = item.querySelector("title")?.textContent || "Noticia sin título";
-          const link = item.querySelector("link")?.textContent || "#";
-          let description = item.querySelector("description")?.textContent || "Sin descripción";
-
-          // Quitar HTML y recortar a 80 caracteres
-          description = description.replace(/<[^>]+>/g, '');
-          const resumen = description.substring(0, 80).trim();
-
-          html += `
-            <div class="news-box">
-              <h3>${title}</h3>
-              <p>${resumen}...</p>
-              <button class="ver-mas"
-                data-title="${title}"
-                data-summary="${description}"
-                data-link="${link}">
-                Ver más
-              </button>
-            </div>
-          `;
-        }
-      });
-
-      newsContainer.innerHTML = html;
-
-      // Evento para abrir el pop-up
-      const verMasButtons = document.querySelectorAll(".ver-mas");
-      verMasButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          const t = button.getAttribute("data-title");
-          const s = button.getAttribute("data-summary");
-          const l = button.getAttribute("data-link");
-
-          popupTitle.textContent = t;
-          popupSummary.textContent = s;
-          popupLink.href = l;
-          popup.style.display = "block";
-        });
-      });
-    } catch (error) {
-      console.error("Error al cargar noticias:", error);
-      newsContainer.textContent = "No se pudieron cargar las noticias.";
-    }
-  }
-
-  cargarNoticias();
+      popupTitle.textContent = t;
+      popupSummary.textContent = s;
+      popup.style.display = "block";
+    });
+  });
 
   // Cerrar pop-up
   closePopupBtn.addEventListener("click", () => {
