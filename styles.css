@@ -82,6 +82,7 @@ header {
   padding: 20px;
   text-align: left;
   box-shadow: 0 0 10px #0ff;
+  position: relative;
 }
 
 .news-box h3 {
@@ -94,6 +95,7 @@ header {
   font-size: 0.9rem;
   color: #fff;
   margin-bottom: 10px;
+  min-height: 40px; /* Para uniformidad */
 }
 
 .news-box button {
@@ -117,8 +119,8 @@ header {
   display: none;
   position: fixed;
   z-index: 9999;
-  left: 0; 
-  top: 0; 
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -187,13 +189,4 @@ header {
   mix-blend-mode: difference;
   z-index: 9999;
   transition: transform 0.2s ease;
-}
-
-/* Efecto Matrix (Se inyecta con z-index: -1) */
-
-/* Ajustes responsivos (opcional) */
-@media (max-width: 600px) {
-  .news-box {
-    width: 90%;
-  }
 }
