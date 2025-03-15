@@ -22,19 +22,20 @@ html, body {
   background: #000;
 }
 
-/* Título centrado */
+/* Título y texto de la web */
 header {
   text-align: center;
   margin: 40px auto 20px auto;
 }
 
-/* Efecto glitch */
+/* Efecto glitch en el h1 */
 .glitch {
   font-size: 3rem;
   display: inline-block;
   text-transform: uppercase;
   text-shadow: 0 0 5px #0ff;
   animation: glitchShadow 1.5s infinite;
+  margin-bottom: 20px;
 }
 
 .glitch-active {
@@ -60,6 +61,19 @@ header {
   100% {
     text-shadow: 0px 0px 5px #0ff;
   }
+}
+
+/* Texto que aparece letra por letra */
+.typing-container {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  height: 30px; /* Para evitar salto al recargar frase */
+  overflow: hidden;
+  /* color base */
+  color: #0ff;
+}
+.typing-glitch {
+  text-shadow: 0 0 5px #ff00ff, 0 0 8px #00ffff;
 }
 
 /* Sección de noticias */
@@ -90,6 +104,7 @@ header {
   padding: 20px;
   box-shadow: 0 0 10px #0ff;
   text-align: left;
+  min-height: 160px; 
 }
 
 .news-box h3 {
@@ -102,6 +117,67 @@ header {
   color: #fff;
   font-size: 0.9rem;
   line-height: 1.4rem;
+}
+
+/* Sección Adivina la Palabra */
+.word-challenge {
+  margin: 40px auto;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+.word-challenge h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+#word-display {
+  font-size: 2rem;
+  letter-spacing: 8px;
+  margin: 10px 0;
+}
+
+#hint {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+#letter-input {
+  padding: 10px;
+  font-family: inherit;
+  border: 2px solid #0ff;
+  background: #111;
+  color: #0ff;
+  width: 60px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+#check-letter {
+  padding: 10px;
+  background: #0ff;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+#check-letter:hover {
+  background: #fff;
+}
+
+#message {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+#attempts-remaining {
+  margin: 5px 0;
+  color: #fff;
 }
 
 /* Cursor futurista */
