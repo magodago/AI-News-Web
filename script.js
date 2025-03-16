@@ -426,8 +426,11 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const fallbackNews = [
     { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
-    { title: "Google responde a ChatGPT con Bard", text: "Google lanza su chatbot Bard en versión beta, marcando un hito en la IA." },
-    { title: "Nuevos robots en fábricas impulsan la producción", text: "La automatización con IA redefine la industria manufacturera." }
+    { title: "Google responde con Bard", text: "El gigante lanza su chatbot en versión beta para competir en IA." },
+    { title: "Robots en fábricas: Producción automatizada", text: "La integración de IA impulsa la eficiencia industrial." },
+    { title: "Tesla mejora su autopiloto con IA", text: "Nuevas actualizaciones prometen mayor seguridad en la conducción autónoma." },
+    { title: "Microsoft reinventa Bing con IA", text: "La búsqueda online se vuelve más inteligente con IA integrada." },
+    { title: "DeepMind avanza en algoritmos de IA", text: "Nuevos desarrollos en aprendizaje profundo marcan tendencia." }
   ];
   async function loadNews() {
     const newsContainer = document.getElementById("news-container");
@@ -438,9 +441,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
       newsContainer.innerHTML = "";
-      data.forEach(item => {
+      // Se muestran 6 noticias
+      data.slice(0, 6).forEach(item => {
         const box = document.createElement("div");
         box.classList.add("news-box");
+        // Se muestran solo el título y un resumen corto
         box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
         newsContainer.appendChild(box);
       });
@@ -643,13 +648,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 15. Nuevo juego: Caza de Partículas AI
+   * 15. Nuevo Juego: Caza de Partículas AI
+   * Temporizador de 30 segundos para maximizar la puntuación
    *******************************************/
   function initParticleHunt() {
     const container = document.getElementById("particle-hunt-container");
     const scoreElem = document.getElementById("particle-hunt-score");
-    if (!container || !scoreElem) return;
+    const timerElem = document.getElementById("particle-hunt-timer");
+    if (!container || !scoreElem || !timerElem) return;
     let score = 0;
+    let timeLeft = 30;
+    scoreElem.textContent = `Puntuación: ${score}`;
+    timerElem.textContent = `Tiempo: ${timeLeft}s`;
+
     function spawnParticle() {
       const particle = document.createElement("div");
       particle.classList.add("particle");
@@ -660,17 +671,29 @@ document.addEventListener("DOMContentLoaded", () => {
       particle.style.top = `${y}px`;
       container.appendChild(particle);
       particle.addEventListener("animationend", () => {
-        if (particle.parentElement === container) { container.removeChild(particle); }
+        if (particle.parentElement === container) {
+          container.removeChild(particle);
+        }
       });
       particle.addEventListener("click", () => {
         score++;
         scoreElem.textContent = `Puntuación: ${score}`;
-        if (particle.parentElement === container) { container.removeChild(particle); }
+        if (particle.parentElement === container) {
+          container.removeChild(particle);
+        }
       });
     }
-    setInterval(spawnParticle, 1000);
+    const particleInterval = setInterval(spawnParticle, 1000);
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      timerElem.textContent = `Tiempo: ${timeLeft}s`;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        clearInterval(particleInterval);
+        alert(`Tiempo terminado. Tu puntuación final es: ${score}`);
+      }
+    }, 1000);
   }
   initParticleHunt();
 
 });
-
