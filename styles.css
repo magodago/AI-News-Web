@@ -19,7 +19,7 @@ body {
   100% { filter: brightness(1); }
 }
 
-/* FONDO OSCURO SIN IMAGEN DE PLACEHOLDER */
+/* FONDO OSCURO */
 html, body {
   height: 100%;
   background: #000;
@@ -28,7 +28,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* EFECTO DE PARTÍCULAS ANIMADAS EN EL FONDO */
+/* EFECTO DE PARTÍCULAS */
 body::before {
   content: "";
   position: fixed;
@@ -46,7 +46,7 @@ body::before {
   to { transform: translate(-50px, -50px); }
 }
 
-/* NUEVO EFECTO: PULSACIÓN SUTIL EN EL TÍTULO */
+/* PULSACIÓN EN EL TÍTULO */
 header h1 {
   animation: pulsate 3s infinite;
 }
@@ -56,7 +56,7 @@ header h1 {
   100% { text-shadow: 0 0 10px #0f0; }
 }
 
-/* BARRA SUPERIOR MATRIX */
+/* BARRA MATRIX */
 #matrix-bar {
   width: 100%;
   height: 60px;
@@ -71,7 +71,7 @@ header {
   margin: 20px auto;
 }
 
-/* TÍTULO GLITCH (VERDE) */
+/* TÍTULO GLITCH */
 .glitch {
   font-size: 3rem;
   text-transform: uppercase;
@@ -270,7 +270,6 @@ input[type="text"] {
   justify-content: center;
   cursor: pointer;
   transition: 0.3s;
-  margin: 0;
 }
 .tictactoe-cell:hover {
   background: #0f0;
@@ -316,8 +315,10 @@ input[type="text"] {
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
+  position: relative;
 }
 .news-box {
+  position: relative;
   width: 300px;
   background: rgba(0,255,0,0.1);
   border: 1px solid #0f0;
@@ -342,6 +343,21 @@ input[type="text"] {
   font-size: 0.9rem;
   line-height: 1.2rem;
   margin-bottom: 10px;
+}
+/* Punto indicador para noticias API */
+.api-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: lime;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 
 /* WIDGETS */
@@ -467,7 +483,7 @@ input[type="text"] {
   100% { opacity: 0; transform: scale(2); }
 }
 
-/* CLASE PARA PARRPADEAR EL ENLACE DE CONTACTO */
+/* Enlace parpadeante en el footer */
 .blink {
   animation: blink 1s infinite;
 }
@@ -485,4 +501,13 @@ input[type="text"] {
   }
   .tictactoe-cell {
     width: 80px;
-    h
+    height: 80px;
+  }
+  .card {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  .symbol-btn { width: 30px; }
+  .code-char { width: 30px; }
+}
