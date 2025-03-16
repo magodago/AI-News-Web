@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function createTicTacToe(){
     if(!tictactoeContainer)return;
     tictactoeContainer.innerHTML="";
-    // “inline-block” y margin:0 auto en CSS
+    // Se crean las 9 celdas para el tablero
     for(let i=0;i<9;i++){
       const cell=document.createElement("div");
       cell.classList.add("tictactoe-cell");
