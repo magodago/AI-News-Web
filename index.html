@@ -65,19 +65,31 @@
   <!-- 4) MEMORY AI CARDS -->
   <section class="memory-game">
     <h2>Memory AI Cards</h2>
-    <div id="memory-container">
-      <!-- 12 cartas con 6 parejas (IA-símbolos). Inyectado en JS -->
-    </div>
+    <div id="memory-container"></div>
     <p id="memory-message"></p>
   </section>
 
   <!-- 5) NEON TICTACTOE -->
   <section class="neon-tictactoe">
     <h2>Neon TicTacToe</h2>
-    <div id="tictactoe-container">
-      <!-- 3x3 celdas inyectadas en script -->
-    </div>
+    <div id="tictactoe-container"></div>
     <p id="tictactoe-message"></p>
+  </section>
+
+  <!-- 6) NUEVO JUEGO: AI NUMBER GUESSER -->
+  <section class="ai-number-guessing">
+    <h2>AI Number Guesser</h2>
+    <div id="guesser-container">
+      <p>Piensa un número entre 1 y 100. La IA intentará adivinarlo.</p>
+      <button id="start-guesser">Empezar</button>
+      <p id="guesser-question"></p>
+      <div id="guesser-buttons">
+        <button id="higher">Más alto</button>
+        <button id="lower">Más bajo</button>
+        <button id="correct">¡Correcto!</button>
+      </div>
+      <p id="guesser-feedback"></p>
+    </div>
   </section>
 
   <!-- NOTICIAS (6 aleatorias con botón “Leer”) -->
