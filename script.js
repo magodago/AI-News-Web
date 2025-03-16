@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     bar.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
-    // “Matrix style”: solo "01"
     const letters = "01";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
@@ -39,17 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#0f0"; // verde
+      ctx.fillStyle = "#0f0";
       ctx.font = fontSize + "px Orbitron";
 
       for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         const x = i * fontSize;
         const y = drops[i] * fontSize;
-
         ctx.fillText(text, x, y);
-
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -71,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
-
   document.addEventListener("mousemove", (e) => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
@@ -83,27 +78,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const phrase = "Follow the white rabbit...";
   let idx = 0;
   let typingInterval = null;
-
   function typePhrase() {
     if (!typingText) return;
     typingText.textContent = phrase.substring(0, idx);
     idx++;
-
-    // glitch breve
     if (Math.random() > 0.9) {
       typingText.classList.add("typing-glitch");
-      setTimeout(() => {
-        typingText.classList.remove("typing-glitch");
-      }, 100);
+      setTimeout(() => { typingText.classList.remove("typing-glitch"); }, 100);
     }
-
     if (idx > phrase.length) {
       clearInterval(typingInterval);
-      setTimeout(() => {
-        idx = 0;
-        typingText.textContent = "";
-        typingInterval = setInterval(typePhrase, 100);
-      }, 1500);
+      setTimeout(() => { idx = 0; typingText.textContent = ""; typingInterval = setInterval(typePhrase, 100); }, 1500);
     }
   }
   typingInterval = setInterval(typePhrase, 100);
@@ -120,39 +105,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const randomIndex = Math.floor(Math.random() * words.length);
   const selectedWord = words[randomIndex].word;
   const hint = words[randomIndex].hint;
-
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
   const attemptsElem = document.getElementById("attempts-remaining");
   const letterInput = document.getElementById("letter-input");
   const checkBtn = document.getElementById("check-letter");
-
   let wordArray = Array.from(selectedWord).map(() => "_");
   let attempts = selectedWord.length + 3;
-
   if (hintElem) hintElem.textContent = "Pista: " + hint;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
-
   if (checkBtn) {
     checkBtn.addEventListener("click", () => {
       if (!letterInput) return;
       const letter = letterInput.value.toLowerCase();
       letterInput.value = "";
       if (!letter || letter.length !== 1) return;
-
       let found = false;
       for (let i = 0; i < selectedWord.length; i++) {
-        if (selectedWord[i] === letter) {
-          wordArray[i] = letter;
-          found = true;
-        }
+        if (selectedWord[i] === letter) { wordArray[i] = letter; found = true; }
       }
       if (!found) attempts--;
       wordDisplay.textContent = wordArray.join(" ");
       attemptsElem.textContent = `Intentos restantes: ${attempts}`;
-
       if (!wordArray.includes("_")) {
         messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
         checkBtn.disabled = true;
@@ -177,18 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let triviaIndex = 0;
   let triviaScore = 0;
-
   const triviaQuestionElem = document.getElementById("trivia-question");
   const triviaAnswersElem = document.getElementById("trivia-answers");
   const triviaResultElem = document.getElementById("trivia-result");
   const triviaNextBtn = document.getElementById("trivia-next");
-
   function mostrarPreguntaTrivia() {
     if (triviaIndex >= triviaQuestions.length) return;
     const q = triviaQuestions[triviaIndex];
     if (triviaQuestionElem) triviaQuestionElem.textContent = q.question;
     if (triviaAnswersElem) triviaAnswersElem.innerHTML = "";
-
     q.answers.forEach((ans, i) => {
       const div = document.createElement("div");
       div.classList.add("trivia-option");
@@ -200,15 +173,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           if (triviaResultElem) triviaResultElem.textContent = "Respuesta incorrecta.";
         }
-        Array.from(triviaAnswersElem.children).forEach(opt => {
-          opt.style.pointerEvents = "none";
-        });
+        Array.from(triviaAnswersElem.children).forEach(opt => { opt.style.pointerEvents = "none"; });
       });
       triviaAnswersElem.appendChild(div);
     });
     if (triviaResultElem) triviaResultElem.textContent = "";
   }
-
   if (triviaNextBtn) {
     triviaNextBtn.addEventListener("click", () => {
       triviaIndex++;
@@ -235,77 +205,49 @@ document.addEventListener("DOMContentLoaded", () => {
     secretCode.push(codeSymbols[r]);
   }
   let codeAttempts = 7;
-
   const codeFeedback = document.getElementById("code-feedback");
   const codeAttemptsElem = document.getElementById("code-attempts");
   const codeCheckBtn = document.getElementById("code-check");
   const codeResetBtn = document.getElementById("code-reset");
   const codeInputs = document.querySelectorAll(".code-char");
   const symbolListElem = document.getElementById("symbol-list");
-
   if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
-
   if (symbolListElem) {
     let html = "";
-    codeSymbols.forEach(sym => {
-      html += `<button class="symbol-btn">${sym}</button>`;
-    });
+    codeSymbols.forEach(sym => { html += `<button class="symbol-btn">${sym}</button>`; });
     symbolListElem.innerHTML = html;
-
     const symbolBtns = symbolListElem.querySelectorAll(".symbol-btn");
     symbolBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         for (let i = 0; i < codeInputs.length; i++) {
-          if (!codeInputs[i].value) {
-            codeInputs[i].value = btn.textContent;
-            break;
-          }
+          if (!codeInputs[i].value) { codeInputs[i].value = btn.textContent; break; }
         }
       });
     });
   }
-
   if (codeResetBtn) {
     codeResetBtn.addEventListener("click", () => {
       codeInputs.forEach(inp => inp.value = "");
       codeFeedback.textContent = "";
     });
   }
-
   if (codeCheckBtn) {
     codeCheckBtn.addEventListener("click", () => {
       if (codeAttempts <= 0) return;
       let userCode = [];
       codeInputs.forEach(inp => userCode.push(inp.value));
-      if (userCode.some(v => !v)) {
-        codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar.";
-        return;
-      }
-
-      let correctPos = 0;
-      let correctSym = 0;
-      let secretCopy = [...secretCode];
-      let userCopy = [...userCode];
-
-      // correctos en posición
+      if (userCode.some(v => !v)) { codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar."; return; }
+      let correctPos = 0, correctSym = 0;
+      let secretCopy = [...secretCode], userCopy = [...userCode];
       for (let i = 0; i < codeLength; i++) {
-        if (userCopy[i] === secretCopy[i]) {
-          correctPos++;
-          secretCopy[i] = null;
-          userCopy[i] = null;
-        }
+        if (userCopy[i] === secretCopy[i]) { correctPos++; secretCopy[i] = null; userCopy[i] = null; }
       }
-      // correctos en otra posición
       for (let i = 0; i < codeLength; i++) {
         if (userCopy[i]) {
           const idx = secretCopy.indexOf(userCopy[i]);
-          if (idx !== -1) {
-            correctSym++;
-            secretCopy[idx] = null;
-          }
+          if (idx !== -1) { correctSym++; secretCopy[idx] = null; }
         }
       }
-
       if (correctPos === codeLength) {
         codeFeedback.textContent = `🎉 ¡Código descifrado! Era: ${secretCode.join("")}`;
         codeCheckBtn.disabled = true;
@@ -334,7 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
   let flippedCards = [];
   let matchedPairs = 0;
-
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -343,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return arr;
   }
   const shuffledSymbols = shuffleArray([...cardSymbols]);
-
   function createMemoryBoard() {
     if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
@@ -362,14 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function flipCard(card) {
     if (card.classList.contains("flipped")) return;
     if (flippedCards.length === 2) return;
-
     card.classList.add("flipped");
     card.textContent = card.dataset.symbol;
     flippedCards.push(card);
-
-    if (flippedCards.length === 2) {
-      setTimeout(checkMatch, 600);
-    }
+    if (flippedCards.length === 2) { setTimeout(checkMatch, 600); }
   }
   function checkMatch() {
     const [c1, c2] = flippedCards;
@@ -377,14 +313,10 @@ document.addEventListener("DOMContentLoaded", () => {
       matchedPairs++;
       c1.removeEventListener("click", () => flipCard(c1));
       c2.removeEventListener("click", () => flipCard(c2));
-      if (matchedPairs === cardSymbols.length / 2) {
-        memoryMessage.textContent = "¡Has encontrado todas las parejas!";
-      }
+      if (matchedPairs === cardSymbols.length / 2) { memoryMessage.textContent = "¡Has encontrado todas las parejas!"; }
     } else {
-      c1.classList.remove("flipped");
-      c1.textContent = "?";
-      c2.classList.remove("flipped");
-      c2.textContent = "?";
+      c1.classList.remove("flipped"); c1.textContent = "?";
+      c2.classList.remove("flipped"); c2.textContent = "?";
     }
     flippedCards = [];
   }
@@ -398,7 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let board = ["", "", "", "", "", "", "", "", ""];
   let currentPlayer = "X";
   let gameOver = false;
-
   function createTicTacToe() {
     if (!tictactoeContainer) return;
     tictactoeContainer.innerHTML = "";
@@ -455,35 +386,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const lowerBtn = document.getElementById("lower");
   const correctBtn = document.getElementById("correct");
   const guesserFeedback = document.getElementById("guesser-feedback");
-
   let guesserLow = 1;
   let guesserHigh = 100;
   let guesserCurrent = 0;
   let guesserOver = false;
-
   function guessNumber() {
     guesserCurrent = Math.floor((guesserLow + guesserHigh) / 2);
     guesserQuestion.textContent = `¿Es ${guesserCurrent}?`;
   }
-
   if (startBtn) {
     startBtn.addEventListener("click", () => {
-      guesserLow = 1;
-      guesserHigh = 100;
-      guesserOver = false;
-      guesserFeedback.textContent = "";
-      guessNumber();
+      guesserLow = 1; guesserHigh = 100; guesserOver = false;
+      guesserFeedback.textContent = ""; guessNumber();
     });
   }
   if (higherBtn) {
     higherBtn.addEventListener("click", () => {
       if (guesserOver) return;
       guesserLow = guesserCurrent + 1;
-      if (guesserLow > guesserHigh) {
-        guesserFeedback.textContent = "¡Inconsistente! No quedan números.";
-        guesserOver = true;
-        return;
-      }
+      if (guesserLow > guesserHigh) { guesserFeedback.textContent = "¡Inconsistente! No quedan números."; guesserOver = true; return; }
       guessNumber();
     });
   }
@@ -491,11 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lowerBtn.addEventListener("click", () => {
       if (guesserOver) return;
       guesserHigh = guesserCurrent - 1;
-      if (guesserHigh < guesserLow) {
-        guesserFeedback.textContent = "¡Inconsistente! No quedan números.";
-        guesserOver = true;
-        return;
-      }
+      if (guesserHigh < guesserLow) { guesserFeedback.textContent = "¡Inconsistente! No quedan números."; guesserOver = true; return; }
       guessNumber();
     });
   }
@@ -508,8 +425,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 12. Noticias Reales (usando API Apitube)
+   * 12. Noticias Reales (API Apitube con fallback)
    *******************************************/
+  const fallbackNews = [
+    {
+      title: "ChatGPT-4 revoluciona la IA generativa",
+      text: "OpenAI lanza GPT-4 con sorprendentes capacidades multimodales",
+      link: "https://www.nytimes.com/2023/03/14/technology/openai-gpt4.html"
+    },
+    {
+      title: "Google lanza Bard en respuesta a ChatGPT",
+      text: "El gigante de internet presenta su chatbot Bard en versión beta",
+      link: "https://www.bbc.com/news/technology-64672280"
+    },
+    {
+      title: "Robots humanoides avanzan en fábricas",
+      text: "Empresas de robótica muestran prototipos con IA avanzada",
+      link: "https://www.cnn.com/2023/02/13/tech/robotics-humanoid-ia"
+    }
+  ];
   async function loadNews() {
     const newsContainer = document.getElementById("news-container");
     if (!newsContainer) return;
@@ -517,6 +451,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov");
       const data = await response.json();
+      // Se espera que la API devuelva un array; si no, usamos el fallback
+      if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
       newsContainer.innerHTML = "";
       data.forEach(item => {
         const box = document.createElement("div");
@@ -527,15 +463,23 @@ document.addEventListener("DOMContentLoaded", () => {
         newsContainer.appendChild(box);
       });
     } catch (error) {
-      newsContainer.innerHTML = "Error al cargar noticias.";
-      console.error(error);
+      console.error("Error en API, usando noticias fallback:", error);
+      newsContainer.innerHTML = "";
+      fallbackNews.forEach(item => {
+        const box = document.createElement("div");
+        box.classList.add("news-box");
+        box.innerHTML = `<h3>${item.title}</h3>
+                         <p>${item.text}</p>
+                         <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>`;
+        newsContainer.appendChild(box);
+      });
     }
   }
   loadNews();
   setInterval(loadNews, 300000); // Actualiza cada 5 minutos
 
   /*******************************************
-   * 13. Widgets Futuristas
+   * 13. Widgets Futuristas con muchas opciones
    *******************************************/
   // 13.1 Citas IA
   const quotes = [
@@ -543,7 +487,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "Los datos son el nuevo petróleo.",
     "La creatividad sigue siendo humana.",
     "La IA sin ética es solo código.",
-    "El futuro pertenece a la IA."
+    "El futuro pertenece a la IA.",
+    "Innovar es vivir en la era de la inteligencia.",
+    "La tecnología se funde con la imaginación.",
+    "El código es poesía, la IA es su musa."
   ];
   function cambiarCita() {
     const quoteElem = document.getElementById("ai-quote");
@@ -554,7 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(cambiarCita, 10000);
   cambiarCita();
 
-  // 13.2 Contador Patentes
+  // 13.2 Contador Patentes (sin cambios, se actualiza cada 5 seg)
   let patenteContador = 50000;
   function actualizarPatentes() {
     const patentCountElem = document.getElementById("patent-count");
@@ -565,30 +512,44 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(actualizarPatentes, 5000);
   actualizarPatentes();
 
-  // 13.3 Predicciones IA
+  // 13.3 Predicciones IA con más opciones
   const predicciones = [
     "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
     "Los robots humanoides convivirán con nosotros en 2050.",
     "La computación cuántica cambiará el Deep Learning en 2040.",
-    "La IA superará la creatividad humana en 2045."
+    "La IA superará la creatividad humana en 2045.",
+    "El aprendizaje automático se integrará en el día a día.",
+    "La inteligencia artificial potenciará la medicina personalizada.",
+    "La automatización transformará la industria global.",
+    "La ética se convertirá en la base de la tecnología del futuro."
   ];
   const predictionTextElem = document.getElementById("prediction-text");
   if (predictionTextElem) {
     predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
   }
 
-  // 13.4 Mapa de Innovación
+  // 13.4 Mapa de Innovación con opciones
+  const innovacionOptions = [
+    "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.",
+    "Centros de innovación: Silicon Valley, Tel Aviv, Bangalore, Seúl.",
+    "Ecosistemas de tecnología: Estocolmo, Berlín, Amsterdam, Melbourne.",
+    "Capitales de la innovación: Nueva York, París, Dubai, Sídney."
+  ];
   const mapContainer = document.getElementById("map-container");
   if (mapContainer) {
-    mapContainer.textContent = "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.";
+    mapContainer.textContent = innovacionOptions[Math.floor(Math.random() * innovacionOptions.length)];
   }
 
-  // 13.5 Sorpresa Diaria
+  // 13.5 Sorpresa Diaria con más opciones
   const sorpresas = [
     "En 2025, el 70% de las empresas usará IA para atención al cliente.",
     "Los coches autónomos evitarán el 90% de los accidentes viales.",
     "La IA podría superar la creatividad humana en 2045.",
-    "Un nuevo avance en IA reduce el consumo energético un 40%."
+    "Un nuevo avance en IA reduce el consumo energético un 40%.",
+    "La IA transformará el sector educativo con tutorías personalizadas.",
+    "Robots de asistencia se integrarán en hogares inteligentes.",
+    "La visión por computador revolucionará la seguridad vial.",
+    "La automatización impulsará el comercio global."
   ];
   const revealBtn = document.getElementById("reveal-surprise");
   const surpriseTextElem = document.getElementById("surprise-text");
@@ -599,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 13.6 Ranking Países
+  // 13.6 Ranking Países (sin cambios)
   const countriesData = [
     { name: "USA", investment: 90 },
     { name: "China", investment: 85 },
@@ -621,7 +582,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     });
     countriesContainer.innerHTML = html;
-
     const fillElems = countriesContainer.querySelectorAll(".country-fill");
     fillElems.forEach((fill, index) => {
       const inv = countriesData[index].investment;
@@ -638,12 +598,9 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  // Palabras: "ROBOT", "ALGORITMO", "RED", "DATOS", "IA"
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
-
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
-
   function placeWordHorizontal(word, r, c) {
     if (c + word.length > cols) return false;
     for (let i = 0; i < word.length; i++) {
@@ -680,18 +637,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
   wsWords.forEach(w => insertWord(w));
-
-  // Rellenar con letras random
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      if (!grid[r][c]) {
-        grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
-      }
+      if (!grid[r][c]) { grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length)); }
     }
   }
-
-  // Mostrar y permitir "seleccionar" celdas
   if (wordsearchContainer) {
     wordsearchContainer.innerHTML = "";
     for (let r = 0; r < rows; r++) {
@@ -701,9 +652,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("wordsearch-cell");
         cellDiv.textContent = grid[r][c];
-        cellDiv.addEventListener("click", () => {
-          cellDiv.classList.toggle("highlighted");
-        });
+        cellDiv.addEventListener("click", () => { cellDiv.classList.toggle("highlighted"); });
         rowDiv.appendChild(cellDiv);
       }
       wordsearchContainer.appendChild(rowDiv);
@@ -712,6 +661,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (wordsearchWordsElem) {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
+
+  /*******************************************
+   * Efecto extra: Neon Flicker en el Body
+   *******************************************/
+  setInterval(() => {
+    document.body.classList.add("neon-flicker");
+    setTimeout(() => { document.body.classList.remove("neon-flicker"); }, 2000);
+  }, 10000);
 
 });
 
