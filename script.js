@@ -46,9 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         ctx.fillText(text, x, y);
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
+        if (y > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
         drops[i]++;
       }
     }
@@ -182,9 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (triviaNextBtn) {
     triviaNextBtn.addEventListener("click", () => {
       triviaIndex++;
-      if (triviaIndex < triviaQuestions.length) {
-        mostrarPreguntaTrivia();
-      } else {
+      if (triviaIndex < triviaQuestions.length) { mostrarPreguntaTrivia(); }
+      else {
         if (triviaQuestionElem) triviaQuestionElem.textContent = "¡Has completado la trivia!";
         if (triviaAnswersElem) triviaAnswersElem.innerHTML = `Puntuación: ${triviaScore}/${triviaQuestions.length}`;
         if (triviaResultElem) triviaResultElem.textContent = "";
@@ -428,21 +425,9 @@ document.addEventListener("DOMContentLoaded", () => {
    * 12. Noticias Reales (API Apitube con fallback)
    *******************************************/
   const fallbackNews = [
-    {
-      title: "ChatGPT-4 revoluciona la IA generativa",
-      text: "OpenAI lanza GPT-4 con sorprendentes capacidades multimodales",
-      link: "https://www.nytimes.com/2023/03/14/technology/openai-gpt4.html"
-    },
-    {
-      title: "Google lanza Bard en respuesta a ChatGPT",
-      text: "El gigante de internet presenta su chatbot Bard en versión beta",
-      link: "https://www.bbc.com/news/technology-64672280"
-    },
-    {
-      title: "Robots humanoides avanzan en fábricas",
-      text: "Empresas de robótica muestran prototipos con IA avanzada",
-      link: "https://www.cnn.com/2023/02/13/tech/robotics-humanoid-ia"
-    }
+    { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
+    { title: "Google responde a ChatGPT con Bard", text: "Google lanza su chatbot Bard en versión beta, marcando un hito en la IA." },
+    { title: "Nuevos robots en fábricas impulsan la producción", text: "La automatización con IA redefine la industria manufacturera." }
   ];
   async function loadNews() {
     const newsContainer = document.getElementById("news-container");
@@ -451,15 +436,12 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov");
       const data = await response.json();
-      // Se espera que la API devuelva un array; si no, usamos el fallback
       if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
       newsContainer.innerHTML = "";
       data.forEach(item => {
         const box = document.createElement("div");
         box.classList.add("news-box");
-        box.innerHTML = `<h3>${item.title}</h3>
-                         <p>${item.text}</p>
-                         <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>`;
+        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
         newsContainer.appendChild(box);
       });
     } catch (error) {
@@ -468,9 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fallbackNews.forEach(item => {
         const box = document.createElement("div");
         box.classList.add("news-box");
-        box.innerHTML = `<h3>${item.title}</h3>
-                         <p>${item.text}</p>
-                         <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>`;
+        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
         newsContainer.appendChild(box);
       });
     }
@@ -501,7 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(cambiarCita, 10000);
   cambiarCita();
 
-  // 13.2 Contador Patentes (sin cambios, se actualiza cada 5 seg)
+  // 13.2 Contador Patentes
   let patenteContador = 50000;
   function actualizarPatentes() {
     const patentCountElem = document.getElementById("patent-count");
@@ -519,7 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "La computación cuántica cambiará el Deep Learning en 2040.",
     "La IA superará la creatividad humana en 2045.",
     "El aprendizaje automático se integrará en el día a día.",
-    "La inteligencia artificial potenciará la medicina personalizada.",
+    "La IA potenciará la medicina personalizada.",
     "La automatización transformará la industria global.",
     "La ética se convertirá en la base de la tecnología del futuro."
   ];
@@ -663,12 +643,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * Efecto extra: Neon Flicker en el Body
+   * 15. Nuevo juego: Caza de Partículas AI
    *******************************************/
-  setInterval(() => {
-    document.body.classList.add("neon-flicker");
-    setTimeout(() => { document.body.classList.remove("neon-flicker"); }, 2000);
-  }, 10000);
+  function initParticleHunt() {
+    const container = document.getElementById("particle-hunt-container");
+    const scoreElem = document.getElementById("particle-hunt-score");
+    if (!container || !scoreElem) return;
+    let score = 0;
+    function spawnParticle() {
+      const particle = document.createElement("div");
+      particle.classList.add("particle");
+      const containerRect = container.getBoundingClientRect();
+      const x = Math.random() * (containerRect.width - 20);
+      const y = Math.random() * (containerRect.height - 20);
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      container.appendChild(particle);
+      particle.addEventListener("animationend", () => {
+        if (particle.parentElement === container) { container.removeChild(particle); }
+      });
+      particle.addEventListener("click", () => {
+        score++;
+        scoreElem.textContent = `Puntuación: ${score}`;
+        if (particle.parentElement === container) { container.removeChild(particle); }
+      });
+    }
+    setInterval(spawnParticle, 1000);
+  }
+  initParticleHunt();
 
 });
 
