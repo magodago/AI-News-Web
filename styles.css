@@ -5,21 +5,15 @@
   box-sizing: border-box;
 }
 
-/* ANIMACIÓN FADE-IN EN EL BODY CON UN PULSO MATRIX */
+/* ANIMACIÓN FADE-IN CON PULSO MATRIX */
 body {
   animation: fadeIn 1s ease forwards, matrixPulse 10s infinite alternate;
   opacity: 0;
 }
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-@keyframes matrixPulse {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.1); }
-  100% { filter: brightness(1); }
-}
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes matrixPulse { 0% { filter: brightness(1); } 50% { filter: brightness(1.1); } 100% { filter: brightness(1); } }
 
-/* FONDO OSCURO */
+/* FONDO */
 html, body {
   height: 100%;
   background: #000;
@@ -32,46 +26,20 @@ html, body {
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><circle cx="5" cy="5" r="2" fill="%230f0"/></svg>') repeat;
   opacity: 0.2;
   animation: moveBackground 20s linear infinite;
   z-index: -2;
 }
-@keyframes moveBackground {
-  from { transform: translate(0, 0); }
-  to { transform: translate(-50px, -50px); }
-}
+@keyframes moveBackground { from { transform: translate(0,0); } to { transform: translate(-50px,-50px); } }
 
-/* PULSACIÓN EN EL TÍTULO */
+/* TÍTULO CON EFECTO GLITCH */
 header h1 {
   animation: pulsate 3s infinite;
 }
-@keyframes pulsate {
-  0% { text-shadow: 0 0 10px #0f0; }
-  50% { text-shadow: 0 0 20px #0f0; }
-  100% { text-shadow: 0 0 10px #0f0; }
-}
-
-/* BARRA MATRIX */
-#matrix-bar {
-  width: 100%;
-  height: 60px;
-  position: relative;
-  overflow: hidden;
-  background: rgba(0,0,0,0.7);
-}
-
-/* ENCABEZADO */
-header {
-  text-align: center;
-  margin: 20px auto;
-}
-
-/* TÍTULO GLITCH */
+@keyframes pulsate { 0% { text-shadow: 0 0 10px #0f0; } 50% { text-shadow: 0 0 20px #0f0; } 100% { text-shadow: 0 0 10px #0f0; } }
 .glitch {
   font-size: 3rem;
   text-transform: uppercase;
@@ -81,15 +49,15 @@ header {
   display: inline-block;
 }
 .glitch-active {
-  text-shadow: 0px 0px 8px #0f0, 5px 0px 10px #0f0, -5px 0px 10px #0f0;
+  text-shadow: 0 0 8px #0f0, 5px 0 10px #0f0, -5px 0 10px #0f0;
 }
 @keyframes glitchShadow {
-  0% { text-shadow: 0px 0px 5px #0f0; }
-  20% { text-shadow: 2px 0px 5px #0f0; }
-  40% { text-shadow: -2px 0px 5px #0f0; }
-  60% { text-shadow: 2px 0px 5px #0f0; }
-  80% { text-shadow: -2px 0px 5px #0f0; }
-  100% { text-shadow: 0px 0px 5px #0f0; }
+  0% { text-shadow: 0 0 5px #0f0; }
+  20% { text-shadow: 2px 0 5px #0f0; }
+  40% { text-shadow: -2px 0 5px #0f0; }
+  60% { text-shadow: 2px 0 5px #0f0; }
+  80% { text-shadow: -2px 0 5px #0f0; }
+  100% { text-shadow: 0 0 5px #0f0; }
 }
 
 /* FRASE TYPING */
@@ -140,15 +108,13 @@ input[type="text"] {
   margin: 5px;
 }
 
-/* ADIVINA PALABRA */
+/* DESAFÍO: ADIVINA LA PALABRA */
 #word-display {
   font-size: 2rem;
   letter-spacing: 8px;
   margin: 10px 0;
 }
-#hint, #message, #attempts-remaining {
-  color: #0f0;
-}
+#hint, #message, #attempts-remaining { color: #0f0; }
 
 /* TRIVIA */
 #trivia-container {
@@ -158,10 +124,7 @@ input[type="text"] {
   background: rgba(0,255,0,0.1);
   box-shadow: 0 0 10px #0f0;
 }
-.trivia-option {
-  margin: 5px 0;
-  cursor: pointer;
-}
+.trivia-option { margin: 5px 0; cursor: pointer; }
 
 /* CRACK THE CODE */
 #code-container {
@@ -171,13 +134,7 @@ input[type="text"] {
   background: rgba(0,255,0,0.1);
   box-shadow: 0 0 10px #0f0;
 }
-.symbol-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  justify-content: center;
-  margin-bottom: 10px;
-}
+.symbol-list { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-bottom: 10px; }
 .symbol-btn {
   background: #111;
   border: 2px solid #0f0;
@@ -187,42 +144,15 @@ input[type="text"] {
   margin: 3px;
   cursor: pointer;
 }
-.symbol-btn:hover {
-  background: #0f0;
-  color: #000;
-}
-#code-inputs {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  margin: 10px 0;
-}
-.code-char {
-  width: 40px;
-  padding: 10px;
-  border: 2px solid #0f0;
-  background: #222;
-  color: #0f0;
-  text-align: center;
-  font-size: 1.2rem;
-  border-radius: 5px;
-}
-#code-feedback {
-  margin: 10px 0;
-  font-weight: bold;
-  color: #0f0;
-}
+.symbol-btn:hover { background: #0f0; color: #000; }
+#code-inputs { display: flex; justify-content: center; gap: 5px; margin: 10px 0; }
+.code-char { width: 40px; padding: 10px; border: 2px solid #0f0; background: #222; color: #0f0; text-align: center; font-size: 1.2rem; border-radius: 5px; }
+#code-feedback { margin: 10px 0; font-weight: bold; color: #0f0; }
 
-/* MEMORY GAME */
-#memory-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
+/* MEMORY AI CARDS */
+#memory-container { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .card {
-  width: 80px;
-  height: 80px;
+  width: 80px; height: 80px;
   background: #111;
   border: 2px solid #0f0;
   border-radius: 10px;
@@ -235,20 +165,10 @@ input[type="text"] {
   transition: 0.3s;
   user-select: none;
 }
-.card.flipped {
-  background: #0f0;
-  color: #000;
-}
-#memory-message {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #0f0;
-}
+.card.flipped { background: #0f0; color: #000; }
+#memory-message { margin-top: 10px; font-weight: bold; color: #0f0; }
 
-/* TICTACTOE */
-.neon-tictactoe {
-  margin: 40px auto;
-}
+/* NEON TICTACTOE */
 #tictactoe-container {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -258,8 +178,7 @@ input[type="text"] {
   text-align: center;
 }
 .tictactoe-cell {
-  width: 100px;
-  height: 100px;
+  width: 100px; height: 100px;
   background: #111;
   border: 2px solid #0f0;
   border-radius: 5px;
@@ -271,100 +190,64 @@ input[type="text"] {
   cursor: pointer;
   transition: 0.3s;
 }
-.tictactoe-cell:hover {
-  background: #0f0;
-  color: #000;
-}
-#tictactoe-message {
-  margin: 10px;
-  font-weight: bold;
-  min-height: 30px;
-  color: #0f0;
-}
+.tictactoe-cell:hover { background: #0f0; color: #000; }
+#tictactoe-message { margin: 10px; font-weight: bold; min-height: 30px; color: #0f0; }
 
-/* AI NUMBER GUESSER */
-.ai-number-guessing {
-  margin: 40px auto;
-}
-#guesser-container {
+/* SOPA DE LETRAS */
+#wordsearch-container {
   border: 1px solid #0f0;
   padding: 20px;
   border-radius: 10px;
   background: rgba(0,255,0,0.1);
   box-shadow: 0 0 10px #0f0;
-}
-#guesser-question {
   margin: 10px 0;
-  font-weight: bold;
-  color: #0f0;
+  display: inline-block;
 }
-#guesser-feedback {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #0f0;
-  min-height: 20px;
-}
-
-/* NOTICIAS */
-.noticias {
-  max-width: 1200px;
-  position: relative;
-}
-#news-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
-  position: relative;
-}
-.news-box {
-  position: relative;
-  width: 300px;
-  background: rgba(0,255,0,0.1);
+.wordsearch-row { display: flex; }
+.wordsearch-cell {
+  width: 30px; height: 30px;
   border: 1px solid #0f0;
-  border-radius: 20px;
-  box-shadow: 0 0 10px #0f0;
+  background: #111;
+  color: #0f0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1px;
+  cursor: pointer;
+}
+#wordsearch-words { margin-top: 10px; color: #0f0; font-weight: bold; }
+
+/* NUEVO JUEGO: CARRERA ESPACIAL */
+.space-runner { margin: 40px auto; }
+#space-runner-canvas {
+  border: 2px solid #0f0;
+  display: block;
+  margin: 0 auto;
+  background: #000;
+}
+#space-runner-score { margin-top: 10px; font-size: 1.2rem; }
+
+/* CURSO DE IA */
+.course {
+  background: rgba(0,255,0,0.05);
   padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
   text-align: left;
-  min-height: 120px;
-  transition: 0.3s;
 }
-.news-box:hover {
-  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
-  transform: scale(1.02);
-}
-.news-box h3 {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  color: #0f0;
-}
-.news-box p {
-  color: #0f0;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
-  margin-bottom: 10px;
-}
-/* Indicador para noticias */
-.api-indicator {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 10px;
-  height: 10px;
-  background: lime;
-  border-radius: 50%;
-  animation: blink 1s infinite;
-}
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
-}
+.course h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
+.course-content h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.course-content h4 { font-size: 1.2rem; margin-bottom: 5px; }
+.course-content p { margin-bottom: 10px; }
+.course-content ul { margin-bottom: 10px; list-style: disc; padding-left: 20px; }
+
+/* ENLACE DE CONTACTO */
+.blink { animation: blink 1s infinite; }
+@keyframes blink { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }
 
 /* WIDGETS */
-.widgets {
-  max-width: 1200px;
-}
+.widgets { max-width: 1200px; }
 .widget {
   width: 300px;
   background: rgba(0,255,0,0.1);
@@ -379,10 +262,7 @@ input[type="text"] {
   min-height: 200px;
   transition: 0.3s;
 }
-.widget:hover {
-  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
-  transform: scale(1.02);
-}
+.widget:hover { box-shadow: 0 0 15px #0f0, 0 0 30px #0f0; transform: scale(1.02); }
 
 /* BARRAS DE PAÍSES */
 .country-bar {
@@ -407,83 +287,52 @@ input[type="text"] {
   font-size: 0.8rem;
 }
 
-/* CURSO DE IA */
-.course {
-  background: rgba(0,255,0,0.05);
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 40px;
-}
-.course h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-.course-modules {
+/* NOTICIAS */
+.noticias { max-width: 1200px; position: relative; }
+#news-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
 }
-.course-module {
+.news-box {
+  position: relative;
+  width: 300px;
   background: rgba(0,255,0,0.1);
-  padding: 15px;
   border: 1px solid #0f0;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-.course-module:hover {
-  transform: scale(1.02);
-}
-.course-module h3 {
-  margin-bottom: 10px;
-}
-.course-module p {
-  margin-bottom: 10px;
-}
-.start-module {
-  background: #111;
-  border: 1px solid #0f0;
-  color: #0f0;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #0f0;
+  padding: 20px;
+  text-align: left;
+  min-height: 120px;
   transition: 0.3s;
 }
-.start-module:hover {
-  background: #0f0;
-  color: #000;
+.news-box:hover {
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
+  transform: scale(1.02);
 }
-.module-content {
-  margin-top: 10px;
-  padding: 10px;
-  background: rgba(0,255,0,0.05);
-  border-left: 3px solid #0f0;
-}
-
-/* Enlace de contacto parpadeante */
-.blink {
+.news-box h3 { font-size: 1rem; margin-bottom: 10px; color: #0f0; }
+.news-box p { color: #0f0; font-size: 0.9rem; line-height: 1.2rem; margin-bottom: 10px; }
+/* Indicador verde solo para noticias de la API */
+.api-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: lime;
+  border-radius: 50%;
   animation: blink 1s infinite;
 }
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
-}
+@keyframes blink { 0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0; } }
 
 /* MEDIA QUERIES */
 @media (max-width: 500px) {
-  #tictactoe-container {
-    grid-template-columns: repeat(3,80px);
-    grid-template-rows: repeat(3,80px);
-    width: 250px;
-  }
-  .tictactoe-cell {
-    width: 80px;
-    height: 80px;
-  }
-  .card {
-    width: 60px;
-    height: 60px;
-    font-size: 1.2rem;
-  }
+  #tictactoe-container { grid-template-columns: repeat(3,80px); grid-template-rows: repeat(3,80px); width: 250px; }
+  .tictactoe-cell { width: 80px; height: 80px; }
+  .card { width: 60px; height: 60px; font-size: 1.2rem; }
   .symbol-btn { width: 30px; }
   .code-char { width: 30px; }
 }
