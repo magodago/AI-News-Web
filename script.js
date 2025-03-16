@@ -11,9 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * 2. Glitch en el Título
    *******************************************/
   const title = document.querySelector(".glitch");
-  setInterval(() => {
-    if (title) title.classList.toggle("glitch-active");
-  }, 2000);
+  setInterval(() => { if (title) title.classList.toggle("glitch-active"); }, 2000);
 
   /*******************************************
    * 3. Barra Matrix
@@ -65,13 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*******************************************
-   * 5. "Follow the white rabbit..." (Typing)
+   * 5. Typing: Follow the white rabbit...
    *******************************************/
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
   let idx = 0;
-  let typingInterval = null;
-  function typePhrase() {
+  let typingInterval = setInterval(() => {
     if (!typingText) return;
     typingText.textContent = phrase.substring(0, idx);
     idx++;
@@ -81,10 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (idx > phrase.length) {
       clearInterval(typingInterval);
-      setTimeout(() => { idx = 0; typingText.textContent = ""; typingInterval = setInterval(typePhrase, 100); }, 1500);
+      setTimeout(() => { idx = 0; typingText.textContent = ""; typingInterval = setInterval(() => {
+        typingText.textContent = phrase.substring(0, idx);
+        idx++;
+      }, 100); }, 1500);
     }
-  }
-  typingInterval = setInterval(typePhrase, 100);
+  }, 100);
 
   /*******************************************
    * 6. Desafío: Adivina la Palabra
@@ -138,15 +137,15 @@ document.addEventListener("DOMContentLoaded", () => {
    * 7. Trivia IA
    *******************************************/
   const triviaPool = [
-    { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas para resolver problemas", "Un lenguaje de programación"], correct: 1 },
+    { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
     { question: "¿Cuál es la principal función del machine learning?", answers: ["Aprender de datos", "Crear algoritmos", "Programar robots"], correct: 0 },
-    { question: "¿Qué es el overfitting en IA?", answers: ["Un modelo que generaliza demasiado", "Un modelo que se adapta demasiado a los datos", "Un error de programación"], correct: 1 },
-    { question: "¿Qué es una red neuronal?", answers: ["Una red de computadoras", "Un modelo inspirado en el cerebro humano", "Una base de datos"], correct: 1 },
+    { question: "¿Qué es el overfitting en IA?", answers: ["Generalización excesiva", "Sobreajuste a los datos", "Error de programación"], correct: 1 },
+    { question: "¿Qué es una red neuronal?", answers: ["Una red de computadoras", "Modelo inspirado en el cerebro", "Base de datos"], correct: 1 },
     { question: "¿Qué significa AI en inglés?", answers: ["Artificial Intelligence", "Automatic Intelligence", "Applied Innovation"], correct: 0 },
-    { question: "¿Qué es el aprendizaje supervisado?", answers: ["Sin datos etiquetados", "Con datos etiquetados", "Por ensayo y error"], correct: 1 },
-    { question: "¿Cuál de estos es un algoritmo de clasificación?", answers: ["K-means", "Regresión logística", "PCA"], correct: 1 },
+    { question: "¿Qué es el aprendizaje supervisado?", answers: ["Sin etiquetas", "Con etiquetas", "Por ensayo y error"], correct: 1 },
+    { question: "¿Cuál es un algoritmo de clasificación?", answers: ["K-means", "Regresión logística", "PCA"], correct: 1 },
     { question: "¿Qué es el deep learning?", answers: ["Aprendizaje superficial", "Redes neuronales profundas", "Almacenamiento de datos"], correct: 1 },
-    { question: "¿Por qué es importante la ética en la IA?", answers: ["Para evitar sesgos", "Solo por normativa", "No es relevante"], correct: 0 },
+    { question: "¿Por qué es importante la ética en la IA?", answers: ["Para evitar sesgos", "Por normativa", "No es relevante"], correct: 0 },
     { question: "¿Qué son los 'training data'?", answers: ["Datos de prueba", "Datos de entrenamiento", "Datos de validación"], correct: 1 }
   ];
   function getRandomTrivia(n) {
@@ -452,52 +451,45 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 12. Juego Futurista: Carrera Espacial
    *******************************************/
-  // Juego de runner en canvas: nave se mueve horizontalmente y evita obstáculos
-  const canvas = document.getElementById("space-runner-canvas");
-  const ctx = canvas.getContext("2d");
-  let spaceship = { x: canvas.width / 2 - 15, y: canvas.height - 40, width: 30, height: 30 };
+  const runnerCanvas = document.getElementById("space-runner-canvas");
+  const runnerCtx = runnerCanvas.getContext("2d");
+  let spaceship = { x: runnerCanvas.width / 2 - 15, y: runnerCanvas.height - 40, width: 30, height: 30 };
   let obstacles = [];
   let runnerScore = 0;
   let running = false;
-  let runnerInterval;
-  let obstacleInterval;
+  let runnerInterval, obstacleInterval;
   
   function drawSpaceRunner() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    runnerCtx.clearRect(0, 0, runnerCanvas.width, runnerCanvas.height);
     // Dibuja la nave (triángulo)
-    ctx.fillStyle = "#0f0";
-    ctx.beginPath();
-    ctx.moveTo(spaceship.x, spaceship.y + spaceship.height);
-    ctx.lineTo(spaceship.x + spaceship.width / 2, spaceship.y);
-    ctx.lineTo(spaceship.x + spaceship.width, spaceship.y + spaceship.height);
-    ctx.closePath();
-    ctx.fill();
+    runnerCtx.fillStyle = "#0f0";
+    runnerCtx.beginPath();
+    runnerCtx.moveTo(spaceship.x, spaceship.y + spaceship.height);
+    runnerCtx.lineTo(spaceship.x + spaceship.width / 2, spaceship.y);
+    runnerCtx.lineTo(spaceship.x + spaceship.width, spaceship.y + spaceship.height);
+    runnerCtx.closePath();
+    runnerCtx.fill();
     // Dibuja obstáculos
     obstacles.forEach(ob => {
-      ctx.fillStyle = "red";
-      ctx.fillRect(ob.x, ob.y, ob.width, ob.height);
+      runnerCtx.fillStyle = "red";
+      runnerCtx.fillRect(ob.x, ob.y, ob.width, ob.height);
     });
-    // Dibuja puntuación
-    ctx.fillStyle = "#0f0";
-    ctx.font = "16px Orbitron";
-    ctx.fillText("Puntuación: " + runnerScore, 10, 20);
+    // Dibuja la puntuación
+    runnerCtx.fillStyle = "#0f0";
+    runnerCtx.font = "16px Orbitron";
+    runnerCtx.fillText("Puntuación: " + runnerScore, 10, 20);
   }
   
   function updateSpaceRunner() {
     if (!running) return;
-    // Mueve obstáculos hacia abajo
     obstacles.forEach(ob => { ob.y += 3; });
-    // Quita obstáculos fuera del canvas
-    obstacles = obstacles.filter(ob => ob.y < canvas.height);
-    // Añade puntuación
+    obstacles = obstacles.filter(ob => ob.y < runnerCanvas.height);
     runnerScore++;
-    // Comprueba colisiones
     obstacles.forEach(ob => {
       if (spaceship.x < ob.x + ob.width &&
           spaceship.x + spaceship.width > ob.x &&
           spaceship.y < ob.y + ob.height &&
           spaceship.y + spaceship.height > ob.y) {
-        // Colisión
         running = false;
         clearInterval(runnerInterval);
         clearInterval(obstacleInterval);
@@ -508,21 +500,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function startSpaceRunner() {
-    // Reinicia variables
-    spaceship.x = canvas.width / 2 - 15;
+    spaceship.x = runnerCanvas.width / 2 - 15;
     runnerScore = 0;
     obstacles = [];
     running = true;
     drawSpaceRunner();
     runnerInterval = setInterval(updateSpaceRunner, 30);
     obstacleInterval = setInterval(() => {
-      // Crear obstáculo aleatorio
-      const obWidth = 30;
-      const obHeight = 30;
-      const obX = Math.random() * (canvas.width - obWidth);
-      obstacles.push({ x: obX, y: -obHeight, width: obWidth, height: obHeight });
+      const obSize = 30;
+      const obX = Math.random() * (runnerCanvas.width - obSize);
+      obstacles.push({ x: obX, y: -obSize, width: obSize, height: obSize });
     }, 1500);
   }
+  
+  const startRunnerBtn = document.getElementById("start-space-runner");
+  if (startRunnerBtn) { startRunnerBtn.addEventListener("click", startSpaceRunner); }
   
   document.addEventListener("keydown", (e) => {
     if (!running) return;
@@ -532,17 +524,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (e.key === "ArrowRight") {
       spaceship.x += 20;
-      if (spaceship.x + spaceship.width > canvas.width) spaceship.x = canvas.width - spaceship.width;
+      if (spaceship.x + spaceship.width > runnerCanvas.width) spaceship.x = runnerCanvas.width - spaceship.width;
     }
   });
-  
-  const startRunnerBtn = document.getElementById("start-space-runner");
-  if (startRunnerBtn) {
-    startRunnerBtn.addEventListener("click", startSpaceRunner);
-  }
 
   /*******************************************
-   * 13. Noticias (API Apitube con indicador solo si proviene de la API)
+   * 13. Noticias (API Apitube con indicador solo si es de la API)
    *******************************************/
   const fallbackNews = [
     { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
@@ -769,9 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   const startRunnerBtn = document.getElementById("start-space-runner");
-  if (startRunnerBtn) {
-    startRunnerBtn.addEventListener("click", startSpaceRunner);
-  }
+  if (startRunnerBtn) { startRunnerBtn.addEventListener("click", startSpaceRunner); }
   
   document.addEventListener("keydown", (e) => {
     if (!running) return;
@@ -786,7 +771,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*******************************************
-   * 16. Noticias (API Apitube, indicador solo si viene de la API)
+   * 16. Noticias (API Apitube, indicador solo si proviene de la API)
    *******************************************/
   const fallbackNews = [
     { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
@@ -951,5 +936,4 @@ document.addEventListener("DOMContentLoaded", () => {
    * 18. Widgets y Contacto
    *******************************************/
   // El enlace de contacto parpadea (definido en CSS)
-
 });
