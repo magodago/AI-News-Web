@@ -90,15 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 6. Desafío: Adivina la Palabra
    *******************************************/
-  const words = [
+  const palabrasCurso = [
     { word: "robot", hint: "Máquina programada para tareas humanas." },
     { word: "red", hint: "Conjunto de nodos interconectados." },
     { word: "algoritmo", hint: "Reglas para resolver problemas." },
     { word: "datos", hint: "El combustible de la IA." }
   ];
-  const randomIndex = Math.floor(Math.random() * words.length);
-  const selectedWord = words[randomIndex].word;
-  const hint = words[randomIndex].hint;
+  const randomIndex = Math.floor(Math.random() * palabrasCurso.length);
+  const selectedWord = palabrasCurso[randomIndex].word;
+  const hint = palabrasCurso[randomIndex].hint;
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
@@ -138,13 +138,24 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 7. Trivia IA
    *******************************************/
-  const triviaQuestions = [
+  const triviaPool = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas para resolver problemas", "Un lenguaje de programación"], correct: 1 },
-    { question: "¿Cuál de estas ciudades es puntera en IA?", answers: ["San Francisco", "El Cairo", "Lisboa"], correct: 0 },
-    { question: "¿Qué es 'Machine Learning'?", answers: ["Aprendizaje automático", "Un sistema de chat", "Una base de datos de imágenes"], correct: 0 },
-    { question: "¿Qué hace la 'Visión por Computador'?", answers: ["Crea imágenes 3D", "Permite a la máquina 'ver' e interpretar imágenes", "Diseña páginas web"], correct: 1 },
-    { question: "La ética en la IA es importante para...", answers: ["Evitar sesgos y daños sociales", "Hacer juegos divertidos", "Acelerar la computación cuántica"], correct: 0 }
+    { question: "¿Cuál es la principal función del machine learning?", answers: ["Aprender de datos", "Crear algoritmos", "Programar robots"], correct: 0 },
+    { question: "¿Qué es el overfitting en IA?", answers: ["Un modelo que generaliza demasiado", "Un modelo que se adapta demasiado a los datos", "Un error de programación"], correct: 1 },
+    { question: "¿Qué es una red neuronal?", answers: ["Una red de computadoras", "Un modelo inspirado en el cerebro humano", "Una base de datos"], correct: 1 },
+    { question: "¿Qué representa la sigla AI en inglés?", answers: ["Artificial Intelligence", "Automatic Internet", "Applied Innovation"], correct: 0 },
+    { question: "¿Qué es el aprendizaje supervisado?", answers: ["Aprender sin datos etiquetados", "Aprender con datos etiquetados", "Aprender a través de ensayos"], correct: 1 },
+    { question: "¿Cuál de los siguientes es un algoritmo de clasificación?", answers: ["K-means", "Regresión logística", "PCA"], correct: 1 },
+    { question: "¿Qué es el deep learning?", answers: ["Un aprendizaje superficial", "Una técnica de redes neuronales profundas", "Una base de datos profunda"], correct: 1 },
+    { question: "¿Qué papel juega la ética en la IA?", answers: ["Ninguno", "Es crucial para evitar sesgos", "Solo en la investigación"], correct: 1 },
+    { question: "¿Qué significa ‘training data’?", answers: ["Datos de prueba", "Datos de entrenamiento", "Datos de validación"], correct: 1 }
   ];
+  // Seleccionamos 5 preguntas aleatorias del pool para este día
+  function getRandomTrivia(n) {
+    const shuffled = triviaPool.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, n);
+  }
+  const triviaQuestions = getRandomTrivia(5);
   let triviaIndex = 0;
   let triviaScore = 0;
   const triviaQuestionElem = document.getElementById("trivia-question");
@@ -190,7 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 8. Crack the Code (10 símbolos)
    *******************************************/
-  const codeSymbols = "!@#$%^&*A0".split("");
+  const symbolPool = "!@#$%^&*A0BCDEFGH";
+  const codeSymbols = symbolPool.split("");
   const codeLength = 4;
   let secretCode = [];
   for (let i = 0; i < codeLength; i++) {
@@ -266,7 +278,10 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
-  const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
+  const cardPool = ["🤖", "⚙️", "💻", "🔮", "🎉", "🌐", "🚀", "🧠"];
+  const cardSymbols = [];
+  // Duplicamos y mezclamos para tener pares variados
+  cardPool.forEach(symbol => { cardSymbols.push(symbol, symbol); });
   let flippedCards = [];
   let matchedPairs = 0;
   function shuffleArray(arr) {
@@ -455,10 +470,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   loadNews();
-  setInterval(loadNews, 300000); // Actualiza cada 5 minutos
+  setInterval(loadNews, 300000);
 
   /*******************************************
-   * 13. Widgets Futuristas con muchas opciones
+   * 13. Widgets Futuristas
    *******************************************/
   // 13.1 Citas IA
   const quotes = [
@@ -577,7 +592,10 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
+  // Palabras variadas para la sopa de letras
+  const wsPool = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "INTELIGENCIA", "SISTEMA", "APRENDIZAJE", "CÓDIGO", "MÁQUINA"];
+  // Seleccionamos 5 palabras aleatoriamente
+  const wsWords = wsPool.sort(() => 0.5 - Math.random()).slice(0, 5);
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
   function placeWordHorizontal(word, r, c) {
@@ -691,6 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*******************************************
    * 16. Curso Futurista de Fundamentos de la IA
+   * Los botones de cada módulo muestran u ocultan el contenido
    *******************************************/
   const moduleButtons = document.querySelectorAll(".start-module");
   moduleButtons.forEach(button => {
