@@ -7,11 +7,16 @@
 
 /* ANIMACIÓN FADE-IN EN EL BODY */
 body {
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 1s ease forwards, matrixPulse 10s infinite alternate;
   opacity: 0;
 }
 @keyframes fadeIn {
   to { opacity: 1; }
+}
+@keyframes matrixPulse {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.1); }
+  100% { filter: brightness(1); }
 }
 
 /* FONDO OSCURO SIN IMAGEN DE PLACEHOLDER */
@@ -71,7 +76,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* SECCIONES (posicion, ancho) */
+/* SECCIONES (posición, ancho) */
 section {
   margin: 40px auto;
   width: 90%;
@@ -79,7 +84,7 @@ section {
   text-align: center;
 }
 
-/* BOTONES ESTILO MATRIX (APLICA A TODOS LOS <button>) */
+/* BOTONES ESTILO MATRIX (aplica a todos los <button>) */
 button {
   background: #111;
   border: 1px solid #0f0;
@@ -212,7 +217,7 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* TICTACTOE CENTRADO - MODIFICADO PARA FORMAR UNA CUADRÍCULA 3x3 */
+/* TICTACTOE CENTRADO - CUADRÍCULA 3x3 */
 .neon-tictactoe {
   margin: 40px auto;
 }
@@ -220,6 +225,7 @@ input[type="text"] {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   gap: 5px;
+  width: 310px; /* 3 celdas de 100px + 2 gaps de 5px */
   margin: 0 auto;
   text-align: center;
 }
@@ -409,6 +415,7 @@ input[type="text"] {
   mix-blend-mode: difference;
   z-index: 9999;
   transition: transform 0.2s ease;
+  box-shadow: 0 0 10px #0f0;
 }
 
 /* SOPA DE LETRAS */
@@ -456,6 +463,7 @@ input[type="text"] {
   #tictactoe-container {
     grid-template-columns: repeat(3,80px);
     grid-template-rows: repeat(3,80px);
+    width: 250px;
   }
   .tictactoe-cell {
     width: 80px;
