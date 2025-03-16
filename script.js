@@ -342,51 +342,51 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return arr;
   }
-  const shuffledSymbols=shuffleArray([...cardSymbols]);
+  const shuffledSymbols = shuffleArray([...cardSymbols]);
 
   function createMemoryBoard(){
     if(!memoryContainer)return;
-    memoryContainer.innerHTML="";
-    shuffledSymbols.forEach(sym=>{
-      const card=document.createElement("div");
+    memoryContainer.innerHTML = "";
+    shuffledSymbols.forEach(sym => {
+      const card = document.createElement("div");
       card.classList.add("card");
-      card.innerHTML="?";
-      card.dataset.symbol=sym;
-      card.addEventListener("click",()=>flipCard(card));
+      card.innerHTML = "?";
+      card.dataset.symbol = sym;
+      card.addEventListener("click", () => flipCard(card));
       memoryContainer.appendChild(card);
     });
-    matchedPairs=0;
-    flippedCards=[];
-    memoryMessage.textContent="";
+    matchedPairs = 0;
+    flippedCards = [];
+    memoryMessage.textContent = "";
   }
   function flipCard(card){
-    if(card.classList.contains("flipped"))return;
-    if(flippedCards.length===2)return;
+    if(card.classList.contains("flipped")) return;
+    if(flippedCards.length === 2) return;
 
     card.classList.add("flipped");
-    card.textContent=card.dataset.symbol;
+    card.textContent = card.dataset.symbol;
     flippedCards.push(card);
 
-    if(flippedCards.length===2){
-      setTimeout(checkMatch,600);
+    if(flippedCards.length === 2){
+      setTimeout(checkMatch, 600);
     }
   }
   function checkMatch(){
-    const [c1,c2]=flippedCards;
-    if(c1.dataset.symbol===c2.dataset.symbol){
+    const [c1, c2] = flippedCards;
+    if(c1.dataset.symbol === c2.dataset.symbol){
       matchedPairs++;
-      c1.removeEventListener("click",()=>flipCard(c1));
-      c2.removeEventListener("click",()=>flipCard(c2));
-      if(matchedPairs===cardSymbols.length/2){
-        memoryMessage.textContent="¡Has encontrado todas las parejas!";
+      c1.removeEventListener("click", () => flipCard(c1));
+      c2.removeEventListener("click", () => flipCard(c2));
+      if(matchedPairs === cardSymbols.length / 2){
+        memoryMessage.textContent = "¡Has encontrado todas las parejas!";
       }
     } else {
       c1.classList.remove("flipped");
-      c1.textContent="?";
+      c1.textContent = "?";
       c2.classList.remove("flipped");
-      c2.textContent="?";
+      c2.textContent = "?";
     }
-    flippedCards=[];
+    flippedCards = [];
   }
   if(memoryContainer) createMemoryBoard();
 
@@ -395,53 +395,53 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const tictactoeContainer = document.getElementById("tictactoe-container");
   const tictactoeMessage = document.getElementById("tictactoe-message");
-  let board = ["","","","","","","","",""];
+  let board = ["", "", "", "", "", "", "", "", ""];
   let currentPlayer = "X";
   let gameOver = false;
 
   function createTicTacToe(){
     if(!tictactoeContainer)return;
-    tictactoeContainer.innerHTML="";
+    tictactoeContainer.innerHTML = "";
     // Se crean las 9 celdas para el tablero
-    for(let i=0;i<9;i++){
-      const cell=document.createElement("div");
+    for(let i = 0; i < 9; i++){
+      const cell = document.createElement("div");
       cell.classList.add("tictactoe-cell");
-      cell.dataset.index=i;
-      cell.textContent=board[i];
-      cell.addEventListener("click",()=>handleMove(cell));
+      cell.dataset.index = i;
+      cell.textContent = board[i];
+      cell.addEventListener("click", () => handleMove(cell));
       tictactoeContainer.appendChild(cell);
     }
-    tictactoeMessage.textContent="";
-    currentPlayer="X";
-    board=["","","","","","","","",""];
-    gameOver=false;
+    tictactoeMessage.textContent = "";
+    currentPlayer = "X";
+    board = ["", "", "", "", "", "", "", "", ""];
+    gameOver = false;
   }
   function handleMove(cell){
-    if(gameOver)return;
-    const idx=cell.dataset.index;
-    if(board[idx]!=="")return; 
-    board[idx]=currentPlayer;
-    cell.textContent=currentPlayer;
+    if(gameOver) return;
+    const idx = cell.dataset.index;
+    if(board[idx] !== "") return; 
+    board[idx] = currentPlayer;
+    cell.textContent = currentPlayer;
     checkWinner();
-    currentPlayer=(currentPlayer==="X")?"O":"X";
+    currentPlayer = (currentPlayer === "X") ? "O" : "X";
   }
   function checkWinner(){
-    const combos=[
+    const combos = [
       [0,1,2],[3,4,5],[6,7,8],
       [0,3,6],[1,4,7],[2,5,8],
       [0,4,8],[2,4,6]
     ];
     for(let c of combos){
-      const[a,b,d]=c;
-      if(board[a] && board[a]===board[b] && board[b]===board[d]){
-        gameOver=true;
-        tictactoeMessage.textContent=`🎉 Jugador ${board[a]} gana`;
+      const [a, b, d] = c;
+      if(board[a] && board[a] === board[b] && board[b] === board[d]){
+        gameOver = true;
+        tictactoeMessage.textContent = `🎉 Jugador ${board[a]} gana`;
         return;
       }
     }
     if(!board.includes("")){
-      gameOver=true;
-      tictactoeMessage.textContent="Empate. Tablero lleno.";
+      gameOver = true;
+      tictactoeMessage.textContent = "Empate. Tablero lleno.";
     }
   }
   createTicTacToe();
@@ -457,135 +457,135 @@ document.addEventListener("DOMContentLoaded", () => {
   const correctBtn = document.getElementById("correct");
   const guesserFeedback = document.getElementById("guesser-feedback");
 
-  let guesserLow=1;
-  let guesserHigh=100;
-  let guesserCurrent=0;
-  let guesserOver=false;
+  let guesserLow = 1;
+  let guesserHigh = 100;
+  let guesserCurrent = 0;
+  let guesserOver = false;
 
   function guessNumber(){
-    guesserCurrent=Math.floor((guesserLow+guesserHigh)/2);
-    guesserQuestion.textContent=`¿Es ${guesserCurrent}?`;
+    guesserCurrent = Math.floor((guesserLow + guesserHigh) / 2);
+    guesserQuestion.textContent = `¿Es ${guesserCurrent}?`;
   }
 
   if(startBtn){
-    startBtn.addEventListener("click",()=>{
-      guesserLow=1;
-      guesserHigh=100;
-      guesserOver=false;
-      guesserFeedback.textContent="";
+    startBtn.addEventListener("click", () => {
+      guesserLow = 1;
+      guesserHigh = 100;
+      guesserOver = false;
+      guesserFeedback.textContent = "";
       guessNumber();
     });
   }
   if(higherBtn){
-    higherBtn.addEventListener("click",()=>{
+    higherBtn.addEventListener("click", () => {
       if(guesserOver)return;
-      guesserLow=guesserCurrent+1;
-      if(guesserLow>guesserHigh){
-        guesserFeedback.textContent="¡Inconsistente! No quedan números.";
-        guesserOver=true;
+      guesserLow = guesserCurrent + 1;
+      if(guesserLow > guesserHigh){
+        guesserFeedback.textContent = "¡Inconsistente! No quedan números.";
+        guesserOver = true;
         return;
       }
       guessNumber();
     });
   }
   if(lowerBtn){
-    lowerBtn.addEventListener("click",()=>{
+    lowerBtn.addEventListener("click", () => {
       if(guesserOver)return;
-      guesserHigh=guesserCurrent-1;
-      if(guesserHigh<guesserLow){
-        guesserFeedback.textContent="¡Inconsistente! No quedan números.";
-        guesserOver=true;
+      guesserHigh = guesserCurrent - 1;
+      if(guesserHigh < guesserLow){
+        guesserFeedback.textContent = "¡Inconsistente! No quedan números.";
+        guesserOver = true;
         return;
       }
       guessNumber();
     });
   }
   if(correctBtn){
-    correctBtn.addEventListener("click",()=>{
+    correctBtn.addEventListener("click", () => {
       if(guesserOver)return;
-      guesserFeedback.textContent=`🎉 ¡La IA adivinó! Era ${guesserCurrent}`;
-      guesserOver=true;
+      guesserFeedback.textContent = `🎉 ¡La IA adivinó! Era ${guesserCurrent}`;
+      guesserOver = true;
     });
   }
 
   /*******************************************
    * 12. Noticias Reales con Autorefresco
    *******************************************/
-  let usedIndices=[];
+  let usedIndices = [];
   // 10 noticias REALES con sus links
-  const allNews=[
+  const allNews = [
     {
-      title:"ChatGPT-4 revoluciona la IA generativa",
-      text:"OpenAI lanza GPT-4 con sorprendentes capacidades multimodales",
-      link:"https://www.nytimes.com/2023/03/14/technology/openai-gpt4.html"
+      title: "ChatGPT-4 revoluciona la IA generativa",
+      text: "OpenAI lanza GPT-4 con sorprendentes capacidades multimodales",
+      link: "https://www.nytimes.com/2023/03/14/technology/openai-gpt4.html"
     },
     {
-      title:"Google lanza Bard en respuesta a ChatGPT",
-      text:"El gigante de internet presenta su chatbot Bard en versión beta",
-      link:"https://www.bbc.com/news/technology-64672280"
+      title: "Google lanza Bard en respuesta a ChatGPT",
+      text: "El gigante de internet presenta su chatbot Bard en versión beta",
+      link: "https://www.bbc.com/news/technology-64672280"
     },
     {
-      title:"Robots humanoides avanzan en fábricas",
-      text:"Empresas de robótica muestran prototipos con IA avanzada",
-      link:"https://www.cnn.com/2023/02/13/tech/robotics-humanoid-ia"
+      title: "Robots humanoides avanzan en fábricas",
+      text: "Empresas de robótica muestran prototipos con IA avanzada",
+      link: "https://www.cnn.com/2023/02/13/tech/robotics-humanoid-ia"
     },
     {
-      title:"Meta anuncia nuevo supercomputador de IA",
-      text:"La compañía de Zuckerberg presenta potente clúster para entrenar IA",
-      link:"https://www.reuters.com/technology/meta-supercomputer-ai-2023"
+      title: "Meta anuncia nuevo supercomputador de IA",
+      text: "La compañía de Zuckerberg presenta potente clúster para entrenar IA",
+      link: "https://www.reuters.com/technology/meta-supercomputer-ai-2023"
     },
     {
-      title:"Microsoft integra ChatGPT en Bing",
-      text:"La búsqueda se vuelve conversacional con IA generativa integrada",
-      link:"https://www.theverge.com/2023/02/07/microsoft-bing-chatgpt-integration"
+      title: "Microsoft integra ChatGPT en Bing",
+      text: "La búsqueda se vuelve conversacional con IA generativa integrada",
+      link: "https://www.theverge.com/2023/02/07/microsoft-bing-chatgpt-integration"
     },
     {
-      title:"IA en diagnósticos médicos se consolida",
-      text:"La FDA aprueba nuevos algoritmos para detección temprana de cáncer",
-      link:"https://www.wired.com/story/fda-approves-ai-cancer-detection"
+      title: "IA en diagnósticos médicos se consolida",
+      text: "La FDA aprueba nuevos algoritmos para detección temprana de cáncer",
+      link: "https://www.wired.com/story/fda-approves-ai-cancer-detection"
     },
     {
-      title:"Tesla refuerza su sistema de auto-conducción",
-      text:"Nuevos chips con IA prometen mejorar la conducción autónoma",
-      link:"https://www.bloomberg.com/news/articles/2023-04-07/tesla-ai-autopilot-upgrade"
+      title: "Tesla refuerza su sistema de auto-conducción",
+      text: "Nuevos chips con IA prometen mejorar la conducción autónoma",
+      link: "https://www.bloomberg.com/news/articles/2023-04-07/tesla-ai-autopilot-upgrade"
     },
     {
-      title:"DeepMind presenta AlphaCode",
-      text:"La IA que resuelve problemas de programación en competiciones",
-      link:"https://www.ft.com/content/5f9a63f6-7f0c-485e-b18c-8fc3e249fa77"
+      title: "DeepMind presenta AlphaCode",
+      text: "La IA que resuelve problemas de programación en competiciones",
+      link: "https://www.ft.com/content/5f9a63f6-7f0c-485e-b18c-8fc3e249fa77"
     },
     {
-      title:"IBM lanza herramientas de IA para empresas",
-      text:"Plataforma para automatización inteligente y análisis de big data",
-      link:"https://www.wsj.com/articles/ibm-unveils-new-ai-platform"
+      title: "IBM lanza herramientas de IA para empresas",
+      text: "Plataforma para automatización inteligente y análisis de big data",
+      link: "https://www.wsj.com/articles/ibm-unveils-new-ai-platform"
     },
     {
-      title:"Amazon apuesta por la IA en la nube",
-      text:"La empresa integra algoritmos de machine learning para clientes AWS",
-      link:"https://www.cnbc.com/2023/03/12/amazon-ai-ml-cloud-announcement"
+      title: "Amazon apuesta por la IA en la nube",
+      text: "La empresa integra algoritmos de machine learning para clientes AWS",
+      link: "https://www.cnbc.com/2023/03/12/amazon-ai-ml-cloud-announcement"
     }
   ];
 
   function loadNews(){
-    const newsContainer=document.getElementById("news-container");
+    const newsContainer = document.getElementById("news-container");
     if(!newsContainer)return;
-    newsContainer.innerHTML="";
+    newsContainer.innerHTML = "";
 
     // Filtrar índices no usados
-    let available=allNews.map((_,i)=>i).filter(i=>!usedIndices.includes(i));
-    if(available.length<6){
-      usedIndices=[];
-      available=allNews.map((_,i)=>i);
+    let available = allNews.map((_, i) => i).filter(i => !usedIndices.includes(i));
+    if(available.length < 6){
+      usedIndices = [];
+      available = allNews.map((_, i) => i);
     }
     shuffleArray(available);
-    const chosen=available.slice(0,6);
-    chosen.forEach(idx=>usedIndices.push(idx));
+    const chosen = available.slice(0, 6);
+    chosen.forEach(idx => usedIndices.push(idx));
 
-    chosen.forEach(idx=>{
-      const item=allNews[idx];
-      const box=document.createElement("div");
+    chosen.forEach(idx => {
+      const item = allNews[idx];
+      const box = document.createElement("div");
       box.classList.add("news-box");
-      box.innerHTML=`
+      box.innerHTML = `
         <h3>${item.title}</h3>
         <p>${item.text}</p>
         <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>
@@ -594,16 +594,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Llamamos la primera vez
+  // Cargamos las noticias la primera vez y refrescamos cada 5 minutos
   loadNews();
-  // Se refresca cada 5 min
-  setInterval(loadNews,300000);
+  setInterval(loadNews, 300000);
 
   /*******************************************
    * 13. Widgets Futuristas
    *******************************************/
   // 13.1 Citas IA
-  const quotes=[
+  const quotes = [
     "La IA es la nueva electricidad.",
     "Los datos son el nuevo petróleo.",
     "La creatividad sigue siendo humana.",
@@ -611,73 +610,73 @@ document.addEventListener("DOMContentLoaded", () => {
     "El futuro pertenece a la IA."
   ];
   function cambiarCita(){
-    const quoteElem=document.getElementById("ai-quote");
+    const quoteElem = document.getElementById("ai-quote");
     if(!quoteElem)return;
-    const r=Math.floor(Math.random()*quotes.length);
-    quoteElem.textContent=quotes[r];
+    const r = Math.floor(Math.random() * quotes.length);
+    quoteElem.textContent = quotes[r];
   }
-  setInterval(cambiarCita,10000);
+  setInterval(cambiarCita, 10000);
   cambiarCita();
 
   // 13.2 Contador Patentes
-  let patenteContador=50000;
+  let patenteContador = 50000;
   function actualizarPatentes(){
-    const patentCountElem=document.getElementById("patent-count");
+    const patentCountElem = document.getElementById("patent-count");
     if(!patentCountElem)return;
-    patentCountElem.textContent=`Patentes registradas en IA: ${patenteContador}`;
-    patenteContador+=Math.floor(Math.random()*10);
+    patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
+    patenteContador += Math.floor(Math.random() * 10);
   }
-  setInterval(actualizarPatentes,5000);
+  setInterval(actualizarPatentes, 5000);
   actualizarPatentes();
 
   // 13.3 Predicciones IA
-  const predicciones=[
+  const predicciones = [
     "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
     "Los robots humanoides convivirán con nosotros en 2050.",
     "La computación cuántica cambiará el Deep Learning en 2040.",
     "La IA superará la creatividad humana en 2045."
   ];
-  const predictionTextElem=document.getElementById("prediction-text");
+  const predictionTextElem = document.getElementById("prediction-text");
   if(predictionTextElem){
-    predictionTextElem.textContent=predicciones[Math.floor(Math.random()*predicciones.length)];
+    predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
   }
 
   // 13.4 Mapa de Innovación
-  const mapContainer=document.getElementById("map-container");
+  const mapContainer = document.getElementById("map-container");
   if(mapContainer){
-    mapContainer.textContent="Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.";
+    mapContainer.textContent = "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.";
   }
 
   // 13.5 Sorpresa Diaria
-  const sorpresas=[
+  const sorpresas = [
     "En 2025, el 70% de las empresas usará IA para atención al cliente.",
     "Los coches autónomos evitarán el 90% de los accidentes viales.",
     "La IA podría superar la creatividad humana en 2045.",
     "Un nuevo avance en IA reduce el consumo energético un 40%."
   ];
-  const revealBtn=document.getElementById("reveal-surprise");
-  const surpriseTextElem=document.getElementById("surprise-text");
+  const revealBtn = document.getElementById("reveal-surprise");
+  const surpriseTextElem = document.getElementById("surprise-text");
   if(revealBtn && surpriseTextElem){
-    revealBtn.addEventListener("click",()=>{
-      const randomIndex=Math.floor(Math.random()*sorpresas.length);
-      surpriseTextElem.textContent=sorpresas[randomIndex];
+    revealBtn.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * sorpresas.length);
+      surpriseTextElem.textContent = sorpresas[randomIndex];
     });
   }
 
   // 13.6 Ranking Países
-  const countriesData=[
-    { name:"USA", investment:90 },
-    { name:"China", investment:85 },
-    { name:"Alemania", investment:70 },
-    { name:"Reino Unido", investment:65 },
-    { name:"Japón", investment:60 }
+  const countriesData = [
+    { name: "USA", investment: 90 },
+    { name: "China", investment: 85 },
+    { name: "Alemania", investment: 70 },
+    { name: "Reino Unido", investment: 65 },
+    { name: "Japón", investment: 60 }
   ];
   function mostrarPaisesInversion(){
-    const countriesContainer=document.getElementById("countries-container");
+    const countriesContainer = document.getElementById("countries-container");
     if(!countriesContainer)return;
-    let html="";
-    countriesData.forEach(p=>{
-      html+=`
+    let html = "";
+    countriesData.forEach(p => {
+      html += `
         <div class="country-bar">
           <div class="country-fill" style="width:0%;">
             ${p.name}: 0%
@@ -685,15 +684,15 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
     });
-    countriesContainer.innerHTML=html;
+    countriesContainer.innerHTML = html;
 
-    const fillElems=countriesContainer.querySelectorAll(".country-fill");
-    fillElems.forEach((fill,index)=>{
-      const inv=countriesData[index].investment;
-      setTimeout(()=>{
-        fill.style.width=inv+"%";
-        fill.textContent=`${countriesData[index].name}: ${inv}%`;
-      },200);
+    const fillElems = countriesContainer.querySelectorAll(".country-fill");
+    fillElems.forEach((fill, index) => {
+      const inv = countriesData[index].investment;
+      setTimeout(() => {
+        fill.style.width = inv + "%";
+        fill.textContent = `${countriesData[index].name}: ${inv}%`;
+      }, 200);
     });
   }
   mostrarPaisesInversion();
@@ -701,72 +700,72 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 14. Sopa de Letras AI (seleccionable)
    *******************************************/
-  const wordsearchContainer=document.getElementById("wordsearch-container");
-  const wordsearchWordsElem=document.getElementById("wordsearch-words");
+  const wordsearchContainer = document.getElementById("wordsearch-container");
+  const wordsearchWordsElem = document.getElementById("wordsearch-words");
   // Palabras: "ROBOT", "ALGORITMO", "RED", "DATOS", "IA"
-  const wsWords=["ROBOT","ALGORITMO","RED","DATOS","IA"];
+  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
 
-  const rows=10, cols=10;
-  let grid=Array.from({length:rows},()=>Array(cols).fill(null));
+  const rows = 10, cols = 10;
+  let grid = Array.from({length: rows}, () => Array(cols).fill(null));
 
-  function placeWordHorizontal(word,r,c){
-    if(c+word.length>cols) return false;
-    for(let i=0;i<word.length;i++){
-      if(grid[r][c+i] && grid[r][c+i]!==word[i])return false;
+  function placeWordHorizontal(word, r, c){
+    if(c + word.length > cols) return false;
+    for(let i = 0; i < word.length; i++){
+      if(grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
     }
-    for(let i=0;i<word.length;i++){
-      grid[r][c+i]=word[i];
+    for(let i = 0; i < word.length; i++){
+      grid[r][c + i] = word[i];
     }
     return true;
   }
-  function placeWordVertical(word,r,c){
-    if(r+word.length>rows)return false;
-    for(let i=0;i<word.length;i++){
-      if(grid[r+i][c] && grid[r+i][c]!==word[i])return false;
+  function placeWordVertical(word, r, c){
+    if(r + word.length > rows) return false;
+    for(let i = 0; i < word.length; i++){
+      if(grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
     }
-    for(let i=0;i<word.length;i++){
-      grid[r+i][c]=word[i];
+    for(let i = 0; i < word.length; i++){
+      grid[r + i][c] = word[i];
     }
     return true;
   }
   function insertWord(word){
-    let attempts=100;
-    while(attempts>0){
+    let attempts = 100;
+    while(attempts > 0){
       attempts--;
-      const orientation=Math.random()<0.5?"H":"V";
-      const rr=Math.floor(Math.random()*rows);
-      const cc=Math.floor(Math.random()*cols);
-      if(orientation==="H"){
-        if(placeWordHorizontal(word,rr,cc))return true;
+      const orientation = Math.random() < 0.5 ? "H" : "V";
+      const rr = Math.floor(Math.random() * rows);
+      const cc = Math.floor(Math.random() * cols);
+      if(orientation === "H"){
+        if(placeWordHorizontal(word, rr, cc)) return true;
       } else {
-        if(placeWordVertical(word,rr,cc))return true;
+        if(placeWordVertical(word, rr, cc)) return true;
       }
     }
     return false;
   }
-  wsWords.forEach(w=>insertWord(w));
+  wsWords.forEach(w => insertWord(w));
 
   // Rellenar con letras random
-  const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for(let r=0;r<rows;r++){
-    for(let c=0;c<cols;c++){
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for(let r = 0; r < rows; r++){
+    for(let c = 0; c < cols; c++){
       if(!grid[r][c]){
-        grid[r][c]=letters.charAt(Math.floor(Math.random()*letters.length));
+        grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
       }
     }
   }
 
   // Mostrar & permitir "seleccionar" celdas
   if(wordsearchContainer){
-    wordsearchContainer.innerHTML="";
-    for(let r=0;r<rows;r++){
-      const rowDiv=document.createElement("div");
+    wordsearchContainer.innerHTML = "";
+    for(let r = 0; r < rows; r++){
+      const rowDiv = document.createElement("div");
       rowDiv.classList.add("wordsearch-row");
-      for(let c=0;c<cols;c++){
-        const cellDiv=document.createElement("div");
+      for(let c = 0; c < cols; c++){
+        const cellDiv = document.createElement("div");
         cellDiv.classList.add("wordsearch-cell");
-        cellDiv.textContent=grid[r][c];
-        cellDiv.addEventListener("click",()=>{
+        cellDiv.textContent = grid[r][c];
+        cellDiv.addEventListener("click", () => {
           cellDiv.classList.toggle("highlighted");
         });
         rowDiv.appendChild(cellDiv);
@@ -775,7 +774,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   if(wordsearchWordsElem){
-    wordsearchWordsElem.textContent="Palabras: "+wsWords.join(", ");
+    wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
 
 });
