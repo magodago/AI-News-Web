@@ -596,7 +596,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
   const wsPool = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "INTELIGENCIA", "SISTEMA", "APRENDIZAJE", "CÓDIGO", "MÁQUINA"];
-  // Seleccionamos 5 palabras aleatorias
   const wsWords = wsPool.sort(() => 0.5 - Math.random()).slice(0, 5);
   const wsRows = 10, wsCols = 10;
   let grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
@@ -621,13 +620,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
   function insertWord(word) {
-    // Intentar primero horizontalmente
     for (let attempt = 0; attempt < 100; attempt++) {
       const rr = Math.floor(Math.random() * wsRows);
       const cc = Math.floor(Math.random() * (wsCols - word.length + 1));
       if (placeWordHorizontal(word, rr, cc)) return true;
     }
-    // Si falla, intentar verticalmente
     for (let attempt = 0; attempt < 100; attempt++) {
       const rr = Math.floor(Math.random() * (wsRows - word.length + 1));
       const cc = Math.floor(Math.random() * wsCols);
@@ -636,7 +633,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
   wsWords.forEach(w => insertWord(w));
-  // Rellenar celdas vacías con letras aleatorias
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (let r = 0; r < wsRows; r++) {
     for (let c = 0; c < wsCols; c++) {
@@ -712,7 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*******************************************
    * 16. Curso Futurista de Fundamentos de la IA
-   * Los botones de cada módulo muestran u ocultan el contenido
+   * Mostrar/Ocultar contenido de cada módulo
    *******************************************/
   const moduleButtons = document.querySelectorAll(".start-module");
   moduleButtons.forEach(button => {
