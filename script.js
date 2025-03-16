@@ -331,21 +331,21 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
-  const cardSymbols = ["🤖","⚙️","💻","🤖","⚙️","💻","🔮","🎉","🔮","🎉","🌐","🌐"];
+  const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
   let flippedCards = [];
   let matchedPairs = 0;
 
-  function shuffleArray(arr){
-    for(let i=arr.length-1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [arr[i],arr[j]]=[arr[j],arr[i]];
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
   }
   const shuffledSymbols = shuffleArray([...cardSymbols]);
 
-  function createMemoryBoard(){
-    if(!memoryContainer)return;
+  function createMemoryBoard() {
+    if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
     shuffledSymbols.forEach(sym => {
       const card = document.createElement("div");
@@ -359,25 +359,25 @@ document.addEventListener("DOMContentLoaded", () => {
     flippedCards = [];
     memoryMessage.textContent = "";
   }
-  function flipCard(card){
-    if(card.classList.contains("flipped")) return;
-    if(flippedCards.length === 2) return;
+  function flipCard(card) {
+    if (card.classList.contains("flipped")) return;
+    if (flippedCards.length === 2) return;
 
     card.classList.add("flipped");
     card.textContent = card.dataset.symbol;
     flippedCards.push(card);
 
-    if(flippedCards.length === 2){
+    if (flippedCards.length === 2) {
       setTimeout(checkMatch, 600);
     }
   }
-  function checkMatch(){
+  function checkMatch() {
     const [c1, c2] = flippedCards;
-    if(c1.dataset.symbol === c2.dataset.symbol){
+    if (c1.dataset.symbol === c2.dataset.symbol) {
       matchedPairs++;
       c1.removeEventListener("click", () => flipCard(c1));
       c2.removeEventListener("click", () => flipCard(c2));
-      if(matchedPairs === cardSymbols.length / 2){
+      if (matchedPairs === cardSymbols.length / 2) {
         memoryMessage.textContent = "¡Has encontrado todas las parejas!";
       }
     } else {
@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     flippedCards = [];
   }
-  if(memoryContainer) createMemoryBoard();
+  if (memoryContainer) createMemoryBoard();
 
   /*******************************************
    * 10. Neon TicTacToe (centrado)
@@ -399,11 +399,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPlayer = "X";
   let gameOver = false;
 
-  function createTicTacToe(){
-    if(!tictactoeContainer)return;
+  function createTicTacToe() {
+    if (!tictactoeContainer) return;
     tictactoeContainer.innerHTML = "";
-    // Se crean las 9 celdas para el tablero
-    for(let i = 0; i < 9; i++){
+    for (let i = 0; i < 9; i++) {
       const cell = document.createElement("div");
       cell.classList.add("tictactoe-cell");
       cell.dataset.index = i;
@@ -416,30 +415,30 @@ document.addEventListener("DOMContentLoaded", () => {
     board = ["", "", "", "", "", "", "", "", ""];
     gameOver = false;
   }
-  function handleMove(cell){
-    if(gameOver) return;
+  function handleMove(cell) {
+    if (gameOver) return;
     const idx = cell.dataset.index;
-    if(board[idx] !== "") return; 
+    if (board[idx] !== "") return;
     board[idx] = currentPlayer;
     cell.textContent = currentPlayer;
     checkWinner();
     currentPlayer = (currentPlayer === "X") ? "O" : "X";
   }
-  function checkWinner(){
+  function checkWinner() {
     const combos = [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[2,4,6]
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
     ];
-    for(let c of combos){
+    for (let c of combos) {
       const [a, b, d] = c;
-      if(board[a] && board[a] === board[b] && board[b] === board[d]){
+      if (board[a] && board[a] === board[b] && board[b] === board[d]) {
         gameOver = true;
         tictactoeMessage.textContent = `🎉 Jugador ${board[a]} gana`;
         return;
       }
     }
-    if(!board.includes("")){
+    if (!board.includes("")) {
       gameOver = true;
       tictactoeMessage.textContent = "Empate. Tablero lleno.";
     }
@@ -462,12 +461,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let guesserCurrent = 0;
   let guesserOver = false;
 
-  function guessNumber(){
+  function guessNumber() {
     guesserCurrent = Math.floor((guesserLow + guesserHigh) / 2);
     guesserQuestion.textContent = `¿Es ${guesserCurrent}?`;
   }
 
-  if(startBtn){
+  if (startBtn) {
     startBtn.addEventListener("click", () => {
       guesserLow = 1;
       guesserHigh = 100;
@@ -476,11 +475,11 @@ document.addEventListener("DOMContentLoaded", () => {
       guessNumber();
     });
   }
-  if(higherBtn){
+  if (higherBtn) {
     higherBtn.addEventListener("click", () => {
-      if(guesserOver)return;
+      if (guesserOver) return;
       guesserLow = guesserCurrent + 1;
-      if(guesserLow > guesserHigh){
+      if (guesserLow > guesserHigh) {
         guesserFeedback.textContent = "¡Inconsistente! No quedan números.";
         guesserOver = true;
         return;
@@ -488,11 +487,11 @@ document.addEventListener("DOMContentLoaded", () => {
       guessNumber();
     });
   }
-  if(lowerBtn){
+  if (lowerBtn) {
     lowerBtn.addEventListener("click", () => {
-      if(guesserOver)return;
+      if (guesserOver) return;
       guesserHigh = guesserCurrent - 1;
-      if(guesserHigh < guesserLow){
+      if (guesserHigh < guesserLow) {
         guesserFeedback.textContent = "¡Inconsistente! No quedan números.";
         guesserOver = true;
         return;
@@ -500,103 +499,40 @@ document.addEventListener("DOMContentLoaded", () => {
       guessNumber();
     });
   }
-  if(correctBtn){
+  if (correctBtn) {
     correctBtn.addEventListener("click", () => {
-      if(guesserOver)return;
+      if (guesserOver) return;
       guesserFeedback.textContent = `🎉 ¡La IA adivinó! Era ${guesserCurrent}`;
       guesserOver = true;
     });
   }
 
   /*******************************************
-   * 12. Noticias Reales con Autorefresco
+   * 12. Noticias Reales (usando API Apitube)
    *******************************************/
-  let usedIndices = [];
-  // 10 noticias REALES con sus links
-  const allNews = [
-    {
-      title: "ChatGPT-4 revoluciona la IA generativa",
-      text: "OpenAI lanza GPT-4 con sorprendentes capacidades multimodales",
-      link: "https://www.nytimes.com/2023/03/14/technology/openai-gpt4.html"
-    },
-    {
-      title: "Google lanza Bard en respuesta a ChatGPT",
-      text: "El gigante de internet presenta su chatbot Bard en versión beta",
-      link: "https://www.bbc.com/news/technology-64672280"
-    },
-    {
-      title: "Robots humanoides avanzan en fábricas",
-      text: "Empresas de robótica muestran prototipos con IA avanzada",
-      link: "https://www.cnn.com/2023/02/13/tech/robotics-humanoid-ia"
-    },
-    {
-      title: "Meta anuncia nuevo supercomputador de IA",
-      text: "La compañía de Zuckerberg presenta potente clúster para entrenar IA",
-      link: "https://www.reuters.com/technology/meta-supercomputer-ai-2023"
-    },
-    {
-      title: "Microsoft integra ChatGPT en Bing",
-      text: "La búsqueda se vuelve conversacional con IA generativa integrada",
-      link: "https://www.theverge.com/2023/02/07/microsoft-bing-chatgpt-integration"
-    },
-    {
-      title: "IA en diagnósticos médicos se consolida",
-      text: "La FDA aprueba nuevos algoritmos para detección temprana de cáncer",
-      link: "https://www.wired.com/story/fda-approves-ai-cancer-detection"
-    },
-    {
-      title: "Tesla refuerza su sistema de auto-conducción",
-      text: "Nuevos chips con IA prometen mejorar la conducción autónoma",
-      link: "https://www.bloomberg.com/news/articles/2023-04-07/tesla-ai-autopilot-upgrade"
-    },
-    {
-      title: "DeepMind presenta AlphaCode",
-      text: "La IA que resuelve problemas de programación en competiciones",
-      link: "https://www.ft.com/content/5f9a63f6-7f0c-485e-b18c-8fc3e249fa77"
-    },
-    {
-      title: "IBM lanza herramientas de IA para empresas",
-      text: "Plataforma para automatización inteligente y análisis de big data",
-      link: "https://www.wsj.com/articles/ibm-unveils-new-ai-platform"
-    },
-    {
-      title: "Amazon apuesta por la IA en la nube",
-      text: "La empresa integra algoritmos de machine learning para clientes AWS",
-      link: "https://www.cnbc.com/2023/03/12/amazon-ai-ml-cloud-announcement"
-    }
-  ];
-
-  function loadNews(){
+  async function loadNews() {
     const newsContainer = document.getElementById("news-container");
-    if(!newsContainer)return;
-    newsContainer.innerHTML = "";
-
-    // Filtrar índices no usados
-    let available = allNews.map((_, i) => i).filter(i => !usedIndices.includes(i));
-    if(available.length < 6){
-      usedIndices = [];
-      available = allNews.map((_, i) => i);
+    if (!newsContainer) return;
+    newsContainer.innerHTML = "Cargando noticias...";
+    try {
+      const response = await fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov");
+      const data = await response.json();
+      newsContainer.innerHTML = "";
+      data.forEach(item => {
+        const box = document.createElement("div");
+        box.classList.add("news-box");
+        box.innerHTML = `<h3>${item.title}</h3>
+                         <p>${item.text}</p>
+                         <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>`;
+        newsContainer.appendChild(box);
+      });
+    } catch (error) {
+      newsContainer.innerHTML = "Error al cargar noticias.";
+      console.error(error);
     }
-    shuffleArray(available);
-    const chosen = available.slice(0, 6);
-    chosen.forEach(idx => usedIndices.push(idx));
-
-    chosen.forEach(idx => {
-      const item = allNews[idx];
-      const box = document.createElement("div");
-      box.classList.add("news-box");
-      box.innerHTML = `
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
-        <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>
-      `;
-      newsContainer.appendChild(box);
-    });
   }
-
-  // Cargamos las noticias la primera vez y refrescamos cada 5 minutos
   loadNews();
-  setInterval(loadNews, 300000);
+  setInterval(loadNews, 300000); // Actualiza cada 5 minutos
 
   /*******************************************
    * 13. Widgets Futuristas
@@ -609,9 +545,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "La IA sin ética es solo código.",
     "El futuro pertenece a la IA."
   ];
-  function cambiarCita(){
+  function cambiarCita() {
     const quoteElem = document.getElementById("ai-quote");
-    if(!quoteElem)return;
+    if (!quoteElem) return;
     const r = Math.floor(Math.random() * quotes.length);
     quoteElem.textContent = quotes[r];
   }
@@ -620,9 +556,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 13.2 Contador Patentes
   let patenteContador = 50000;
-  function actualizarPatentes(){
+  function actualizarPatentes() {
     const patentCountElem = document.getElementById("patent-count");
-    if(!patentCountElem)return;
+    if (!patentCountElem) return;
     patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
     patenteContador += Math.floor(Math.random() * 10);
   }
@@ -637,13 +573,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "La IA superará la creatividad humana en 2045."
   ];
   const predictionTextElem = document.getElementById("prediction-text");
-  if(predictionTextElem){
+  if (predictionTextElem) {
     predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
   }
 
   // 13.4 Mapa de Innovación
   const mapContainer = document.getElementById("map-container");
-  if(mapContainer){
+  if (mapContainer) {
     mapContainer.textContent = "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.";
   }
 
@@ -656,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   const revealBtn = document.getElementById("reveal-surprise");
   const surpriseTextElem = document.getElementById("surprise-text");
-  if(revealBtn && surpriseTextElem){
+  if (revealBtn && surpriseTextElem) {
     revealBtn.addEventListener("click", () => {
       const randomIndex = Math.floor(Math.random() * sorpresas.length);
       surpriseTextElem.textContent = sorpresas[randomIndex];
@@ -671,9 +607,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Reino Unido", investment: 65 },
     { name: "Japón", investment: 60 }
   ];
-  function mostrarPaisesInversion(){
+  function mostrarPaisesInversion() {
     const countriesContainer = document.getElementById("countries-container");
-    if(!countriesContainer)return;
+    if (!countriesContainer) return;
     let html = "";
     countriesData.forEach(p => {
       html += `
@@ -706,39 +642,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
 
   const rows = 10, cols = 10;
-  let grid = Array.from({length: rows}, () => Array(cols).fill(null));
+  let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
 
-  function placeWordHorizontal(word, r, c){
-    if(c + word.length > cols) return false;
-    for(let i = 0; i < word.length; i++){
-      if(grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
+  function placeWordHorizontal(word, r, c) {
+    if (c + word.length > cols) return false;
+    for (let i = 0; i < word.length; i++) {
+      if (grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
     }
-    for(let i = 0; i < word.length; i++){
+    for (let i = 0; i < word.length; i++) {
       grid[r][c + i] = word[i];
     }
     return true;
   }
-  function placeWordVertical(word, r, c){
-    if(r + word.length > rows) return false;
-    for(let i = 0; i < word.length; i++){
-      if(grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
+  function placeWordVertical(word, r, c) {
+    if (r + word.length > rows) return false;
+    for (let i = 0; i < word.length; i++) {
+      if (grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
     }
-    for(let i = 0; i < word.length; i++){
+    for (let i = 0; i < word.length; i++) {
       grid[r + i][c] = word[i];
     }
     return true;
   }
-  function insertWord(word){
+  function insertWord(word) {
     let attempts = 100;
-    while(attempts > 0){
+    while (attempts > 0) {
       attempts--;
       const orientation = Math.random() < 0.5 ? "H" : "V";
       const rr = Math.floor(Math.random() * rows);
       const cc = Math.floor(Math.random() * cols);
-      if(orientation === "H"){
-        if(placeWordHorizontal(word, rr, cc)) return true;
+      if (orientation === "H") {
+        if (placeWordHorizontal(word, rr, cc)) return true;
       } else {
-        if(placeWordVertical(word, rr, cc)) return true;
+        if (placeWordVertical(word, rr, cc)) return true;
       }
     }
     return false;
@@ -747,21 +683,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Rellenar con letras random
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for(let r = 0; r < rows; r++){
-    for(let c = 0; c < cols; c++){
-      if(!grid[r][c]){
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (!grid[r][c]) {
         grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
       }
     }
   }
 
-  // Mostrar & permitir "seleccionar" celdas
-  if(wordsearchContainer){
+  // Mostrar y permitir "seleccionar" celdas
+  if (wordsearchContainer) {
     wordsearchContainer.innerHTML = "";
-    for(let r = 0; r < rows; r++){
+    for (let r = 0; r < rows; r++) {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("wordsearch-row");
-      for(let c = 0; c < cols; c++){
+      for (let c = 0; c < cols; c++) {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("wordsearch-cell");
         cellDiv.textContent = grid[r][c];
@@ -773,7 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wordsearchContainer.appendChild(rowDiv);
     }
   }
-  if(wordsearchWordsElem){
+  if (wordsearchWordsElem) {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
 
