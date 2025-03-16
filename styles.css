@@ -104,7 +104,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* SECCIONES (posición, ancho) */
+/* SECCIONES */
 section {
   margin: 40px auto;
   width: 90%;
@@ -128,7 +128,7 @@ button:hover {
   color: #000;
 }
 
-/* INPUTS TIPO TEXT */
+/* INPUTS */
 input[type="text"] {
   background: #111;
   border: 1px solid #0f0;
@@ -245,7 +245,7 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* TICTACTOE CENTRADO - CUADRÍCULA 3x3 */
+/* TICTACTOE */
 .neon-tictactoe {
   margin: 40px auto;
 }
@@ -253,7 +253,7 @@ input[type="text"] {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   gap: 5px;
-  width: 310px; /* 3 celdas de 100px + 2 gaps de 5px */
+  width: 310px;
   margin: 0 auto;
   text-align: center;
 }
@@ -326,7 +326,6 @@ input[type="text"] {
   padding: 20px;
   text-align: left;
   min-height: 120px;
-  position: relative;
   transition: 0.3s;
 }
 .news-box:hover {
@@ -345,7 +344,7 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
-/* WIDGETS (max-width 1200) */
+/* WIDGETS */
 .widgets {
   max-width: 1200px;
 }
@@ -361,7 +360,6 @@ input[type="text"] {
   vertical-align: top;
   text-align: center;
   min-height: 200px;
-  position: relative;
   transition: 0.3s;
 }
 .widget:hover {
@@ -377,7 +375,6 @@ input[type="text"] {
   border: 1px solid #0f0;
   border-radius: 5px;
   height: 24px;
-  position: relative;
   overflow: hidden;
 }
 .country-fill {
@@ -393,7 +390,7 @@ input[type="text"] {
   font-size: 0.8rem;
 }
 
-/* ANÁLISIS Y TENDENCIAS (max-width 1000) */
+/* ANÁLISIS Y TENDENCIAS */
 .analisis {
   max-width: 1000px;
 }
@@ -494,7 +491,146 @@ input[type="text"] {
   100% { opacity: 0; transform: scale(2); }
 }
 
-/* MEDIA QUERIES - MÓVILES */
+/* CURSO DE IA: Estilos Futuristas */
+.course {
+  background: rgba(0,255,0,0.05);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.course h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.course-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.course-module {
+  background: rgba(0,255,0,0.1);
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.course-module:hover {
+  transform: scale(1.02);
+}
+.course-module h3 {
+  margin-bottom: 10px;
+}
+.course-module p {
+  margin-bottom: 10px;
+}
+.start-module {
+  background: #111;
+  border: 1px solid #0f0;
+  color: #0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.start-module:hover {
+  background: #0f0;
+  color: #000;
+}
+.module-content {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(0,255,0,0.05);
+  border-left: 3px solid #0f0;
+}
+
+/* WIDGETS */
+.widgets {
+  max-width: 1200px;
+}
+.widget {
+  width: 300px;
+  background: rgba(0,255,0,0.1);
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0f0;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  min-height: 200px;
+  transition: 0.3s;
+}
+.widget:hover {
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
+  transform: scale(1.02);
+}
+
+/* BARRAS DE PAÍSES */
+.country-bar {
+  width: 100%;
+  background: #111;
+  margin: 8px 0;
+  border: 1px solid #0f0;
+  border-radius: 5px;
+  height: 24px;
+  overflow: hidden;
+}
+.country-fill {
+  background: #0f0;
+  width: 0%;
+  height: 100%;
+  transition: width 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* ANÁLISIS Y TENDENCIAS */
+.analisis {
+  max-width: 1000px;
+}
+#analisis-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+#analisis-container article {
+  width: 300px;
+  background: rgba(0,255,0,0.1);
+  border: 1px solid #0f0;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #0f0;
+  text-align: left;
+  padding: 20px;
+  transition: 0.3s;
+}
+#analisis-container article:hover {
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
+  transform: scale(1.02);
+}
+
+/* CURSOR FUTURISTA */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #0f0;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+  box-shadow: 0 0 10px #0f0;
+}
+
+/* MEDIA QUERIES */
 @media (max-width: 500px) {
   #tictactoe-container {
     grid-template-columns: repeat(3,80px);
