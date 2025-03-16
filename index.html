@@ -13,13 +13,12 @@
 
   <header>
     <h1 class="glitch">AI FUTURO</h1>
-    <!-- Texto que aparece letra a letra -->
     <div class="typing-container">
       <span id="typing-text"></span>
     </div>
   </header>
 
-  <!-- 1) DESAFÍO: Adivina la Palabra -->
+  <!-- Sección 1: Desafío Adivina la Palabra -->
   <section class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
@@ -30,7 +29,7 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- 2) TRIVIA IA -->
+  <!-- Sección 2: Trivia IA -->
   <section class="trivia-ia">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
@@ -41,13 +40,11 @@
     </div>
   </section>
 
-  <!-- 3) CRACK THE CODE (10+ símbolos variados) -->
+  <!-- Sección 3: Crack the Code -->
   <section class="crack-the-code">
     <h2>Crack the Code</h2>
     <div id="code-container">
-      <p id="code-instructions">
-        Elige 4 símbolos de la lista (máx 10) y comprueba. Tienes 7 intentos.
-      </p>
+      <p id="code-instructions">Elige 4 símbolos de la lista y comprueba. Tienes 7 intentos.</p>
       <div class="symbol-list" id="symbol-list"></div>
       <div id="code-inputs">
         <input type="text" class="code-char" maxlength="1" readonly>
@@ -62,37 +59,21 @@
     </div>
   </section>
 
-  <!-- 4) MEMORY AI CARDS -->
+  <!-- Sección 4: Memory AI Cards -->
   <section class="memory-game">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
     <p id="memory-message"></p>
   </section>
 
-  <!-- 5) NEON TICTACTOE (centrado) -->
+  <!-- Sección 5: Neon TicTacToe -->
   <section class="neon-tictactoe">
     <h2>Neon TicTacToe</h2>
     <div id="tictactoe-container"></div>
     <p id="tictactoe-message"></p>
   </section>
 
-  <!-- 6) AI NUMBER GUESSER -->
-  <section class="ai-number-guessing">
-    <h2>AI Number Guesser</h2>
-    <div id="guesser-container">
-      <p>Piensa un número entre 1 y 100. La IA intentará adivinarlo.</p>
-      <button id="start-guesser">Empezar</button>
-      <p id="guesser-question"></p>
-      <div id="guesser-buttons">
-        <button id="higher">Más alto</button>
-        <button id="lower">Más bajo</button>
-        <button id="correct">¡Correcto!</button>
-      </div>
-      <p id="guesser-feedback"></p>
-    </div>
-  </section>
-
-  <!-- 7) SOPA DE LETRAS AI -->
+  <!-- Sección 6: Sopa de Letras AI -->
   <section class="word-search">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
@@ -101,22 +82,21 @@
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- 8) Nuevo Juego: Caza de Partículas AI -->
-  <section class="particle-hunt">
-    <h2>Caza de Partículas AI</h2>
-    <button id="start-particle-hunt">Empezar</button>
-    <div id="particle-hunt-container"></div>
-    <p id="particle-hunt-score">Puntuación: 0</p>
-    <p id="particle-hunt-timer">Tiempo: 30s</p>
+  <!-- Sección 7: Juego Futurista: Carrera Espacial -->
+  <section class="space-runner">
+    <h2>Juego Futurista: Carrera Espacial</h2>
+    <canvas id="space-runner-canvas" width="600" height="300"></canvas>
+    <p id="space-runner-score">Puntuación: 0</p>
+    <button id="start-space-runner">Empezar Carrera</button>
   </section>
 
-  <!-- 9) Noticias -->
+  <!-- Sección 8: Noticias -->
   <section class="noticias">
     <h2>Últimas Noticias de AI</h2>
     <div id="news-container"></div>
   </section>
 
-  <!-- 10) Widgets Futuristas -->
+  <!-- Sección 9: Widgets Futuristas -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
     <div class="widget" id="quote-widget">
@@ -146,130 +126,22 @@
     </div>
   </section>
 
-  <!-- 11) Curso Futurista de Fundamentos de la IA -->
+  <!-- Sección 10: Curso de Fundamentos de la IA -->
   <section class="course">
-    <h2>Curso Futurista de Fundamentos de la IA</h2>
-    <div class="course-modules">
-      <!-- Módulo 1 -->
-      <div class="course-module">
-        <h3>1. Introducción a la IA</h3>
-        <p><strong>Definición y Fundamentos:</strong> La Inteligencia Artificial (IA) es la capacidad de una máquina para imitar funciones cognitivas humanas como el aprendizaje y la resolución de problemas.</p>
-        <p><strong>Hitos Históricos:</strong> Desde el Test de Turing en 1950, pasando por la era de la IA simbólica en los 70, hasta la revolución del deep learning en la última década.</p>
-        <p><strong>Impacto Social:</strong> La IA está transformando la medicina, la industria, la educación, y el transporte, generando beneficios y desafíos éticos.</p>
-        <p><strong>Material Multimedia:</strong> Se incluyen vídeos explicativos, artículos, estudios de caso y podcasts para profundizar en cada uno de estos aspectos.</p>
-        <button class="start-module">Mostrar Contenido</button>
-        <div class="module-content" style="display:none;">
-          <h4>Contenido del Módulo 1:</h4>
-          <ul>
-            <li>¿Qué es la IA? Conceptos básicos y definiciones.</li>
-            <li>Hitos históricos: desde Alan Turing hasta el deep learning.</li>
-            <li>Evolución tecnológica: de la IA simbólica a la IA moderna.</li>
-            <li>Impacto en la sociedad: casos de éxito y desafíos actuales.</li>
-          </ul>
-          <p>Recursos:</p>
-          <ul>
-            <li>Vídeo: "Historia de la IA"</li>
-            <li>Artículo: "La evolución de la IA a través del tiempo"</li>
-            <li>Estudio de caso: "El impacto de la IA en la salud"</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Módulo 2 -->
-      <div class="course-module">
-        <h3>2. Aprendizaje Automático</h3>
-        <p><strong>Conceptos Clave:</strong> El aprendizaje automático permite que las máquinas aprendan de los datos sin ser programadas explícitamente para cada tarea.</p>
-        <p><strong>Técnicas y Algoritmos:</strong> Se diferencian métodos supervisados, no supervisados y por refuerzo.</p>
-        <p><strong>Aplicaciones Prácticas:</strong> Desde sistemas de recomendación hasta detección de fraudes y diagnósticos médicos.</p>
-        <p><strong>Ejercicios y Quizzes:</strong> Incluye notebooks interactivos y ejercicios para poner en práctica lo aprendido.</p>
-        <button class="start-module">Mostrar Contenido</button>
-        <div class="module-content" style="display:none;">
-          <h4>Contenido del Módulo 2:</h4>
-          <ul>
-            <li>Introducción al aprendizaje automático.</li>
-            <li>Diferencias entre aprendizaje supervisado y no supervisado.</li>
-            <li>Algoritmos populares: regresión, SVM, árboles de decisión, clustering.</li>
-            <li>Métricas de evaluación y validación de modelos.</li>
-          </ul>
-          <p>Recursos:</p>
-          <ul>
-            <li>Vídeo: "Machine Learning para Principiantes"</li>
-            <li>Tutorial interactivo en Python</li>
-            <li>Ejercicios en Jupyter Notebook</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Módulo 3 -->
-      <div class="course-module">
-        <h3>3. Redes Neuronales y Deep Learning</h3>
-        <p><strong>Fundamentos:</strong> Las redes neuronales imitan el cerebro humano y son la base del deep learning.</p>
-        <p><strong>Arquitecturas:</strong> Se estudian desde el perceptrón hasta las redes convolucionales (CNN) y recurrentes (RNN).</p>
-        <p><strong>Técnicas de Optimización:</strong> Métodos para mejorar el entrenamiento y evitar el sobreajuste.</p>
-        <p><strong>Aplicaciones:</strong> Casos de uso en visión por computador, procesamiento de lenguaje natural, etc.</p>
-        <button class="start-module">Mostrar Contenido</button>
-        <div class="module-content" style="display:none;">
-          <h4>Contenido del Módulo 3:</h4>
-          <ul>
-            <li>Introducción a las redes neuronales: perceptrón y redes multicapa.</li>
-            <li>Arquitecturas modernas: CNN, RNN, LSTM.</li>
-            <li>Técnicas de entrenamiento: backpropagation y optimización.</li>
-            <li>Aplicaciones reales: reconocimiento de imágenes y procesamiento del lenguaje.</li>
-          </ul>
-          <p>Recursos:</p>
-          <ul>
-            <li>Conferencia: "Deep Learning explicado"</li>
-            <li>Curso práctico en TensorFlow y PyTorch</li>
-            <li>Estudios de caso: reconocimiento facial y traducción automática</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Módulo 4 -->
-      <div class="course-module">
-        <h3>4. Ética y Sesgos en la IA</h3>
-        <p><strong>Importancia Ética:</strong> La IA plantea desafíos éticos que requieren transparencia y responsabilidad.</p>
-        <p><strong>Identificación de Sesgos:</strong> Se analizan ejemplos de sesgos en algoritmos y sus consecuencias.</p>
-        <p><strong>Estrategias de Mitigación:</strong> Métodos para reducir la discriminación y asegurar la equidad en los sistemas.</p>
-        <p><strong>Debate y Reflexión:</strong> Se incluyen estudios de caso, debates y recursos para profundizar en la ética de la IA.</p>
-        <button class="start-module">Mostrar Contenido</button>
-        <div class="module-content" style="display:none;">
-          <h4>Contenido del Módulo 4:</h4>
-          <ul>
-            <li>Definición de ética en la IA y su relevancia.</li>
-            <li>Ejemplos de sesgos y consecuencias en la práctica.</li>
-            <li>Estrategias para combatir los sesgos.</li>
-            <li>Casos reales y debates éticos.</li>
-          </ul>
-          <p>Recursos:</p>
-          <ul>
-            <li>Documental: "La ética en la inteligencia artificial"</li>
-            <li>Artículos críticos y ensayos</li>
-            <li>Foros de debate y análisis de casos</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Módulo 5 -->
-      <div class="course-module">
-        <h3>5. Laboratorio Interactivo</h3>
-        <p><strong>Práctica Real:</strong> Pon en acción todo lo aprendido mediante ejercicios, simuladores y retos colaborativos.</p>
-        <p><strong>Ejercicios Interactivos:</strong> Resolución de quizzes y problemas en tiempo real.</p>
-        <p><strong>Simuladores:</strong> Entrena modelos de IA utilizando datos reales y observa cómo se ajustan los algoritmos.</p>
-        <p><strong>Proyectos y Retos:</strong> Participa en desafíos colaborativos que te prepararán para escenarios del mundo real.</p>
-        <button class="start-module">Mostrar Contenido</button>
-        <div class="module-content" style="display:none;">
-          <h4>Contenido del Módulo 5:</h4>
-          <ul>
-            <li>Quizzes interactivos y ejercicios prácticos.</li>
-            <li>Simuladores de entrenamiento de modelos.</li>
-            <li>Retos colaborativos con feedback inmediato.</li>
-            <li>Análisis y discusión de resultados.</li>
-          </ul>
-          <p>Recursos:</p>
-          <ul>
-            <li>Plataformas interactivas de machine learning</li>
-            <li>Proyectos en GitHub y colaboraciones en línea</li>
-            <li>Webinars y sesiones en vivo</li>
-          </ul>
-        </div>
-      </div>
+    <h2>Curso de Fundamentos de la IA</h2>
+    <div class="course-content">
+      <h3>Conceptos Básicos y Historia</h3>
+      <p>Este curso te introduce a la IA sin tecnicismos. Conocerás qué es la IA, su evolución histórica, el impacto en la sociedad y los desafíos éticos que plantea.</p>
+      <h4>1. ¿Qué es la IA?</h4>
+      <p>La Inteligencia Artificial es la capacidad de una máquina para imitar funciones cognitivas humanas, como el aprendizaje y la resolución de problemas. Se trata de un campo que estudia cómo dotar a las máquinas de "inteligencia".</p>
+      <h4>2. Historia de la IA</h4>
+      <p>Desde el Test de Turing en 1950 hasta los avances en deep learning de los últimos años, la historia de la IA está llena de hitos que han marcado su evolución.</p>
+      <h4>3. Impacto en la Sociedad</h4>
+      <p>La IA ha transformado industrias como la medicina, la educación y el transporte, además de influir en el arte y la cultura moderna.</p>
+      <h4>4. Retos y Consideraciones Éticas</h4>
+      <p>El desarrollo de la IA plantea desafíos importantes: privacidad, sesgo algorítmico y el futuro del empleo son algunos de los temas críticos a considerar.</p>
+      <h4>5. El Futuro de la IA</h4>
+      <p>Proyecciones indican que la IA se integrará aún más en nuestra vida diaria, redefiniendo la forma en que trabajamos, nos comunicamos y vivimos.</p>
     </div>
   </section>
 
