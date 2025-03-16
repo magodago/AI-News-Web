@@ -491,7 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(actualizarPatentes, 5000);
   actualizarPatentes();
 
-  // 13.3 Predicciones IA con más opciones
+  // 13.3 Predicciones IA
   const predicciones = [
     "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
     "Los robots humanoides convivirán con nosotros en 2050.",
@@ -507,7 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
     predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
   }
 
-  // 13.4 Mapa de Innovación con opciones
+  // 13.4 Mapa de Innovación
   const innovacionOptions = [
     "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.",
     "Centros de innovación: Silicon Valley, Tel Aviv, Bangalore, Seúl.",
@@ -519,7 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mapContainer.textContent = innovacionOptions[Math.floor(Math.random() * innovacionOptions.length)];
   }
 
-  // 13.5 Sorpresa Diaria con más opciones
+  // 13.5 Sorpresa Diaria
   const sorpresas = [
     "En 2025, el 70% de las empresas usará IA para atención al cliente.",
     "Los coches autónomos evitarán el 90% de los accidentes viales.",
@@ -539,7 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 13.6 Ranking Países (sin cambios)
+  // 13.6 Ranking Países
   const countriesData = [
     { name: "USA", investment: 90 },
     { name: "China", investment: 85 },
@@ -573,7 +573,7 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarPaisesInversion();
 
   /*******************************************
-   * 14. Sopa de Letras AI (seleccionable)
+   * 14. Sopa de Letras AI
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
@@ -643,20 +643,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*******************************************
    * 15. Nuevo Juego: Caza de Partículas AI
-   * Temporizador de 30 segundos para maximizar la puntuación
+   * Temporizador de 30 segundos
    *******************************************/
   function initParticleHunt() {
     const container = document.getElementById("particle-hunt-container");
     const scoreElem = document.getElementById("particle-hunt-score");
     const timerElem = document.getElementById("particle-hunt-timer");
     if (!container || !scoreElem || !timerElem) return;
-    // Reinicia el contenedor
     container.innerHTML = "";
     let score = 0;
     let timeLeft = 30;
     scoreElem.textContent = `Puntuación: ${score}`;
     timerElem.textContent = `Tiempo: ${timeLeft}s`;
-
     function spawnParticle() {
       const particle = document.createElement("div");
       particle.classList.add("particle");
@@ -691,4 +689,20 @@ document.addEventListener("DOMContentLoaded", () => {
     startParticleHuntBtn.addEventListener("click", initParticleHunt);
   }
 
+  /*******************************************
+   * 16. Curso Futurista de Fundamentos de la IA
+   *******************************************/
+  const moduleButtons = document.querySelectorAll(".start-module");
+  moduleButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
+      if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        button.textContent = "Ocultar Módulo";
+      } else {
+        content.style.display = "none";
+        button.textContent = "Empezar Módulo";
+      }
+    });
+  });
 });
