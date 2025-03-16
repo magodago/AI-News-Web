@@ -7,20 +7,20 @@
 
 /* ANIMACIÓN FADE-IN GLOBAL */
 body {
-  animation: fadeIn 1.2s ease forwards;
+  animation: fadeIn 1s ease forwards;
   opacity: 0;
 }
 @keyframes fadeIn {
   to { opacity: 1; }
 }
 
-/* FONDO con IMAGEN sin texto */
+/* FONDO Matrix: imagen estilo hacker/verde */
 html, body {
   height: 100%;
-  background: url('https://placehold.co/1200x800/000000/0ff') no-repeat center center fixed;
+  background: url('https://images.unsplash.com/photo-1592496001020-6b443482999b?auto=format&fit=crop&w=2000&q=80') no-repeat center center fixed;
   background-size: cover;
   font-family: "Orbitron", sans-serif;
-  color: #0ff;
+  color: #0f0; /* TODO: Verde Matrix */
   overflow-x: hidden;
 }
 
@@ -44,33 +44,33 @@ header {
   font-size: 3rem;
   display: inline-block;
   text-transform: uppercase;
-  text-shadow: 0 0 5px #0ff;
+  text-shadow: 0 0 5px #0f0; /* Verde */
   animation: glitchShadow 1.5s infinite;
   margin-bottom: 15px;
 }
 
 .glitch-active {
-  text-shadow: 0px 0px 8px #0ff, 5px 0px 10px #ff00ff, -5px 0px 10px #00ffff;
+  text-shadow: 0px 0px 8px #0f0, 5px 0px 10px #0f0, -5px 0px 10px #0f0;
 }
 
 @keyframes glitchShadow {
   0% {
-    text-shadow: 0px 0px 5px #0ff;
+    text-shadow: 0px 0px 5px #0f0;
   }
   20% {
-    text-shadow: 2px 0px 5px #ff00ff;
+    text-shadow: 2px 0px 5px #0f0;
   }
   40% {
-    text-shadow: -2px 0px 5px #00ffff;
+    text-shadow: -2px 0px 5px #0f0;
   }
   60% {
-    text-shadow: 2px 0px 5px #ff00ff;
+    text-shadow: 2px 0px 5px #0f0;
   }
   80% {
-    text-shadow: -2px 0px 5px #00ffff;
+    text-shadow: -2px 0px 5px #0f0;
   }
   100% {
-    text-shadow: 0px 0px 5px #0ff;
+    text-shadow: 0px 0px 5px #0f0;
   }
 }
 
@@ -80,149 +80,73 @@ header {
   margin-top: 10px;
   height: 30px; 
   overflow: hidden;
-  color: #0ff;
+  color: #0f0;
 }
 .typing-glitch {
-  text-shadow: 0 0 5px #ff00ff, 0 0 8px #00ffff;
+  text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* DESAFÍO DE LA PALABRA */
-.word-challenge {
+/* Secciones - ancho general */
+section {
   margin: 40px auto;
-  text-align: center;
   width: 90%;
   max-width: 600px;
+  text-align: center;
 }
-.word-challenge h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
+
+/* BOTONES E INPUTS */
+input[type="text"],
+button {
+  font-family: inherit;
+  font-size: 1rem;
 }
+
+/* DESAFÍO PALABRA */
 #word-display {
   font-size: 2rem;
   letter-spacing: 8px;
   margin: 10px 0;
 }
-#hint {
-  margin: 10px 0;
-  font-size: 1rem;
-  color: #fff;
-}
-#letter-input {
-  padding: 10px;
-  border: 2px solid #0ff;
-  background: #111;
-  color: #0ff;
-  width: 60px;
-  text-align: center;
-  margin-right: 5px;
-}
-#check-letter {
-  padding: 10px;
-  background: #0ff;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-#check-letter:hover {
-  background: #fff;
-}
-#message {
-  margin: 10px 0;
-  font-weight: bold;
-}
-#attempts-remaining {
-  margin: 5px 0;
-  color: #fff;
-}
+/* Pistas y texto complementario en color #0f0 */
+#hint, #message, #attempts-remaining { color: #0f0; }
 
-/* TRIVIA IA */
-.trivia-ia {
-  margin: 40px auto;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-}
+/* TRIVIA */
 #trivia-container {
-  border: 1px solid #0ff;
+  border: 1px solid #0f0;
   padding: 20px;
   border-radius: 10px;
-  background: rgba(0,255,255,0.1);
-  box-shadow: 0 0 10px #0ff;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
 }
-#trivia-question {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-#trivia-answers {
-  margin-bottom: 10px;
-}
-.trivia-option {
-  display: block;
-  margin: 5px 0;
-  cursor: pointer;
-}
-#trivia-result {
-  margin: 10px 0;
-  font-weight: bold;
-  color: #fff;
-}
-#trivia-next {
-  padding: 10px;
-  background: #0ff;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  border-radius: 5px;
-}
-#trivia-next:hover {
-  background: #fff;
-}
+.trivia-option { cursor: pointer; }
 
-/* CRACK THE CODE (10 símbolos) */
-.crack-the-code {
-  margin: 40px auto;
-  text-align: center;
-  width: 90%;
-  max-width: 600px;
-}
-.crack-the-code h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-}
+/* CRACK THE CODE */
 #code-container {
-  border: 1px solid #0ff;
+  border: 1px solid #0f0;
   padding: 20px;
   border-radius: 10px;
-  background: rgba(0,255,255,0.1);
-  box-shadow: 0 0 10px #0ff;
-}
-#code-instructions {
-  margin-bottom: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
 }
 .symbol-list {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
-  margin-bottom: 10px;
 }
 .symbol-btn {
   width: 40px;
   text-align: center;
   padding: 8px;
-  border: 2px solid #0ff;
+  border: 2px solid #0f0;
   background: #111;
-  color: #0ff;
-  font-family: inherit;
+  color: #0f0;
   border-radius: 5px;
   cursor: pointer;
+  margin: 3px;
 }
 .symbol-btn:hover {
-  background: #0ff;
+  background: #0f0;
   color: #000;
 }
 #code-inputs {
@@ -234,50 +158,16 @@ header {
 .code-char {
   width: 40px;
   padding: 10px;
-  border: 2px solid #0ff;
+  border: 2px solid #0f0;
   background: #222;
-  color: #0ff;
-  font-family: inherit;
+  color: #0f0;
   text-align: center;
   font-size: 1.2rem;
   border-radius: 5px;
 }
-#code-feedback {
-  margin: 10px 0;
-  font-weight: bold;
-}
-#code-attempts {
-  margin: 5px 0;
-  color: #fff;
-}
-#code-check,
-#code-reset {
-  padding: 10px;
-  background: #0ff;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 5px;
-  transition: 0.3s;
-}
-#code-check:hover,
-#code-reset:hover {
-  background: #fff;
-}
+#code-feedback { margin: 10px 0; font-weight: bold; }
 
 /* MEMORY AI CARDS */
-.memory-game {
-  margin: 40px auto;
-  text-align: center;
-  width: 90%;
-  max-width: 600px;
-}
-.memory-game h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-}
 #memory-container {
   display: flex;
   flex-wrap: wrap;
@@ -288,39 +178,24 @@ header {
   width: 80px;
   height: 80px;
   background: #111;
-  border: 2px solid #0ff;
+  border: 2px solid #0f0;
   border-radius: 10px;
-  position: relative;
   cursor: pointer;
-  font-family: inherit;
-  color: #0ff;
   font-size: 1.4rem;
+  color: #0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.3s;
-  user-select: none;
 }
 .card.flipped {
-  background: #0ff;
+  background: #0f0;
   color: #000;
-}
-#memory-message {
-  margin: 10px;
-  font-weight: bold;
 }
 
 /* NEON TICTACTOE */
 .neon-tictactoe {
   margin: 40px auto;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-}
-.neon-tictactoe h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
 }
 #tictactoe-container {
   display: grid;
@@ -330,14 +205,11 @@ header {
   margin: 0 auto;
 }
 .tictactoe-cell {
-  width: 100px;
-  height: 100px;
   background: #111;
-  border: 2px solid #0ff;
+  border: 2px solid #0f0;
   border-radius: 5px;
-  font-family: inherit;
-  color: #0ff;
   font-size: 2rem;
+  color: #0f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,57 +217,81 @@ header {
   transition: 0.3s;
 }
 .tictactoe-cell:hover {
-  background: #0ff;
+  background: #0f0;
   color: #000;
 }
 #tictactoe-message {
   margin: 10px;
   font-weight: bold;
   min-height: 30px;
+  color: #0f0;
+}
+
+/* AI NUMBER GUESSER */
+.ai-number-guessing {
+  margin: 40px auto;
+}
+#guesser-container {
+  border: 1px solid #0f0;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
+}
+#guesser-question {
+  margin: 10px 0;
+  font-weight: bold;
+  color: #0f0;
+}
+#guesser-buttons button {
+  margin: 5px;
+  padding: 8px 12px;
+  background: #0f0;
+  border: none;
+  color: #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#guesser-buttons button:hover {
+  background: #fff;
+}
+#guesser-feedback {
+  margin-top: 10px;
+  font-weight: bold;
+  min-height: 20px;
+  color: #0f0;
 }
 
 /* NOTICIAS */
 .noticias {
-  margin: 40px auto;
-  width: 90%;
   max-width: 1200px;
-  text-align: center;
-}
-.noticias h2 {
-  margin-bottom: 20px;
 }
 #news-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin-top: 20px;
 }
 .news-box {
   width: 300px;
-  background: rgba(0,255,255,0.1);
-  border: 1px solid #0ff;
+  background: rgba(0,255,0,0.1);
+  border: 1px solid #0f0;
   border-radius: 20px;
-  box-shadow: 0 0 10px #0ff;
+  box-shadow: 0 0 10px #0f0;
   padding: 20px;
   text-align: left;
   min-height: 180px;
   position: relative;
   transition: 0.3s; 
 }
-.news-box h3 {
-  font-size: 1rem;
-  color: #0ff;
-  margin-bottom: 10px;
-}
-.news-box p {
-  color: #fff;
-  font-size: 0.9rem;
-  line-height: 1.4rem;
-  margin-bottom: 10px;
+.news-box:hover {
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
+  transform: scale(1.02);
 }
 .news-box a.leer-btn {
   display: inline-block;
-  background: #0ff;
+  background: #0f0;
   color: #000;
   padding: 6px 10px;
   border-radius: 5px;
@@ -405,27 +301,17 @@ header {
 .news-box a.leer-btn:hover {
   background: #fff;
 }
-.news-box:hover {
-  box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
-  transform: scale(1.02);
-}
 
-/* WIDGETS FUTURISTAS */
+/* WIDGETS – max-width 1200 */
 .widgets {
-  margin: 40px auto;
-  width: 90%;
   max-width: 1200px;
-  text-align: center;
-}
-.widgets h2 {
-  margin-bottom: 20px;
 }
 .widget {
   width: 300px;
-  background: rgba(0,255,255,0.1);
-  border: 1px solid #0ff;
+  background: rgba(0,255,0,0.1);
+  border: 1px solid #0f0;
   border-radius: 10px;
-  box-shadow: 0 0 10px #0ff;
+  box-shadow: 0 0 10px #0f0;
   padding: 20px;
   margin: 10px;
   display: inline-block;
@@ -433,10 +319,10 @@ header {
   text-align: center;
   min-height: 200px;
   position: relative;
-  transition: 0.3s; 
+  transition: 0.3s;
 }
 .widget:hover {
-  box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
   transform: scale(1.02);
 }
 
@@ -445,14 +331,14 @@ header {
   width: 100%;
   background: #111;
   margin: 8px 0;
-  border: 1px solid #0ff;
+  border: 1px solid #0f0;
   border-radius: 5px;
   height: 24px;
   overflow: hidden;
   position: relative;
 }
 .country-fill {
-  background: #0ff;
+  background: #0f0;
   width: 0%; 
   height: 100%;
   transition: width 1s ease;
@@ -464,15 +350,9 @@ header {
   font-size: 0.8rem;
 }
 
-/* ANÁLISIS Y TENDENCIAS */
+/* ANÁLISIS Y TENDENCIAS – max 1000 */
 .analisis {
-  margin: 40px auto;
-  width: 90%;
   max-width: 1000px;
-  text-align: center;
-}
-.analisis h2 {
-  margin-bottom: 20px;
 }
 #analisis-container {
   display: flex;
@@ -481,17 +361,17 @@ header {
   justify-content: center;
 }
 #analisis-container article {
-  background: rgba(0,255,255,0.1);
-  border: 1px solid #0ff;
-  border-radius: 20px;
-  box-shadow: 0 0 10px #0ff;
-  text-align: left;
   width: 300px;
+  background: rgba(0,255,0,0.1);
+  border: 1px solid #0f0;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #0f0;
+  text-align: left;
   padding: 20px;
   transition: 0.3s;
 }
 #analisis-container article:hover {
-  box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
   transform: scale(1.02);
 }
 
@@ -502,11 +382,26 @@ header {
   left: 0;
   width: 12px;
   height: 12px;
-  border: 2px solid #0ff;
+  border: 2px solid #0f0;
   border-radius: 50%;
   pointer-events: none;
   mix-blend-mode: difference;
   z-index: 9999;
   transition: transform 0.2s ease;
+}
+
+/* MEDIA QUERIES PARA PANTALLAS CHICAS */
+@media (max-width: 500px) {
+  #tictactoe-container {
+    grid-template-columns: repeat(3,80px);
+    grid-template-rows: repeat(3,80px);
+  }
+  .card {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  .symbol-btn { width: 30px; }
+  .code-char { width: 30px; }
 }
 
