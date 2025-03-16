@@ -36,7 +36,6 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Se usa una imagen SVG de una pequeña partícula (círculo) en color Matrix */
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><circle cx="5" cy="5" r="2" fill="%230f0"/></svg>') repeat;
   opacity: 0.2;
   animation: moveBackground 20s linear infinite;
@@ -45,6 +44,16 @@ body::before {
 @keyframes moveBackground {
   from { transform: translate(0, 0); }
   to { transform: translate(-50px, -50px); }
+}
+
+/* NUEVO EFECTO NEON FLICKER (se activa intermitentemente con JS) */
+@keyframes neonFlicker {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(20deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+body.neon-flicker {
+  animation: neonFlicker 2s infinite;
 }
 
 /* BARRA SUPERIOR MATRIX */
