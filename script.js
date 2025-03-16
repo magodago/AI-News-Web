@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /*******************************************
    * 1. Carga de la fuente Orbitron
    *******************************************/
@@ -143,14 +142,13 @@ document.addEventListener("DOMContentLoaded", () => {
     { question: "¿Cuál es la principal función del machine learning?", answers: ["Aprender de datos", "Crear algoritmos", "Programar robots"], correct: 0 },
     { question: "¿Qué es el overfitting en IA?", answers: ["Un modelo que generaliza demasiado", "Un modelo que se adapta demasiado a los datos", "Un error de programación"], correct: 1 },
     { question: "¿Qué es una red neuronal?", answers: ["Una red de computadoras", "Un modelo inspirado en el cerebro humano", "Una base de datos"], correct: 1 },
-    { question: "¿Qué representa la sigla AI en inglés?", answers: ["Artificial Intelligence", "Automatic Internet", "Applied Innovation"], correct: 0 },
-    { question: "¿Qué es el aprendizaje supervisado?", answers: ["Aprender sin datos etiquetados", "Aprender con datos etiquetados", "Aprender a través de ensayos"], correct: 1 },
+    { question: "¿Qué representa AI en inglés?", answers: ["Artificial Intelligence", "Automatic Intelligence", "Applied Innovation"], correct: 0 },
+    { question: "¿Qué es el aprendizaje supervisado?", answers: ["Sin datos etiquetados", "Con datos etiquetados", "Por ensayo y error"], correct: 1 },
     { question: "¿Cuál de los siguientes es un algoritmo de clasificación?", answers: ["K-means", "Regresión logística", "PCA"], correct: 1 },
-    { question: "¿Qué es el deep learning?", answers: ["Un aprendizaje superficial", "Una técnica de redes neuronales profundas", "Una base de datos profunda"], correct: 1 },
-    { question: "¿Qué papel juega la ética en la IA?", answers: ["Ninguno", "Es crucial para evitar sesgos", "Solo en la investigación"], correct: 1 },
+    { question: "¿Qué es el deep learning?", answers: ["Aprendizaje superficial", "Redes neuronales profundas", "Almacenamiento de datos"], correct: 1 },
+    { question: "¿Por qué es crucial la ética en la IA?", answers: ["Para evitar sesgos", "Solo para cumplir normas", "No es relevante"], correct: 0 },
     { question: "¿Qué significa ‘training data’?", answers: ["Datos de prueba", "Datos de entrenamiento", "Datos de validación"], correct: 1 }
   ];
-  // Seleccionamos 5 preguntas aleatorias del pool para este día
   function getRandomTrivia(n) {
     const shuffled = triviaPool.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, n);
@@ -199,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Crack the Code (10 símbolos)
+   * 8. Crack the Code (10+ símbolos variados)
    *******************************************/
   const symbolPool = "!@#$%^&*A0BCDEFGH";
   const codeSymbols = symbolPool.split("");
@@ -280,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const memoryMessage = document.getElementById("memory-message");
   const cardPool = ["🤖", "⚙️", "💻", "🔮", "🎉", "🌐", "🚀", "🧠"];
   const cardSymbols = [];
-  // Duplicamos y mezclamos para tener pares variados
   cardPool.forEach(symbol => { cardSymbols.push(symbol, symbol); });
   let flippedCards = [];
   let matchedPairs = 0;
@@ -433,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 12. Noticias Reales (API Apitube con fallback)
+   * 12. Noticias (API Apitube con indicador)
    *******************************************/
   const fallbackNews = [
     { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
@@ -456,6 +453,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const box = document.createElement("div");
         box.classList.add("news-box");
         box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+        // Agregamos el indicador verde parpadeante
+        const indicator = document.createElement("span");
+        indicator.classList.add("api-indicator");
+        box.appendChild(indicator);
         newsContainer.appendChild(box);
       });
     } catch (error) {
@@ -465,6 +466,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const box = document.createElement("div");
         box.classList.add("news-box");
         box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+        // Indicador verde para fallback también
+        const indicator = document.createElement("span");
+        indicator.classList.add("api-indicator");
+        box.appendChild(indicator);
         newsContainer.appendChild(box);
       });
     }
@@ -592,14 +597,13 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  // Palabras variadas para la sopa de letras
+  // Banco ampliado de palabras
   const wsPool = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "INTELIGENCIA", "SISTEMA", "APRENDIZAJE", "CÓDIGO", "MÁQUINA"];
-  // Seleccionamos 5 palabras aleatoriamente
   const wsWords = wsPool.sort(() => 0.5 - Math.random()).slice(0, 5);
-  const rows = 10, cols = 10;
-  let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+  const wsRows = 10, wsCols = 10;
+  let grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
   function placeWordHorizontal(word, r, c) {
-    if (c + word.length > cols) return false;
+    if (c + word.length > wsCols) return false;
     for (let i = 0; i < word.length; i++) {
       if (grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
     }
@@ -609,7 +613,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
   function placeWordVertical(word, r, c) {
-    if (r + word.length > rows) return false;
+    if (r + word.length > wsRows) return false;
     for (let i = 0; i < word.length; i++) {
       if (grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
     }
@@ -623,8 +627,8 @@ document.addEventListener("DOMContentLoaded", () => {
     while (attempts > 0) {
       attempts--;
       const orientation = Math.random() < 0.5 ? "H" : "V";
-      const rr = Math.floor(Math.random() * rows);
-      const cc = Math.floor(Math.random() * cols);
+      const rr = Math.floor(Math.random() * wsRows);
+      const cc = Math.floor(Math.random() * wsCols);
       if (orientation === "H") {
         if (placeWordHorizontal(word, rr, cc)) return true;
       } else {
@@ -634,18 +638,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
   wsWords.forEach(w => insertWord(w));
+  // Rellenar celdas vacías con letras aleatorias
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
+  for (let r = 0; r < wsRows; r++) {
+    for (let c = 0; c < wsCols; c++) {
       if (!grid[r][c]) { grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length)); }
     }
   }
   if (wordsearchContainer) {
     wordsearchContainer.innerHTML = "";
-    for (let r = 0; r < rows; r++) {
+    for (let r = 0; r < wsRows; r++) {
       const rowDiv = document.createElement("div");
       rowDiv.classList.add("wordsearch-row");
-      for (let c = 0; c < cols; c++) {
+      for (let c = 0; c < wsCols; c++) {
         const cellDiv = document.createElement("div");
         cellDiv.classList.add("wordsearch-cell");
         cellDiv.textContent = grid[r][c];
@@ -709,7 +714,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*******************************************
    * 16. Curso Futurista de Fundamentos de la IA
-   * Los botones de cada módulo muestran u ocultan el contenido
    *******************************************/
   const moduleButtons = document.querySelectorAll(".start-module");
   moduleButtons.forEach(button => {
