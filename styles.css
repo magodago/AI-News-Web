@@ -112,7 +112,7 @@ section {
   text-align: center;
 }
 
-/* BOTONES ESTILO MATRIX */
+/* BOTONES */
 button {
   background: #111;
   border: 1px solid #0f0;
@@ -390,108 +390,7 @@ input[type="text"] {
   font-size: 0.8rem;
 }
 
-/* ANÁLISIS Y TENDENCIAS */
-.analisis {
-  max-width: 1000px;
-}
-#analisis-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-#analisis-container article {
-  width: 300px;
-  background: rgba(0,255,0,0.1);
-  border: 1px solid #0f0;
-  border-radius: 20px;
-  box-shadow: 0 0 10px #0f0;
-  text-align: left;
-  padding: 20px;
-  transition: 0.3s;
-}
-#analisis-container article:hover {
-  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
-  transform: scale(1.02);
-}
-
-/* CURSOR FUTURISTA */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border: 2px solid #0f0;
-  border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  z-index: 9999;
-  transition: transform 0.2s ease;
-  box-shadow: 0 0 10px #0f0;
-}
-
-/* SOPA DE LETRAS */
-.word-search {
-  margin: 40px auto;
-}
-#wordsearch-container {
-  border: 1px solid #0f0;
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
-  margin: 10px 0;
-  display: inline-block;
-}
-.wordsearch-row {
-  display: flex;
-}
-.wordsearch-cell {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #0f0;
-  background: #111;
-  color: #0f0;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1px;
-  cursor: pointer;
-}
-#wordsearch-words {
-  margin-top: 10px;
-  color: #0f0;
-  font-weight: bold;
-}
-
-/* NUEVO JUEGO: CAZA DE PARTÍCULAS AI */
-#particle-hunt-container {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  height: 300px;
-  margin: 20px auto;
-  border: 2px solid #0f0;
-  overflow: hidden;
-  background: #000;
-}
-.particle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: #0f0;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: fadeOut 3s forwards;
-}
-@keyframes fadeOut {
-  0% { opacity: 0.8; transform: scale(1); }
-  100% { opacity: 0; transform: scale(2); }
-}
-
-/* CURSO DE IA: Estilos Futuristas */
+/* CURSO DE IA */
 .course {
   background: rgba(0,255,0,0.05);
   padding: 20px;
@@ -543,91 +442,38 @@ input[type="text"] {
   border-left: 3px solid #0f0;
 }
 
-/* WIDGETS */
-.widgets {
-  max-width: 1200px;
-}
-.widget {
-  width: 300px;
-  background: rgba(0,255,0,0.1);
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #0f0;
-  padding: 20px;
-  margin: 10px;
-  display: inline-block;
-  vertical-align: top;
-  text-align: center;
-  min-height: 200px;
-  transition: 0.3s;
-}
-.widget:hover {
-  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
-  transform: scale(1.02);
-}
-
-/* BARRAS DE PAÍSES */
-.country-bar {
+/* NUEVO JUEGO: CAZA DE PARTÍCULAS AI */
+#particle-hunt-container {
+  position: relative;
   width: 100%;
-  background: #111;
-  margin: 8px 0;
-  border: 1px solid #0f0;
-  border-radius: 5px;
-  height: 24px;
-  overflow: hidden;
-}
-.country-fill {
-  background: #0f0;
-  width: 0%;
-  height: 100%;
-  transition: width 1s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  font-weight: bold;
-  font-size: 0.8rem;
-}
-
-/* ANÁLISIS Y TENDENCIAS */
-.analisis {
-  max-width: 1000px;
-}
-#analisis-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-#analisis-container article {
-  width: 300px;
-  background: rgba(0,255,0,0.1);
-  border: 1px solid #0f0;
-  border-radius: 20px;
-  box-shadow: 0 0 10px #0f0;
-  text-align: left;
-  padding: 20px;
-  transition: 0.3s;
-}
-#analisis-container article:hover {
-  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0;
-  transform: scale(1.02);
-}
-
-/* CURSOR FUTURISTA */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 12px;
-  height: 12px;
+  max-width: 600px;
+  height: 300px;
+  margin: 20px auto;
   border: 2px solid #0f0;
+  overflow: hidden;
+  background: #000;
+}
+.particle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #0f0;
   border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  z-index: 9999;
-  transition: transform 0.2s ease;
-  box-shadow: 0 0 10px #0f0;
+  opacity: 0.8;
+  animation: fadeOut 3s forwards;
+}
+@keyframes fadeOut {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+/* CLASE PARA PARRPADEAR EL ENLACE DE CONTACTO */
+.blink {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 
 /* MEDIA QUERIES */
@@ -639,13 +485,4 @@ input[type="text"] {
   }
   .tictactoe-cell {
     width: 80px;
-    height: 80px;
-  }
-  .card {
-    width: 60px;
-    height: 60px;
-    font-size: 1.2rem;
-  }
-  .symbol-btn { width: 30px; }
-  .code-char { width: 30px; }
-}
+    h
