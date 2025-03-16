@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(linkOrbitron);
 
   /*******************************************
-   * 2. Glitch en el Título (Verde)
+   * 2. Glitch en el Título
    *******************************************/
   const title = document.querySelector(".glitch");
   setInterval(() => {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 
   /*******************************************
-   * 3. Barra Matrix (Verde)
+   * 3. Barra Matrix
    *******************************************/
   function iniciarMatrix() {
     const bar = document.getElementById("matrix-bar");
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   iniciarMatrix();
 
   /*******************************************
-   * 4. Cursor Futurista (Verde)
+   * 4. Cursor Futurista
    *******************************************/
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*******************************************
-   * 5. "Follow the white rabbit..." (typing)
+   * 5. "Follow the white rabbit..." (Typing)
    *******************************************/
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   const randomIndex = Math.floor(Math.random() * palabrasCurso.length);
   const selectedWord = palabrasCurso[randomIndex].word;
-  const hint = palabrasCurso[randomIndex].hint;
+  const hintText = palabrasCurso[randomIndex].hint;
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkBtn = document.getElementById("check-letter");
   let wordArray = Array.from(selectedWord).map(() => "_");
   let attempts = selectedWord.length + 3;
-  if (hintElem) hintElem.textContent = "Pista: " + hint;
+  if (hintElem) hintElem.textContent = "Pista: " + hintText;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
   if (checkBtn) {
@@ -142,12 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
     { question: "¿Cuál es la principal función del machine learning?", answers: ["Aprender de datos", "Crear algoritmos", "Programar robots"], correct: 0 },
     { question: "¿Qué es el overfitting en IA?", answers: ["Un modelo que generaliza demasiado", "Un modelo que se adapta demasiado a los datos", "Un error de programación"], correct: 1 },
     { question: "¿Qué es una red neuronal?", answers: ["Una red de computadoras", "Un modelo inspirado en el cerebro humano", "Una base de datos"], correct: 1 },
-    { question: "¿Qué representa AI en inglés?", answers: ["Artificial Intelligence", "Automatic Intelligence", "Applied Innovation"], correct: 0 },
+    { question: "¿Qué significa AI en inglés?", answers: ["Artificial Intelligence", "Automatic Intelligence", "Applied Innovation"], correct: 0 },
     { question: "¿Qué es el aprendizaje supervisado?", answers: ["Sin datos etiquetados", "Con datos etiquetados", "Por ensayo y error"], correct: 1 },
-    { question: "¿Cuál de los siguientes es un algoritmo de clasificación?", answers: ["K-means", "Regresión logística", "PCA"], correct: 1 },
+    { question: "¿Cuál de estos es un algoritmo de clasificación?", answers: ["K-means", "Regresión logística", "PCA"], correct: 1 },
     { question: "¿Qué es el deep learning?", answers: ["Aprendizaje superficial", "Redes neuronales profundas", "Almacenamiento de datos"], correct: 1 },
-    { question: "¿Por qué es crucial la ética en la IA?", answers: ["Para evitar sesgos", "Solo para cumplir normas", "No es relevante"], correct: 0 },
-    { question: "¿Qué significa ‘training data’?", answers: ["Datos de prueba", "Datos de entrenamiento", "Datos de validación"], correct: 1 }
+    { question: "¿Por qué es importante la ética en la IA?", answers: ["Para evitar sesgos", "Solo por normativa", "No es relevante"], correct: 0 },
+    { question: "¿Qué son los 'training data'?", answers: ["Datos de prueba", "Datos de entrenamiento", "Datos de validación"], correct: 1 }
   ];
   function getRandomTrivia(n) {
     const shuffled = triviaPool.sort(() => 0.5 - Math.random());
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Crack the Code (Símbolos variados)
+   * 8. Crack the Code
    *******************************************/
   const symbolPool = "!@#$%^&*A0BCDEFGH";
   const codeSymbols = symbolPool.split("");
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (memoryContainer) createMemoryBoard();
 
   /*******************************************
-   * 10. Neon TicTacToe (centrado)
+   * 10. Neon TicTacToe
    *******************************************/
   const tictactoeContainer = document.getElementById("tictactoe-container");
   const tictactoeMessage = document.getElementById("tictactoe-message");
@@ -382,216 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
   createTicTacToe();
 
   /*******************************************
-   * 11. AI Number Guesser
-   *******************************************/
-  const guesserContainer = document.getElementById("guesser-container");
-  const startBtn = document.getElementById("start-guesser");
-  const guesserQuestion = document.getElementById("guesser-question");
-  const higherBtn = document.getElementById("higher");
-  const lowerBtn = document.getElementById("lower");
-  const correctBtn = document.getElementById("correct");
-  const guesserFeedback = document.getElementById("guesser-feedback");
-  let guesserLow = 1;
-  let guesserHigh = 100;
-  let guesserCurrent = 0;
-  let guesserOver = false;
-  function guessNumber() {
-    guesserCurrent = Math.floor((guesserLow + guesserHigh) / 2);
-    guesserQuestion.textContent = `¿Es ${guesserCurrent}?`;
-  }
-  if (startBtn) {
-    startBtn.addEventListener("click", () => {
-      guesserLow = 1; guesserHigh = 100; guesserOver = false;
-      guesserFeedback.textContent = ""; guessNumber();
-    });
-  }
-  if (higherBtn) {
-    higherBtn.addEventListener("click", () => {
-      if (guesserOver) return;
-      guesserLow = guesserCurrent + 1;
-      if (guesserLow > guesserHigh) { guesserFeedback.textContent = "¡Inconsistente! No quedan números."; guesserOver = true; return; }
-      guessNumber();
-    });
-  }
-  if (lowerBtn) {
-    lowerBtn.addEventListener("click", () => {
-      if (guesserOver) return;
-      guesserHigh = guesserCurrent - 1;
-      if (guesserHigh < guesserLow) { guesserFeedback.textContent = "¡Inconsistente! No quedan números."; guesserOver = true; return; }
-      guessNumber();
-    });
-  }
-  if (correctBtn) {
-    correctBtn.addEventListener("click", () => {
-      if (guesserOver) return;
-      guesserFeedback.textContent = `🎉 ¡La IA adivinó! Era ${guesserCurrent}`;
-      guesserOver = true;
-    });
-  }
-
-  /*******************************************
-   * 12. Noticias (API Apitube con indicador)
-   *******************************************/
-  const fallbackNews = [
-    { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
-    { title: "Google responde con Bard", text: "El gigante lanza su chatbot en versión beta para competir en IA." },
-    { title: "Robots en fábricas: Producción automatizada", text: "La integración de IA impulsa la eficiencia industrial." },
-    { title: "Tesla mejora su autopiloto con IA", text: "Nuevas actualizaciones prometen mayor seguridad en la conducción autónoma." },
-    { title: "Microsoft reinventa Bing con IA", text: "La búsqueda online se vuelve más inteligente con IA integrada." },
-    { title: "DeepMind avanza en algoritmos de IA", text: "Nuevos desarrollos en aprendizaje profundo marcan tendencia." }
-  ];
-  async function loadNews() {
-    const newsContainer = document.getElementById("news-container");
-    if (!newsContainer) return;
-    newsContainer.innerHTML = "Cargando noticias...";
-    try {
-      const response = await fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov");
-      const data = await response.json();
-      if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
-      newsContainer.innerHTML = "";
-      data.slice(0, 6).forEach(item => {
-        const box = document.createElement("div");
-        box.classList.add("news-box");
-        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
-        const indicator = document.createElement("span");
-        indicator.classList.add("api-indicator");
-        box.appendChild(indicator);
-        newsContainer.appendChild(box);
-      });
-    } catch (error) {
-      console.error("Error en API, usando noticias fallback:", error);
-      newsContainer.innerHTML = "";
-      fallbackNews.forEach(item => {
-        const box = document.createElement("div");
-        box.classList.add("news-box");
-        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
-        const indicator = document.createElement("span");
-        indicator.classList.add("api-indicator");
-        box.appendChild(indicator);
-        newsContainer.appendChild(box);
-      });
-    }
-  }
-  loadNews();
-  setInterval(loadNews, 300000);
-
-  /*******************************************
-   * 13. Widgets Futuristas
-   *******************************************/
-  // 13.1 Citas IA
-  const quotes = [
-    "La IA es la nueva electricidad.",
-    "Los datos son el nuevo petróleo.",
-    "La creatividad sigue siendo humana.",
-    "La IA sin ética es solo código.",
-    "El futuro pertenece a la IA.",
-    "Innovar es vivir en la era de la inteligencia.",
-    "La tecnología se funde con la imaginación.",
-    "El código es poesía, la IA es su musa."
-  ];
-  function cambiarCita() {
-    const quoteElem = document.getElementById("ai-quote");
-    if (!quoteElem) return;
-    const r = Math.floor(Math.random() * quotes.length);
-    quoteElem.textContent = quotes[r];
-  }
-  setInterval(cambiarCita, 10000);
-  cambiarCita();
-
-  // 13.2 Contador Patentes
-  let patenteContador = 50000;
-  function actualizarPatentes() {
-    const patentCountElem = document.getElementById("patent-count");
-    if (!patentCountElem) return;
-    patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
-    patenteContador += Math.floor(Math.random() * 10);
-  }
-  setInterval(actualizarPatentes, 5000);
-  actualizarPatentes();
-
-  // 13.3 Predicciones IA
-  const predicciones = [
-    "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
-    "Los robots humanoides convivirán con nosotros en 2050.",
-    "La computación cuántica cambiará el Deep Learning en 2040.",
-    "La IA superará la creatividad humana en 2045.",
-    "El aprendizaje automático se integrará en el día a día.",
-    "La IA potenciará la medicina personalizada.",
-    "La automatización transformará la industria global.",
-    "La ética se convertirá en la base de la tecnología del futuro."
-  ];
-  const predictionTextElem = document.getElementById("prediction-text");
-  if (predictionTextElem) {
-    predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
-  }
-
-  // 13.4 Mapa de Innovación
-  const innovacionOptions = [
-    "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.",
-    "Centros de innovación: Silicon Valley, Tel Aviv, Bangalore, Seúl.",
-    "Ecosistemas de tecnología: Estocolmo, Berlín, Amsterdam, Melbourne.",
-    "Capitales de la innovación: Nueva York, París, Dubai, Sídney."
-  ];
-  const mapContainer = document.getElementById("map-container");
-  if (mapContainer) {
-    mapContainer.textContent = innovacionOptions[Math.floor(Math.random() * innovacionOptions.length)];
-  }
-
-  // 13.5 Sorpresa Diaria
-  const sorpresas = [
-    "En 2025, el 70% de las empresas usará IA para atención al cliente.",
-    "Los coches autónomos evitarán el 90% de los accidentes viales.",
-    "La IA podría superar la creatividad humana en 2045.",
-    "Un nuevo avance en IA reduce el consumo energético un 40%.",
-    "La IA transformará el sector educativo con tutorías personalizadas.",
-    "Robots de asistencia se integrarán en hogares inteligentes.",
-    "La visión por computador revolucionará la seguridad vial.",
-    "La automatización impulsará el comercio global."
-  ];
-  const revealBtn = document.getElementById("reveal-surprise");
-  const surpriseTextElem = document.getElementById("surprise-text");
-  if (revealBtn && surpriseTextElem) {
-    revealBtn.addEventListener("click", () => {
-      const randomIndex = Math.floor(Math.random() * sorpresas.length);
-      surpriseTextElem.textContent = sorpresas[randomIndex];
-    });
-  }
-
-  // 13.6 Ranking Países
-  const countriesData = [
-    { name: "USA", investment: 90 },
-    { name: "China", investment: 85 },
-    { name: "Alemania", investment: 70 },
-    { name: "Reino Unido", investment: 65 },
-    { name: "Japón", investment: 60 }
-  ];
-  function mostrarPaisesInversion() {
-    const countriesContainer = document.getElementById("countries-container");
-    if (!countriesContainer) return;
-    let html = "";
-    countriesData.forEach(p => {
-      html += `
-        <div class="country-bar">
-          <div class="country-fill" style="width:0%;">
-            ${p.name}: 0%
-          </div>
-        </div>
-      `;
-    });
-    countriesContainer.innerHTML = html;
-    const fillElems = countriesContainer.querySelectorAll(".country-fill");
-    fillElems.forEach((fill, index) => {
-      const inv = countriesData[index].investment;
-      setTimeout(() => {
-        fill.style.width = inv + "%";
-        fill.textContent = `${countriesData[index].name}: ${inv}%`;
-      }, 200);
-    });
-  }
-  mostrarPaisesInversion();
-
-  /*******************************************
-   * 14. Sopa de Letras AI
+   * 11. Sopa de Letras AI
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
@@ -659,68 +450,506 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 15. Nuevo Juego: Caza de Partículas AI
-   * Temporizador de 30 segundos
+   * 12. Juego Futurista: Carrera Espacial
    *******************************************/
-  function initParticleHunt() {
-    const container = document.getElementById("particle-hunt-container");
-    const scoreElem = document.getElementById("particle-hunt-score");
-    const timerElem = document.getElementById("particle-hunt-timer");
-    if (!container || !scoreElem || !timerElem) return;
-    container.innerHTML = "";
-    let score = 0;
-    let timeLeft = 30;
-    scoreElem.textContent = `Puntuación: ${score}`;
-    timerElem.textContent = `Tiempo: ${timeLeft}s`;
-    function spawnParticle() {
-      const particle = document.createElement("div");
-      particle.classList.add("particle");
-      const containerRect = container.getBoundingClientRect();
-      const x = Math.random() * (containerRect.width - 20);
-      const y = Math.random() * (containerRect.height - 20);
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      container.appendChild(particle);
-      particle.addEventListener("animationend", () => {
-        if (particle.parentElement === container) { container.removeChild(particle); }
-      });
-      particle.addEventListener("click", () => {
-        score++;
-        scoreElem.textContent = `Puntuación: ${score}`;
-        if (particle.parentElement === container) { container.removeChild(particle); }
-      });
-    }
-    const particleInterval = setInterval(spawnParticle, 1000);
-    const timerInterval = setInterval(() => {
-      timeLeft--;
-      timerElem.textContent = `Tiempo: ${timeLeft}s`;
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        clearInterval(particleInterval);
-        alert(`Tiempo terminado. Tu puntuación final es: ${score}`);
-      }
-    }, 1000);
+  // Juego de runner en canvas: nave se mueve horizontalmente y evita obstáculos
+  const canvas = document.getElementById("space-runner-canvas");
+  const ctx = canvas.getContext("2d");
+  let spaceship = { x: canvas.width / 2 - 15, y: canvas.height - 40, width: 30, height: 30 };
+  let obstacles = [];
+  let runnerScore = 0;
+  let running = false;
+  let runnerInterval;
+  let obstacleInterval;
+  
+  function drawSpaceRunner() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Dibuja la nave (triángulo)
+    ctx.fillStyle = "#0f0";
+    ctx.beginPath();
+    ctx.moveTo(spaceship.x, spaceship.y + spaceship.height);
+    ctx.lineTo(spaceship.x + spaceship.width / 2, spaceship.y);
+    ctx.lineTo(spaceship.x + spaceship.width, spaceship.y + spaceship.height);
+    ctx.closePath();
+    ctx.fill();
+    // Dibuja obstáculos
+    obstacles.forEach(ob => {
+      ctx.fillStyle = "red";
+      ctx.fillRect(ob.x, ob.y, ob.width, ob.height);
+    });
+    // Dibuja puntuación
+    ctx.fillStyle = "#0f0";
+    ctx.font = "16px Orbitron";
+    ctx.fillText("Puntuación: " + runnerScore, 10, 20);
   }
-  const startParticleHuntBtn = document.getElementById("start-particle-hunt");
-  if (startParticleHuntBtn) {
-    startParticleHuntBtn.addEventListener("click", initParticleHunt);
+  
+  function updateSpaceRunner() {
+    if (!running) return;
+    // Mueve obstáculos hacia abajo
+    obstacles.forEach(ob => { ob.y += 3; });
+    // Quita obstáculos fuera del canvas
+    obstacles = obstacles.filter(ob => ob.y < canvas.height);
+    // Añade puntuación
+    runnerScore++;
+    // Comprueba colisiones
+    obstacles.forEach(ob => {
+      if (spaceship.x < ob.x + ob.width &&
+          spaceship.x + spaceship.width > ob.x &&
+          spaceship.y < ob.y + ob.height &&
+          spaceship.y + spaceship.height > ob.y) {
+        // Colisión
+        running = false;
+        clearInterval(runnerInterval);
+        clearInterval(obstacleInterval);
+        alert("¡Game Over! Puntuación final: " + runnerScore);
+      }
+    });
+    drawSpaceRunner();
+  }
+  
+  function startSpaceRunner() {
+    // Reinicia variables
+    spaceship.x = canvas.width / 2 - 15;
+    runnerScore = 0;
+    obstacles = [];
+    running = true;
+    drawSpaceRunner();
+    runnerInterval = setInterval(updateSpaceRunner, 30);
+    obstacleInterval = setInterval(() => {
+      // Crear obstáculo aleatorio
+      const obWidth = 30;
+      const obHeight = 30;
+      const obX = Math.random() * (canvas.width - obWidth);
+      obstacles.push({ x: obX, y: -obHeight, width: obWidth, height: obHeight });
+    }, 1500);
+  }
+  
+  document.addEventListener("keydown", (e) => {
+    if (!running) return;
+    if (e.key === "ArrowLeft") {
+      spaceship.x -= 20;
+      if (spaceship.x < 0) spaceship.x = 0;
+    }
+    if (e.key === "ArrowRight") {
+      spaceship.x += 20;
+      if (spaceship.x + spaceship.width > canvas.width) spaceship.x = canvas.width - spaceship.width;
+    }
+  });
+  
+  const startRunnerBtn = document.getElementById("start-space-runner");
+  if (startRunnerBtn) {
+    startRunnerBtn.addEventListener("click", startSpaceRunner);
   }
 
   /*******************************************
-   * 16. Curso Futurista de Fundamentos de la IA
-   * Mostrar/Ocultar contenido de cada módulo
+   * 13. Noticias (API Apitube con indicador solo si proviene de la API)
    *******************************************/
-  const moduleButtons = document.querySelectorAll(".start-module");
-  moduleButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      const content = button.nextElementSibling;
-      if (content.style.display === "none" || content.style.display === "") {
-        content.style.display = "block";
-        button.textContent = "Ocultar Módulo";
-      } else {
-        content.style.display = "none";
-        button.textContent = "Empezar Módulo";
+  const fallbackNews = [
+    { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
+    { title: "Google responde con Bard", text: "El gigante lanza su chatbot en versión beta para competir en IA." },
+    { title: "Robots en fábricas: Producción automatizada", text: "La integración de IA impulsa la eficiencia industrial." },
+    { title: "Tesla mejora su autopiloto con IA", text: "Nuevas actualizaciones prometen mayor seguridad en la conducción autónoma." },
+    { title: "Microsoft reinventa Bing con IA", text: "La búsqueda online se vuelve más inteligente con IA integrada." },
+    { title: "DeepMind avanza en algoritmos de IA", text: "Nuevos desarrollos en aprendizaje profundo marcan tendencia." }
+  ];
+  async function loadNews() {
+    const newsContainer = document.getElementById("news-container");
+    if (!newsContainer) return;
+    newsContainer.innerHTML = "Cargando noticias...";
+    let newsFromAPI = false;
+    try {
+      const response = await fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov");
+      const data = await response.json();
+      if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
+      newsFromAPI = true;
+      newsContainer.innerHTML = "";
+      data.slice(0, 6).forEach(item => {
+        const box = document.createElement("div");
+        box.classList.add("news-box");
+        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+        if (newsFromAPI) {
+          const indicator = document.createElement("span");
+          indicator.classList.add("api-indicator");
+          box.appendChild(indicator);
+        }
+        newsContainer.appendChild(box);
+      });
+    } catch (error) {
+      console.error("Error en API, usando noticias fallback:", error);
+      newsContainer.innerHTML = "";
+      fallbackNews.forEach(item => {
+        const box = document.createElement("div");
+        box.classList.add("news-box");
+        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+        newsContainer.appendChild(box);
+      });
+    }
+  }
+  loadNews();
+  setInterval(loadNews, 300000);
+
+  /*******************************************
+   * 14. Widgets Futuristas
+   *******************************************/
+  // 14.1 Citas IA
+  const quotes = [
+    "La IA es la nueva electricidad.",
+    "Los datos son el nuevo petróleo.",
+    "La creatividad sigue siendo humana.",
+    "La IA sin ética es solo código.",
+    "El futuro pertenece a la IA.",
+    "Innovar es vivir en la era de la inteligencia.",
+    "La tecnología se funde con la imaginación.",
+    "El código es poesía, la IA es su musa."
+  ];
+  function cambiarCita() {
+    const quoteElem = document.getElementById("ai-quote");
+    if (!quoteElem) return;
+    const r = Math.floor(Math.random() * quotes.length);
+    quoteElem.textContent = quotes[r];
+  }
+  setInterval(cambiarCita, 10000);
+  cambiarCita();
+
+  // 14.2 Contador Patentes
+  let patenteContador = 50000;
+  function actualizarPatentes() {
+    const patentCountElem = document.getElementById("patent-count");
+    if (!patentCountElem) return;
+    patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
+    patenteContador += Math.floor(Math.random() * 10);
+  }
+  setInterval(actualizarPatentes, 5000);
+  actualizarPatentes();
+
+  // 14.3 Predicciones IA
+  const predicciones = [
+    "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
+    "Los robots humanoides convivirán con nosotros en 2050.",
+    "La computación cuántica cambiará el Deep Learning en 2040.",
+    "La IA superará la creatividad humana en 2045.",
+    "El aprendizaje automático se integrará en el día a día.",
+    "La IA potenciará la medicina personalizada.",
+    "La automatización transformará la industria global.",
+    "La ética se convertirá en la base de la tecnología del futuro."
+  ];
+  const predictionTextElem = document.getElementById("prediction-text");
+  if (predictionTextElem) {
+    predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
+  }
+
+  // 14.4 Mapa de Innovación
+  const innovacionOptions = [
+    "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.",
+    "Centros de innovación: Silicon Valley, Tel Aviv, Bangalore, Seúl.",
+    "Ecosistemas de tecnología: Estocolmo, Berlín, Amsterdam, Melbourne.",
+    "Capitales de la innovación: Nueva York, París, Dubai, Sídney."
+  ];
+  const mapContainer = document.getElementById("map-container");
+  if (mapContainer) {
+    mapContainer.textContent = innovacionOptions[Math.floor(Math.random() * innovacionOptions.length)];
+  }
+
+  // 14.5 Sorpresa Diaria
+  const sorpresas = [
+    "En 2025, el 70% de las empresas usará IA para atención al cliente.",
+    "Los coches autónomos evitarán el 90% de los accidentes viales.",
+    "La IA podría superar la creatividad humana en 2045.",
+    "Un nuevo avance en IA reduce el consumo energético un 40%.",
+    "La IA transformará el sector educativo con tutorías personalizadas.",
+    "Robots de asistencia se integrarán en hogares inteligentes.",
+    "La visión por computador revolucionará la seguridad vial.",
+    "La automatización impulsará el comercio global."
+  ];
+  const revealBtn = document.getElementById("reveal-surprise");
+  const surpriseTextElem = document.getElementById("surprise-text");
+  if (revealBtn && surpriseTextElem) {
+    revealBtn.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * sorpresas.length);
+      surpriseTextElem.textContent = sorpresas[randomIndex];
+    });
+  }
+
+  // 14.6 Ranking Países
+  const countriesData = [
+    { name: "USA", investment: 90 },
+    { name: "China", investment: 85 },
+    { name: "Alemania", investment: 70 },
+    { name: "Reino Unido", investment: 65 },
+    { name: "Japón", investment: 60 }
+  ];
+  function mostrarPaisesInversion() {
+    const countriesContainer = document.getElementById("countries-container");
+    if (!countriesContainer) return;
+    let html = "";
+    countriesData.forEach(p => {
+      html += `
+        <div class="country-bar">
+          <div class="country-fill" style="width:0%;">
+            ${p.name}: 0%
+          </div>
+        </div>
+      `;
+    });
+    countriesContainer.innerHTML = html;
+    const fillElems = countriesContainer.querySelectorAll(".country-fill");
+    fillElems.forEach((fill, index) => {
+      const inv = countriesData[index].investment;
+      setTimeout(() => {
+        fill.style.width = inv + "%";
+        fill.textContent = `${countriesData[index].name}: ${inv}%`;
+      }, 200);
+    });
+  }
+  mostrarPaisesInversion();
+
+  /*******************************************
+   * 15. Juego Futurista: Carrera Espacial
+   *******************************************/
+  const runnerCanvas = document.getElementById("space-runner-canvas");
+  const runnerCtx = runnerCanvas.getContext("2d");
+  let spaceship = { x: runnerCanvas.width / 2 - 15, y: runnerCanvas.height - 40, width: 30, height: 30 };
+  let obstacles = [];
+  let runnerScore = 0;
+  let running = false;
+  let runnerInterval, obstacleInterval;
+  
+  function drawSpaceRunner() {
+    runnerCtx.clearRect(0, 0, runnerCanvas.width, runnerCanvas.height);
+    // Dibuja la nave (triángulo)
+    runnerCtx.fillStyle = "#0f0";
+    runnerCtx.beginPath();
+    runnerCtx.moveTo(spaceship.x, spaceship.y + spaceship.height);
+    runnerCtx.lineTo(spaceship.x + spaceship.width / 2, spaceship.y);
+    runnerCtx.lineTo(spaceship.x + spaceship.width, spaceship.y + spaceship.height);
+    runnerCtx.closePath();
+    runnerCtx.fill();
+    // Dibuja obstáculos
+    obstacles.forEach(ob => {
+      runnerCtx.fillStyle = "red";
+      runnerCtx.fillRect(ob.x, ob.y, ob.width, ob.height);
+    });
+    // Muestra la puntuación
+    runnerCtx.fillStyle = "#0f0";
+    runnerCtx.font = "16px Orbitron";
+    runnerCtx.fillText("Puntuación: " + runnerScore, 10, 20);
+  }
+  
+  function updateSpaceRunner() {
+    if (!running) return;
+    obstacles.forEach(ob => { ob.y += 3; });
+    obstacles = obstacles.filter(ob => ob.y < runnerCanvas.height);
+    runnerScore++;
+    obstacles.forEach(ob => {
+      if (spaceship.x < ob.x + ob.width &&
+          spaceship.x + spaceship.width > ob.x &&
+          spaceship.y < ob.y + ob.height &&
+          spaceship.y + spaceship.height > ob.y) {
+        running = false;
+        clearInterval(runnerInterval);
+        clearInterval(obstacleInterval);
+        alert("¡Game Over! Puntuación final: " + runnerScore);
       }
     });
+    drawSpaceRunner();
+  }
+  
+  function startSpaceRunner() {
+    spaceship.x = runnerCanvas.width / 2 - 15;
+    runnerScore = 0;
+    obstacles = [];
+    running = true;
+    drawSpaceRunner();
+    runnerInterval = setInterval(updateSpaceRunner, 30);
+    obstacleInterval = setInterval(() => {
+      const obSize = 30;
+      const obX = Math.random() * (runnerCanvas.width - obSize);
+      obstacles.push({ x: obX, y: -obSize, width: obSize, height: obSize });
+    }, 1500);
+  }
+  
+  const startRunnerBtn = document.getElementById("start-space-runner");
+  if (startRunnerBtn) {
+    startRunnerBtn.addEventListener("click", startSpaceRunner);
+  }
+  
+  document.addEventListener("keydown", (e) => {
+    if (!running) return;
+    if (e.key === "ArrowLeft") {
+      spaceship.x -= 20;
+      if (spaceship.x < 0) spaceship.x = 0;
+    }
+    if (e.key === "ArrowRight") {
+      spaceship.x += 20;
+      if (spaceship.x + spaceship.width > runnerCanvas.width) spaceship.x = runnerCanvas.width - spaceship.width;
+    }
   });
+
+  /*******************************************
+   * 16. Noticias (API Apitube, indicador solo si viene de la API)
+   *******************************************/
+  const fallbackNews = [
+    { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
+    { title: "Google responde con Bard", text: "El gigante lanza su chatbot en versión beta para competir en IA." },
+    { title: "Robots en fábricas: Producción automatizada", text: "La integración de IA impulsa la eficiencia industrial." },
+    { title: "Tesla mejora su autopiloto con IA", text: "Nuevas actualizaciones prometen mayor seguridad en la conducción autónoma." },
+    { title: "Microsoft reinventa Bing con IA", text: "La búsqueda online se vuelve más inteligente con IA integrada." },
+    { title: "DeepMind avanza en algoritmos de IA", text: "Nuevos desarrollos en aprendizaje profundo marcan tendencia." }
+  ];
+  async function loadNews() {
+    const newsContainer = document.getElementById("news-container");
+    if (!newsContainer) return;
+    newsContainer.innerHTML = "Cargando noticias...";
+    let newsFromAPI = false;
+    try {
+      const response = await fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov");
+      const data = await response.json();
+      if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
+      newsFromAPI = true;
+      newsContainer.innerHTML = "";
+      data.slice(0, 6).forEach(item => {
+        const box = document.createElement("div");
+        box.classList.add("news-box");
+        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+        if (newsFromAPI) {
+          const indicator = document.createElement("span");
+          indicator.classList.add("api-indicator");
+          box.appendChild(indicator);
+        }
+        newsContainer.appendChild(box);
+      });
+    } catch (error) {
+      console.error("Error en API, usando noticias fallback:", error);
+      newsContainer.innerHTML = "";
+      fallbackNews.forEach(item => {
+        const box = document.createElement("div");
+        box.classList.add("news-box");
+        box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+        newsContainer.appendChild(box);
+      });
+    }
+  }
+  loadNews();
+  setInterval(loadNews, 300000);
+
+  /*******************************************
+   * 17. Widgets Futuristas
+   *******************************************/
+  // 17.1 Citas IA
+  const quotes = [
+    "La IA es la nueva electricidad.",
+    "Los datos son el nuevo petróleo.",
+    "La creatividad sigue siendo humana.",
+    "La IA sin ética es solo código.",
+    "El futuro pertenece a la IA.",
+    "Innovar es vivir en la era de la inteligencia.",
+    "La tecnología se funde con la imaginación.",
+    "El código es poesía, la IA es su musa."
+  ];
+  function cambiarCita() {
+    const quoteElem = document.getElementById("ai-quote");
+    if (!quoteElem) return;
+    const r = Math.floor(Math.random() * quotes.length);
+    quoteElem.textContent = quotes[r];
+  }
+  setInterval(cambiarCita, 10000);
+  cambiarCita();
+
+  // 17.2 Contador Patentes
+  let patenteContador = 50000;
+  function actualizarPatentes() {
+    const patentCountElem = document.getElementById("patent-count");
+    if (!patentCountElem) return;
+    patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
+    patenteContador += Math.floor(Math.random() * 10);
+  }
+  setInterval(actualizarPatentes, 5000);
+  actualizarPatentes();
+
+  // 17.3 Predicciones IA
+  const predicciones = [
+    "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
+    "Los robots humanoides convivirán con nosotros en 2050.",
+    "La computación cuántica cambiará el Deep Learning en 2040.",
+    "La IA superará la creatividad humana en 2045.",
+    "El aprendizaje automático se integrará en el día a día.",
+    "La IA potenciará la medicina personalizada.",
+    "La automatización transformará la industria global.",
+    "La ética se convertirá en la base de la tecnología del futuro."
+  ];
+  const predictionTextElem = document.getElementById("prediction-text");
+  if (predictionTextElem) {
+    predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
+  }
+
+  // 17.4 Mapa de Innovación
+  const innovacionOptions = [
+    "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.",
+    "Centros de innovación: Silicon Valley, Tel Aviv, Bangalore, Seúl.",
+    "Ecosistemas de tecnología: Estocolmo, Berlín, Amsterdam, Melbourne.",
+    "Capitales de la innovación: Nueva York, París, Dubai, Sídney."
+  ];
+  const mapContainer = document.getElementById("map-container");
+  if (mapContainer) {
+    mapContainer.textContent = innovacionOptions[Math.floor(Math.random() * innovacionOptions.length)];
+  }
+
+  // 17.5 Sorpresa Diaria
+  const sorpresas = [
+    "En 2025, el 70% de las empresas usará IA para atención al cliente.",
+    "Los coches autónomos evitarán el 90% de los accidentes viales.",
+    "La IA podría superar la creatividad humana en 2045.",
+    "Un nuevo avance en IA reduce el consumo energético un 40%.",
+    "La IA transformará el sector educativo con tutorías personalizadas.",
+    "Robots de asistencia se integrarán en hogares inteligentes.",
+    "La visión por computador revolucionará la seguridad vial.",
+    "La automatización impulsará el comercio global."
+  ];
+  const revealBtn = document.getElementById("reveal-surprise");
+  const surpriseTextElem = document.getElementById("surprise-text");
+  if (revealBtn && surpriseTextElem) {
+    revealBtn.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * sorpresas.length);
+      surpriseTextElem.textContent = sorpresas[randomIndex];
+    });
+  }
+
+  // 17.6 Ranking Países
+  const countriesData = [
+    { name: "USA", investment: 90 },
+    { name: "China", investment: 85 },
+    { name: "Alemania", investment: 70 },
+    { name: "Reino Unido", investment: 65 },
+    { name: "Japón", investment: 60 }
+  ];
+  function mostrarPaisesInversion() {
+    const countriesContainer = document.getElementById("countries-container");
+    if (!countriesContainer) return;
+    let html = "";
+    countriesData.forEach(p => {
+      html += `
+        <div class="country-bar">
+          <div class="country-fill" style="width:0%;">
+            ${p.name}: 0%
+          </div>
+        </div>
+      `;
+    });
+    countriesContainer.innerHTML = html;
+    const fillElems = countriesContainer.querySelectorAll(".country-fill");
+    fillElems.forEach((fill, index) => {
+      const inv = countriesData[index].investment;
+      setTimeout(() => {
+        fill.style.width = inv + "%";
+        fill.textContent = `${countriesData[index].name}: ${inv}%`;
+      }, 200);
+    });
+  }
+  mostrarPaisesInversion();
+
+  /*******************************************
+   * 18. Widgets y Contacto
+   *******************************************/
+  // El enlace de contacto parpadea (definido en CSS)
+
 });
