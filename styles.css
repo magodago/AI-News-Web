@@ -5,10 +5,19 @@
   box-sizing: border-box;
 }
 
-/* FONDO & FUENTE - parallax con imagen real */
+/* ANIMACIÓN FADE-IN GLOBAL */
+body {
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* FONDO con IMAGEN sin texto */
 html, body {
   height: 100%;
-  background: url('https://placehold.co/1200x800/000000/0ff?text=Fondo+Futurista') no-repeat center center fixed;
+  background: url('https://placehold.co/1200x800/000000/0ff') no-repeat center center fixed;
   background-size: cover;
   font-family: "Orbitron", sans-serif;
   color: #0ff;
@@ -172,7 +181,7 @@ header {
   background: #fff;
 }
 
-/* CRACK THE CODE */
+/* CRACK THE CODE (10 símbolos) */
 .crack-the-code {
   margin: 40px auto;
   text-align: center;
@@ -299,6 +308,50 @@ header {
 #memory-message {
   margin: 10px;
   font-weight: bold;
+}
+
+/* NEON TICTACTOE */
+.neon-tictactoe {
+  margin: 40px auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+.neon-tictactoe h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+#tictactoe-container {
+  display: grid;
+  grid-template-columns: repeat(3,100px);
+  grid-template-rows: repeat(3,100px);
+  gap: 5px;
+  margin: 0 auto;
+}
+.tictactoe-cell {
+  width: 100px;
+  height: 100px;
+  background: #111;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  font-family: inherit;
+  color: #0ff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tictactoe-cell:hover {
+  background: #0ff;
+  color: #000;
+}
+#tictactoe-message {
+  margin: 10px;
+  font-weight: bold;
+  min-height: 30px;
 }
 
 /* NOTICIAS */
