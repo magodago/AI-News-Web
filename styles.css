@@ -14,12 +14,10 @@ body {
   to { opacity: 1; }
 }
 
-/* FONDO OSCURO SIN TEXTO, EJEMPLO con placehold.co */
+/* FONDO OSCURO SIN IMAGEN DE PLACEHOLDER */
 html, body {
   height: 100%;
-  /* Reemplaza esta URL si quieres otra imagen o color */
-  background: url("https://placehold.co/2000x1200/000000/00ff00") no-repeat center center fixed;
-  background-size: cover;
+  background: #000; /* Fondo negro sin el mensaje "2000x1200" */
   font-family: "Orbitron", sans-serif;
   color: #0f0; /* Verde Matrix */
   overflow-x: hidden;
@@ -214,12 +212,14 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* TICTACTOE CENTRADO */
+/* TICTACTOE CENTRADO - MODIFICADO PARA FORMAR UNA CUADRÍCULA 3x3 */
 .neon-tictactoe {
   margin: 40px auto;
 }
 #tictactoe-container {
-  display: inline-block; /* Importante para centrar */
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
   margin: 0 auto;
   text-align: center;
 }
@@ -469,3 +469,4 @@ input[type="text"] {
   .symbol-btn { width: 30px; }
   .code-char { width: 30px; }
 }
+
