@@ -41,16 +41,14 @@
     </div>
   </section>
 
-  <!-- 3) CRACK THE CODE (tipo Mastermind, con símbolos disponibles) -->
+  <!-- 3) CRACK THE CODE (tipo Mastermind, con 10 símbolos) -->
   <section class="crack-the-code">
     <h2>Crack the Code</h2>
     <div id="code-container">
       <p id="code-instructions">
-        Selecciona 4 símbolos de la lista y comprueba. Tienes 7 intentos para descifrar el código.
+        Elige 4 símbolos de la lista (máx 10) y comprueba. Tienes 7 intentos.
       </p>
-      <div class="symbol-list" id="symbol-list">
-        <!-- script.js inyecta los símbolos para pinchar -->
-      </div>
+      <div class="symbol-list" id="symbol-list"></div>
       <div id="code-inputs">
         <input type="text" class="code-char" maxlength="1" readonly>
         <input type="text" class="code-char" maxlength="1" readonly>
@@ -64,24 +62,33 @@
     </div>
   </section>
 
-  <!-- 4) NUEVO JUEGO: MEMORY AI CARDS -->
+  <!-- 4) MEMORY AI CARDS -->
   <section class="memory-game">
     <h2>Memory AI Cards</h2>
     <div id="memory-container">
-      <!-- 12 cartas (6 parejas). Se inyectan en JS con shuffle -->
+      <!-- 12 cartas con 6 parejas (IA-símbolos). Inyectado en JS -->
     </div>
     <p id="memory-message"></p>
   </section>
 
-  <!-- 5) NOTICIAS (6 aleatorias con botón “Leer”) -->
+  <!-- 5) NEON TICTACTOE -->
+  <section class="neon-tictactoe">
+    <h2>Neon TicTacToe</h2>
+    <div id="tictactoe-container">
+      <!-- 3x3 celdas inyectadas en script -->
+    </div>
+    <p id="tictactoe-message"></p>
+  </section>
+
+  <!-- NOTICIAS (6 aleatorias con botón “Leer”) -->
   <section class="noticias">
     <h2>Últimas Noticias de IA</h2>
     <div id="news-container">
-      <!-- script.js inyecta 6 noticias aleatorias con enlace “Leer” -->
+      <!-- script.js inyecta 6 noticias aleatorias -->
     </div>
   </section>
 
-  <!-- 6) WIDGETS FUTURISTAS (6) -->
+  <!-- WIDGETS FUTURISTAS (6) -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
 
@@ -117,7 +124,7 @@
     </div>
   </section>
 
-  <!-- 7) ANÁLISIS Y TENDENCIAS (4 artículos) -->
+  <!-- ANÁLISIS Y TENDENCIAS (4 artículos) -->
   <section class="analisis">
     <h2>Análisis y Tendencias</h2>
     <div id="analisis-container">
