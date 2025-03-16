@@ -41,26 +41,39 @@
     </div>
   </section>
 
-  <!-- 3) NUEVO JUEGO: CRACK THE CODE (tipo Mastermind) -->
+  <!-- 3) CRACK THE CODE (tipo Mastermind, con símbolos disponibles) -->
   <section class="crack-the-code">
     <h2>Crack the Code</h2>
     <div id="code-container">
       <p id="code-instructions">
-        Descifra la secuencia de 4 símbolos antes de quedarte sin intentos.
+        Selecciona 4 símbolos de la lista y comprueba. Tienes 7 intentos para descifrar el código.
       </p>
-      <div id="code-inputs">
-        <input type="text" class="code-char" maxlength="1">
-        <input type="text" class="code-char" maxlength="1">
-        <input type="text" class="code-char" maxlength="1">
-        <input type="text" class="code-char" maxlength="1">
+      <div class="symbol-list" id="symbol-list">
+        <!-- script.js inyecta los símbolos para pinchar -->
       </div>
+      <div id="code-inputs">
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+      </div>
+      <button id="code-reset">Limpiar</button>
       <button id="code-check">Comprobar</button>
       <p id="code-feedback"></p>
       <p id="code-attempts"></p>
     </div>
   </section>
 
-  <!-- 4) NOTICIAS (6 aleatorias con botón “Leer”) -->
+  <!-- 4) NUEVO JUEGO: MEMORY AI CARDS -->
+  <section class="memory-game">
+    <h2>Memory AI Cards</h2>
+    <div id="memory-container">
+      <!-- 12 cartas (6 parejas). Se inyectan en JS con shuffle -->
+    </div>
+    <p id="memory-message"></p>
+  </section>
+
+  <!-- 5) NOTICIAS (6 aleatorias con botón “Leer”) -->
   <section class="noticias">
     <h2>Últimas Noticias de IA</h2>
     <div id="news-container">
@@ -68,7 +81,7 @@
     </div>
   </section>
 
-  <!-- 5) WIDGETS FUTURISTAS (6) -->
+  <!-- 6) WIDGETS FUTURISTAS (6) -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
 
@@ -104,7 +117,7 @@
     </div>
   </section>
 
-  <!-- 6) ANÁLISIS Y TENDENCIAS (4 artículos) -->
+  <!-- 7) ANÁLISIS Y TENDENCIAS (4 artículos) -->
   <section class="analisis">
     <h2>Análisis y Tendencias</h2>
     <div id="analisis-container">
@@ -127,7 +140,6 @@
     </div>
   </section>
 
-  <!-- SCRIPT PRINCIPAL -->
   <script src="script.js"></script>
 </body>
 </html>
