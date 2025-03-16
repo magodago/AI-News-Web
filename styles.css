@@ -46,14 +46,14 @@ body::before {
   to { transform: translate(-50px, -50px); }
 }
 
-/* NUEVO EFECTO NEON FLICKER (se activa intermitentemente con JS) */
-@keyframes neonFlicker {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(20deg); }
-  100% { filter: hue-rotate(0deg); }
+/* NUEVO EFECTO: PULSACIÓN SUTIL EN EL TÍTULO */
+header h1 {
+  animation: pulsate 3s infinite;
 }
-body.neon-flicker {
-  animation: neonFlicker 2s infinite;
+@keyframes pulsate {
+  0% { text-shadow: 0 0 10px #0f0; }
+  50% { text-shadow: 0 0 20px #0f0; }
+  100% { text-shadow: 0 0 10px #0f0; }
 }
 
 /* BARRA SUPERIOR MATRIX */
@@ -325,7 +325,7 @@ input[type="text"] {
   box-shadow: 0 0 10px #0f0;
   padding: 20px;
   text-align: left;
-  min-height: 180px;
+  min-height: 120px;
   position: relative;
   transition: 0.3s;
 }
@@ -343,18 +343,6 @@ input[type="text"] {
   font-size: 0.9rem;
   line-height: 1.2rem;
   margin-bottom: 10px;
-}
-.news-box a.leer-btn {
-  display: inline-block;
-  background: #0f0;
-  color: #000;
-  padding: 6px 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-.news-box a.leer-btn:hover {
-  background: #fff;
 }
 
 /* WIDGETS (max-width 1200) */
@@ -480,10 +468,30 @@ input[type="text"] {
   color: #0f0;
   font-weight: bold;
 }
-/* Para resaltar cuando hacen click en la sopa */
-.highlighted {
-  background: #0f0 !important;
-  color: #000 !important;
+
+/* NUEVO JUEGO: CAZA DE PARTÍCULAS AI */
+#particle-hunt-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 20px auto;
+  border: 2px solid #0f0;
+  overflow: hidden;
+  background: #000;
+}
+.particle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #0f0;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fadeOut 3s forwards;
+}
+@keyframes fadeOut {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2); }
 }
 
 /* MEDIA QUERIES - MÓVILES */
