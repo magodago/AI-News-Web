@@ -14,13 +14,13 @@ body {
   to { opacity: 1; }
 }
 
-/* FONDO Matrix: imagen estilo hacker/verde */
+/* FONDO oscuro en verde matrix, placeholder que no se vea blanco */
 html, body {
   height: 100%;
-  background: url('https://images.unsplash.com/photo-1592496001020-6b443482999b?auto=format&fit=crop&w=2000&q=80') no-repeat center center fixed;
+  background: url('https://placehold.co/2000x1200/000000/00ff00?text=Matrix+Green') no-repeat center center fixed;
   background-size: cover;
   font-family: "Orbitron", sans-serif;
-  color: #0f0; /* TODO: Verde Matrix */
+  color: #0f0; 
   overflow-x: hidden;
 }
 
@@ -44,34 +44,20 @@ header {
   font-size: 3rem;
   display: inline-block;
   text-transform: uppercase;
-  text-shadow: 0 0 5px #0f0; /* Verde */
+  text-shadow: 0 0 5px #0f0;
   animation: glitchShadow 1.5s infinite;
   margin-bottom: 15px;
 }
-
 .glitch-active {
   text-shadow: 0px 0px 8px #0f0, 5px 0px 10px #0f0, -5px 0px 10px #0f0;
 }
-
 @keyframes glitchShadow {
-  0% {
-    text-shadow: 0px 0px 5px #0f0;
-  }
-  20% {
-    text-shadow: 2px 0px 5px #0f0;
-  }
-  40% {
-    text-shadow: -2px 0px 5px #0f0;
-  }
-  60% {
-    text-shadow: 2px 0px 5px #0f0;
-  }
-  80% {
-    text-shadow: -2px 0px 5px #0f0;
-  }
-  100% {
-    text-shadow: 0px 0px 5px #0f0;
-  }
+  0% { text-shadow: 0px 0px 5px #0f0; }
+  20% { text-shadow: 2px 0px 5px #0f0; }
+  40% { text-shadow: -2px 0px 5px #0f0; }
+  60% { text-shadow: 2px 0px 5px #0f0; }
+  80% { text-shadow: -2px 0px 5px #0f0; }
+  100% { text-shadow: 0px 0px 5px #0f0; }
 }
 
 /* FRASE TYPING */
@@ -86,7 +72,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones - ancho general */
+/* SECCIONES */
 section {
   margin: 40px auto;
   width: 90%;
@@ -101,14 +87,13 @@ button {
   font-size: 1rem;
 }
 
-/* DESAFÍO PALABRA */
+/* ADIVINA PALABRA */
+#hint, #message, #attempts-remaining { color: #0f0; }
 #word-display {
   font-size: 2rem;
   letter-spacing: 8px;
   margin: 10px 0;
 }
-/* Pistas y texto complementario en color #0f0 */
-#hint, #message, #attempts-remaining { color: #0f0; }
 
 /* TRIVIA */
 #trivia-container {
@@ -165,7 +150,6 @@ button {
   font-size: 1.2rem;
   border-radius: 5px;
 }
-#code-feedback { margin: 10px 0; font-weight: bold; }
 
 /* MEMORY AI CARDS */
 #memory-container {
@@ -202,7 +186,7 @@ button {
   grid-template-columns: repeat(3,100px);
   grid-template-rows: repeat(3,100px);
   gap: 5px;
-  margin: 0 auto;
+  margin: 0 auto; /* centrado total */
 }
 .tictactoe-cell {
   background: #111;
@@ -260,6 +244,40 @@ button {
   font-weight: bold;
   min-height: 20px;
   color: #0f0;
+}
+
+/* SOPA DE LETRAS */
+.word-search {
+  margin: 40px auto;
+}
+#wordsearch-container {
+  border: 1px solid #0f0;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
+  margin: 10px 0;
+  display: inline-block;
+}
+.wordsearch-row {
+  display: flex;
+}
+.wordsearch-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f0;
+  background: #111;
+  font-weight: bold;
+  margin: 1px;
+}
+#wordsearch-words {
+  margin-top: 10px;
+  color: #0f0;
+  font-weight: bold;
 }
 
 /* NOTICIAS */
@@ -390,7 +408,7 @@ button {
   transition: transform 0.2s ease;
 }
 
-/* MEDIA QUERIES PARA PANTALLAS CHICAS */
+/* MEDIA QUERIES */
 @media (max-width: 500px) {
   #tictactoe-container {
     grid-template-columns: repeat(3,80px);
