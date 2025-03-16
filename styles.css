@@ -308,6 +308,7 @@ input[type="text"] {
 /* NOTICIAS */
 .noticias {
   max-width: 1200px;
+  position: relative;
 }
 #news-container {
   display: flex;
@@ -344,7 +345,7 @@ input[type="text"] {
   line-height: 1.2rem;
   margin-bottom: 10px;
 }
-/* Punto indicador para noticias API */
+/* Indicador API en las noticias */
 .api-indicator {
   position: absolute;
   bottom: 8px;
@@ -458,6 +459,42 @@ input[type="text"] {
   border-left: 3px solid #0f0;
 }
 
+/* Sopa de Letras */
+.word-search {
+  margin: 40px auto;
+}
+#wordsearch-container {
+  border: 1px solid #0f0;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
+  margin: 10px 0;
+  display: inline-block;
+}
+.wordsearch-row {
+  display: flex;
+  flex-direction: row;
+}
+.wordsearch-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0f0;
+  background: #111;
+  color: #0f0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1px;
+  cursor: pointer;
+}
+#wordsearch-words {
+  margin-top: 10px;
+  color: #0f0;
+  font-weight: bold;
+}
+
 /* NUEVO JUEGO: CAZA DE PARTÍCULAS AI */
 #particle-hunt-container {
   position: relative;
@@ -483,7 +520,7 @@ input[type="text"] {
   100% { opacity: 0; transform: scale(2); }
 }
 
-/* Enlace parpadeante en el footer */
+/* Enlace de contacto parpadeante */
 .blink {
   animation: blink 1s infinite;
 }
