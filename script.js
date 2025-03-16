@@ -28,19 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.style.position = "absolute";
     bar.style.position = "relative";
     bar.appendChild(canvas);
-
     const ctx = canvas.getContext("2d");
     const letters = "01";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
-
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0f0";
       ctx.font = fontSize + "px Orbitron";
-
       for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         const x = i * fontSize;
@@ -51,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     setInterval(draw, 50);
-
     window.addEventListener("resize", () => {
       canvas.width = bar.offsetWidth;
       canvas.height = bar.offsetHeight;
@@ -441,11 +437,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       if (!Array.isArray(data) || data.length === 0) throw new Error("No hay noticias");
       newsContainer.innerHTML = "";
-      // Se muestran 6 noticias
       data.slice(0, 6).forEach(item => {
         const box = document.createElement("div");
         box.classList.add("news-box");
-        // Se muestran solo el título y un resumen corto
         box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
         newsContainer.appendChild(box);
       });
@@ -656,6 +650,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreElem = document.getElementById("particle-hunt-score");
     const timerElem = document.getElementById("particle-hunt-timer");
     if (!container || !scoreElem || !timerElem) return;
+    // Reinicia el contenedor
+    container.innerHTML = "";
     let score = 0;
     let timeLeft = 30;
     scoreElem.textContent = `Puntuación: ${score}`;
@@ -671,16 +667,12 @@ document.addEventListener("DOMContentLoaded", () => {
       particle.style.top = `${y}px`;
       container.appendChild(particle);
       particle.addEventListener("animationend", () => {
-        if (particle.parentElement === container) {
-          container.removeChild(particle);
-        }
+        if (particle.parentElement === container) { container.removeChild(particle); }
       });
       particle.addEventListener("click", () => {
         score++;
         scoreElem.textContent = `Puntuación: ${score}`;
-        if (particle.parentElement === container) {
-          container.removeChild(particle);
-        }
+        if (particle.parentElement === container) { container.removeChild(particle); }
       });
     }
     const particleInterval = setInterval(spawnParticle, 1000);
@@ -694,6 +686,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 1000);
   }
-  initParticleHunt();
+  const startParticleHuntBtn = document.getElementById("start-particle-hunt");
+  if (startParticleHuntBtn) {
+    startParticleHuntBtn.addEventListener("click", initParticleHunt);
+  }
 
 });
