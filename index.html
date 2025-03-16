@@ -17,32 +17,10 @@
     <div class="typing-container">
       <span id="typing-text"></span>
     </div>
-
-    <!-- Arriba conservamos 2 widgets (Hora y Bitcoin) – si no los quieres, elimínalos -->
-    <div class="top-widgets">
-      <!-- Hora -->
-      <div class="widget top-widget" id="time-widget">
-        <h3>⏰ Hora Actual</h3>
-        <p id="time-info">00:00:00</p>
-      </div>
-
-      <!-- Bitcoin -->
-      <div class="widget top-widget" id="bitcoin-widget">
-        <h3>₿ Bitcoin</h3>
-        <p id="bitcoin-price">Cargando...</p>
-      </div>
-    </div>
   </header>
 
-  <!-- Sección de noticias dinámicas (6 al azar) -->
-  <section class="noticias">
-    <h2>Últimas Noticias de IA</h2>
-    <div id="news-container">
-      <!-- script.js inyecta 6 noticias aleatorias -->
-    </div>
-  </section>
-
-  <!-- Desafío de la Palabra -->
+  <!-- JUEGOS AL INICIO -->
+  <!-- DESAFÍO DE LA PALABRA -->
   <section class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
@@ -53,7 +31,39 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- Widgets Futuristas (ya existentes) -->
+  <!-- TRIVIA IA -->
+  <section class="trivia-ia">
+    <h2>Trivia IA</h2>
+    <div id="trivia-container">
+      <p id="trivia-question">Cargando pregunta...</p>
+      <div id="trivia-answers"></div>
+      <p id="trivia-result"></p>
+      <button id="trivia-next">Siguiente Pregunta</button>
+    </div>
+  </section>
+
+  <!-- Sección principal de NOTICIAS (6 al azar) -->
+  <section class="noticias">
+    <h2>Últimas Noticias de IA</h2>
+    <div id="news-container">
+      <!-- script.js inyecta 6 noticias aleatorias -->
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE WIDGETS (hora, bitcoin, etc.) -->
+  <section class="top-widgets">
+    <div class="widget top-widget" id="time-widget">
+      <h3>⏰ Hora Actual</h3>
+      <p id="time-info">00:00:00</p>
+    </div>
+
+    <div class="widget top-widget" id="bitcoin-widget">
+      <h3>₿ Bitcoin</h3>
+      <p id="bitcoin-price">Cargando...</p>
+    </div>
+  </section>
+
+  <!-- WIDGETS FUTURISTAS ORIGINALES -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
 
@@ -89,78 +99,28 @@
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: IA Timeline -->
-  <section class="ai-timeline">
-    <h2>Línea de Tiempo de la IA</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="year">1950</div>
-        <div class="desc">
-          Alan Turing propone el <strong>Test de Turing</strong> para medir la inteligencia de una máquina.
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="year">1956</div>
-        <div class="desc">
-          Se acuña el término <strong>“Inteligencia Artificial”</strong> en la conferencia de Dartmouth.
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="year">1997</div>
-        <div class="desc">
-          IBM <strong>Deep Blue</strong> vence al campeón mundial de ajedrez Garry Kasparov.
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="year">2011</div>
-        <div class="desc">
-          IBM <strong>Watson</strong> gana el concurso televisivo Jeopardy! contra humanos.
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="year">2016</div>
-        <div class="desc">
-          <strong>AlphaGo</strong> de Google DeepMind derrota al campeón mundial de Go, Lee Sedol.
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="year">2023</div>
-        <div class="desc">
-          <strong>ChatGPT</strong> populariza la IA generativa y revoluciona la interacción con máquinas.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección Análisis y Tendencias (6 artículos) -->
+  <!-- ANÁLISIS Y TENDENCIAS (4 ARTÍCULOS MÍNIMO) -->
   <section class="analisis">
     <h2>Análisis y Tendencias</h2>
     <div id="analisis-container">
-      <!-- 6 artículos estáticos -->
       <article>
-        <h3>Hacia dónde se dirige la IA</h3>
-        <p>...</p>
+        <h3>Visión por Computador</h3>
+        <p>La capacidad de analizar imágenes abre un mundo de aplicaciones.</p>
       </article>
-      <!-- ... (restantes 5 artículos) -->
       <article>
-        <h3>IA y Creatividad</h3>
-        <p>...</p>
+        <h3>Robótica Avanzada</h3>
+        <p>La fusión de IA y robótica permite máquinas más autónomas.</p>
       </article>
+      <article>
+        <h3>Machine Learning en la Empresa</h3>
+        <p>Cómo el ML está transformando la toma de decisiones y la productividad.</p>
+      </article>
+      <article>
+        <h3>Ética y Sesgos en la IA</h3>
+        <p>Reflexiones sobre la responsabilidad y transparencia de algoritmos.</p>
     </div>
   </section>
 
-  <!-- Trivia IA -->
-  <section class="trivia-ia">
-    <h2>Trivia IA</h2>
-    <div id="trivia-container">
-      <p id="trivia-question">Cargando pregunta...</p>
-      <div id="trivia-answers"></div>
-      <p id="trivia-result"></p>
-      <button id="trivia-next">Siguiente Pregunta</button>
-    </div>
-  </section>
-
-  <!-- SCRIPT PRINCIPAL -->
   <script src="script.js"></script>
 </body>
 </html>
