@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Crack the Code (10+ símbolos variados)
+   * 8. Crack the Code (Símbolos variados)
    *******************************************/
   const symbolPool = "!@#$%^&*A0BCDEFGH";
   const codeSymbols = symbolPool.split("");
@@ -453,7 +453,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const box = document.createElement("div");
         box.classList.add("news-box");
         box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
-        // Agregamos el indicador verde parpadeante
         const indicator = document.createElement("span");
         indicator.classList.add("api-indicator");
         box.appendChild(indicator);
@@ -466,7 +465,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const box = document.createElement("div");
         box.classList.add("news-box");
         box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
-        // Indicador verde para fallback también
         const indicator = document.createElement("span");
         indicator.classList.add("api-indicator");
         box.appendChild(indicator);
@@ -597,8 +595,8 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  // Banco ampliado de palabras
   const wsPool = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "INTELIGENCIA", "SISTEMA", "APRENDIZAJE", "CÓDIGO", "MÁQUINA"];
+  // Seleccionamos 5 palabras aleatorias
   const wsWords = wsPool.sort(() => 0.5 - Math.random()).slice(0, 5);
   const wsRows = 10, wsCols = 10;
   let grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
@@ -623,17 +621,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
   function insertWord(word) {
-    let attempts = 100;
-    while (attempts > 0) {
-      attempts--;
-      const orientation = Math.random() < 0.5 ? "H" : "V";
+    // Intentar primero horizontalmente
+    for (let attempt = 0; attempt < 100; attempt++) {
       const rr = Math.floor(Math.random() * wsRows);
+      const cc = Math.floor(Math.random() * (wsCols - word.length + 1));
+      if (placeWordHorizontal(word, rr, cc)) return true;
+    }
+    // Si falla, intentar verticalmente
+    for (let attempt = 0; attempt < 100; attempt++) {
+      const rr = Math.floor(Math.random() * (wsRows - word.length + 1));
       const cc = Math.floor(Math.random() * wsCols);
-      if (orientation === "H") {
-        if (placeWordHorizontal(word, rr, cc)) return true;
-      } else {
-        if (placeWordVertical(word, rr, cc)) return true;
-      }
+      if (placeWordVertical(word, rr, cc)) return true;
     }
     return false;
   }
@@ -714,6 +712,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*******************************************
    * 16. Curso Futurista de Fundamentos de la IA
+   * Los botones de cada módulo muestran u ocultan el contenido
    *******************************************/
   const moduleButtons = document.querySelectorAll(".start-module");
   moduleButtons.forEach(button => {
