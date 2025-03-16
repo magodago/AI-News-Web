@@ -19,8 +19,7 @@
     </div>
   </header>
 
-  <!-- JUEGOS AL INICIO -->
-  <!-- DESAFÍO DE LA PALABRA -->
+  <!-- 1) DESAFÍO DE LA PALABRA -->
   <section class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
@@ -31,7 +30,7 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- TRIVIA IA -->
+  <!-- 2) TRIVIA IA -->
   <section class="trivia-ia">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
@@ -42,28 +41,34 @@
     </div>
   </section>
 
-  <!-- Sección principal de NOTICIAS (6 al azar) -->
+  <!-- 3) NUEVO JUEGO: CRACK THE CODE (tipo Mastermind) -->
+  <section class="crack-the-code">
+    <h2>Crack the Code</h2>
+    <div id="code-container">
+      <p id="code-instructions">
+        Descifra la secuencia de 4 símbolos antes de quedarte sin intentos.
+      </p>
+      <div id="code-inputs">
+        <input type="text" class="code-char" maxlength="1">
+        <input type="text" class="code-char" maxlength="1">
+        <input type="text" class="code-char" maxlength="1">
+        <input type="text" class="code-char" maxlength="1">
+      </div>
+      <button id="code-check">Comprobar</button>
+      <p id="code-feedback"></p>
+      <p id="code-attempts"></p>
+    </div>
+  </section>
+
+  <!-- 4) NOTICIAS (6 aleatorias con botón “Leer”) -->
   <section class="noticias">
     <h2>Últimas Noticias de IA</h2>
     <div id="news-container">
-      <!-- script.js inyecta 6 noticias aleatorias -->
+      <!-- script.js inyecta 6 noticias aleatorias con enlace “Leer” -->
     </div>
   </section>
 
-  <!-- SECCIÓN DE WIDGETS (hora, bitcoin, etc.) -->
-  <section class="top-widgets">
-    <div class="widget top-widget" id="time-widget">
-      <h3>⏰ Hora Actual</h3>
-      <p id="time-info">00:00:00</p>
-    </div>
-
-    <div class="widget top-widget" id="bitcoin-widget">
-      <h3>₿ Bitcoin</h3>
-      <p id="bitcoin-price">Cargando...</p>
-    </div>
-  </section>
-
-  <!-- WIDGETS FUTURISTAS ORIGINALES -->
+  <!-- 5) WIDGETS FUTURISTAS (6) -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
 
@@ -99,7 +104,7 @@
     </div>
   </section>
 
-  <!-- ANÁLISIS Y TENDENCIAS (4 ARTÍCULOS MÍNIMO) -->
+  <!-- 6) ANÁLISIS Y TENDENCIAS (4 artículos) -->
   <section class="analisis">
     <h2>Análisis y Tendencias</h2>
     <div id="analisis-container">
@@ -118,9 +123,11 @@
       <article>
         <h3>Ética y Sesgos en la IA</h3>
         <p>Reflexiones sobre la responsabilidad y transparencia de algoritmos.</p>
+      </article>
     </div>
   </section>
 
+  <!-- SCRIPT PRINCIPAL -->
   <script src="script.js"></script>
 </body>
 </html>
