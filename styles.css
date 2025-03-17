@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones */
+/* Secciones generales */
 section {
   margin: 20px auto;
   width: 90%;
@@ -350,17 +350,81 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Sección: TOP 5 Series y Películas */
-.top-media {
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
+/* Sección: Galería de Innovaciones Futuristas */
+.gallery {
   text-align: center;
   padding: 15px;
   border: 1px solid #0f0;
   border-radius: 10px;
   background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
+  margin: 20px auto;
+  max-width: 600px;
+}
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.gallery-img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid #0f0;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+.gallery-img:hover {
+  transform: scale(1.05);
+}
+
+/* Sección: Centro de Innovación y Prototipos */
+.innovation-center {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+.innovation-center.parallax {
+  background-attachment: fixed;
+  background-image: url('https://source.unsplash.com/600x400/?technology,futuristic');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.innovation-center .prototypes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+.innovation-center .prototype {
+  width: 45%;
+  border: 1px solid #0f0;
+  border-radius: 5px;
+  padding: 10px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+}
+.innovation-center .prototype img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Sección: TOP 5 Series y Películas */
+.top-media {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  margin: 20px auto;
+  max-width: 600px;
 }
 .media-container {
   display: flex;
@@ -382,6 +446,17 @@ input[type="range"]:focus {
 }
 .media-section li {
   margin: 5px 0;
+}
+
+/* Animate on scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.scrolled {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Burbujita flotante para WhatsApp */
