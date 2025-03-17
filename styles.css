@@ -14,12 +14,11 @@ body {
   to { opacity: 1; }
 }
 
-/* FONDO OSCURO SIN TEXTO, EJEMPLO con placehold.co */
+/* FONDO OSCURO SIN TEXTO, EJEMPLO sin imagen */
 html, body {
   height: 100%;
-  /* Reemplaza esta URL si quieres otra imagen o color */
-  background: url("https://placehold.co/2000x1200/000000/00ff00") no-repeat center center fixed;
-  background-size: cover;
+  /* Fondo sólido en lugar de imagen */
+  background: #000;
   font-family: "Orbitron", sans-serif;
   color: #0f0; /* Verde Matrix */
   overflow-x: hidden;
@@ -73,7 +72,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* SECCIONES (posicion, ancho) */
+/* SECCIONES (posición, ancho) */
 section {
   margin: 40px auto;
   width: 90%;
@@ -212,64 +211,6 @@ input[type="text"] {
   margin-top: 10px;
   font-weight: bold;
   color: #0f0;
-}
-
-/* TICTACTOE CENTRADO */
-.neon-tictactoe {
-  margin: 40px auto;
-}
-#tictactoe-container {
-  display: inline-block; /* Importante para centrar */
-  margin: 0 auto;
-  text-align: center;
-}
-.tictactoe-cell {
-  width: 100px;
-  height: 100px;
-  background: #111;
-  border: 2px solid #0f0;
-  border-radius: 5px;
-  font-size: 2rem;
-  color: #0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s;
-  margin: 0;
-}
-.tictactoe-cell:hover {
-  background: #0f0;
-  color: #000;
-}
-#tictactoe-message {
-  margin: 10px;
-  font-weight: bold;
-  min-height: 30px;
-  color: #0f0;
-}
-
-/* AI NUMBER GUESSER */
-.ai-number-guessing {
-  margin: 40px auto;
-}
-#guesser-container {
-  border: 1px solid #0f0;
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
-}
-#guesser-question {
-  margin: 10px 0;
-  font-weight: bold;
-  color: #0f0;
-}
-#guesser-feedback {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #0f0;
-  min-height: 20px;
 }
 
 /* NOTICIAS */
@@ -453,6 +394,8 @@ input[type="text"] {
 
 /* MEDIA QUERIES - MÓVILES */
 @media (max-width: 500px) {
+  /* Aunque se han eliminado las secciones de Tic Tac Toe y AI Number Guesser,
+     mantenemos estas reglas en caso de que las necesites para otras partes o se reintroduzcan */
   #tictactoe-container {
     grid-template-columns: repeat(3,80px);
     grid-template-rows: repeat(3,80px);
