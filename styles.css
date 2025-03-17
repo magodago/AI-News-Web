@@ -5,11 +5,11 @@
   box-sizing: border-box;
 }
 
-/* Fondo negro con animación */
+/* Fondo negro y animación de entrada */
 html, body {
-  background: #000;  /* Fondo negro */
+  background: #000;
   font-family: "Orbitron", sans-serif;
-  color: #0f0; /* Verde Matrix */
+  color: #0f0;
   overflow-x: hidden;
   padding-top: 60px; /* Espacio para el menú fijo */
   animation: fadeIn 1s ease forwards;
@@ -19,12 +19,12 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista: Único ítem "Juegos" con dropdown */
+/* Menú futurista: ítem raíz "Juegos" */
 #futuristic-menu {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0,0,0,0.8);
   z-index: 10000;
   padding: 5px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.5);
@@ -34,7 +34,7 @@ html, body {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  display: inline-block; /* Centrado */
+  display: inline-block;
   position: relative;
 }
 #futuristic-menu li {
@@ -58,7 +58,7 @@ html, body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0,0,0,0.9);
   min-width: 180px;
   left: 50%;
   transform: translateX(-50%);
@@ -83,7 +83,17 @@ html, body {
   height: 5px;
 }
 
-/* Canvas de partículas */
+/* Efecto Flicker para cajas */
+.flicker {
+  animation: flicker 2s infinite alternate;
+}
+@keyframes flicker {
+  0% { box-shadow: 0 0 5px #0f0; }
+  50% { box-shadow: 0 0 20px #0f0; }
+  100% { box-shadow: 0 0 5px #0f0; }
+}
+
+/* Canvas de partículas de fondo */
 #particles-canvas {
   position: fixed;
   top: 0;
