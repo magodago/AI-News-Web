@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones: borde, fondo semitransparente, padding */
+/* Secciones: borde, fondo semitransparente y padding */
 section {
   margin: 20px auto;
   width: 90%;
@@ -293,11 +293,12 @@ input[type="range"]:focus {
 .ethical-simulator {
   text-align: left;
 }
-.ethical-simulator .ethical-card {
-  margin: 10px 0;
-  padding: 10px;
+.ethical-simulator details {
+  margin: 8px 0;
+  padding: 8px;
   border: 1px dashed #0f0;
   border-radius: 5px;
+  background: rgba(0,255,0,0.05);
 }
 
 /* Sección: Dashboard de Tendencias */
@@ -355,21 +356,23 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Sección: Simón Futurista (nuevo juego) */
-/* Agregamos efecto parallax: fondo fijo en la sección */
-.simon-game {
-  background: url('https://placehold.co/600x400/000/0f0?text=Fondo+Parallax') no-repeat center;
-  background-attachment: fixed;
-  background-size: cover;
-  padding: 20px;
-  color: #0f0;
+/* Sección: Juego: Adivina la Frase */
+.phrase-guess {
+  text-align: center;
 }
-#simon-sequence, #simon-inputs {
-  margin: 10px auto;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  font-size: 2rem;
+#phrase-display {
+  font-size: 1.8rem;
+  letter-spacing: 5px;
+  margin: 10px 0;
+}
+.holo-effect {
+  /* Efecto holográfico simple con transform y transición */
+  perspective: 800px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.holo-effect:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+  opacity: 0.9;
 }
 
 /* Media Query para Sopa de Letras en móvil */
