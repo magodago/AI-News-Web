@@ -613,4 +613,70 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  /* ---------------------------
+     13. Simulador de Futuro Personalizado
+  --------------------------- */
+  const automationSlider = document.getElementById("automation");
+  const roboticsSlider = document.getElementById("robotics");
+  const transportSlider = document.getElementById("transport");
+  const automationValue = document.getElementById("automation-value");
+  const roboticsValue = document.getElementById("robotics-value");
+  const transportValue = document.getElementById("transport-value");
+  const simulateFutureBtn = document.getElementById("simulate-future");
+  const futureOutput = document.getElementById("future-output");
+  if (automationSlider) {
+    automationSlider.oninput = () => {
+      automationValue.textContent = automationSlider.value + "%";
+    };
+  }
+  if (roboticsSlider) {
+    roboticsSlider.oninput = () => {
+      roboticsValue.textContent = roboticsSlider.value + "%";
+    };
+  }
+  if (transportSlider) {
+    transportSlider.oninput = () => {
+      transportValue.textContent = transportSlider.value + "%";
+    };
+  }
+  if (simulateFutureBtn) {
+    simulateFutureBtn.addEventListener("click", () => {
+      const automation = Number(automationSlider.value);
+      const robotics = Number(roboticsSlider.value);
+      const transport = Number(transportSlider.value);
+      let simulation = "Proyección Futurista: ";
+      simulation += (automation > 70) ? "La automatización domina la industria. " :
+                    (automation > 40) ? "La automatización impulsa procesos, con intervención humana moderada. " :
+                    "La automatización es limitada, prevaleciendo el factor humano. ";
+      simulation += (robotics > 70) ? "Robots humanoides conviven en hogares y oficinas. " :
+                    (robotics > 40) ? "Se integran robots en tareas específicas. " :
+                    "La presencia de robots es escasa. ";
+      simulation += (transport > 70) ? "Los coches autónomos son el estándar en transporte urbano. " :
+                    (transport > 40) ? "Conviven vehículos autónomos con los tradicionales. " :
+                    "El transporte autónomo aún está en fase experimental. ";
+      futureOutput.textContent = simulation;
+    });
+  }
+
+  /* ---------------------------
+     14. Panel de Proyecciones Interactivas
+  --------------------------- */
+  const updateProjectionsBtn = document.getElementById("update-projections");
+  const projectionsOutput = document.getElementById("projections-output");
+  const projectionsData = [
+    "La inversión en IA podría superar los 200 mil millones en 2025.",
+    "La adopción de coches autónomos crecerá un 30% anual en la próxima década.",
+    "Robots humanoides operarán en el 60% de las industrias para 2030.",
+    "Ciudades inteligentes integrarán IA en más del 80% de sus servicios para 2035.",
+    "La fusión de computación cuántica e IA revolucionará la investigación médica para 2040.",
+    "La integración de IA en la educación transformará la formación profesional en los próximos 10 años.",
+    "El uso de asistentes virtuales en hogares se expandirá globalmente en menos de 5 años."
+  ];
+  if (updateProjectionsBtn) {
+    updateProjectionsBtn.addEventListener("click", () => {
+      const randomIdx = Math.floor(Math.random() * projectionsData.length);
+      projectionsOutput.textContent = projectionsData[randomIdx];
+    });
+  }
 });
