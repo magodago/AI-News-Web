@@ -139,17 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
   typingInterval = setInterval(typePhrase, 100);
 
   /*******************************************
-   * 7. Adivina la Palabra
+   * 7. Desafío: Adivina la Palabra (ampliado)
    *******************************************/
   const words = [
-    { word: "robot", hint: "Máquina programada para tareas humanas." },
-    { word: "red", hint: "Conjunto de nodos interconectados." },
-    { word: "algoritmo", hint: "Reglas para resolver problemas." },
-    { word: "datos", hint: "El combustible de la IA." }
+    "robot", "computadora", "algoritmo", "datos", "red", 
+    "sistema", "código", "software", "hardware", "programa", 
+    "inteligencia", "máquina", "sensor", "análisis", "variable", 
+    "bucle", "función", "depuración", "criptografía", "servidor"
   ];
   const randomIndex = Math.floor(Math.random() * words.length);
-  const selectedWord = words[randomIndex].word;
-  const hint = words[randomIndex].hint;
+  const selectedWord = words[randomIndex];
+  const hint = "La palabra es un concepto clave en tecnología.";
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
@@ -193,11 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
    * 8. Trivia IA
    *******************************************/
   const triviaQuestions = [
-    { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas para resolver problemas", "Un lenguaje de programación"], correct: 1 },
-    { question: "¿Cuál de estas ciudades es puntera en IA?", answers: ["San Francisco", "El Cairo", "Lisboa"], correct: 0 },
-    { question: "¿Qué es 'Machine Learning'?", answers: ["Aprendizaje automático", "Un sistema de chat", "Una base de datos de imágenes"], correct: 0 },
-    { question: "¿Qué hace la 'Visión por Computador'?", answers: ["Crea imágenes 3D", "Permite a la máquina 'ver' e interpretar imágenes", "Diseña páginas web"], correct: 1 },
-    { question: "La ética en la IA es importante para...", answers: ["Evitar sesgos y daños sociales", "Hacer juegos divertidos", "Acelerar la computación cuántica"], correct: 0 }
+    { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
+    { question: "¿Cuál ciudad es puntera en IA?", answers: ["San Francisco", "El Cairo", "Lisboa"], correct: 0 },
+    { question: "¿Qué es Machine Learning?", answers: ["Aprendizaje automático", "Un sistema de chat", "Una base de datos"], correct: 0 },
+    { question: "¿Qué hace la Visión por Computador?", answers: ["Crea imágenes 3D", "Permite ver e interpretar imágenes", "Diseña páginas web"], correct: 1 },
+    { question: "La ética en la IA es importante para...", answers: ["Evitar sesgos", "Hacer juegos divertidos", "Acelerar la computación"], correct: 0 }
   ];
   let triviaIndex = 0;
   let triviaScore = 0;
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (triviaIndex < triviaQuestions.length) {
         mostrarPreguntaTrivia();
       } else {
-        if (triviaQuestionElem) triviaQuestionElem.textContent = "¡Has completado la trivia!";
+        if (triviaQuestionElem) triviaQuestionElem.textContent = "¡Completado!";
         if (triviaAnswersElem) triviaAnswersElem.innerHTML = `Puntuación: ${triviaScore}/${triviaQuestions.length}`;
         if (triviaResultElem) triviaResultElem.textContent = "";
         triviaNextBtn.disabled = true;
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 9. Crack the Code (emoticonos futuristas)
+   * 9. Crack the Code (con emoticonos futuristas)
    *******************************************/
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let userCode = [];
       codeInputs.forEach(inp => userCode.push(inp.value));
       if (userCode.some(v => !v)) {
-        if (codeFeedback) codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar.";
+        if (codeFeedback) codeFeedback.textContent = "Completa los 4 símbolos.";
         return;
       }
       let correctPos = 0;
@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       if (correctPos === codeLength) {
-        if (codeFeedback) codeFeedback.textContent = `🎉 ¡Código descifrado! Era: ${secretCode.join("")}`;
+        if (codeFeedback) codeFeedback.textContent = `🎉 ¡Descifrado! Era: ${secretCode.join("")}`;
         codeCheckBtn.disabled = true;
         if (symbolListElem) symbolListElem.style.pointerEvents = "none";
         codeInputs.forEach(inp => inp.disabled = true);
@@ -324,12 +324,12 @@ document.addEventListener("DOMContentLoaded", () => {
         codeAttempts--;
         if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
         if (codeAttempts <= 0) {
-          if (codeFeedback) codeFeedback.textContent = `❌ Sin intentos. El código era: ${secretCode.join("")}`;
+          if (codeFeedback) codeFeedback.textContent = `❌ Sin intentos. Era: ${secretCode.join("")}`;
           codeCheckBtn.disabled = true;
           if (symbolListElem) symbolListElem.style.pointerEvents = "none";
           codeInputs.forEach(inp => inp.disabled = true);
         } else {
-          if (codeFeedback) codeFeedback.textContent = `Posición exacta: ${correctPos} | Símbolo correcto en otra posición: ${correctSym}`;
+          if (codeFeedback) codeFeedback.textContent = `Exactos: ${correctPos} | Otros: ${correctSym}`;
         }
       }
     });
@@ -383,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
       c1.removeEventListener("click", () => flipCard(c1));
       c2.removeEventListener("click", () => flipCard(c2));
       if (matchedPairs === cardSymbols.length / 2) {
-        if (memoryMessage) memoryMessage.textContent = "¡Has encontrado todas las parejas!";
+        if (memoryMessage) memoryMessage.textContent = "¡Todas las parejas encontradas!";
       }
     } else {
       c1.classList.remove("flipped");
@@ -469,7 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 12. Navegación suave del menú
+   * 12. Navegación suave
    *******************************************/
   document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
