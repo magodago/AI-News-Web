@@ -898,5 +898,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   mostrarPaisesInversion();
 
-  // 18. Widgets y Contacto (el enlace parpadea gracias a la clase "blink" definida en CSS)
+  // 18. Widgets y Contacto: el enlace parpadea por CSS
 });
