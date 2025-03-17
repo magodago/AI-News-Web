@@ -327,12 +327,12 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
-  const cardSymbols = ["🤖","⚙️","💻","🤖","⚙️","💻","🔮","🎉","🔮","🎉","🌐","🌐"];
+  const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
   let flippedCards = [];
   let matchedPairs = 0;
 
-  function shuffleArray(arr){
-    for(let i = arr.length - 1; i > 0; i--){
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
@@ -340,8 +340,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const shuffledSymbols = shuffleArray([...cardSymbols]);
 
-  function createMemoryBoard(){
-    if(!memoryContainer)return;
+  function createMemoryBoard() {
+    if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
     shuffledSymbols.forEach(sym => {
       const card = document.createElement("div");
@@ -355,25 +355,25 @@ document.addEventListener("DOMContentLoaded", () => {
     flippedCards = [];
     memoryMessage.textContent = "";
   }
-  function flipCard(card){
-    if(card.classList.contains("flipped")) return;
-    if(flippedCards.length === 2) return;
+  function flipCard(card) {
+    if (card.classList.contains("flipped")) return;
+    if (flippedCards.length === 2) return;
 
     card.classList.add("flipped");
     card.textContent = card.dataset.symbol;
     flippedCards.push(card);
 
-    if(flippedCards.length === 2){
+    if (flippedCards.length === 2) {
       setTimeout(checkMatch, 600);
     }
   }
-  function checkMatch(){
+  function checkMatch() {
     const [c1, c2] = flippedCards;
-    if(c1.dataset.symbol === c2.dataset.symbol){
+    if (c1.dataset.symbol === c2.dataset.symbol) {
       matchedPairs++;
       c1.removeEventListener("click", () => flipCard(c1));
       c2.removeEventListener("click", () => flipCard(c2));
-      if(matchedPairs === cardSymbols.length / 2){
+      if (matchedPairs === cardSymbols.length / 2) {
         memoryMessage.textContent = "¡Has encontrado todas las parejas!";
       }
     } else {
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     flippedCards = [];
   }
-  if(memoryContainer) createMemoryBoard();
+  if (memoryContainer) createMemoryBoard();
 
   /*******************************************
    * 12. Noticias Reales con Autorefresco
@@ -443,13 +443,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  function loadNews(){
+  function loadNews() {
     const newsContainer = document.getElementById("news-container");
-    if(!newsContainer)return;
+    if (!newsContainer) return;
     newsContainer.innerHTML = "";
 
     let available = allNews.map((_, i) => i).filter(i => !usedIndices.includes(i));
-    if(available.length < 6){
+    if (available.length < 6) {
       usedIndices = [];
       available = allNews.map((_, i) => i);
     }
@@ -464,7 +464,6 @@ document.addEventListener("DOMContentLoaded", () => {
       box.innerHTML = `
         <h3>${item.title}</h3>
         <p>${item.text}</p>
-        <a href="${item.link}" class="leer-btn" target="_blank">Leer</a>
       `;
       newsContainer.appendChild(box);
     });
@@ -482,9 +481,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "La IA sin ética es solo código.",
     "El futuro pertenece a la IA."
   ];
-  function cambiarCita(){
+  function cambiarCita() {
     const quoteElem = document.getElementById("ai-quote");
-    if(!quoteElem)return;
+    if (!quoteElem) return;
     const r = Math.floor(Math.random() * quotes.length);
     quoteElem.textContent = quotes[r];
   }
@@ -492,9 +491,9 @@ document.addEventListener("DOMContentLoaded", () => {
   cambiarCita();
 
   let patenteContador = 50000;
-  function actualizarPatentes(){
+  function actualizarPatentes() {
     const patentCountElem = document.getElementById("patent-count");
-    if(!patentCountElem)return;
+    if (!patentCountElem) return;
     patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
     patenteContador += Math.floor(Math.random() * 10);
   }
@@ -508,12 +507,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "La IA superará la creatividad humana en 2045."
   ];
   const predictionTextElem = document.getElementById("prediction-text");
-  if(predictionTextElem){
-    predictionTextElem.textContent = predicciones[Math.floor(Math.random()*predicciones.length)];
+  if (predictionTextElem) {
+    predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
   }
 
   const mapContainer = document.getElementById("map-container");
-  if(mapContainer){
+  if (mapContainer) {
     mapContainer.textContent = "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.";
   }
 
@@ -525,7 +524,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   const revealBtn = document.getElementById("reveal-surprise");
   const surpriseTextElem = document.getElementById("surprise-text");
-  if(revealBtn && surpriseTextElem){
+  if (revealBtn && surpriseTextElem) {
     revealBtn.addEventListener("click", () => {
       const randomIndex = Math.floor(Math.random() * sorpresas.length);
       surpriseTextElem.textContent = sorpresas[randomIndex];
@@ -539,9 +538,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Reino Unido", investment: 65 },
     { name: "Japón", investment: 60 }
   ];
-  function mostrarPaisesInversion(){
+  function mostrarPaisesInversion() {
     const countriesContainer = document.getElementById("countries-container");
-    if(!countriesContainer)return;
+    if (!countriesContainer) return;
     let html = "";
     countriesData.forEach(p => {
       html += `
