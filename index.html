@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Menú futurista: raíz "Juegos" con dropdown -->
+  <!-- Menú futurista con dos ítems de nivel superior -->
   <nav id="futuristic-menu">
     <ul>
       <li class="dropdown">
@@ -18,8 +18,10 @@
           <li><a href="#crack-the-code">Crack the Code</a></li>
           <li><a href="#memory-game">Memory AI Cards</a></li>
           <li><a href="#word-search">Sopa de Letras AI</a></li>
-          <li><a href="#timeline">Explorador de Futuros</a></li>
         </ul>
+      </li>
+      <li>
+        <a href="#timeline">Explorador de Futuros</a>
       </li>
     </ul>
   </nav>
@@ -47,6 +49,7 @@
     <div id="word-display">_ _ _</div>
     <input type="text" id="letter-input" maxlength="1" placeholder="Introduce una letra">
     <button id="check-letter">Comprobar</button>
+    <button id="reset-word-challenge" class="reset-btn">Nuevo Juego</button>
     <p id="message"></p>
     <p id="attempts-remaining"></p>
   </section>
@@ -59,6 +62,7 @@
       <div id="trivia-answers"></div>
       <p id="trivia-result"></p>
       <button id="trivia-next">Siguiente Pregunta</button>
+      <button id="reset-trivia" class="reset-btn">Nuevo Juego</button>
     </div>
   </section>
 
@@ -78,6 +82,7 @@
       </div>
       <button id="code-reset">Limpiar</button>
       <button id="code-check">Comprobar</button>
+      <button id="reset-crack-code" class="reset-btn">Nuevo Juego</button>
       <p id="code-feedback"></p>
       <p id="code-attempts"></p>
     </div>
@@ -87,6 +92,7 @@
   <section id="memory-game" class="memory-game flicker">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
+    <button id="reset-memory" class="reset-btn">Nuevo Juego</button>
     <p id="memory-message"></p>
   </section>
 
@@ -96,19 +102,20 @@
     <div id="wordsearch-container">
       <!-- El script generará un grid de 10x10 -->
     </div>
+    <button id="reset-wordsearch" class="reset-btn">Nuevo Juego</button>
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- Nueva Sección: Explorador de Futuros -->
+  <!-- Sección: Explorador de Futuros -->
   <section id="timeline" class="timeline flicker">
     <h2>Explorador de Futuros</h2>
     <div id="timeline-container">
       <ul>
-        <li><strong>1956:</strong> Nace la IA en la conferencia de Dartmouth.</li>
-        <li><strong>1980:</strong> Avances en redes neuronales y sistemas expertos.</li>
-        <li><strong>2000:</strong> Comienza la era del aprendizaje profundo.</li>
-        <li><strong>2020:</strong> IA genera cambios en múltiples industrias.</li>
-        <li><strong>2030 (proyección):</strong> La IA colaborativa se integra en la mayoría de trabajos.</li>
+        <li><strong>1956:</strong> Nace la IA en Dartmouth.</li>
+        <li><strong>1980:</strong> Sistemas expertos y redes neuronales.</li>
+        <li><strong>2000:</strong> Auge del aprendizaje profundo.</li>
+        <li><strong>2020:</strong> IA transforma múltiples industrias.</li>
+        <li><strong>2030 (proyección):</strong> IA colaborativa en la mayoría de trabajos.</li>
       </ul>
     </div>
   </section>
