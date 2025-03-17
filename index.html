@@ -64,7 +64,7 @@
         <p>
           2021: Robots humanoides en entornos controlados.<br>
           2023: Coches autónomos en fase avanzada de pruebas.<br>
-          2025 (Proyección): Asistentes virtuales en cada hogar y automatización en salud y seguridad.
+          2025: Asistentes virtuales en cada hogar y automatización en salud y seguridad.
         </p>
       </details>
       <details>
@@ -72,7 +72,7 @@
         <p>
           2026: Expansión de ciudades inteligentes.<br>
           2028: Optimización de procesos urbanos.<br>
-          2030 (Proyección): IA colaborativa transforma la educación y la gestión urbana.
+          2030: IA colaborativa transforma la educación y la gestión urbana.
         </p>
       </details>
       <details>
@@ -80,46 +80,56 @@
         <p>
           2032: Avances en computación cuántica e IA.<br>
           2035: Proyectos sostenibles para mitigar el cambio climático.<br>
-          2040 (Proyección): Nuevas fronteras en investigación gracias a la fusión de tecnologías emergentes.
+          2040: Nuevas fronteras en investigación gracias a la fusión de tecnologías emergentes.
         </p>
       </details>
     </div>
   </section>
 
-  <!-- Sección: Simulador de Decisiones Éticas en IA -->
+  <!-- Sección: Simulador de Decisiones Éticas en IA (con desplegables) -->
   <section id="ethical-simulator" class="ethical-simulator flicker">
     <h2>Simulador de Decisiones Éticas en IA</h2>
     <div id="ethical-container">
-      <div class="ethical-card">
-        <p><strong>Dilema 1:</strong> Un hospital utiliza IA para diagnósticos rápidos, pero el sistema podría tener sesgos. ¿Priorizar la velocidad o la equidad?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 2:</strong> Un vehículo autónomo debe decidir entre salvar a peatones o a sus ocupantes en un choque. ¿Qué opción tomarías?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 3:</strong> Un sistema de IA filtra información para evitar noticias falsas, pero limita la libertad de expresión. ¿Qué valor es más importante?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 4:</strong> La optimización empresarial mediante IA reduce puestos de trabajo. ¿Es aceptable sacrificar empleos por eficiencia?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 5:</strong> Un algoritmo decide quién recibe tratamiento médico prioritario. ¿Cómo equilibrar la eficiencia y la ética?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 6:</strong> La vigilancia con IA mejora la seguridad, pero invade la privacidad. ¿Dónde trazas la línea?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 7:</strong> La personalización publicitaria mediante IA puede manipular decisiones de consumo. ¿Es ético?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 8:</strong> Un algoritmo de créditos bancarios puede discriminar a ciertos grupos. ¿Cómo asegurar la igualdad?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 9:</strong> Un asistente virtual utiliza tus datos personales para mejorar. ¿Cuánta información es demasiada?</p>
-      </div>
-      <div class="ethical-card">
-        <p><strong>Dilema 10:</strong> La automatización total con IA puede crear un mundo eficiente, pero ¿a costa de qué valores humanos?</p>
-      </div>
+      <details class="ethical-card">
+        <summary>Dilema 1</summary>
+        <p>Un hospital utiliza IA para diagnósticos rápidos, pero el sistema podría tener sesgos. ¿Priorizar la velocidad o la equidad?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 2</summary>
+        <p>Un vehículo autónomo debe decidir entre salvar a peatones o a sus ocupantes en un choque. ¿Qué opción tomarías?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 3</summary>
+        <p>Un sistema de IA filtra información para evitar noticias falsas, pero limita la libertad de expresión. ¿Qué valor es más importante?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 4</summary>
+        <p>La optimización empresarial mediante IA reduce puestos de trabajo. ¿Es aceptable sacrificar empleos por eficiencia?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 5</summary>
+        <p>Un algoritmo decide quién recibe tratamiento médico prioritario. ¿Cómo equilibrar la eficiencia y la ética?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 6</summary>
+        <p>La vigilancia con IA mejora la seguridad, pero invade la privacidad. ¿Dónde trazas la línea?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 7</summary>
+        <p>La personalización publicitaria mediante IA puede manipular decisiones de consumo. ¿Es ético?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 8</summary>
+        <p>Un algoritmo de créditos bancarios puede discriminar a ciertos grupos. ¿Cómo asegurar la igualdad?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 9</summary>
+        <p>Un asistente virtual utiliza tus datos personales para mejorar. ¿Cuánta información es demasiada?</p>
+      </details>
+      <details class="ethical-card">
+        <summary>Dilema 10</summary>
+        <p>La automatización total con IA puede crear un mundo eficiente, pero ¿a costa de qué valores humanos?</p>
+      </details>
       <p class="ethical-share">
         ¡Comparte estos dilemas con tus amigos y debate los diferentes puntos de vista!
       </p>
@@ -180,6 +190,16 @@
     <p>Haz clic en el botón para actualizar las proyecciones:</p>
     <button id="update-projections" class="reset-btn">Actualizar Proyecciones</button>
     <div id="projections-output"></div>
+  </section>
+
+  <!-- Sección: Simón Futurista (nuevo juego con efecto parallax) -->
+  <section id="simon-game" class="simon-game flicker">
+    <h2>Simón Futurista</h2>
+    <p>Repite la secuencia de emoticonos que se mostrará:</p>
+    <div id="simon-sequence"></div>
+    <div id="simon-inputs"></div>
+    <button id="simon-start" class="reset-btn">Nuevo Juego</button>
+    <p id="simon-feedback"></p>
   </section>
 
   <!-- Sección: Desafío: Adivina la Palabra -->
