@@ -11,15 +11,13 @@ html, body {
   font-family: "Orbitron", sans-serif;
   color: #0f0;
   overflow-x: hidden;
-  padding-top: 60px; /* Espacio para el menú fijo (si se llegase a agregar algo en el futuro) */
+  padding-top: 60px;
   animation: fadeIn 1s ease forwards;
   opacity: 0;
 }
 @keyframes fadeIn {
   to { opacity: 1; }
 }
-
-/* (Se eliminó el menú) */
 
 /* Efecto Flicker para contenedores */
 .flicker {
@@ -88,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones */
+/* Secciones: cada sección con padding, borde y fondo semitransparente */
 section {
   margin: 20px auto;
   width: 90%;
@@ -129,7 +127,7 @@ input[type="text"] {
   margin: 5px;
 }
 
-/* Adivina la Palabra */
+/* Sección: Adivina la Palabra */
 #word-display {
   font-size: 1.8rem;
   letter-spacing: 8px;
@@ -141,7 +139,7 @@ input[type="text"] {
 
 /* Trivia IA */
 #trivia-container {
-  /* La sección ya tiene estilos en la regla general de secciones */
+  /* Los estilos se heredan de la regla general de secciones */
 }
 .trivia-option {
   margin: 5px 0;
@@ -193,7 +191,14 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* Memory AI Cards */
+/* Memory AI Cards en Grid */
+#memory-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  margin-top: 10px;
+}
 .card {
   width: 80px;
   height: 80px;
@@ -221,7 +226,7 @@ input[type="text"] {
 
 /* Sopa de Letras */
 #wordsearch-container {
-  /* Los estilos se aplican en la regla general de secciones */
+  /* Se hereda la estructura de sección */
 }
 .wordsearch-row {
   display: flex;
@@ -257,6 +262,7 @@ input[type="text"] {
   border-radius: 10px;
   background: rgba(0,255,0,0.1);
   box-shadow: 0 0 10px #0f0;
+  text-align: left;
 }
 .timeline ul {
   list-style: none;
@@ -265,14 +271,28 @@ input[type="text"] {
 .timeline li {
   margin: 10px 0;
   font-size: 1rem;
-  text-align: left;
 }
 .timeline .timeline-desc {
   margin-top: 10px;
   font-style: italic;
   font-size: 0.9rem;
 }
-  
+
+/* Nueva Sección: Simulador de Decisiones Éticas */
+.ethical-simulator {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
+  text-align: left;
+}
+.ethical-simulator p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
 /* Media Query para Sopa de Letras en móvil */
 @media (max-width: 500px) {
   .wordsearch-cell {
