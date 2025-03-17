@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const letterInput = document.getElementById("letter-input");
   const checkBtn = document.getElementById("check-letter");
   let wordArray = Array.from(selectedWord).map(() => "_");
-  let attempts = 10; // Fijamos 10 intentos
+  let attempts = 10;
   if (hintElem) hintElem.textContent = "Pista: " + hint;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
@@ -188,7 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  // Función para reiniciar "Adivina la Palabra"
   function resetWordChallenge() {
     const random = Math.floor(Math.random() * words.length);
     selectedWord = words[random];
@@ -267,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     mostrarPreguntaTrivia();
   }
-  // Función para reiniciar Trivia
   function resetTrivia() {
     triviaIndex = 0;
     triviaScore = 0;
@@ -289,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const r = Math.floor(Math.random() * codeSymbols.length);
     secretCode.push(codeSymbols[r]);
   }
-  let codeAttempts = 10; // 10 intentos
+  let codeAttempts = 10;
   const codeFeedback = document.getElementById("code-feedback");
   const codeAttemptsElem = document.getElementById("code-attempts");
   const codeCheckBtn = document.getElementById("code-check");
@@ -369,7 +367,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  // Función para reiniciar Crack the Code
   function resetCrackCode() {
     secretCode = [];
     for (let i = 0; i < codeLength; i++) {
@@ -451,7 +448,6 @@ document.addEventListener("DOMContentLoaded", () => {
     flippedCards = [];
   }
   if (memoryContainer) createMemoryBoard();
-  // Función para reiniciar Memory AI Cards
   function resetMemoryGame() {
     createMemoryBoard();
   }
@@ -465,7 +461,6 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  // Lista ampliada de palabras para la sopa
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
@@ -533,7 +528,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (wordsearchWordsElem) {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
-  // Función para reiniciar Sopa de Letras
   function resetWordSearch() {
     grid = Array.from({ length: rows }, () => Array(cols).fill(null));
     wsWords.forEach(w => insertWord(w));
@@ -570,25 +564,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 12. Navegación suave del menú
    *******************************************/
-  document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  // Aunque se ha quitado el menú, se mantiene la navegación interna
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      if (targetId.startsWith('#')) {
+      const targetId = this.getAttribute("href");
+      if (targetId.startsWith("#")) {
         document.querySelector(targetId).scrollIntoView({
-          behavior: 'smooth'
+          behavior: "smooth"
         });
       }
     });
-  });
-
-  /*******************************************
-   * 13. Toggle Dropdown para "Juegos"
-   *******************************************/
-  const juegosBtn = document.getElementById("menu-juegos");
-  const dropdown = document.getElementById("menu-juegos-dropdown");
-  juegosBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    dropdown.classList.toggle("show");
   });
 });
