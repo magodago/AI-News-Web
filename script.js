@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const numParticles = 100;
     const maxDistance = 100; // Distancia máxima para conectar partículas
 
-    // Crear partículas
     for (let i = 0; i < numParticles; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -30,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Dibujar partículas
       particles.forEach(p => {
         p.x += Math.cos(p.direction) * p.speed;
         p.y += Math.sin(p.direction) * p.speed;
@@ -45,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fill();
       });
 
-      // Dibujar líneas entre partículas cercanas
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -681,7 +678,198 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     15. Efectos de Scroll Animado
+     15. Escape del Laberinto
+  --------------------------- */
+  function iniciarLabyrinth() {
+    const canvas = document.getElementById("labyrinth-canvas");
+    const ctx = canvas.getContext("2d");
+    const cellSize = 40;
+    // Definición simple del laberinto: 0 = libre, 1 = pared.
+    const maze = [
+      [1,1,1,1,1,1,1,1,1,1],
+      [1,0,0,0,1,0,0,0,0,1],
+      [1,0,1,0,1,0,1,1,0,1],
+      [1,0,1,0,0,0,0,1,0,1],
+      [1,0,1,1,1,1,0,1,0,1],
+      [1,0,0,0,0,1,0,1,0,1],
+      [1,1,1,1,0,1,0,1,0,1],
+      [1,0,0,1,0,0,0,0,0,1],
+      [1,0,1,1,1,1,1,0,0,1],
+      [1,1,1,1,1,1,1,1,1,1]
+    ];
+    // Posición inicial del jugador y meta.
+    let player = { x: 1, y: 1 };
+    const exit = { x: 8, y: 8 };
+    canvas.width = maze[0].length * cellSize;
+    canvas.height = maze.length * cellSize;
+
+    function drawMaze() {
+      for (let row = 0; row < maze.length; row++) {
+        for (let col = 0; col < maze[0].length; col++) {
+          if (maze[row][col] === 1) {
+            ctx.fillStyle = "#0f0";
+          } else {
+            ctx.fillStyle = "#000";
+          }
+          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+      // Dibujar salida
+      ctx.fillStyle = "rgba(0,255,0,0.3)";
+      ctx.fillRect(exit.x * cellSize, exit.y * cellSize, cellSize, cellSize);
+    }
+    function drawPlayer() {
+      ctx.fillStyle = "#0f0";
+      ctx.fillRect(player.x * cellSize + 5, player.y * cellSize + 5, cellSize - 10, cellSize - 10);
+    }
+    function drawLabyrinth() {
+      drawMaze();
+      drawPlayer();
+    }
+    drawLabyrinth();
+    function movePlayer(dx, dy) {
+      const newX = player.x + dx;
+      const newY = player.y + dy;
+      if (maze[newY] && maze[newY][newX] === 0) {
+        player.x = newX;
+        player.y = newY;
+        drawLabyrinth();
+        if (player.x === exit.x && player.y === exit.y) {
+          document.getElementById("labyrinth-message").textContent = "¡Felicidades, escapaste del laberinto!";
+        }
+      }
+    }
+    document.addEventListener("keydown", (e) => {
+      switch(e.key) {
+        case "ArrowUp":
+          movePlayer(0, -1);
+          break;
+        case "ArrowDown":
+          movePlayer(0, 1);
+          break;
+        case "ArrowLeft":
+          movePlayer(-1, 0);
+          break;
+        case "ArrowRight":
+          movePlayer(1, 0);
+          break;
+      }
+    });
+  }
+  iniciarLabyrinth();
+
+  /* ---------------------------
+     16. Quiz de Curiosidades (20 preguntas, verdad/mentira, 2 min)
+  --------------------------- */
+  const quizQuestions = [
+    { question: "La inteligencia artificial puede aprender por sí sola. (Verdad)", answer: true },
+    { question: "Los robots humanoides ya realizan tareas domésticas en masa. (Mentira)", answer: false },
+    { question: "La computación cuántica está revolucionando la investigación en IA. (Verdad)", answer: true },
+    { question: "La IA no tiene aplicaciones en la medicina. (Mentira)", answer: false },
+    { question: "Los coches autónomos son solo una idea de ciencia ficción. (Mentira)", answer: false },
+    { question: "La IA puede analizar grandes volúmenes de datos en segundos. (Verdad)", answer: true },
+    { question: "La ética no es relevante en el desarrollo de IA. (Mentira)", answer: false },
+    { question: "Los algoritmos pueden presentar sesgos si se entrenan con datos parciales. (Verdad)", answer: true },
+    { question: "La robótica no influirá en el futuro del trabajo. (Mentira)", answer: false },
+    { question: "La IA se utiliza en la creación de contenido artístico. (Verdad)", answer: true },
+    { question: "El aprendizaje automático es lo mismo que la inteligencia artificial. (Mentira)", answer: false },
+    { question: "Los asistentes virtuales son un ejemplo de IA aplicada. (Verdad)", answer: true },
+    { question: "La tecnología futurista no influirá en el sector educativo. (Mentira)", answer: false },
+    { question: "Los robots pueden tener emociones. (Mentira)", answer: false },
+    { question: "La automatización puede mejorar la productividad. (Verdad)", answer: true },
+    { question: "La IA es incapaz de predecir tendencias de mercado. (Mentira)", answer: false },
+    { question: "La ciberseguridad se beneficia del uso de inteligencia artificial. (Verdad)", answer: true },
+    { question: "La realidad virtual es irrelevante para la formación profesional. (Mentira)", answer: false },
+    { question: "La IA puede ayudar a optimizar el consumo energético. (Verdad)", answer: true },
+    { question: "El futuro de la tecnología no incluye la integración de la IA en la vida cotidiana. (Mentira)", answer: false }
+  ];
+  let quizIndex = 0;
+  let quizScore = 0;
+  let quizTime = 120; // 2 minutos
+  let quizTimerInterval;
+  const quizQuestionElem = document.getElementById("quiz-question");
+  const quizTimerElem = document.getElementById("quiz-timer");
+  const quizFeedbackElem = document.getElementById("quiz-feedback");
+  const quizScoreElem = document.getElementById("quiz-score");
+  const quizTrueBtn = document.getElementById("quiz-true");
+  const quizFalseBtn = document.getElementById("quiz-false");
+  const quizRestartBtn = document.getElementById("quiz-restart");
+
+  function mostrarPreguntaQuiz() {
+    if (quizIndex < quizQuestions.length) {
+      quizQuestionElem.textContent = quizQuestions[quizIndex].question;
+      quizFeedbackElem.textContent = "";
+    } else {
+      terminarQuiz();
+    }
+  }
+  function terminarQuiz() {
+    clearInterval(quizTimerInterval);
+    if (quizScore >= 15) {
+      quizFeedbackElem.textContent = `¡Ganaste! Puntaje: ${quizScore}/${quizQuestions.length}`;
+    } else {
+      quizFeedbackElem.textContent = `Perdiste. Puntaje: ${quizScore}/${quizQuestions.length}`;
+    }
+    quizTrueBtn.disabled = true;
+    quizFalseBtn.disabled = true;
+  }
+  function iniciarTemporizador() {
+    quizTime = 120;
+    quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
+    quizTimerInterval = setInterval(() => {
+      quizTime--;
+      quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
+      if (quizTime <= 0) {
+        terminarQuiz();
+      }
+    }, 1000);
+  }
+  quizTrueBtn.addEventListener("click", () => {
+    if (quizQuestions[quizIndex].answer === true) quizScore++;
+    quizScoreElem.textContent = `Puntaje: ${quizScore}`;
+    quizIndex++;
+    mostrarPreguntaQuiz();
+  });
+  quizFalseBtn.addEventListener("click", () => {
+    if (quizQuestions[quizIndex].answer === false) quizScore++;
+    quizScoreElem.textContent = `Puntaje: ${quizScore}`;
+    quizIndex++;
+    mostrarPreguntaQuiz();
+  });
+  quizRestartBtn.addEventListener("click", () => {
+    quizIndex = 0;
+    quizScore = 0;
+    quizScoreElem.textContent = `Puntaje: ${quizScore}`;
+    quizTrueBtn.disabled = false;
+    quizFalseBtn.disabled = false;
+    iniciarTemporizador();
+    mostrarPreguntaQuiz();
+  });
+  iniciarTemporizador();
+  mostrarPreguntaQuiz();
+
+  /* ---------------------------
+     16. Efecto Bola Resplandeciente (Robot Volador)
+  --------------------------- */
+  const glowingBall = document.getElementById("glowing-ball");
+  let ballX = Math.random() * window.innerWidth;
+  let ballY = Math.random() * window.innerHeight;
+  let ballVX = 1 + Math.random() * 2;
+  let ballVY = 1 + Math.random() * 2;
+  function moverBola() {
+    ballX += ballVX;
+    ballY += ballVY;
+    // Rebotar en los bordes
+    if (ballX <= 0 || ballX >= window.innerWidth - 40) ballVX *= -1;
+    if (ballY <= 0 || ballY >= window.innerHeight - 40) ballVY *= -1;
+    glowingBall.style.left = ballX + "px";
+    glowingBall.style.top = ballY + "px";
+    requestAnimationFrame(moverBola);
+  }
+  moverBola();
+
+  /* ---------------------------
+     17. Efecto de Scroll Animado (Fade In)
   --------------------------- */
   const scrollElements = document.querySelectorAll(".animate-on-scroll");
   const elementInView = (el, dividend = 1) => {
