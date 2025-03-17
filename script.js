@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*******************************************
-   * 6. "Follow the white rabbit..." (typing)
+   * 6. Texto "Follow the white rabbit..."
    *******************************************/
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
@@ -139,12 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
   typingInterval = setInterval(typePhrase, 100);
 
   /*******************************************
-   * 7. Desafío: Adivina la Palabra (ampliado)
+   * 7. Desafío: Adivina la Palabra (variedad ampliada)
    *******************************************/
   const words = [
-    "robot", "computadora", "algoritmo", "datos", "red", 
-    "sistema", "código", "software", "hardware", "programa", 
-    "inteligencia", "máquina", "sensor", "análisis", "variable", 
+    "robot", "computadora", "algoritmo", "datos", "red",
+    "sistema", "código", "software", "hardware", "programa",
+    "inteligencia", "máquina", "sensor", "análisis", "variable",
     "bucle", "función", "depuración", "criptografía", "servidor"
   ];
   const randomIndex = Math.floor(Math.random() * words.length);
@@ -190,14 +190,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Trivia IA
+   * 8. Trivia IA (variedad ampliada)
    *******************************************/
   const triviaQuestions = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
     { question: "¿Cuál ciudad es puntera en IA?", answers: ["San Francisco", "El Cairo", "Lisboa"], correct: 0 },
     { question: "¿Qué es Machine Learning?", answers: ["Aprendizaje automático", "Un sistema de chat", "Una base de datos"], correct: 0 },
     { question: "¿Qué hace la Visión por Computador?", answers: ["Crea imágenes 3D", "Permite ver e interpretar imágenes", "Diseña páginas web"], correct: 1 },
-    { question: "La ética en la IA es importante para...", answers: ["Evitar sesgos", "Hacer juegos divertidos", "Acelerar la computación"], correct: 0 }
+    { question: "La ética en la IA es importante para...", answers: ["Evitar sesgos", "Hacer juegos divertidos", "Acelerar la computación"], correct: 0 },
+    { question: "¿Qué es un sensor?", answers: ["Dispositivo que detecta cambios", "Parte de un algoritmo", "Un tipo de robot"], correct: 0 },
+    { question: "¿Qué es hardware?", answers: ["Software especializado", "Componentes físicos", "Un lenguaje de programación"], correct: 1 },
+    { question: "¿Qué es una base de datos?", answers: ["Conjunto organizado de información", "Un algoritmo", "Un hardware"], correct: 0 },
+    { question: "¿Qué significa 'debug'?", answers: ["Depurar", "Codificar", "Optimizar"], correct: 0 },
+    { question: "¿Qué es inteligencia artificial?", answers: ["Capacidad de una máquina para imitar funciones cognitivas", "Un programa de ordenador", "Una base de datos"], correct: 0 }
   ];
   let triviaIndex = 0;
   let triviaScore = 0;
@@ -245,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 9. Crack the Code (con emoticonos futuristas)
+   * 9. Crack the Code (emoticonos futuristas)
    *******************************************/
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
@@ -400,7 +405,8 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
+  // Lista ampliada de palabras a buscar
+  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
   function placeWordHorizontal(word, r, c) {
