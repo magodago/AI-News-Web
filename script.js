@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   iniciarParticles();
 
   /*******************************************
-   * 2. Carga de la fuente Orbitron
+   * 2. Cargar fuente Orbitron
    *******************************************/
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
@@ -139,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   typingInterval = setInterval(typePhrase, 100);
 
   /*******************************************
-   * 7. Desafío: Adivina la Palabra (variedad ampliada)
+   * 7. Desafío: Adivina la Palabra (10 intentos fijos)
    *******************************************/
   const words = [
     "robot", "computadora", "algoritmo", "datos", "red",
@@ -157,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const letterInput = document.getElementById("letter-input");
   const checkBtn = document.getElementById("check-letter");
   let wordArray = Array.from(selectedWord).map(() => "_");
-  let attempts = selectedWord.length + 3;
+  let attempts = 10; // Fijamos 10 intentos
   if (hintElem) hintElem.textContent = "Pista: " + hint;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
@@ -202,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { question: "¿Qué es hardware?", answers: ["Software especializado", "Componentes físicos", "Un lenguaje de programación"], correct: 1 },
     { question: "¿Qué es una base de datos?", answers: ["Conjunto organizado de información", "Un algoritmo", "Un hardware"], correct: 0 },
     { question: "¿Qué significa 'debug'?", answers: ["Depurar", "Codificar", "Optimizar"], correct: 0 },
-    { question: "¿Qué es inteligencia artificial?", answers: ["Capacidad de una máquina para imitar funciones cognitivas", "Un programa de ordenador", "Una base de datos"], correct: 0 }
+    { question: "¿Qué es inteligencia artificial?", answers: ["Imitación de funciones cognitivas", "Un programa de ordenador", "Una base de datos"], correct: 0 }
   ];
   let triviaIndex = 0;
   let triviaScore = 0;
@@ -250,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 9. Crack the Code (emoticonos futuristas)
+   * 9. Crack the Code (emoticonos futuristas, 10 intentos)
    *******************************************/
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
@@ -259,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const r = Math.floor(Math.random() * codeSymbols.length);
     secretCode.push(codeSymbols[r]);
   }
-  let codeAttempts = 7;
+  let codeAttempts = 10; // 10 intentos
   const codeFeedback = document.getElementById("code-feedback");
   const codeAttemptsElem = document.getElementById("code-attempts");
   const codeCheckBtn = document.getElementById("code-check");
@@ -405,7 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  // Lista ampliada de palabras a buscar
+  // Lista ampliada de palabras para la sopa
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
@@ -475,7 +474,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 12. Navegación suave
+   * 12. Nueva Sección: Explorador de Futuros
+   *******************************************/
+  // Esta sección muestra una línea de tiempo básica.
+  // No se requiere JS adicional para el contenido estático.
+
+  /*******************************************
+   * 13. Navegación suave del menú
    *******************************************/
   document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -490,7 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*******************************************
-   * 13. Toggle Dropdown para "Juegos"
+   * 14. Toggle Dropdown para "Juegos"
    *******************************************/
   const juegosBtn = document.getElementById("menu-juegos");
   const dropdown = document.getElementById("menu-juegos-dropdown");
