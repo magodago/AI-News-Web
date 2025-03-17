@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Estilos para secciones */
+/* Secciones */
 section {
   margin: 20px auto;
   width: 90%;
@@ -340,6 +340,26 @@ input[type="range"]:focus {
   background: rgba(0,0,0,0.5);
   padding: 10px;
   border-radius: 5px;
+}
+
+/* Burbujita flotante para WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 10px #0f0;
+}
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
 }
 
 /* Efecto holográfico simple */
