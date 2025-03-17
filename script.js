@@ -6,14 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function iniciarParticles() {
     const canvas = document.getElementById("particles-canvas");
     const ctx = canvas.getContext("2d");
-
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
-
     const particles = [];
     const numParticles = 100;
     for (let i = 0; i < numParticles; i++) {
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: Math.random() * Math.PI * 2
       });
     }
-
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0f0";
@@ -74,13 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.style.position = "absolute";
     bar.style.position = "relative";
     bar.appendChild(canvas);
-
     const ctx = canvas.getContext("2d");
     const letters = "01";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
-
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -252,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 9. Crack the Code (con emoticonos futuristas)
    *******************************************/
-  // Lista de emoticonos futuristas
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
   let secretCode = [];
@@ -484,5 +478,19 @@ document.addEventListener("DOMContentLoaded", () => {
         behavior: 'smooth'
       });
     });
+  });
+
+  /*******************************************
+   * 13. Toggle Dropdown para el menú "Juegos"
+   *******************************************/
+  const juegosBtn = document.getElementById("menu-juegos");
+  juegosBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    const dropdown = this.nextElementSibling;
+    if (dropdown.classList.contains("show")) {
+      dropdown.classList.remove("show");
+    } else {
+      dropdown.classList.add("show");
+    }
   });
 });
