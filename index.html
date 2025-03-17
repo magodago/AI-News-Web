@@ -15,26 +15,26 @@
       <li><a href="#crack-the-code">Crack the Code</a></li>
       <li><a href="#memory-game">Memory AI Cards</a></li>
       <li><a href="#word-search">Sopa de Letras AI</a></li>
-      <li><a href="#widgets">Widgets Futuristas</a></li>
-      <li><a href="#analisis">Análisis y Tendencias</a></li>
     </ul>
   </nav>
 
-  <!-- Espacio para que el contenido no quede tapado por el menú fijo -->
+  <!-- Espacio para que el contenido no quede oculto por el menú fijo -->
   <div class="menu-spacer"></div>
 
-  <!-- Barra superior con efecto Matrix -->
+  <!-- Canvas de partículas para el efecto de fondo -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Barra Matrix -->
   <div id="matrix-bar"></div>
 
   <header>
     <h1 class="glitch">AI FUTURO</h1>
-    <!-- Texto que aparece letra a letra: "Follow the white rabbit..." -->
     <div class="typing-container">
       <span id="typing-text"></span>
     </div>
   </header>
 
-  <!-- 1) DESAFÍO: Adivina la Palabra -->
+  <!-- Sección: Adivina la Palabra -->
   <section id="word-challenge" class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
@@ -45,7 +45,7 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- 2) TRIVIA IA -->
+  <!-- Sección: Trivia IA -->
   <section id="trivia-ia" class="trivia-ia">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
@@ -56,7 +56,7 @@
     </div>
   </section>
 
-  <!-- 3) CRACK THE CODE (10 símbolos) -->
+  <!-- Sección: Crack the Code -->
   <section id="crack-the-code" class="crack-the-code">
     <h2>Crack the Code</h2>
     <div id="code-container">
@@ -77,14 +77,14 @@
     </div>
   </section>
 
-  <!-- 4) MEMORY AI CARDS -->
+  <!-- Sección: Memory AI Cards -->
   <section id="memory-game" class="memory-game">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
     <p id="memory-message"></p>
   </section>
 
-  <!-- 5) SOPA DE LETRAS AI -->
+  <!-- Sección: Sopa de Letras AI -->
   <section id="word-search" class="word-search">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
@@ -93,66 +93,6 @@
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- 6) WIDGETS FUTURISTAS -->
-  <section id="widgets" class="widgets">
-    <h2>Widgets Futuristas</h2>
-    <div class="widget" id="quote-widget">
-      <h3>🤖 Cita sobre IA</h3>
-      <p id="ai-quote">"La inteligencia artificial no reemplazará a los humanos."</p>
-    </div>
-
-    <div class="widget" id="patents-widget">
-      <h3>🔬 Patentes de IA</h3>
-      <p id="patent-count">Cargando...</p>
-    </div>
-
-    <div class="widget" id="future-predictions">
-      <h3>🔮 Predicciones de IA</h3>
-      <p id="prediction-text">Cargando...</p>
-    </div>
-
-    <div class="widget" id="innovation-map">
-      <h3>🌍 Mapa de Innovación</h3>
-      <div id="map-container">Cargando...</div>
-    </div>
-
-    <div class="widget" id="surprise-widget">
-      <h3>⚡ Sorpresa Diaria</h3>
-      <p id="surprise-text">Cargando sorpresa...</p>
-      <button id="reveal-surprise">Descúbrelo</button>
-    </div>
-
-    <div class="widget" id="countries-widget">
-      <h3>🌎 Países con Mayor Inversión en IA</h3>
-      <div id="countries-container">Cargando...</div>
-    </div>
-  </section>
-
-  <!-- 7) ANÁLISIS Y TENDENCIAS -->
-  <section id="analisis" class="analisis">
-    <h2>Análisis y Tendencias</h2>
-    <div id="analisis-container">
-      <article>
-        <h3>Visión por Computador</h3>
-        <p>La capacidad de analizar imágenes abre un mundo de aplicaciones.</p>
-      </article>
-      <article>
-        <h3>Robótica Avanzada</h3>
-        <p>La fusión de IA y robótica permite máquinas más autónomas.</p>
-      </article>
-      <article>
-        <h3>Machine Learning en la Empresa</h3>
-        <p>Cómo el ML está transformando la toma de decisiones y la productividad.</p>
-      </article>
-      <article>
-        <h3>Ética y Sesgos en la IA</h3>
-        <p>Reflexiones sobre la responsabilidad y transparencia de algoritmos.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Eliminamos la sección de noticias según se indicó -->
-  
   <script src="script.js"></script>
 </body>
 </html>
