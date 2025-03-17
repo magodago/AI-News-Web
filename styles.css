@@ -11,7 +11,7 @@ html, body {
   font-family: "Orbitron", sans-serif;
   color: #0f0; /* Verde Matrix */
   overflow-x: hidden;
-  padding-top: 70px; /* Espacio para el menú fijo */
+  padding-top: 60px; /* Espacio para el menú fijo */
   animation: fadeIn 1s ease forwards;
   opacity: 0;
 }
@@ -26,15 +26,15 @@ html, body {
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
   z-index: 10000;
-  padding: 10px 0;
+  padding: 5px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.5);
   text-align: center;
 }
 #futuristic-menu ul {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  display: inline-block;
+  display: inline-block; /* Para centrar */
   position: relative;
 }
 #futuristic-menu > ul > li {
@@ -44,8 +44,8 @@ html, body {
 #futuristic-menu li a {
   text-decoration: none;
   color: #0f0;
-  font-size: 1.1rem;
-  padding: 10px 20px;
+  font-size: 1rem;
+  padding: 8px 15px;
   transition: all 0.3s ease;
   display: block;
 }
@@ -54,12 +54,12 @@ html, body {
   text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
 }
 
-/* Dropdown: oculto por defecto */
+/* Dropdown: oculto por defecto; se muestra con clase .show */
 .dropdown-content {
   display: none;
   position: absolute;
   background: rgba(0, 0, 0, 0.9);
-  min-width: 200px;
+  min-width: 180px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10001;
@@ -72,14 +72,15 @@ html, body {
 }
 .dropdown-content li a {
   padding: 10px;
+  font-size: 0.9rem;
 }
 .dropdown-content.show {
   display: block;
 }
 
-/* Spacer para el menú (muy reducido) */
+/* Espacio mínimo para que el contenido no quede tapado por el menú */
 .menu-spacer {
-  height: 10px;
+  height: 5px;
 }
 
 /* Canvas de partículas de fondo */
@@ -105,14 +106,14 @@ html, body {
 /* Encabezado */
 header {
   text-align: center;
-  margin: 5px auto; /* Espacio reducido */
+  margin: 5px auto;
 }
 .glitch {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   text-shadow: 0 0 5px #0f0;
   animation: glitchShadow 1.5s infinite;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: inline-block;
 }
 .glitch-active {
@@ -129,9 +130,9 @@ header {
 
 /* Typing container */
 .typing-container {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  height: 30px;
+  font-size: 1.1rem;
+  margin-top: 5px;
+  height: 25px;
   overflow: hidden;
   color: #0f0;
 }
@@ -141,7 +142,7 @@ header {
 
 /* Secciones */
 section {
-  margin: 40px auto;
+  margin: 20px auto;
   width: 90%;
   max-width: 600px;
   text-align: center;
@@ -152,7 +153,7 @@ button {
   background: #111;
   border: 1px solid #0f0;
   color: #0f0;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 5px;
   transition: 0.3s;
   cursor: pointer;
@@ -173,7 +174,7 @@ input[type="text"] {
 
 /* Adivina la Palabra */
 #word-display {
-  font-size: 2rem;
+  font-size: 1.8rem;
   letter-spacing: 8px;
   margin: 10px 0;
 }
@@ -217,7 +218,7 @@ input[type="text"] {
   padding: 6px 8px;
   margin: 3px;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 .symbol-btn:hover {
   background: #0f0;
@@ -230,14 +231,14 @@ input[type="text"] {
   margin: 10px 0;
 }
 .code-char {
-  width: 50px;
-  height: 50px;
-  padding: 8px;
+  width: 45px;
+  height: 45px;
+  padding: 6px;
   border: 2px solid #0f0;
   background: #222;
   color: #0f0;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   border-radius: 5px;
 }
 #code-feedback {
@@ -280,7 +281,7 @@ input[type="text"] {
 
 /* Sopa de Letras */
 .word-search {
-  margin: 40px auto;
+  margin: 20px auto;
 }
 #wordsearch-container {
   border: 1px solid #0f0;
