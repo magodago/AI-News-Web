@@ -6,12 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function iniciarParticles() {
     const canvas = document.getElementById("particles-canvas");
     const ctx = canvas.getContext("2d");
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+
     const particles = [];
     const numParticles = 100;
     for (let i = 0; i < numParticles; i++) {
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: Math.random() * Math.PI * 2
       });
     }
+
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0f0";
@@ -71,21 +74,26 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.style.position = "absolute";
     bar.style.position = "relative";
     bar.appendChild(canvas);
+
     const ctx = canvas.getContext("2d");
     const letters = "01";
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
+
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
       ctx.fillStyle = "#0f0";
       ctx.font = fontSize + "px Orbitron";
+
       for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         ctx.fillText(text, x, y);
+
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -93,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     setInterval(draw, 50);
+
     window.addEventListener("resize", () => {
       canvas.width = bar.offsetWidth;
       canvas.height = bar.offsetHeight;
@@ -106,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
+
   document.addEventListener("mousemove", (e) => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
@@ -117,16 +127,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const phrase = "Follow the white rabbit...";
   let idx = 0;
   let typingInterval = null;
+
   function typePhrase() {
     if (!typingText) return;
     typingText.textContent = phrase.substring(0, idx);
     idx++;
+
     if (Math.random() > 0.9) {
       typingText.classList.add("typing-glitch");
       setTimeout(() => {
         typingText.classList.remove("typing-glitch");
       }, 100);
     }
+
     if (idx > phrase.length) {
       clearInterval(typingInterval);
       setTimeout(() => {
@@ -150,23 +163,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const randomIndex = Math.floor(Math.random() * words.length);
   const selectedWord = words[randomIndex].word;
   const hint = words[randomIndex].hint;
+
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
   const attemptsElem = document.getElementById("attempts-remaining");
   const letterInput = document.getElementById("letter-input");
   const checkBtn = document.getElementById("check-letter");
+
   let wordArray = Array.from(selectedWord).map(() => "_");
   let attempts = selectedWord.length + 3;
+
   if (hintElem) hintElem.textContent = "Pista: " + hint;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
+
   if (checkBtn) {
     checkBtn.addEventListener("click", () => {
       if (!letterInput) return;
       const letter = letterInput.value.toLowerCase();
       letterInput.value = "";
       if (!letter || letter.length !== 1) return;
+
       let found = false;
       for (let i = 0; i < selectedWord.length; i++) {
         if (selectedWord[i] === letter) {
@@ -177,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!found) attempts--;
       if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
       if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
+
       if (!wordArray.includes("_")) {
         if (messageElem) messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
         checkBtn.disabled = true;
@@ -201,15 +220,18 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let triviaIndex = 0;
   let triviaScore = 0;
+
   const triviaQuestionElem = document.getElementById("trivia-question");
   const triviaAnswersElem = document.getElementById("trivia-answers");
   const triviaResultElem = document.getElementById("trivia-result");
   const triviaNextBtn = document.getElementById("trivia-next");
+
   function mostrarPreguntaTrivia() {
     if (triviaIndex >= triviaQuestions.length) return;
     const q = triviaQuestions[triviaIndex];
     if (triviaQuestionElem) triviaQuestionElem.textContent = q.question;
     if (triviaAnswersElem) triviaAnswersElem.innerHTML = "";
+
     q.answers.forEach((ans, i) => {
       const div = document.createElement("div");
       div.classList.add("trivia-option");
@@ -229,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (triviaResultElem) triviaResultElem.textContent = "";
   }
+
   if (triviaNextBtn) {
     triviaNextBtn.addEventListener("click", () => {
       triviaIndex++;
@@ -255,19 +278,23 @@ document.addEventListener("DOMContentLoaded", () => {
     secretCode.push(codeSymbols[r]);
   }
   let codeAttempts = 7;
+
   const codeFeedback = document.getElementById("code-feedback");
   const codeAttemptsElem = document.getElementById("code-attempts");
   const codeCheckBtn = document.getElementById("code-check");
   const codeResetBtn = document.getElementById("code-reset");
   const codeInputs = document.querySelectorAll(".code-char");
   const symbolListElem = document.getElementById("symbol-list");
+
   if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
+
   if (symbolListElem) {
     let html = "";
     codeSymbols.forEach(sym => {
       html += `<button class="symbol-btn">${sym}</button>`;
     });
     symbolListElem.innerHTML = html;
+
     const symbolBtns = symbolListElem.querySelectorAll(".symbol-btn");
     symbolBtns.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -280,12 +307,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
   if (codeResetBtn) {
     codeResetBtn.addEventListener("click", () => {
       codeInputs.forEach(inp => inp.value = "");
       if (codeFeedback) codeFeedback.textContent = "";
     });
   }
+
   if (codeCheckBtn) {
     codeCheckBtn.addEventListener("click", () => {
       if (codeAttempts <= 0) return;
@@ -295,10 +324,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (codeFeedback) codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar.";
         return;
       }
+
       let correctPos = 0;
       let correctSym = 0;
       let secretCopy = [...secretCode];
       let userCopy = [...userCode];
+
+      // Contar aciertos de posición exacta
       for (let i = 0; i < codeLength; i++) {
         if (userCopy[i] === secretCopy[i]) {
           correctPos++;
@@ -306,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
           userCopy[i] = null;
         }
       }
+      // Contar aciertos de símbolo en otra posición
       for (let i = 0; i < codeLength; i++) {
         if (userCopy[i]) {
           const idx = secretCopy.indexOf(userCopy[i]);
@@ -315,6 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
+
       if (correctPos === codeLength) {
         if (codeFeedback) codeFeedback.textContent = `🎉 ¡Código descifrado! Era: ${secretCode.join("")}`;
         codeCheckBtn.disabled = true;
@@ -343,6 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
   let flippedCards = [];
   let matchedPairs = 0;
+
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -351,6 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return arr;
   }
   const shuffledSymbols = shuffleArray([...cardSymbols]);
+
   function createMemoryBoard() {
     if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
@@ -366,16 +402,20 @@ document.addEventListener("DOMContentLoaded", () => {
     flippedCards = [];
     if (memoryMessage) memoryMessage.textContent = "";
   }
+
   function flipCard(card) {
     if (card.classList.contains("flipped")) return;
     if (flippedCards.length === 2) return;
+
     card.classList.add("flipped");
     card.textContent = card.dataset.symbol;
     flippedCards.push(card);
+
     if (flippedCards.length === 2) {
       setTimeout(checkMatch, 600);
     }
   }
+
   function checkMatch() {
     const [c1, c2] = flippedCards;
     if (c1.dataset.symbol === c2.dataset.symbol) {
@@ -393,6 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     flippedCards = [];
   }
+
   if (memoryContainer) createMemoryBoard();
 
   /*******************************************
@@ -403,6 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+
   function placeWordHorizontal(word, r, c) {
     if (c + word.length > cols) return false;
     for (let i = 0; i < word.length; i++) {
@@ -413,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return true;
   }
+
   function placeWordVertical(word, r, c) {
     if (r + word.length > rows) return false;
     for (let i = 0; i < word.length; i++) {
@@ -423,6 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return true;
   }
+
   function insertWord(word) {
     let attempts = 100;
     while (attempts > 0) {
@@ -438,7 +482,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return false;
   }
+
   wsWords.forEach(w => insertWord(w));
+
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
@@ -447,6 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
   if (wordsearchContainer) {
     wordsearchContainer.innerHTML = "";
     for (let r = 0; r < rows; r++) {
@@ -464,6 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wordsearchContainer.appendChild(rowDiv);
     }
   }
+
   if (wordsearchWordsElem) {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
@@ -473,10 +521,15 @@ document.addEventListener("DOMContentLoaded", () => {
    *******************************************/
   document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+      // Evita que el enlace recargue la página
       e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      });
+      // Si es un enlace ancla (#algo), hacemos scroll
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
     });
   });
 
@@ -484,13 +537,10 @@ document.addEventListener("DOMContentLoaded", () => {
    * 13. Toggle Dropdown para el menú "Juegos"
    *******************************************/
   const juegosBtn = document.getElementById("menu-juegos");
+  const dropdown = document.getElementById("menu-juegos-dropdown");
+
   juegosBtn.addEventListener("click", function(e) {
     e.preventDefault();
-    const dropdown = this.nextElementSibling;
-    if (dropdown.classList.contains("show")) {
-      dropdown.classList.remove("show");
-    } else {
-      dropdown.classList.add("show");
-    }
+    dropdown.classList.toggle("show");
   });
 });
