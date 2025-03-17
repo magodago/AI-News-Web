@@ -1,7 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /*******************************************
-   * 1. Carga de la fuente Orbitron
+   * 1. Iniciar efecto de partículas en el fondo
+   *******************************************/
+  function iniciarParticles() {
+    const canvas = document.getElementById("particles-canvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const particles = [];
+    const numParticles = 100;
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        speed: Math.random() * 0.5 + 0.2,
+        direction: Math.random() * Math.PI * 2
+      });
+    }
+
+    function updateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0f0"; // partículas en verde neón
+      particles.forEach(p => {
+        p.x += Math.cos(p.direction) * p.speed;
+        p.y += Math.sin(p.direction) * p.speed;
+        // envoltura de los bordes
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(updateParticles);
+    }
+    updateParticles();
+  }
+  iniciarParticles();
+
+  /*******************************************
+   * 2. Carga de la fuente Orbitron
    *******************************************/
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
@@ -9,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(linkOrbitron);
 
   /*******************************************
-   * 2. Glitch en el Título (Verde)
+   * 3. Glitch en el Título (Verde)
    *******************************************/
   const title = document.querySelector(".glitch");
   setInterval(() => {
@@ -17,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 
   /*******************************************
-   * 3. Barra Matrix (Verde)
+   * 4. Barra Matrix (Verde)
    *******************************************/
   function iniciarMatrix() {
     const bar = document.getElementById("matrix-bar");
@@ -38,17 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function draw() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fillStyle = "#0f0";
       ctx.font = fontSize + "px Orbitron";
-
       for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         const x = i * fontSize;
         const y = drops[i] * fontSize;
-
         ctx.fillText(text, x, y);
-
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -56,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     setInterval(draw, 50);
-
     window.addEventListener("resize", () => {
       canvas.width = bar.offsetWidth;
       canvas.height = bar.offsetHeight;
@@ -65,36 +107,32 @@ document.addEventListener("DOMContentLoaded", () => {
   iniciarMatrix();
 
   /*******************************************
-   * 4. Cursor Futurista (Verde)
+   * 5. Cursor Futurista (Verde)
    *******************************************/
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
-
   document.addEventListener("mousemove", (e) => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
   /*******************************************
-   * 5. "Follow the white rabbit..." (typing)
+   * 6. "Follow the white rabbit..." (typing)
    *******************************************/
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
   let idx = 0;
   let typingInterval = null;
-
   function typePhrase() {
     if (!typingText) return;
     typingText.textContent = phrase.substring(0, idx);
     idx++;
-
     if (Math.random() > 0.9) {
       typingText.classList.add("typing-glitch");
       setTimeout(() => {
         typingText.classList.remove("typing-glitch");
       }, 100);
     }
-
     if (idx > phrase.length) {
       clearInterval(typingInterval);
       setTimeout(() => {
@@ -107,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   typingInterval = setInterval(typePhrase, 100);
 
   /*******************************************
-   * 6. Desafío: Adivina la Palabra
+   * 7. Desafío: Adivina la Palabra
    *******************************************/
   const words = [
     { word: "robot", hint: "Máquina programada para tareas humanas." },
@@ -118,28 +156,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const randomIndex = Math.floor(Math.random() * words.length);
   const selectedWord = words[randomIndex].word;
   const hint = words[randomIndex].hint;
-
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
   const attemptsElem = document.getElementById("attempts-remaining");
   const letterInput = document.getElementById("letter-input");
   const checkBtn = document.getElementById("check-letter");
-
   let wordArray = Array.from(selectedWord).map(() => "_");
   let attempts = selectedWord.length + 3;
-
   if (hintElem) hintElem.textContent = "Pista: " + hint;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
-
   if (checkBtn) {
     checkBtn.addEventListener("click", () => {
       if (!letterInput) return;
       const letter = letterInput.value.toLowerCase();
       letterInput.value = "";
       if (!letter || letter.length !== 1) return;
-
       let found = false;
       for (let i = 0; i < selectedWord.length; i++) {
         if (selectedWord[i] === letter) {
@@ -150,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!found) attempts--;
       if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
       if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
-
       if (!wordArray.includes("_")) {
         if (messageElem) messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
         checkBtn.disabled = true;
@@ -164,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 7. Trivia IA
+   * 8. Trivia IA
    *******************************************/
   const triviaQuestions = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas para resolver problemas", "Un lenguaje de programación"], correct: 1 },
@@ -175,18 +207,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let triviaIndex = 0;
   let triviaScore = 0;
-
   const triviaQuestionElem = document.getElementById("trivia-question");
   const triviaAnswersElem = document.getElementById("trivia-answers");
   const triviaResultElem = document.getElementById("trivia-result");
   const triviaNextBtn = document.getElementById("trivia-next");
-
   function mostrarPreguntaTrivia() {
     if (triviaIndex >= triviaQuestions.length) return;
     const q = triviaQuestions[triviaIndex];
     if (triviaQuestionElem) triviaQuestionElem.textContent = q.question;
     if (triviaAnswersElem) triviaAnswersElem.innerHTML = "";
-
     q.answers.forEach((ans, i) => {
       const div = document.createElement("div");
       div.classList.add("trivia-option");
@@ -206,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (triviaResultElem) triviaResultElem.textContent = "";
   }
-
   if (triviaNextBtn) {
     triviaNextBtn.addEventListener("click", () => {
       triviaIndex++;
@@ -223,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Crack the Code (10 símbolos)
+   * 9. Crack the Code (10 símbolos)
    *******************************************/
   const codeSymbols = "!@#$%^&*A0".split("");
   const codeLength = 4;
@@ -233,23 +261,19 @@ document.addEventListener("DOMContentLoaded", () => {
     secretCode.push(codeSymbols[r]);
   }
   let codeAttempts = 7;
-
   const codeFeedback = document.getElementById("code-feedback");
   const codeAttemptsElem = document.getElementById("code-attempts");
   const codeCheckBtn = document.getElementById("code-check");
   const codeResetBtn = document.getElementById("code-reset");
   const codeInputs = document.querySelectorAll(".code-char");
   const symbolListElem = document.getElementById("symbol-list");
-
   if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
-
   if (symbolListElem) {
     let html = "";
     codeSymbols.forEach(sym => {
       html += `<button class="symbol-btn">${sym}</button>`;
     });
     symbolListElem.innerHTML = html;
-
     const symbolBtns = symbolListElem.querySelectorAll(".symbol-btn");
     symbolBtns.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -262,14 +286,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-
   if (codeResetBtn) {
     codeResetBtn.addEventListener("click", () => {
       codeInputs.forEach(inp => inp.value = "");
       if (codeFeedback) codeFeedback.textContent = "";
     });
   }
-
   if (codeCheckBtn) {
     codeCheckBtn.addEventListener("click", () => {
       if (codeAttempts <= 0) return;
@@ -279,12 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (codeFeedback) codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar.";
         return;
       }
-
       let correctPos = 0;
       let correctSym = 0;
       let secretCopy = [...secretCode];
       let userCopy = [...userCode];
-
       for (let i = 0; i < codeLength; i++) {
         if (userCopy[i] === secretCopy[i]) {
           correctPos++;
@@ -301,7 +321,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-
       if (correctPos === codeLength) {
         if (codeFeedback) codeFeedback.textContent = `🎉 ¡Código descifrado! Era: ${secretCode.join("")}`;
         codeCheckBtn.disabled = true;
@@ -323,14 +342,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 9. Memory AI Cards
+   * 10. Memory AI Cards
    *******************************************/
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
   const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
   let flippedCards = [];
   let matchedPairs = 0;
-
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -339,7 +357,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return arr;
   }
   const shuffledSymbols = shuffleArray([...cardSymbols]);
-
   function createMemoryBoard() {
     if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
@@ -358,11 +375,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function flipCard(card) {
     if (card.classList.contains("flipped")) return;
     if (flippedCards.length === 2) return;
-
     card.classList.add("flipped");
     card.textContent = card.dataset.symbol;
     flippedCards.push(card);
-
     if (flippedCards.length === 2) {
       setTimeout(checkMatch, 600);
     }
@@ -387,154 +402,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (memoryContainer) createMemoryBoard();
 
   /*******************************************
-   * 10. Noticias de IA con NewsAPI (sin repetir)
-   *******************************************/
-  let displayedNews = new Set();
-
-  function loadNews() {
-    const newsContainer = document.getElementById("news-container");
-    if (!newsContainer) return;
-    newsContainer.innerHTML = "";
-
-    // URL de NewsAPI con tu clave
-    const apiUrl = "https://newsapi.org/v2/everything?q=artificial+intelligence&sortBy=publishedAt&apiKey=0346f15d51d8496fb912005b5261618d";
-
-    fetch(apiUrl, {
-      mode: "cors",
-      headers: {
-        "Accept": "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Datos recibidos de NewsAPI:", data);
-        const articles = data.articles || [];
-        // Filtrar artículos ya mostrados (usando el URL como identificador)
-        const newArticles = articles.filter(article => !displayedNews.has(article.url));
-        if (newArticles.length === 0) {
-          newsContainer.innerHTML = "<p>No hay nuevas noticias de IA.</p>";
-          return;
-        }
-        newArticles.forEach(article => {
-          displayedNews.add(article.url);
-          const box = document.createElement("div");
-          box.classList.add("news-box");
-          box.innerHTML = `<h3>${article.title}</h3><p>${article.description || article.content || ""}</p>`;
-          newsContainer.appendChild(box);
-        });
-      })
-      .catch(error => {
-        console.error("Error al cargar noticias:", error);
-        newsContainer.innerHTML = "<p>Error al cargar noticias.</p>";
-      });
-  }
-  loadNews();
-  // Actualizar noticias cada hora (3600000 ms)
-  setInterval(loadNews, 3600000);
-
-  /*******************************************
-   * 11. Widgets Futuristas
-   *******************************************/
-  const quotes = [
-    "La IA es la nueva electricidad.",
-    "Los datos son el nuevo petróleo.",
-    "La creatividad sigue siendo humana.",
-    "La IA sin ética es solo código.",
-    "El futuro pertenece a la IA."
-  ];
-  function cambiarCita() {
-    const quoteElem = document.getElementById("ai-quote");
-    if (!quoteElem) return;
-    const r = Math.floor(Math.random() * quotes.length);
-    quoteElem.textContent = quotes[r];
-  }
-  setInterval(cambiarCita, 10000);
-  cambiarCita();
-
-  let patenteContador = 50000;
-  function actualizarPatentes() {
-    const patentCountElem = document.getElementById("patent-count");
-    if (!patentCountElem) return;
-    patentCountElem.textContent = `Patentes registradas en IA: ${patenteContador}`;
-    patenteContador += Math.floor(Math.random() * 10);
-  }
-  setInterval(actualizarPatentes, 5000);
-  actualizarPatentes();
-
-  const predicciones = [
-    "En 2030, el 60% de los trabajos incluirán IA colaborativa.",
-    "Los robots humanoides convivirán con nosotros en 2050.",
-    "La computación cuántica cambiará el Deep Learning en 2040.",
-    "La IA superará la creatividad humana en 2045."
-  ];
-  const predictionTextElem = document.getElementById("prediction-text");
-  if (predictionTextElem) {
-    predictionTextElem.textContent = predicciones[Math.floor(Math.random() * predicciones.length)];
-  }
-
-  const mapContainer = document.getElementById("map-container");
-  if (mapContainer) {
-    mapContainer.textContent = "Ciudades top en IA: San Francisco, Beijing, Londres, Tokio.";
-  }
-
-  const sorpresas = [
-    "En 2025, el 70% de las empresas usará IA para atención al cliente.",
-    "Los coches autónomos evitarán el 90% de los accidentes viales.",
-    "La IA podría superar la creatividad humana en 2045.",
-    "Un nuevo avance en IA reduce el consumo energético un 40%."
-  ];
-  const revealBtn = document.getElementById("reveal-surprise");
-  const surpriseTextElem = document.getElementById("surprise-text");
-  if (revealBtn && surpriseTextElem) {
-    revealBtn.addEventListener("click", () => {
-      const randomIndex = Math.floor(Math.random() * sorpresas.length);
-      surpriseTextElem.textContent = sorpresas[randomIndex];
-    });
-  }
-
-  const countriesData = [
-    { name: "USA", investment: 90 },
-    { name: "China", investment: 85 },
-    { name: "Alemania", investment: 70 },
-    { name: "Reino Unido", investment: 65 },
-    { name: "Japón", investment: 60 }
-  ];
-  function mostrarPaisesInversion() {
-    const countriesContainer = document.getElementById("countries-container");
-    if (!countriesContainer) return;
-    let html = "";
-    countriesData.forEach(p => {
-      html += `
-        <div class="country-bar">
-          <div class="country-fill" style="width:0%;">
-            ${p.name}: 0%
-          </div>
-        </div>
-      `;
-    });
-    countriesContainer.innerHTML = html;
-
-    const fillElems = countriesContainer.querySelectorAll(".country-fill");
-    fillElems.forEach((fill, index) => {
-      const inv = countriesData[index].investment;
-      setTimeout(() => {
-        fill.style.width = inv + "%";
-        fill.textContent = `${countriesData[index].name}: ${inv}%`;
-      }, 200);
-    });
-  }
-  mostrarPaisesInversion();
-
-  /*******************************************
-   * 12. Sopa de Letras AI (seleccionable)
+   * 11. Sopa de Letras AI
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA"];
-
   const rows = 10, cols = 10;
   let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
-
   function placeWordHorizontal(word, r, c) {
     if (c + word.length > cols) return false;
     for (let i = 0; i < word.length; i++) {
@@ -571,7 +445,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
   wsWords.forEach(w => insertWord(w));
-
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
@@ -580,7 +453,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-
   if (wordsearchContainer) {
     wordsearchContainer.innerHTML = "";
     for (let r = 0; r < rows; r++) {
@@ -603,7 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * Navegación suave del menú futurista
+   * 12. Navegación suave del menú futurista
    *******************************************/
   document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
