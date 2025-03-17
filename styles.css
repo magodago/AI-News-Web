@@ -296,7 +296,7 @@ input[type="range"]:focus {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  /* Tamaño fijo para que todas sean iguales */
+  /* Tamaño fijo */
   width: 200px;
   height: 150px;
   display: flex;
@@ -378,44 +378,6 @@ input[type="range"]:focus {
   transform: scale(1.05);
 }
 
-/* Sección: Centro de Innovación y Prototipos */
-.innovation-center {
-  text-align: center;
-  padding: 15px;
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  margin: 20px auto;
-  max-width: 600px;
-}
-.innovation-center.parallax {
-  background-attachment: fixed;
-  background-image: url('https://source.unsplash.com/600x400/?technology,futuristic');
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-}
-.innovation-center .prototypes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 15px;
-}
-.innovation-center .prototype {
-  width: 45%;
-  border: 1px solid #0f0;
-  border-radius: 5px;
-  padding: 10px;
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  text-align: center;
-}
-.innovation-center .prototype img {
-  width: 100%;
-  border-radius: 5px;
-}
-
 /* Sección: TOP 5 Series y Películas */
 .top-media {
   text-align: center;
@@ -448,7 +410,57 @@ input[type="range"]:focus {
   margin: 5px 0;
 }
 
-/* Animate on scroll */
+/* Sección: Escape del Laberinto */
+.labyrinth {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+#labyrinth-canvas {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  background: #000;
+  border: 1px solid #0f0;
+  display: block;
+  margin: 10px auto;
+}
+#labyrinth-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #0f0;
+}
+
+/* Sección: Quiz de Curiosidades */
+.quiz {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+#quiz-timer {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+#quiz-question {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+#quiz-buttons {
+  margin-bottom: 10px;
+}
+#quiz-buttons button {
+  margin: 0 10px;
+}
+
+/* Sección: Animate on scroll */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
@@ -457,6 +469,18 @@ input[type="range"]:focus {
 .animate-on-scroll.scrolled {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Efecto Bola Resplandeciente */
+#glowing-ball {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,0,1) 0%, rgba(0,128,0,0.8) 60%, rgba(0,0,0,0) 100%);
+  box-shadow: 0 0 15px rgba(0,255,0,0.7);
+  z-index: 2000;
+  pointer-events: none;
 }
 
 /* Burbujita flotante para WhatsApp */
