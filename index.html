@@ -212,13 +212,19 @@
   <!-- Sección: Trivia IA -->
   <section id="trivia-ia" class="trivia-ia flicker animate-on-scroll">
     <h2>Trivia IA</h2>
-    <div id="trivia-container">
-      <p id="trivia-question">Cargando pregunta...</p>
-      <div id="trivia-answers"></div>
-      <p id="trivia-result"></p>
-      <button id="trivia-next">Siguiente Pregunta</button>
-      <button id="reset-trivia" class="reset-btn">Nuevo Juego</button>
+    <!-- Botón para iniciar el quiz -->
+    <button id="quiz-start" class="reset-btn">Iniciar Quiz</button>
+    <div id="quiz-container" style="display:none;">
+      <p id="quiz-timer">Tiempo: 120s</p>
+      <p id="quiz-question">Cargando pregunta...</p>
+      <div id="quiz-buttons">
+        <button id="quiz-true">Verdad</button>
+        <button id="quiz-false">Mentira</button>
+      </div>
+      <p id="quiz-feedback"></p>
+      <p id="quiz-score"></p>
     </div>
+    <button id="quiz-restart" class="reset-btn">Nuevo Quiz</button>
   </section>
 
   <!-- Sección: Crack the Code -->
@@ -261,25 +267,14 @@
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- NUEVA SECCIÓN: Escape del Laberinto -->
-  <section id="labyrinth" class="labyrinth flicker animate-on-scroll">
-    <h2>Escape del Laberinto</h2>
-    <canvas id="labyrinth-canvas"></canvas>
-    <p id="labyrinth-message"></p>
-  </section>
-
-  <!-- NUEVA SECCIÓN: Quiz de Curiosidades -->
-  <section id="quiz" class="quiz flicker animate-on-scroll">
-    <h2>Quiz: Curiosidades de la AI y Tecnología Futurista</h2>
-    <p id="quiz-timer">Tiempo: 120s</p>
-    <p id="quiz-question">Cargando pregunta...</p>
-    <div id="quiz-buttons">
-      <button id="quiz-true">Verdad</button>
-      <button id="quiz-false">Mentira</button>
+  <!-- NUEVA SECCIÓN: Píldora Roja o Azul (Juego estilo Matrix) -->
+  <section id="pill-game" class="pill-game flicker animate-on-scroll">
+    <h2>Elige tu Destino: Píldora Roja o Azul</h2>
+    <div class="pill-buttons">
+      <button id="red-pill" class="pill red-pill">Píldora Roja</button>
+      <button id="blue-pill" class="pill blue-pill">Píldora Azul</button>
     </div>
-    <p id="quiz-feedback"></p>
-    <p id="quiz-score"></p>
-    <button id="quiz-restart" class="reset-btn">Nuevo Quiz</button>
+    <p id="pill-message"></p>
   </section>
 
   <script src="script.js"></script>
