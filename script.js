@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -222,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Trivia IA (variedad ampliada)
+   * 8. Trivia IA (variedad ampliada y reinicio con shuffle)
    *******************************************/
   const triviaQuestions = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
@@ -236,6 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
     { question: "¿Qué significa 'debug'?", answers: ["Depurar", "Codificar", "Optimizar"], correct: 0 },
     { question: "¿Qué es inteligencia artificial?", answers: ["Imitación de funciones cognitivas", "Un programa de ordenador", "Una base de datos"], correct: 0 }
   ];
+  // Función para hacer shuffle de las preguntas
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  let shuffledTrivia = shuffle([...triviaQuestions]);
   let triviaIndex = 0;
   let triviaScore = 0;
   const triviaQuestionElem = document.getElementById("trivia-question");
@@ -243,8 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const triviaResultElem = document.getElementById("trivia-result");
   const triviaNextBtn = document.getElementById("trivia-next");
   function mostrarPreguntaTrivia() {
-    if (triviaIndex >= triviaQuestions.length) return;
-    const q = triviaQuestions[triviaIndex];
+    if (triviaIndex >= shuffledTrivia.length) return;
+    const q = shuffledTrivia[triviaIndex];
     if (triviaQuestionElem) triviaQuestionElem.textContent = q.question;
     if (triviaAnswersElem) triviaAnswersElem.innerHTML = "";
     q.answers.forEach((ans, i) => {
@@ -269,11 +279,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (triviaNextBtn) {
     triviaNextBtn.addEventListener("click", () => {
       triviaIndex++;
-      if (triviaIndex < triviaQuestions.length) {
+      if (triviaIndex < shuffledTrivia.length) {
         mostrarPreguntaTrivia();
       } else {
         if (triviaQuestionElem) triviaQuestionElem.textContent = "¡Completado!";
-        if (triviaAnswersElem) triviaAnswersElem.innerHTML = `Puntuación: ${triviaScore}/${triviaQuestions.length}`;
+        if (triviaAnswersElem) triviaAnswersElem.innerHTML = `Puntuación: ${triviaScore}/${shuffledTrivia.length}`;
         if (triviaResultElem) triviaResultElem.textContent = "";
         triviaNextBtn.disabled = true;
       }
@@ -281,6 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarPreguntaTrivia();
   }
   function resetTrivia() {
+    shuffledTrivia = shuffle([...triviaQuestions]);
     triviaIndex = 0;
     triviaScore = 0;
     triviaNextBtn.disabled = false;
@@ -403,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 10. Memory AI Cards
+   * 10. Memory AI Cards (en grid)
    *******************************************/
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
