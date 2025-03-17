@@ -5,16 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI FUTURO</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- CDN de Chart.js para el Dashboard Interactivo -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Botón flotante para WhatsApp -->
-  <a href="https://wa.me/34658237988" target="_blank" class="whatsapp-float">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-  </a>
-
-  <!-- Canvas para efecto de partículas -->
+  <!-- Canvas para efecto de partículas en el fondo -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- Barra Matrix -->
@@ -172,7 +165,7 @@
   </section>
 
   <!-- Sección: Simulador de Futuro Personalizado -->
-  <section id="custom-future" class="custom-future flicker holo-effect">
+  <section id="custom-future" class="custom-future flicker">
     <h2>Simulador de Futuro Personalizado</h2>
     <p>Selecciona tus parámetros para ver una proyección de tu futuro:</p>
     <label for="automation">Nivel de Automatización:</label>
@@ -194,12 +187,6 @@
     <p>Haz clic en el botón para actualizar las proyecciones:</p>
     <button id="update-projections" class="reset-btn">Actualizar Proyecciones</button>
     <div id="projections-output"></div>
-  </section>
-
-  <!-- Sección: Dashboard Interactivo (Chart.js) -->
-  <section id="interactive-dashboard" class="interactive-dashboard flicker">
-    <h2>Dashboard Interactivo</h2>
-    <canvas id="dashboardChart"></canvas>
   </section>
 
   <!-- Sección: Desafío: Adivina la Palabra -->
