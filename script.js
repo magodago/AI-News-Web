@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const particles = [];
     const numParticles = 100;
-    const maxDistance = 100; // Distancia máxima para conectar partículas
+    const maxDistance = 100;
 
     for (let i = 0; i < numParticles; i++) {
       particles.push({
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
       particles.forEach(p => {
         p.x += Math.cos(p.direction) * p.speed;
         p.y += Math.sin(p.direction) * p.speed;
@@ -36,13 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
-        
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = "#0f0";
         ctx.fill();
       });
-
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -59,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-      
       requestAnimationFrame(updateParticles);
     }
     updateParticles();
@@ -678,88 +674,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     15. Escape del Laberinto
+     15. Escape del Laberinto -> Sustituido por Píldora Roja o Azul
   --------------------------- */
-  function iniciarLabyrinth() {
-    const canvas = document.getElementById("labyrinth-canvas");
-    const ctx = canvas.getContext("2d");
-    const cellSize = 40;
-    // Definición simple del laberinto: 0 = libre, 1 = pared.
-    const maze = [
-      [1,1,1,1,1,1,1,1,1,1],
-      [1,0,0,0,1,0,0,0,0,1],
-      [1,0,1,0,1,0,1,1,0,1],
-      [1,0,1,0,0,0,0,1,0,1],
-      [1,0,1,1,1,1,0,1,0,1],
-      [1,0,0,0,0,1,0,1,0,1],
-      [1,1,1,1,0,1,0,1,0,1],
-      [1,0,0,1,0,0,0,0,0,1],
-      [1,0,1,1,1,1,1,0,0,1],
-      [1,1,1,1,1,1,1,1,1,1]
-    ];
-    // Posición inicial del jugador y meta.
-    let player = { x: 1, y: 1 };
-    const exit = { x: 8, y: 8 };
-    canvas.width = maze[0].length * cellSize;
-    canvas.height = maze.length * cellSize;
-
-    function drawMaze() {
-      for (let row = 0; row < maze.length; row++) {
-        for (let col = 0; col < maze[0].length; col++) {
-          if (maze[row][col] === 1) {
-            ctx.fillStyle = "#0f0";
-          } else {
-            ctx.fillStyle = "#000";
-          }
-          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
-        }
-      }
-      // Dibujar salida
-      ctx.fillStyle = "rgba(0,255,0,0.3)";
-      ctx.fillRect(exit.x * cellSize, exit.y * cellSize, cellSize, cellSize);
-    }
-    function drawPlayer() {
-      ctx.fillStyle = "#0f0";
-      ctx.fillRect(player.x * cellSize + 5, player.y * cellSize + 5, cellSize - 10, cellSize - 10);
-    }
-    function drawLabyrinth() {
-      drawMaze();
-      drawPlayer();
-    }
-    drawLabyrinth();
-    function movePlayer(dx, dy) {
-      const newX = player.x + dx;
-      const newY = player.y + dy;
-      if (maze[newY] && maze[newY][newX] === 0) {
-        player.x = newX;
-        player.y = newY;
-        drawLabyrinth();
-        if (player.x === exit.x && player.y === exit.y) {
-          document.getElementById("labyrinth-message").textContent = "¡Felicidades, escapaste del laberinto!";
-        }
-      }
-    }
-    document.addEventListener("keydown", (e) => {
-      switch(e.key) {
-        case "ArrowUp":
-          movePlayer(0, -1);
-          break;
-        case "ArrowDown":
-          movePlayer(0, 1);
-          break;
-        case "ArrowLeft":
-          movePlayer(-1, 0);
-          break;
-        case "ArrowRight":
-          movePlayer(1, 0);
-          break;
-      }
+  const redPillBtn = document.getElementById("red-pill");
+  const bluePillBtn = document.getElementById("blue-pill");
+  const pillMessageElem = document.getElementById("pill-message");
+  if (redPillBtn) {
+    redPillBtn.addEventListener("click", () => {
+      pillMessageElem.textContent = "Has elegido la Píldora Roja. Bienvenido al mundo real.";
     });
   }
-  iniciarLabyrinth();
+  if (bluePillBtn) {
+    bluePillBtn.addEventListener("click", () => {
+      pillMessageElem.textContent = "Has elegido la Píldora Azul. Continúas en la ilusión.";
+    });
+  }
 
   /* ---------------------------
-     16. Quiz de Curiosidades (20 preguntas, verdad/mentira, 2 min)
+     16. Quiz de Curiosidades (20 preguntas, Verdadero/Mentira, 2 min)
   --------------------------- */
   const quizQuestions = [
     { question: "La inteligencia artificial puede aprender por sí sola. (Verdad)", answer: true },
@@ -787,13 +719,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let quizScore = 0;
   let quizTime = 120; // 2 minutos
   let quizTimerInterval;
-  const quizQuestionElem = document.getElementById("quiz-question");
   const quizTimerElem = document.getElementById("quiz-timer");
+  const quizQuestionElem = document.getElementById("quiz-question");
   const quizFeedbackElem = document.getElementById("quiz-feedback");
   const quizScoreElem = document.getElementById("quiz-score");
   const quizTrueBtn = document.getElementById("quiz-true");
   const quizFalseBtn = document.getElementById("quiz-false");
-  const quizRestartBtn = document.getElementById("quiz-restart");
+  const quizStartBtn = document.getElementById("quiz-start");
+  const quizContainer = document.getElementById("quiz-container");
 
   function mostrarPreguntaQuiz() {
     if (quizIndex < quizQuestions.length) {
@@ -813,7 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quizTrueBtn.disabled = true;
     quizFalseBtn.disabled = true;
   }
-  function iniciarTemporizador() {
+  function iniciarTemporizadorQuiz() {
     quizTime = 120;
     quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
     quizTimerInterval = setInterval(() => {
@@ -836,17 +769,22 @@ document.addEventListener("DOMContentLoaded", () => {
     quizIndex++;
     mostrarPreguntaQuiz();
   });
+  quizStartBtn.addEventListener("click", () => {
+    quizStartBtn.style.display = "none";
+    quizContainer.style.display = "block";
+    iniciarTemporizadorQuiz();
+    mostrarPreguntaQuiz();
+  });
+  const quizRestartBtn = document.getElementById("quiz-restart");
   quizRestartBtn.addEventListener("click", () => {
     quizIndex = 0;
     quizScore = 0;
     quizScoreElem.textContent = `Puntaje: ${quizScore}`;
     quizTrueBtn.disabled = false;
     quizFalseBtn.disabled = false;
-    iniciarTemporizador();
+    iniciarTemporizadorQuiz();
     mostrarPreguntaQuiz();
   });
-  iniciarTemporizador();
-  mostrarPreguntaQuiz();
 
   /* ---------------------------
      16. Efecto Bola Resplandeciente (Robot Volador)
@@ -859,7 +797,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function moverBola() {
     ballX += ballVX;
     ballY += ballVY;
-    // Rebotar en los bordes
     if (ballX <= 0 || ballX >= window.innerWidth - 40) ballVX *= -1;
     if (ballY <= 0 || ballY >= window.innerHeight - 40) ballVY *= -1;
     glowingBall.style.left = ballX + "px";
