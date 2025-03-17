@@ -19,7 +19,7 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista: ítem raíz "Juegos" */
+/* Menú futurista: raíz "Juegos" */
 #futuristic-menu {
   position: fixed;
   top: 0;
@@ -83,7 +83,7 @@ html, body {
   height: 5px;
 }
 
-/* Efecto Flicker para cajas */
+/* Efecto Flicker para contenedores */
 .flicker {
   animation: flicker 2s infinite alternate;
 }
@@ -93,7 +93,7 @@ html, body {
   100% { box-shadow: 0 0 5px #0f0; }
 }
 
-/* Canvas de partículas de fondo */
+/* Canvas de partículas */
 #particles-canvas {
   position: fixed;
   top: 0;
@@ -317,6 +317,10 @@ input[type="text"] {
   justify-content: center;
   margin: 1px;
   cursor: pointer;
+}
+.wordsearch-cell.highlighted {
+  background: #0f0;
+  color: #000;
 }
 #wordsearch-words {
   margin-top: 10px;
