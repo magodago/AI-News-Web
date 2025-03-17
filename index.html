@@ -7,21 +7,26 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Menú futurista fijo -->
+  <!-- Menú futurista con dropdown -->
   <nav id="futuristic-menu">
     <ul>
-      <li><a href="#word-challenge">Adivina la Palabra</a></li>
-      <li><a href="#trivia-ia">Trivia IA</a></li>
-      <li><a href="#crack-the-code">Crack the Code</a></li>
-      <li><a href="#memory-game">Memory AI Cards</a></li>
-      <li><a href="#word-search">Sopa de Letras AI</a></li>
+      <li class="dropdown">
+        <a href="#">Juegos</a>
+        <ul class="dropdown-content">
+          <li><a href="#word-challenge">Adivina la Palabra</a></li>
+          <li><a href="#trivia-ia">Trivia IA</a></li>
+          <li><a href="#crack-the-code">Crack the Code</a></li>
+          <li><a href="#memory-game">Memory AI Cards</a></li>
+          <li><a href="#word-search">Sopa de Letras AI</a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
 
   <!-- Espacio para que el contenido no quede oculto por el menú fijo -->
   <div class="menu-spacer"></div>
 
-  <!-- Canvas de partículas para el efecto de fondo -->
+  <!-- Canvas para el efecto de partículas en el fondo -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- Barra Matrix -->
