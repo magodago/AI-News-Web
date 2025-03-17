@@ -296,8 +296,15 @@ input[type="range"]:focus {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  display: inline-block;
-  width: 45%;
+  /* Tamaño fijo para que todas sean iguales */
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: auto;
 }
 .trends-desc {
   margin-top: 10px;
@@ -317,7 +324,7 @@ input[type="range"]:focus {
   width: 80%;
   margin: 5px 0;
 }
-/* Se actualiza el color del texto a verde en lugar de blanco */
+/* Color de texto verde para el simulador */
 #future-output {
   margin-top: 15px;
   font-size: 1.2rem;
