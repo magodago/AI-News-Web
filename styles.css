@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones: borde, fondo semitransparente y padding */
+/* Secciones: borde, fondo semitransparente, padding */
 section {
   margin: 20px auto;
   width: 90%;
@@ -356,17 +356,8 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Sección: Juego: Adivina la Frase */
-.phrase-guess {
-  text-align: center;
-}
-#phrase-display {
-  font-size: 1.8rem;
-  letter-spacing: 5px;
-  margin: 10px 0;
-}
+/* Holographic effect para secciones (por ejemplo, en el simulador) */
 .holo-effect {
-  /* Efecto holográfico simple con transform y transición */
   perspective: 800px;
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
