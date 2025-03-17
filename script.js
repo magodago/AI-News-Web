@@ -28,11 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0f0"; // partículas en verde neón
+      ctx.fillStyle = "#0f0"; // Verde neón
       particles.forEach(p => {
         p.x += Math.cos(p.direction) * p.speed;
         p.y += Math.sin(p.direction) * p.speed;
-        // envoltura de los bordes
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
