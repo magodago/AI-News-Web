@@ -1,21 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /*******************************************
-   * 1. Carga de la fuente Orbitron
-   *******************************************/
+  // 1. Carga de la fuente Orbitron
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
   linkOrbitron.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap";
   document.head.appendChild(linkOrbitron);
 
-  /*******************************************
-   * 2. Glitch en el Título
-   *******************************************/
+  // 2. Glitch en el Título
   const title = document.querySelector(".glitch");
   setInterval(() => { if (title) title.classList.toggle("glitch-active"); }, 2000);
 
-  /*******************************************
-   * 3. Barra Matrix
-   *******************************************/
+  // 3. Barra Matrix
   function iniciarMatrix() {
     const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
@@ -52,9 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   iniciarMatrix();
 
-  /*******************************************
-   * 4. Cursor Futurista
-   *******************************************/
+  // 4. Cursor Futurista
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
@@ -62,9 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  /*******************************************
-   * 5. Typing: Follow the white rabbit...
-   *******************************************/
+  // 5. Typing: Follow the white rabbit...
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
   let idx = 0;
@@ -85,9 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 100);
 
-  /*******************************************
-   * 6. Desafío: Adivina la Palabra
-   *******************************************/
+  // 6. Desafío: Adivina la Palabra
   const palabrasCurso = [
     { word: "robot", hint: "Máquina programada para tareas humanas." },
     { word: "red", hint: "Conjunto de nodos interconectados." },
@@ -133,9 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /*******************************************
-   * 7. Trivia IA
-   *******************************************/
+  // 7. Trivia IA
   const triviaPool = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
     { question: "¿Cuál es la principal función del machine learning?", answers: ["Aprender de datos", "Crear algoritmos", "Programar robots"], correct: 0 },
@@ -195,9 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarPreguntaTrivia();
   }
 
-  /*******************************************
-   * 8. Crack the Code
-   *******************************************/
+  // 8. Crack the Code
   const symbolPool = "!@#$%^&*A0BCDEFGH";
   const codeSymbols = symbolPool.split("");
   const codeLength = 4;
@@ -270,9 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /*******************************************
-   * 9. Memory AI Cards
-   *******************************************/
+  // 9. Memory AI Cards
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
   const cardPool = ["🤖", "⚙️", "💻", "🔮", "🎉", "🌐", "🚀", "🧠"];
@@ -326,9 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   if (memoryContainer) createMemoryBoard();
 
-  /*******************************************
-   * 10. Neon TicTacToe
-   *******************************************/
+  // 10. Neon TicTacToe
   const tictactoeContainer = document.getElementById("tictactoe-container");
   const tictactoeMessage = document.getElementById("tictactoe-message");
   let board = ["", "", "", "", "", "", "", "", ""];
@@ -380,9 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   createTicTacToe();
 
-  /*******************************************
-   * 11. Sopa de Letras AI
-   *******************************************/
+  // 11. Sopa de Letras AI
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
   const wsPool = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "INTELIGENCIA", "SISTEMA", "APRENDIZAJE", "CÓDIGO", "MÁQUINA"];
@@ -448,9 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
 
-  /*******************************************
-   * 12. Juego Futurista: Carrera Espacial
-   *******************************************/
+  // 12. Juego Futurista: Carrera Espacial
   const runnerCanvas = document.getElementById("space-runner-canvas");
   const runnerCtx = runnerCanvas.getContext("2d");
   let spaceship = { x: runnerCanvas.width / 2 - 15, y: runnerCanvas.height - 40, width: 30, height: 30 };
@@ -474,7 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
       runnerCtx.fillStyle = "red";
       runnerCtx.fillRect(ob.x, ob.y, ob.width, ob.height);
     });
-    // Dibuja la puntuación
+    // Muestra la puntuación
     runnerCtx.fillStyle = "#0f0";
     runnerCtx.font = "16px Orbitron";
     runnerCtx.fillText("Puntuación: " + runnerScore, 10, 20);
@@ -528,9 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /*******************************************
-   * 13. Noticias (API Apitube con indicador solo si es de la API)
-   *******************************************/
+  // 13. Noticias (API Apitube, indicador solo si proviene de la API)
   const fallbackNews = [
     { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
     { title: "Google responde con Bard", text: "El gigante lanza su chatbot en versión beta para competir en IA." },
@@ -575,9 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadNews();
   setInterval(loadNews, 300000);
 
-  /*******************************************
-   * 14. Widgets Futuristas
-   *******************************************/
+  // 14. Widgets Futuristas
   // 14.1 Citas IA
   const quotes = [
     "La IA es la nueva electricidad.",
@@ -690,9 +662,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   mostrarPaisesInversion();
 
-  /*******************************************
-   * 15. Juego Futurista: Carrera Espacial
-   *******************************************/
+  // 15. Juego Futurista: Carrera Espacial
   const runnerCanvas = document.getElementById("space-runner-canvas");
   const runnerCtx = runnerCanvas.getContext("2d");
   let spaceship = { x: runnerCanvas.width / 2 - 15, y: runnerCanvas.height - 40, width: 30, height: 30 };
@@ -770,9 +740,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /*******************************************
-   * 16. Noticias (API Apitube, indicador solo si proviene de la API)
-   *******************************************/
+  // 16. Noticias (API Apitube, indicador solo si proviene de la API)
   const fallbackNews = [
     { title: "Última hora: ChatGPT-4 revoluciona la IA", text: "OpenAI lanza GPT-4 con capacidades multimodales que sorprenden al mundo." },
     { title: "Google responde con Bard", text: "El gigante lanza su chatbot en versión beta para competir en IA." },
@@ -817,9 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadNews();
   setInterval(loadNews, 300000);
 
-  /*******************************************
-   * 17. Widgets Futuristas
-   *******************************************/
+  // 17. Widgets Futuristas
   // 17.1 Citas IA
   const quotes = [
     "La IA es la nueva electricidad.",
@@ -932,8 +898,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   mostrarPaisesInversion();
 
-  /*******************************************
-   * 18. Widgets y Contacto
-   *******************************************/
-  // El enlace de contacto parpadea (definido en CSS)
+  // 18. Widgets y Contacto (el enlace parpadea gracias a la clase "blink" definida en CSS)
 });
