@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones (con borde, fondo semitransparente y padding) */
+/* Secciones: borde, fondo semitransparente, padding */
 section {
   margin: 20px auto;
   width: 90%;
@@ -293,6 +293,27 @@ input[type="text"] {
   margin-top: 10px;
   font-style: italic;
   font-size: 0.9rem;
+}
+
+/* Sección: Simulador de Futuro Personalizado */
+.custom-future {
+  text-align: center;
+}
+.custom-future label {
+  display: block;
+  margin-top: 10px;
+}
+.custom-future input[type="range"] {
+  width: 80%;
+  margin: 5px 0;
+}
+#future-output {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* Media Query para Sopa de Letras en móvil */
