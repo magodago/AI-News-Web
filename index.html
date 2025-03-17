@@ -26,7 +26,7 @@
   </header>
 
   <!-- Sección: Explorador de Futuros -->
-  <section id="timeline" class="timeline flicker">
+  <section id="timeline" class="timeline flicker animate-on-scroll">
     <h2>Explorador de Futuros</h2>
     <div id="timeline-container">
       <details>
@@ -92,7 +92,7 @@
   </section>
 
   <!-- Sección: Simulador de Decisiones Éticas en IA -->
-  <section id="ethical-simulator" class="ethical-simulator flicker">
+  <section id="ethical-simulator" class="ethical-simulator flicker animate-on-scroll">
     <h2>Simulador de Decisiones Éticas en IA</h2>
     <div id="ethical-container">
       <details>
@@ -142,7 +142,7 @@
   </section>
 
   <!-- Sección: Dashboard de Tendencias -->
-  <section id="trends" class="trends flicker">
+  <section id="trends" class="trends flicker animate-on-scroll">
     <h2>Dashboard de Tendencias y Datos en Tiempo Real</h2>
     <div id="trends-container">
       <div class="trend-card">
@@ -170,7 +170,7 @@
   </section>
 
   <!-- Sección: Simulador de Futuro Personalizado -->
-  <section id="custom-future" class="custom-future flicker">
+  <section id="custom-future" class="custom-future flicker animate-on-scroll">
     <h2>Simulador de Futuro Personalizado</h2>
     <p>Selecciona tus parámetros para ver una proyección de tu futuro:</p>
     <label for="automation">Nivel de Automatización:</label>
@@ -187,7 +187,7 @@
   </section>
 
   <!-- Sección: Panel de Proyecciones Interactivas -->
-  <section id="interactive-projections" class="interactive-projections flicker">
+  <section id="interactive-projections" class="interactive-projections flicker animate-on-scroll">
     <h2>Panel de Proyecciones Interactivas</h2>
     <p>Haz clic en el botón para actualizar las proyecciones:</p>
     <button id="update-projections" class="reset-btn">Actualizar Proyecciones</button>
@@ -195,7 +195,7 @@
   </section>
 
   <!-- Sección: Desafío: Adivina la Palabra -->
-  <section id="word-challenge" class="word-challenge flicker">
+  <section id="word-challenge" class="word-challenge flicker animate-on-scroll">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
     <div id="word-display">_ _ _</div>
@@ -207,7 +207,7 @@
   </section>
 
   <!-- Sección: Trivia IA -->
-  <section id="trivia-ia" class="trivia-ia flicker">
+  <section id="trivia-ia" class="trivia-ia flicker animate-on-scroll">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
       <p id="trivia-question">Cargando pregunta...</p>
@@ -219,7 +219,7 @@
   </section>
 
   <!-- Sección: Crack the Code -->
-  <section id="crack-the-code" class="crack-the-code flicker">
+  <section id="crack-the-code" class="crack-the-code flicker animate-on-scroll">
     <h2>Crack the Code</h2>
     <div id="code-container">
       <p id="code-instructions">
@@ -241,7 +241,7 @@
   </section>
 
   <!-- Sección: Memory AI Cards -->
-  <section id="memory-game" class="memory-game flicker">
+  <section id="memory-game" class="memory-game flicker animate-on-scroll">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
     <button id="reset-memory" class="reset-btn">Nuevo Juego</button>
@@ -249,7 +249,7 @@
   </section>
 
   <!-- Sección: Sopa de Letras AI -->
-  <section id="word-search" class="word-search flicker">
+  <section id="word-search" class="word-search flicker animate-on-scroll">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
       <!-- El script generará un grid de 10x10 -->
@@ -258,8 +258,36 @@
     <p id="wordsearch-words"></p>
   </section>
 
+  <!-- NUEVA SECCIÓN: Galería de Innovaciones Futuristas -->
+  <section id="gallery" class="gallery flicker animate-on-scroll">
+    <h2>Galería de Innovaciones Futuristas</h2>
+    <div class="gallery-container">
+      <img src="https://source.unsplash.com/300x200/?ai,robot" alt="Innovación 1" class="gallery-img">
+      <img src="https://source.unsplash.com/300x200/?technology,robot" alt="Innovación 2" class="gallery-img">
+      <img src="https://source.unsplash.com/300x200/?futuristic,city" alt="Innovación 3" class="gallery-img">
+      <img src="https://source.unsplash.com/300x200/?cyberpunk,ai" alt="Innovación 4" class="gallery-img">
+      <img src="https://source.unsplash.com/300x200/?robot,humanoid" alt="Innovación 5" class="gallery-img">
+    </div>
+  </section>
+
+  <!-- NUEVA SECCIÓN: Centro de Innovación y Prototipos -->
+  <section id="innovation-center" class="innovation-center flicker animate-on-scroll parallax">
+    <h2>Centro de Innovación y Prototipos</h2>
+    <p>Descubre los últimos prototipos y esquemas de las tecnologías del futuro. Explora simulaciones interactivas y conceptos disruptivos que están cambiando el mundo.</p>
+    <div class="prototypes">
+      <div class="prototype">
+        <img src="https://source.unsplash.com/300x200/?prototype,ai" alt="Prototipo 1">
+        <p>Prototipo de Asistente Virtual</p>
+      </div>
+      <div class="prototype">
+        <img src="https://source.unsplash.com/300x200/?prototype,robot" alt="Prototipo 2">
+        <p>Robot Humanoide Avanzado</p>
+      </div>
+    </div>
+  </section>
+
   <!-- NUEVA SECCIÓN: TOP 5 Series y Películas -->
-  <section id="top-media" class="top-media flicker">
+  <section id="top-media" class="top-media flicker animate-on-scroll">
     <h2>TOP 5 Series y Películas de IA y Robot Humanoides</h2>
     <div class="media-container">
       <div class="media-section">
@@ -285,6 +313,7 @@
     </div>
   </section>
 
+  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
