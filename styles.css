@@ -355,6 +355,23 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
+/* Sección: Simón Futurista (nuevo juego) */
+/* Agregamos efecto parallax: fondo fijo en la sección */
+.simon-game {
+  background: url('https://placehold.co/600x400/000/0f0?text=Fondo+Parallax') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 20px;
+  color: #0f0;
+}
+#simon-sequence, #simon-inputs {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 2rem;
+}
+
 /* Media Query para Sopa de Letras en móvil */
 @media (max-width: 500px) {
   .wordsearch-cell {
