@@ -342,9 +342,6 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Botón flotante para WhatsApp (versión anterior sin esta función) */
-/* Si no deseas incluirlo, lo he removido de esta versión */
-
 /* Efecto holográfico simple */
 .holo-effect {
   perspective: 800px;
