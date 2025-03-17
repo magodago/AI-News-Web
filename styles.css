@@ -54,7 +54,7 @@ html, body {
   text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
 }
 
-/* Dropdown centrado */
+/* Dropdown: oculto por defecto */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -63,8 +63,8 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10001;
-  padding: 0;
   margin-top: 5px;
+  padding: 0;
 }
 .dropdown-content li {
   display: block;
@@ -73,13 +73,13 @@ html, body {
 .dropdown-content li a {
   padding: 10px;
 }
-.dropdown:hover .dropdown-content {
+.dropdown-content.show {
   display: block;
 }
 
-/* Spacer para el menú (reducido) */
+/* Spacer para el menú (muy reducido) */
 .menu-spacer {
-  height: 20px;
+  height: 10px;
 }
 
 /* Canvas de partículas de fondo */
@@ -105,7 +105,7 @@ html, body {
 /* Encabezado */
 header {
   text-align: center;
-  margin: 10px auto; /* Espacio reducido */
+  margin: 5px auto; /* Espacio reducido */
 }
 .glitch {
   font-size: 3rem;
@@ -194,7 +194,7 @@ input[type="text"] {
   cursor: pointer;
 }
 
-/* Crack the Code (con emoticonos futuristas) */
+/* Crack the Code (emoticonos futuristas) */
 #code-container {
   border: 1px solid #0f0;
   padding: 20px;
@@ -209,7 +209,6 @@ input[type="text"] {
   justify-content: center;
   margin-bottom: 10px;
 }
-/* Usamos emoticonos futuristas */
 .symbol-btn {
   background: #111;
   border: 2px solid #0f0;
@@ -230,7 +229,6 @@ input[type="text"] {
   gap: 5px;
   margin: 10px 0;
 }
-/* Aumentamos el tamaño de las cajas para que se vean enteras */
 .code-char {
   width: 50px;
   height: 50px;
