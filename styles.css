@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones: borde, fondo semitransparente, padding */
+/* Estilos para las secciones */
 section {
   margin: 20px auto;
   width: 90%;
@@ -127,7 +127,7 @@ input[type="text"] {
   margin: 5px;
 }
 
-/* Personalización de sliders (barras verdes) */
+/* Sliders personalizados (barras verdes) */
 input[type="range"] {
   -webkit-appearance: none;
   width: 80%;
@@ -150,7 +150,7 @@ input[type="range"]:focus {
   outline: none;
 }
 
-/* Sección: Adivina la Palabra */
+/* Sección: Desafío: Adivina la Palabra */
 #word-display {
   font-size: 1.8rem;
   letter-spacing: 8px;
@@ -211,7 +211,7 @@ input[type="range"]:focus {
   color: #0f0;
 }
 
-/* Sección: Memory AI Cards (grid) */
+/* Sección: Memory AI Cards */
 #memory-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -351,16 +351,6 @@ input[type="range"]:focus {
   max-width: 100%;
 }
 
-/* Efecto holográfico para secciones */
-.holo-effect {
-  perspective: 800px;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-.holo-effect:hover {
-  transform: rotateY(10deg) rotateX(5deg);
-  opacity: 0.9;
-}
-
 /* Botón flotante para WhatsApp */
 .whatsapp-float {
   position: fixed;
@@ -379,6 +369,16 @@ input[type="range"]:focus {
 .whatsapp-float img {
   width: 35px;
   height: 35px;
+}
+
+/* Efecto holográfico para secciones */
+.holo-effect {
+  perspective: 800px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.holo-effect:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+  opacity: 0.9;
 }
 
 /* Media Query para Sopa de Letras en móvil */
