@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /*******************************************
-   * 1. Efecto de partículas en el fondo
-   *******************************************/
+  // 1. Efecto de partículas en el fondo
   function iniciarParticles() {
     const canvas = document.getElementById("particles-canvas");
     const ctx = canvas.getContext("2d");
@@ -42,25 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   iniciarParticles();
 
-  /*******************************************
-   * 2. Cargar fuente Orbitron
-   *******************************************/
+  // 2. Cargar fuente Orbitron
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
   linkOrbitron.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap";
   document.head.appendChild(linkOrbitron);
 
-  /*******************************************
-   * 3. Efecto Glitch en el Título
-   *******************************************/
+  // 3. Efecto Glitch en el Título
   const title = document.querySelector(".glitch");
   setInterval(() => {
     if (title) title.classList.toggle("glitch-active");
   }, 2000);
 
-  /*******************************************
-   * 4. Barra Matrix
-   *******************************************/
+  // 4. Barra Matrix
   function iniciarMatrix() {
     const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
@@ -99,9 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   iniciarMatrix();
 
-  /*******************************************
-   * 5. Cursor Futurista
-   *******************************************/
+  // 5. Cursor Futurista
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
@@ -109,9 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  /*******************************************
-   * 6. Texto "Follow the white rabbit..."
-   *******************************************/
+  // 6. Texto "Follow the white rabbit..."
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
   let idx = 0;
@@ -137,9 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   typingInterval = setInterval(typePhrase, 100);
 
-  /*******************************************
-   * 7. Desafío: Adivina la Palabra (10 intentos)
-   *******************************************/
+  // 7. Desafío: Adivina la Palabra (10 intentos)
   const challengeWords = [
     { word: "robot", hint: "Una máquina programada para realizar tareas." },
     { word: "computadora", hint: "Dispositivo electrónico para procesar información." },
@@ -164,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let randomIndex = Math.floor(Math.random() * challengeWords.length);
   let selectedChallenge = challengeWords[randomIndex];
-  const wordDisplay = document.getElementById("word-display");
+  const wordDisplayElem = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
   const attemptsElem = document.getElementById("attempts-remaining");
@@ -173,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let wordArray = Array.from(selectedChallenge.word).map(() => "_");
   let attempts = 10;
   if (hintElem) hintElem.textContent = "Pista: " + selectedChallenge.hint;
-  if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
+  if (wordDisplayElem) wordDisplayElem.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
   if (checkBtn) {
     checkBtn.addEventListener("click", () => {
@@ -189,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       if (!found) attempts--;
-      if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
+      if (wordDisplayElem) wordDisplayElem.textContent = wordArray.join(" ");
       if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
       if (!wordArray.includes("_")) {
         if (messageElem) messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedChallenge.word}`;
@@ -208,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     wordArray = Array.from(selectedChallenge.word).map(() => "_");
     attempts = 10;
     if (hintElem) hintElem.textContent = "Pista: " + selectedChallenge.hint;
-    if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
+    if (wordDisplayElem) wordDisplayElem.textContent = wordArray.join(" ");
     if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
     if (messageElem) messageElem.textContent = "";
     if (checkBtn) {
@@ -221,9 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetWordChallengeBtn.addEventListener("click", resetWordChallenge);
   }
 
-  /*******************************************
-   * 8. Trivia IA (shuffle y reinicio)
-   *******************************************/
+  // 8. Trivia IA (shuffle y reinicio)
   const triviaQuestions = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
     { question: "¿Cuál ciudad es puntera en IA?", answers: ["San Francisco", "El Cairo", "Lisboa"], correct: 0 },
@@ -300,9 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetTriviaBtn.addEventListener("click", resetTrivia);
   }
 
-  /*******************************************
-   * 9. Crack the Code (10 intentos)
-   *******************************************/
+  // 9. Crack the Code (10 intentos)
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
   let secretCode = [];
@@ -411,26 +393,24 @@ document.addEventListener("DOMContentLoaded", () => {
     resetCrackCodeBtn.addEventListener("click", resetCrackCode);
   }
 
-  /*******************************************
-   * 10. Memory AI Cards (grid)
-   *******************************************/
+  // 10. Memory AI Cards (grid)
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
   const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
   let flippedCards = [];
   let matchedPairs = 0;
-  function shuffleArray(arr) {
+  function shuffleArrayMem(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
   }
-  let shuffledSymbols = shuffleArray([...cardSymbols]);
+  let shuffledSymbols = shuffleArrayMem([...cardSymbols]);
   function createMemoryBoard() {
     if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
-    shuffledSymbols = shuffleArray([...cardSymbols]);
+    shuffledSymbols = shuffleArrayMem([...cardSymbols]);
     shuffledSymbols.forEach(sym => {
       const card = document.createElement("div");
       card.classList.add("card");
@@ -479,16 +459,14 @@ document.addEventListener("DOMContentLoaded", () => {
     resetMemoryBtn.addEventListener("click", resetMemoryGame);
   }
 
-  /*******************************************
-   * 11. Sopa de Letras AI
-   *******************************************/
+  // 11. Sopa de Letras AI
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
-  const rows = 10, cols = 10;
-  let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+  const wsRows = 10, wsCols = 10;
+  let grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
   function placeWordHorizontal(word, r, c) {
-    if (c + word.length > cols) return false;
+    if (c + word.length > wsCols) return false;
     for (let i = 0; i < word.length; i++) {
       if (grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
     }
@@ -498,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
   function placeWordVertical(word, r, c) {
-    if (r + word.length > rows) return false;
+    if (r + word.length > wsRows) return false;
     for (let i = 0; i < word.length; i++) {
       if (grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
     }
@@ -512,8 +490,8 @@ document.addEventListener("DOMContentLoaded", () => {
     while (attempts > 0) {
       attempts--;
       const orientation = Math.random() < 0.5 ? "H" : "V";
-      const rr = Math.floor(Math.random() * rows);
-      const cc = Math.floor(Math.random() * cols);
+      const rr = Math.floor(Math.random() * wsRows);
+      const cc = Math.floor(Math.random() * wsCols);
       if (orientation === "H") {
         if (placeWordHorizontal(word, rr, cc)) return true;
       } else {
@@ -524,51 +502,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   wsWords.forEach(w => insertWord(w));
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
+  for (let r = 0; r < wsRows; r++) {
+    for (let c = 0; c < wsCols; c++) {
       if (!grid[r][c]) {
         grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
       }
     }
   }
-  if (wordsearchContainer) {
-    wordsearchContainer.innerHTML = "";
-    for (let r = 0; r < rows; r++) {
-      const rowDiv = document.createElement("div");
-      rowDiv.classList.add("wordsearch-row");
-      for (let c = 0; c < cols; c++) {
-        const cellDiv = document.createElement("div");
-        cellDiv.classList.add("wordsearch-cell");
-        cellDiv.textContent = grid[r][c];
-        cellDiv.addEventListener("click", () => {
-          cellDiv.classList.toggle("highlighted");
-        });
-        rowDiv.appendChild(cellDiv);
-      }
-      wordsearchContainer.appendChild(rowDiv);
-    }
-  }
-  if (wordsearchWordsElem) {
-    // Se muestra el listado de palabras en orden aleatorio
-    const shuffledWsWords = shuffle([...wsWords]);
-    wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
-  }
-  function resetWordSearch() {
-    grid = Array.from({ length: rows }, () => Array(cols).fill(null));
-    wsWords.forEach(w => insertWord(w));
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        if (!grid[r][c]) {
-          grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
-        }
-      }
-    }
+  function renderWordSearch() {
     if (wordsearchContainer) {
       wordsearchContainer.innerHTML = "";
-      for (let r = 0; r < rows; r++) {
+      for (let r = 0; r < wsRows; r++) {
         const rowDiv = document.createElement("div");
         rowDiv.classList.add("wordsearch-row");
-        for (let c = 0; c < cols; c++) {
+        for (let c = 0; c < wsCols; c++) {
           const cellDiv = document.createElement("div");
           cellDiv.classList.add("wordsearch-cell");
           cellDiv.textContent = grid[r][c];
@@ -585,14 +532,25 @@ document.addEventListener("DOMContentLoaded", () => {
       wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
     }
   }
+  renderWordSearch();
+  function resetWordSearch() {
+    grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
+    wsWords.forEach(w => insertWord(w));
+    for (let r = 0; r < wsRows; r++) {
+      for (let c = 0; c < wsCols; c++) {
+        if (!grid[r][c]) {
+          grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+      }
+    }
+    renderWordSearch();
+  }
   const resetWordSearchBtn = document.getElementById("reset-wordsearch");
   if (resetWordSearchBtn) {
     resetWordSearchBtn.addEventListener("click", resetWordSearch);
   }
 
-  /*******************************************
-   * 12. Navegación suave de enlaces internos
-   *******************************************/
+  // 12. Navegación suave de enlaces internos
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
       e.preventDefault();
@@ -605,9 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /*******************************************
-   * 13. Simulador de Futuro Personalizado
-   *******************************************/
+  // 13. Simulador de Futuro Personalizado
   const automationSlider = document.getElementById("automation");
   const roboticsSlider = document.getElementById("robotics");
   const transportSlider = document.getElementById("transport");
@@ -637,160 +593,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const robotics = roboticsSlider.value;
       const transport = transportSlider.value;
       let simulation = "Proyección Futurista: ";
-      if (automation > 70) simulation += "La automatización domina la industria. ";
-      else if (automation > 40) simulation += "La automatización impulsa procesos, con intervención humana moderada. ";
-      else simulation += "La automatización es limitada, prevaleciendo el factor humano. ";
-      if (robotics > 70) simulation += "Robots humanoides conviven en hogares y oficinas. ";
-      else if (robotics > 40) simulation += "Se integran robots en tareas específicas. ";
-      else simulation += "La presencia de robots es escasa. ";
-      if (transport > 70) simulation += "Los coches autónomos son el estándar en transporte urbano. ";
-      else if (transport > 40) simulation += "Conviven vehículos autónomos con tradicionales. ";
-      else simulation += "El transporte autónomo aún está en fase experimental. ";
+      simulation += (automation > 70) ? "La automatización domina la industria. " :
+                    (automation > 40) ? "La automatización impulsa procesos, con intervención humana moderada. " :
+                    "La automatización es limitada, prevaleciendo el factor humano. ";
+      simulation += (robotics > 70) ? "Robots humanoides conviven en hogares y oficinas. " :
+                    (robotics > 40) ? "Se integran robots en tareas específicas. " :
+                    "La presencia de robots es escasa. ";
+      simulation += (transport > 70) ? "Los coches autónomos son el estándar en transporte urbano. " :
+                    (transport > 40) ? "Conviven vehículos autónomos con los tradicionales. " :
+                    "El transporte autónomo aún está en fase experimental. ";
       futureOutput.textContent = simulation;
     });
   }
 
-  /*******************************************
-   * 14. Panel de Proyecciones Interactivas
-   *******************************************/
+  // 14. Panel de Proyecciones Interactivas
   const updateProjectionsBtn = document.getElementById("update-projections");
   const projectionsOutput = document.getElementById("projections-output");
   const projectionsData = [
-    "Proyección 1: Se espera que la inversión en IA supere los 200 mil millones en 2025.",
-    "Proyección 2: La adopción de coches autónomos crecerá un 30% anual durante la próxima década.",
-    "Proyección 3: Robots humanoides podrían estar presentes en el 60% de las industrias en 2030.",
-    "Proyección 4: Las ciudades inteligentes integrarán IA en más del 80% de sus servicios en 2035.",
-    "Proyección 5: La computación cuántica y la IA fusionadas podrían revolucionar la investigación médica para 2040."
+    "Proyección 1: La inversión en IA podría superar los 200 mil millones en 2025.",
+    "Proyección 2: La adopción de coches autónomos crecerá un 30% anual en la próxima década.",
+    "Proyección 3: Robots humanoides podrían operar en el 60% de las industrias para 2030.",
+    "Proyección 4: Ciudades inteligentes integrarán IA en más del 80% de sus servicios para 2035.",
+    "Proyección 5: La fusión de computación cuántica e IA revolucionará la investigación médica para 2040."
   ];
   if (updateProjectionsBtn) {
     updateProjectionsBtn.addEventListener("click", () => {
-      const randomIndex = Math.floor(Math.random() * projectionsData.length);
-      projectionsOutput.textContent = projectionsData[randomIndex];
+      const randomIdx = Math.floor(Math.random() * projectionsData.length);
+      projectionsOutput.textContent = projectionsData[randomIdx];
     });
   }
-
-  /*******************************************
-   * 15. Sopa de Letras AI
-   *******************************************/
-  const wordsearchContainer = document.getElementById("wordsearch-container");
-  const wordsearchWordsElem = document.getElementById("wordsearch-words");
-  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
-  const rows = 10, cols = 10;
-  let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
-  function placeWordHorizontal(word, r, c) {
-    if (c + word.length > cols) return false;
-    for (let i = 0; i < word.length; i++) {
-      if (grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
-    }
-    for (let i = 0; i < word.length; i++) {
-      grid[r][c + i] = word[i];
-    }
-    return true;
-  }
-  function placeWordVertical(word, r, c) {
-    if (r + word.length > rows) return false;
-    for (let i = 0; i < word.length; i++) {
-      if (grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
-    }
-    for (let i = 0; i < word.length; i++) {
-      grid[r + i][c] = word[i];
-    }
-    return true;
-  }
-  function insertWord(word) {
-    let attempts = 100;
-    while (attempts > 0) {
-      attempts--;
-      const orientation = Math.random() < 0.5 ? "H" : "V";
-      const rr = Math.floor(Math.random() * rows);
-      const cc = Math.floor(Math.random() * cols);
-      if (orientation === "H") {
-        if (placeWordHorizontal(word, rr, cc)) return true;
-      } else {
-        if (placeWordVertical(word, rr, cc)) return true;
-      }
-    }
-    return false;
-  }
-  wsWords.forEach(w => insertWord(w));
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      if (!grid[r][c]) {
-        grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
-      }
-    }
-  }
-  if (wordsearchContainer) {
-    wordsearchContainer.innerHTML = "";
-    for (let r = 0; r < rows; r++) {
-      const rowDiv = document.createElement("div");
-      rowDiv.classList.add("wordsearch-row");
-      for (let c = 0; c < cols; c++) {
-        const cellDiv = document.createElement("div");
-        cellDiv.classList.add("wordsearch-cell");
-        cellDiv.textContent = grid[r][c];
-        cellDiv.addEventListener("click", () => {
-          cellDiv.classList.toggle("highlighted");
-        });
-        rowDiv.appendChild(cellDiv);
-      }
-      wordsearchContainer.appendChild(rowDiv);
-    }
-  }
-  if (wordsearchWordsElem) {
-    const shuffledWsWords = shuffle([...wsWords]);
-    wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
-  }
-  function resetWordSearch() {
-    grid = Array.from({ length: rows }, () => Array(cols).fill(null));
-    wsWords.forEach(w => insertWord(w));
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        if (!grid[r][c]) {
-          grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
-        }
-      }
-    }
-    if (wordsearchContainer) {
-      wordsearchContainer.innerHTML = "";
-      for (let r = 0; r < rows; r++) {
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("wordsearch-row");
-        for (let c = 0; c < cols; c++) {
-          const cellDiv = document.createElement("div");
-          cellDiv.classList.add("wordsearch-cell");
-          cellDiv.textContent = grid[r][c];
-          cellDiv.addEventListener("click", () => {
-            cellDiv.classList.toggle("highlighted");
-          });
-          rowDiv.appendChild(cellDiv);
-        }
-        wordsearchContainer.appendChild(rowDiv);
-      }
-    }
-    if (wordsearchWordsElem) {
-      const shuffledWsWords = shuffle([...wsWords]);
-      wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
-    }
-  }
-  const resetWordSearchBtn = document.getElementById("reset-wordsearch");
-  if (resetWordSearchBtn) {
-    resetWordSearchBtn.addEventListener("click", resetWordSearch);
-  }
-
-  /*******************************************
-   * 14. Navegación suave de enlaces internos
-   *******************************************/
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      if (targetId.startsWith("#")) {
-        document.querySelector(targetId).scrollIntoView({
-          behavior: "smooth"
-        });
-      }
-    });
-  });
 });
