@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -223,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 8. Trivia IA (variedad ampliada y reinicio con shuffle)
+   * 8. Trivia IA (shuffle y reinicio)
    *******************************************/
   const triviaQuestions = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
@@ -237,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { question: "¿Qué significa 'debug'?", answers: ["Depurar", "Codificar", "Optimizar"], correct: 0 },
     { question: "¿Qué es inteligencia artificial?", answers: ["Imitación de funciones cognitivas", "Un programa de ordenador", "Una base de datos"], correct: 0 }
   ];
-  // Función para hacer shuffle de las preguntas
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
