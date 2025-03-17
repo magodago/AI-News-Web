@@ -387,89 +387,33 @@ document.addEventListener("DOMContentLoaded", () => {
   if (memoryContainer) createMemoryBoard();
 
   /*******************************************
-   * 12. Noticias Reales con Autorefresco
+   * 12. Noticias Reales con API de Apitube
    *******************************************/
-  let usedIndices = [];
-  const allNews = [
-    {
-      title: "ChatGPT-4 revoluciona la IA generativa",
-      text: "OpenAI lanza GPT-4 con sorprendentes capacidades multimodales",
-      link: "https://www.nytimes.com/2023/03/14/technology/openai-gpt4.html"
-    },
-    {
-      title: "Google lanza Bard en respuesta a ChatGPT",
-      text: "El gigante de internet presenta su chatbot Bard en versión beta",
-      link: "https://www.bbc.com/news/technology-64672280"
-    },
-    {
-      title: "Robots humanoides avanzan en fábricas",
-      text: "Empresas de robótica muestran prototipos con IA avanzada",
-      link: "https://www.cnn.com/2023/02/13/tech/robotics-humanoid-ia"
-    },
-    {
-      title: "Meta anuncia nuevo supercomputador de IA",
-      text: "La compañía de Zuckerberg presenta potente clúster para entrenar IA",
-      link: "https://www.reuters.com/technology/meta-supercomputer-ai-2023"
-    },
-    {
-      title: "Microsoft integra ChatGPT en Bing",
-      text: "La búsqueda se vuelve conversacional con IA generativa integrada",
-      link: "https://www.theverge.com/2023/02/07/microsoft-bing-chatgpt-integration"
-    },
-    {
-      title: "IA en diagnósticos médicos se consolida",
-      text: "La FDA aprueba nuevos algoritmos para detección temprana de cáncer",
-      link: "https://www.wired.com/story/fda-approves-ai-cancer-detection"
-    },
-    {
-      title: "Tesla refuerza su sistema de auto-conducción",
-      text: "Nuevos chips con IA prometen mejorar la conducción autónoma",
-      link: "https://www.bloomberg.com/news/articles/2023/04/07/tesla-ai-autopilot-upgrade"
-    },
-    {
-      title: "DeepMind presenta AlphaCode",
-      text: "La IA que resuelve problemas de programación en competiciones",
-      link: "https://www.ft.com/content/5f9a63f6-7f0c-485e-b18c-8fc3e249fa77"
-    },
-    {
-      title: "IBM lanza herramientas de IA para empresas",
-      text: "Plataforma para automatización inteligente y análisis de big data",
-      link: "https://www.wsj.com/articles/ibm-unveils-new-ai-platform"
-    },
-    {
-      title: "Amazon apuesta por la IA en la nube",
-      text: "La empresa integra algoritmos de machine learning para clientes AWS",
-      link: "https://www.cnbc.com/2023/03/12/amazon-ai-ml-cloud-announcement"
-    }
-  ];
-
   function loadNews() {
     const newsContainer = document.getElementById("news-container");
     if (!newsContainer) return;
     newsContainer.innerHTML = "";
-
-    let available = allNews.map((_, i) => i).filter(i => !usedIndices.includes(i));
-    if (available.length < 6) {
-      usedIndices = [];
-      available = allNews.map((_, i) => i);
-    }
-    shuffleArray(available);
-    const chosen = available.slice(0, 6);
-    chosen.forEach(idx => usedIndices.push(idx));
-
-    chosen.forEach(idx => {
-      const item = allNews[idx];
-      const box = document.createElement("div");
-      box.classList.add("news-box");
-      box.innerHTML = `
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
-      `;
-      newsContainer.appendChild(box);
-    });
+    // Se obtiene la información de noticias usando tu API de Apitube
+    fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov")
+      .then(response => response.json())
+      .then(data => {
+        // Se asume que la API retorna un objeto con una propiedad "news" que es un arreglo de noticias
+        if (data.news && Array.isArray(data.news)) {
+          data.news.forEach(item => {
+            const box = document.createElement("div");
+            box.classList.add("news-box");
+            box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+            newsContainer.appendChild(box);
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching news:", error);
+      });
   }
   loadNews();
-  setInterval(loadNews, 300000);
+  // Actualizar cada hora (3600000 ms)
+  setInterval(loadNews, 3600000);
 
   /*******************************************
    * 13. Widgets Futuristas
