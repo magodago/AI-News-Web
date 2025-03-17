@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones */
+/* Secciones (con borde, fondo semitransparente y padding) */
 section {
   margin: 20px auto;
   width: 90%;
@@ -138,9 +138,6 @@ input[type="text"] {
 }
 
 /* Sección: Trivia IA */
-#trivia-container {
-  /* Hereda estilos de sección */
-}
 .trivia-option {
   margin: 5px 0;
   cursor: pointer;
@@ -191,7 +188,7 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* Sección: Memory AI Cards en grid */
+/* Sección: Memory AI Cards (grid) */
 #memory-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
