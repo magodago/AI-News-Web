@@ -11,7 +11,7 @@ html, body {
   font-family: "Orbitron", sans-serif;
   color: #0f0;
   overflow-x: hidden;
-  padding-top: 60px; /* Espacio para el menú fijo */
+  padding-top: 60px; /* Espacio para el menú fijo (si se llegase a agregar algo en el futuro) */
   animation: fadeIn 1s ease forwards;
   opacity: 0;
 }
@@ -19,70 +19,7 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista: raíz "Juegos" y "Explorador de Futuros" */
-#futuristic-menu {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 10000;
-  padding: 5px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-  text-align: center;
-}
-#futuristic-menu ul {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  display: inline-block;
-  position: relative;
-}
-#futuristic-menu li {
-  display: inline-block;
-  position: relative;
-  margin: 0 10px;
-}
-#futuristic-menu li a {
-  text-decoration: none;
-  color: #0f0;
-  font-size: 1rem;
-  padding: 8px 15px;
-  transition: all 0.3s ease;
-  display: block;
-}
-#futuristic-menu li a:hover {
-  color: #fff;
-  text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
-}
-
-/* Dropdown oculto por defecto */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: rgba(0,0,0,0.9);
-  min-width: 180px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001;
-  margin-top: 5px;
-  padding: 0;
-}
-.dropdown-content li {
-  display: block;
-  text-align: center;
-}
-.dropdown-content li a {
-  padding: 10px;
-  font-size: 0.9rem;
-}
-.dropdown-content.show {
-  display: block;
-}
-
-/* Espaciador mínimo */
-.menu-spacer {
-  height: 5px;
-}
+/* (Se eliminó el menú) */
 
 /* Efecto Flicker para contenedores */
 .flicker {
@@ -157,6 +94,11 @@ section {
   width: 90%;
   max-width: 600px;
   text-align: center;
+  padding: 10px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
 }
 
 /* Botones e inputs */
@@ -199,11 +141,7 @@ input[type="text"] {
 
 /* Trivia IA */
 #trivia-container {
-  border: 1px solid #0f0;
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
+  /* La sección ya tiene estilos en la regla general de secciones */
 }
 .trivia-option {
   margin: 5px 0;
@@ -211,13 +149,6 @@ input[type="text"] {
 }
 
 /* Crack the Code */
-#code-container {
-  border: 1px solid #0f0;
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
-}
 .symbol-list {
   display: flex;
   flex-wrap: wrap;
@@ -263,12 +194,6 @@ input[type="text"] {
 }
 
 /* Memory AI Cards */
-#memory-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
 .card {
   width: 80px;
   height: 80px;
@@ -295,17 +220,8 @@ input[type="text"] {
 }
 
 /* Sopa de Letras */
-.word-search {
-  margin: 20px auto;
-}
 #wordsearch-container {
-  border: 1px solid #0f0;
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
-  margin: 10px 0;
-  display: inline-block;
+  /* Los estilos se aplican en la regla general de secciones */
 }
 .wordsearch-row {
   display: flex;
@@ -351,7 +267,12 @@ input[type="text"] {
   font-size: 1rem;
   text-align: left;
 }
-
+.timeline .timeline-desc {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+  
 /* Media Query para Sopa de Letras en móvil */
 @media (max-width: 500px) {
   .wordsearch-cell {
