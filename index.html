@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI FUTURO</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Se eliminó la referencia al favicon para evitar el error 404 -->
 </head>
 <body>
-  <!-- Menú futurista con dropdown (se activa al hacer clic en "Juegos") -->
+  <!-- Menú futurista con dropdown (se muestra solo al hacer clic en "Juegos") -->
   <nav id="futuristic-menu">
     <ul>
       <li class="dropdown">
         <a href="#" id="menu-juegos">Juegos</a>
-        <ul class="dropdown-content">
+        <ul class="dropdown-content" id="menu-juegos-dropdown">
           <li><a href="#word-challenge">Adivina la Palabra</a></li>
           <li><a href="#trivia-ia">Trivia IA</a></li>
           <li><a href="#crack-the-code">Crack the Code</a></li>
@@ -24,10 +23,10 @@
     </ul>
   </nav>
 
-  <!-- Espacio para que el contenido no quede tapado por el menú fijo -->
+  <!-- Espacio mínimo para que el contenido no quede tapado por el menú -->
   <div class="menu-spacer"></div>
 
-  <!-- Canvas para efecto de partículas en el fondo -->
+  <!-- Canvas para el efecto de partículas en el fondo -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- Barra Matrix -->
