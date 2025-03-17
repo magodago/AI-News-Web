@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0f0"; // Verde neón
+      ctx.fillStyle = "#0f0";
       particles.forEach(p => {
         p.x += Math.cos(p.direction) * p.speed;
         p.y += Math.sin(p.direction) * p.speed;
@@ -250,9 +250,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 9. Crack the Code (10 símbolos)
+   * 9. Crack the Code (con emoticonos futuristas)
    *******************************************/
-  const codeSymbols = "!@#$%^&*A0".split("");
+  // Lista de emoticonos futuristas
+  const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
   let secretCode = [];
   for (let i = 0; i < codeLength; i++) {
