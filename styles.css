@@ -11,7 +11,6 @@ html, body {
   font-family: "Orbitron", sans-serif;
   color: #0f0;
   overflow-x: hidden;
-  /* Se elimina el padding-top para que el contenido suba hasta arriba */
   animation: fadeIn 1s ease forwards;
   opacity: 0;
 }
@@ -296,7 +295,6 @@ input[type="range"]:focus {
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  /* Tamaño fijo */
   width: 200px;
   height: 150px;
   display: flex;
@@ -324,7 +322,6 @@ input[type="range"]:focus {
   width: 80%;
   margin: 5px 0;
 }
-/* Color de texto verde para el simulador */
 #future-output {
   margin-top: 15px;
   font-size: 1.2rem;
@@ -410,8 +407,8 @@ input[type="range"]:focus {
   margin: 5px 0;
 }
 
-/* Sección: Escape del Laberinto */
-.labyrinth {
+/* Sección: Píldora Roja o Azul (Juego Matrix) */
+.pill-game {
   text-align: center;
   padding: 15px;
   border: 1px solid #0f0;
@@ -420,19 +417,22 @@ input[type="range"]:focus {
   margin: 20px auto;
   max-width: 600px;
 }
-#labyrinth-canvas {
-  width: 100%;
-  max-width: 600px;
-  height: 400px;
-  background: #000;
-  border: 1px solid #0f0;
-  display: block;
-  margin: 10px auto;
+.pill-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
 }
-#labyrinth-message {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #0f0;
+.pill {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: 2px solid #0f0;
+  border-radius: 5px;
+  background: #111;
+  transition: background 0.3s, color 0.3s;
+}
+.pill:hover {
+  background: #0f0;
+  color: #000;
 }
 
 /* Sección: Quiz de Curiosidades */
@@ -471,7 +471,7 @@ input[type="range"]:focus {
   transform: translateY(0);
 }
 
-/* Efecto Bola Resplandeciente */
+/* Efecto Bola Resplandeciente (Robot Volador) */
 #glowing-ball {
   position: fixed;
   width: 40px;
