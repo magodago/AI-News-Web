@@ -7,6 +7,21 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Menú futurista fijo -->
+  <nav id="futuristic-menu">
+    <ul>
+      <li><a href="#word-challenge">Adivina la Palabra</a></li>
+      <li><a href="#trivia-ia">Trivia IA</a></li>
+      <li><a href="#crack-the-code">Crack the Code</a></li>
+      <li><a href="#memory-game">Memory AI Cards</a></li>
+      <li><a href="#word-search">Sopa de Letras AI</a></li>
+      <li><a href="#widgets">Widgets Futuristas</a></li>
+      <li><a href="#analisis">Análisis y Tendencias</a></li>
+    </ul>
+  </nav>
+
+  <!-- Espacio para que el contenido no quede tapado por el menú fijo -->
+  <div class="menu-spacer"></div>
 
   <!-- Barra superior con efecto Matrix -->
   <div id="matrix-bar"></div>
@@ -20,7 +35,7 @@
   </header>
 
   <!-- 1) DESAFÍO: Adivina la Palabra -->
-  <section class="word-challenge">
+  <section id="word-challenge" class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
     <div id="word-display">_ _ _</div>
@@ -31,7 +46,7 @@
   </section>
 
   <!-- 2) TRIVIA IA -->
-  <section class="trivia-ia">
+  <section id="trivia-ia" class="trivia-ia">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
       <p id="trivia-question">Cargando pregunta...</p>
@@ -42,7 +57,7 @@
   </section>
 
   <!-- 3) CRACK THE CODE (10 símbolos) -->
-  <section class="crack-the-code">
+  <section id="crack-the-code" class="crack-the-code">
     <h2>Crack the Code</h2>
     <div id="code-container">
       <p id="code-instructions">
@@ -63,33 +78,24 @@
   </section>
 
   <!-- 4) MEMORY AI CARDS -->
-  <section class="memory-game">
+  <section id="memory-game" class="memory-game">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
     <p id="memory-message"></p>
   </section>
 
-  <!-- Secciones Neon TicTacToe y AI Number Guesser eliminadas -->
-
-  <!-- 7) SOPA DE LETRAS AI -->
-  <section class="word-search">
+  <!-- 5) SOPA DE LETRAS AI -->
+  <section id="word-search" class="word-search">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
-      <!-- script.js genera un 10x10 con 5 palabras: ROBOT, ALGORITMO, RED, DATOS, IA -->
+      <!-- El script genera un 10x10 con 5 palabras: ROBOT, ALGORITMO, RED, DATOS, IA -->
     </div>
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- 8) Noticias -->
-  <section class="noticias">
-    <h2>Últimas Noticias de IA</h2>
-    <div id="news-container"></div>
-  </section>
-
-  <!-- 9) Widgets Futuristas -->
-  <section class="widgets">
+  <!-- 6) WIDGETS FUTURISTAS -->
+  <section id="widgets" class="widgets">
     <h2>Widgets Futuristas</h2>
-
     <div class="widget" id="quote-widget">
       <h3>🤖 Cita sobre IA</h3>
       <p id="ai-quote">"La inteligencia artificial no reemplazará a los humanos."</p>
@@ -122,8 +128,8 @@
     </div>
   </section>
 
-  <!-- 10) Análisis y Tendencias -->
-  <section class="analisis">
+  <!-- 7) ANÁLISIS Y TENDENCIAS -->
+  <section id="analisis" class="analisis">
     <h2>Análisis y Tendencias</h2>
     <div id="analisis-container">
       <article>
@@ -145,6 +151,8 @@
     </div>
   </section>
 
+  <!-- Eliminamos la sección de noticias según se indicó -->
+  
   <script src="script.js"></script>
 </body>
 </html>
