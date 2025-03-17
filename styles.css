@@ -19,7 +19,7 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista: raíz "Juegos" con dropdown */
+/* Menú futurista: raíz "Juegos" y "Explorador de Futuros" */
 #futuristic-menu {
   position: fixed;
   top: 0;
@@ -34,12 +34,13 @@ html, body {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  display: inline-block; /* Para centrar */
+  display: inline-block;
   position: relative;
 }
 #futuristic-menu li {
   display: inline-block;
   position: relative;
+  margin: 0 10px;
 }
 #futuristic-menu li a {
   text-decoration: none;
@@ -171,6 +172,10 @@ button {
 button:hover {
   background: #0f0;
   color: #000;
+}
+.reset-btn {
+  margin-top: 10px;
+  font-size: 0.9rem;
 }
 input[type="text"] {
   background: #111;
@@ -345,4 +350,16 @@ input[type="text"] {
   margin: 10px 0;
   font-size: 1rem;
   text-align: left;
+}
+
+/* Media Query para Sopa de Letras en móvil */
+@media (max-width: 500px) {
+  .wordsearch-cell {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+  }
+  #wordsearch-container {
+    padding: 10px;
+  }
 }
