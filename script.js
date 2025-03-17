@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -141,24 +140,39 @@ document.addEventListener("DOMContentLoaded", () => {
   /*******************************************
    * 7. Desafío: Adivina la Palabra (10 intentos)
    *******************************************/
-  const words = [
-    "robot", "computadora", "algoritmo", "datos", "red",
-    "sistema", "código", "software", "hardware", "programa",
-    "inteligencia", "máquina", "sensor", "análisis", "variable",
-    "bucle", "función", "depuración", "criptografía", "servidor"
+  const challengeWords = [
+    { word: "robot", hint: "Una máquina programada para realizar tareas." },
+    { word: "computadora", hint: "Dispositivo electrónico para procesar información." },
+    { word: "algoritmo", hint: "Conjunto de instrucciones para resolver problemas." },
+    { word: "datos", hint: "Información procesada y almacenada." },
+    { word: "red", hint: "Conexión entre dispositivos." },
+    { word: "sistema", hint: "Conjunto de elementos interrelacionados." },
+    { word: "código", hint: "Lenguaje de programación en forma de instrucciones." },
+    { word: "software", hint: "Programas y aplicaciones de un dispositivo." },
+    { word: "hardware", hint: "Componentes físicos de un sistema informático." },
+    { word: "programa", hint: "Conjunto de instrucciones ejecutables." },
+    { word: "inteligencia", hint: "Capacidad de aprender y razonar." },
+    { word: "máquina", hint: "Dispositivo mecánico o electrónico." },
+    { word: "sensor", hint: "Dispositivo que detecta y mide estímulos." },
+    { word: "análisis", hint: "Examen detallado de datos o situaciones." },
+    { word: "variable", hint: "Elemento que puede cambiar en un programa." },
+    { word: "bucle", hint: "Estructura de repetición en programación." },
+    { word: "función", hint: "Bloque de código que realiza una tarea." },
+    { word: "depuración", hint: "Proceso de corregir errores en un programa." },
+    { word: "criptografía", hint: "Técnica para proteger información." },
+    { word: "servidor", hint: "Computadora que provee recursos a otros." }
   ];
-  const randomIndex = Math.floor(Math.random() * words.length);
-  let selectedWord = words[randomIndex];
-  const hint = "La palabra es un concepto clave en tecnología.";
+  let randomIndex = Math.floor(Math.random() * challengeWords.length);
+  let selectedChallenge = challengeWords[randomIndex];
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
   const messageElem = document.getElementById("message");
   const attemptsElem = document.getElementById("attempts-remaining");
   const letterInput = document.getElementById("letter-input");
   const checkBtn = document.getElementById("check-letter");
-  let wordArray = Array.from(selectedWord).map(() => "_");
+  let wordArray = Array.from(selectedChallenge.word).map(() => "_");
   let attempts = 10;
-  if (hintElem) hintElem.textContent = "Pista: " + hint;
+  if (hintElem) hintElem.textContent = "Pista: " + selectedChallenge.hint;
   if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
   if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
   if (checkBtn) {
@@ -168,8 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
       letterInput.value = "";
       if (!letter || letter.length !== 1) return;
       let found = false;
-      for (let i = 0; i < selectedWord.length; i++) {
-        if (selectedWord[i] === letter) {
+      for (let i = 0; i < selectedChallenge.word.length; i++) {
+        if (selectedChallenge.word[i] === letter) {
           wordArray[i] = letter;
           found = true;
         }
@@ -178,22 +192,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
       if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
       if (!wordArray.includes("_")) {
-        if (messageElem) messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
+        if (messageElem) messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedChallenge.word}`;
         checkBtn.disabled = true;
         letterInput.disabled = true;
       } else if (attempts <= 0) {
-        if (messageElem) messageElem.textContent = `❌ Sin intentos. La palabra era: ${selectedWord}`;
+        if (messageElem) messageElem.textContent = `❌ Sin intentos. La palabra era: ${selectedChallenge.word}`;
         checkBtn.disabled = true;
         letterInput.disabled = true;
       }
     });
   }
   function resetWordChallenge() {
-    const random = Math.floor(Math.random() * words.length);
-    selectedWord = words[random];
-    wordArray = Array.from(selectedWord).map(() => "_");
+    randomIndex = Math.floor(Math.random() * challengeWords.length);
+    selectedChallenge = challengeWords[randomIndex];
+    wordArray = Array.from(selectedChallenge.word).map(() => "_");
     attempts = 10;
-    if (hintElem) hintElem.textContent = "Pista: " + hint;
+    if (hintElem) hintElem.textContent = "Pista: " + selectedChallenge.hint;
     if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
     if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
     if (messageElem) messageElem.textContent = "";
@@ -269,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function resetTrivia() {
     triviaIndex = 0;
     triviaScore = 0;
-    if (triviaNextBtn) triviaNextBtn.disabled = false;
+    triviaNextBtn.disabled = false;
     mostrarPreguntaTrivia();
   }
   const resetTriviaBtn = document.getElementById("reset-trivia");
@@ -562,9 +576,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 12. Navegación suave del menú
+   * 12. Navegación suave de enlaces internos
    *******************************************/
-  // Aunque se ha quitado el menú, se mantiene la navegación interna
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
       e.preventDefault();
