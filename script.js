@@ -393,22 +393,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const newsContainer = document.getElementById("news-container");
     if (!newsContainer) return;
     newsContainer.innerHTML = "";
-    // Se obtiene la información de noticias usando tu API de Apitube
+
     fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov")
-      .then(response => response.json())
+      .then(response => {
+          console.log("Respuesta de la API:", response);
+          return response.json();
+      })
       .then(data => {
-        // Se asume que la API retorna un objeto con una propiedad "news" que es un arreglo de noticias
-        if (data.news && Array.isArray(data.news)) {
-          data.news.forEach(item => {
-            const box = document.createElement("div");
-            box.classList.add("news-box");
-            box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
-            newsContainer.appendChild(box);
-          });
-        }
+          console.log("Datos recibidos:", data);
+          const noticias = data.news || data.results;
+          if (noticias && Array.isArray(noticias)) {
+              noticias.forEach(item => {
+                  const box = document.createElement("div");
+                  box.classList.add("news-box");
+                  box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
+                  newsContainer.appendChild(box);
+              });
+          } else {
+              newsContainer.innerHTML = "<p>No se encontraron noticias.</p>";
+          }
       })
       .catch(error => {
-        console.error("Error fetching news:", error);
+          console.error("Error fetching news:", error);
+          newsContainer.innerHTML = "<p>Error al cargar noticias.</p>";
       });
   }
   loadNews();
