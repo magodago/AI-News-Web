@@ -19,7 +19,7 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista con dropdown */
+/* Menú futurista con dropdown centrado */
 #futuristic-menu {
   position: fixed;
   top: 0;
@@ -28,12 +28,14 @@ html, body {
   z-index: 10000;
   padding: 10px 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  text-align: center;
 }
 #futuristic-menu ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: center;
+  display: inline-block;
+  position: relative;
 }
 #futuristic-menu > ul > li {
   display: inline-block;
@@ -52,17 +54,21 @@ html, body {
   text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
 }
 
-/* Dropdown */
+/* Dropdown centrado */
 .dropdown-content {
   display: none;
   position: absolute;
   background: rgba(0, 0, 0, 0.9);
   min-width: 200px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10001;
+  padding: 0;
+  margin-top: 5px;
 }
 .dropdown-content li {
   display: block;
+  text-align: center;
 }
 .dropdown-content li a {
   padding: 10px;
@@ -71,9 +77,9 @@ html, body {
   display: block;
 }
 
-/* Spacer para el menú */
+/* Spacer para el menú (reducido) */
 .menu-spacer {
-  height: 40px; /* Reducido para menor distancia */
+  height: 20px;
 }
 
 /* Canvas de partículas de fondo */
@@ -99,7 +105,7 @@ html, body {
 /* Encabezado */
 header {
   text-align: center;
-  margin: 10px auto; /* Reducido para menor distancia */
+  margin: 10px auto; /* Espacio reducido */
 }
 .glitch {
   font-size: 3rem;
@@ -188,7 +194,7 @@ input[type="text"] {
   cursor: pointer;
 }
 
-/* Crack the Code */
+/* Crack the Code (con emoticonos futuristas) */
 #code-container {
   border: 1px solid #0f0;
   padding: 20px;
@@ -203,6 +209,7 @@ input[type="text"] {
   justify-content: center;
   margin-bottom: 10px;
 }
+/* Usamos emoticonos futuristas */
 .symbol-btn {
   background: #111;
   border: 2px solid #0f0;
@@ -211,6 +218,7 @@ input[type="text"] {
   padding: 6px 8px;
   margin: 3px;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 .symbol-btn:hover {
   background: #0f0;
@@ -222,14 +230,16 @@ input[type="text"] {
   gap: 5px;
   margin: 10px 0;
 }
+/* Aumentamos el tamaño de las cajas para que se vean enteras */
 .code-char {
-  width: 40px;
-  padding: 10px;
+  width: 50px;
+  height: 50px;
+  padding: 8px;
   border: 2px solid #0f0;
   background: #222;
   color: #0f0;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   border-radius: 5px;
 }
 #code-feedback {
