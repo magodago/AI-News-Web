@@ -19,7 +19,7 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista */
+/* Menú futurista con dropdown */
 #futuristic-menu {
   position: fixed;
   top: 0;
@@ -31,26 +31,49 @@ html, body {
 }
 #futuristic-menu ul {
   list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
   margin: 0;
   padding: 0;
+  text-align: center;
+}
+#futuristic-menu > ul > li {
+  display: inline-block;
+  position: relative;
 }
 #futuristic-menu li a {
   text-decoration: none;
   color: #0f0;
   font-size: 1.1rem;
+  padding: 10px 20px;
   transition: all 0.3s ease;
+  display: block;
 }
 #futuristic-menu li a:hover {
   color: #fff;
   text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
 }
 
+/* Dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  min-width: 200px;
+  left: 0;
+  z-index: 10001;
+}
+.dropdown-content li {
+  display: block;
+}
+.dropdown-content li a {
+  padding: 10px;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* Spacer para el menú */
 .menu-spacer {
-  height: 70px;
+  height: 40px; /* Reducido para menor distancia */
 }
 
 /* Canvas de partículas de fondo */
@@ -76,7 +99,7 @@ html, body {
 /* Encabezado */
 header {
   text-align: center;
-  margin: 20px auto;
+  margin: 10px auto; /* Reducido para menor distancia */
 }
 .glitch {
   font-size: 3rem;
