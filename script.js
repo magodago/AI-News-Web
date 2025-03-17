@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -412,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*******************************************
-   * 10. Memory AI Cards (en grid)
+   * 10. Memory AI Cards (grid)
    *******************************************/
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
@@ -598,4 +599,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  /*******************************************
+   * 13. Simulador de Futuro Personalizado
+   *******************************************/
+  const automationSlider = document.getElementById("automation");
+  const roboticsSlider = document.getElementById("robotics");
+  const transportSlider = document.getElementById("transport");
+  const automationValue = document.getElementById("automation-value");
+  const roboticsValue = document.getElementById("robotics-value");
+  const transportValue = document.getElementById("transport-value");
+  const simulateFutureBtn = document.getElementById("simulate-future");
+  const futureOutput = document.getElementById("future-output");
+  if (automationSlider) {
+    automationSlider.oninput = () => {
+      automationValue.textContent = automationSlider.value + "%";
+    };
+  }
+  if (roboticsSlider) {
+    roboticsSlider.oninput = () => {
+      roboticsValue.textContent = roboticsSlider.value + "%";
+    };
+  }
+  if (transportSlider) {
+    transportSlider.oninput = () => {
+      transportValue.textContent = transportSlider.value + "%";
+    };
+  }
+  if (simulateFutureBtn) {
+    simulateFutureBtn.addEventListener("click", () => {
+      const automation = automationSlider.value;
+      const robotics = roboticsSlider.value;
+      const transport = transportSlider.value;
+      let simulation = "Proyección Futurista: ";
+      if (automation > 70) simulation += "La automatización domina y redefine industrias. ";
+      else if (automation > 40) simulation += "La automatización impulsa procesos, con presencia humana moderada. ";
+      else simulation += "La automatización es limitada, prevaleciendo la intervención humana. ";
+      if (robotics > 70) simulation += "Robots humanoides interactúan cotidianamente en hogares y oficinas. ";
+      else if (robotics > 40) simulation += "Se integran robots en tareas específicas. ";
+      else simulation += "La presencia de robots es escasa. ";
+      if (transport > 70) simulation += "Los coches autónomos son el estándar en transporte urbano. ";
+      else if (transport > 40) simulation += "Conviven vehículos autónomos con los tradicionales. ";
+      else simulation += "El transporte autónomo aún está en fase experimental. ";
+      futureOutput.textContent = simulation;
+    });
+  }
 });
