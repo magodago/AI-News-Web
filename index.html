@@ -165,7 +165,7 @@
   </section>
 
   <!-- Sección: Simulador de Futuro Personalizado -->
-  <section id="custom-future" class="custom-future flicker">
+  <section id="custom-future" class="custom-future flicker holo-effect">
     <h2>Simulador de Futuro Personalizado</h2>
     <p>Selecciona tus parámetros para ver una proyección de tu futuro:</p>
     <label for="automation">Nivel de Automatización:</label>
@@ -192,14 +192,16 @@
     <div id="projections-output"></div>
   </section>
 
-  <!-- Sección: Juego: Adivina la Frase -->
-  <section id="phrase-guess" class="phrase-guess flicker holo-effect">
-    <h2>Juego: Adivina la Frase</h2>
-    <p id="phrase-display">_ _ _ _ _</p>
-    <input type="text" id="guess-input" placeholder="Introduce la frase completa">
-    <button id="check-phrase">Comprobar</button>
-    <button id="reset-phrase" class="reset-btn">Nuevo Juego</button>
-    <p id="phrase-message"></p>
+  <!-- Sección: Desafío: Adivina la Palabra -->
+  <section id="word-challenge" class="word-challenge flicker">
+    <h2>Desafío: Adivina la Palabra</h2>
+    <p id="hint">Pista: ...</p>
+    <div id="word-display">_ _ _</div>
+    <input type="text" id="letter-input" maxlength="1" placeholder="Introduce una letra">
+    <button id="check-letter">Comprobar</button>
+    <button id="reset-word-challenge" class="reset-btn">Nuevo Juego</button>
+    <p id="message"></p>
+    <p id="attempts-remaining"></p>
   </section>
 
   <!-- Sección: Trivia IA -->
