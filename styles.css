@@ -127,7 +127,7 @@ input[type="text"] {
   margin: 5px;
 }
 
-/* Personalización de sliders para el simulador (barras verdes) */
+/* Personalización de sliders (barras verdes) */
 input[type="range"] {
   -webkit-appearance: none;
   width: 80%;
