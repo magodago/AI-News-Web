@@ -13,12 +13,13 @@
 
   <header>
     <h1 class="glitch">AI FUTURO</h1>
+    <!-- Texto que aparece letra a letra: "Follow the white rabbit..." -->
     <div class="typing-container">
       <span id="typing-text"></span>
     </div>
   </header>
 
-  <!-- Sección 1: Desafío Adivina la Palabra -->
+  <!-- 1) DESAFÍO: Adivina la Palabra -->
   <section class="word-challenge">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
@@ -29,7 +30,7 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- Sección 2: Trivia IA -->
+  <!-- 2) TRIVIA IA -->
   <section class="trivia-ia">
     <h2>Trivia IA</h2>
     <div id="trivia-container">
@@ -40,11 +41,13 @@
     </div>
   </section>
 
-  <!-- Sección 3: Crack the Code -->
+  <!-- 3) CRACK THE CODE (10 símbolos) -->
   <section class="crack-the-code">
     <h2>Crack the Code</h2>
     <div id="code-container">
-      <p id="code-instructions">Elige 4 símbolos de la lista y comprueba. Tienes 7 intentos.</p>
+      <p id="code-instructions">
+        Elige 4 símbolos de la lista (máx 10) y comprueba. Tienes 7 intentos.
+      </p>
       <div class="symbol-list" id="symbol-list"></div>
       <div id="code-inputs">
         <input type="text" class="code-char" maxlength="1" readonly>
@@ -59,30 +62,30 @@
     </div>
   </section>
 
-  <!-- Sección 4: Memory AI Cards -->
+  <!-- 4) MEMORY AI CARDS -->
   <section class="memory-game">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
     <p id="memory-message"></p>
   </section>
 
-  <!-- Sección 5: Neon TicTacToe -->
+  <!-- 5) NEON TICTACTOE (centrado) -->
   <section class="neon-tictactoe">
     <h2>Neon TicTacToe</h2>
     <div id="tictactoe-container"></div>
     <p id="tictactoe-message"></p>
   </section>
 
-  <!-- Sección 6: Sopa de Letras AI -->
+  <!-- 6) SOPA DE LETRAS AI -->
   <section class="word-search">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
-      <!-- La cuadrícula se generará automáticamente -->
+      <!-- script.js genera un 10x10 con 5 palabras: ROBOT, ALGORITMO, RED, DATOS, IA -->
     </div>
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- Sección 7: Juego Futurista: Carrera Espacial -->
+  <!-- 7) Juego Futurista: Carrera Espacial -->
   <section class="space-runner">
     <h2>Juego Futurista: Carrera Espacial</h2>
     <canvas id="space-runner-canvas" width="600" height="300"></canvas>
@@ -90,13 +93,13 @@
     <button id="start-space-runner">Empezar Carrera</button>
   </section>
 
-  <!-- Sección 8: Noticias -->
+  <!-- 8) Noticias -->
   <section class="noticias">
     <h2>Últimas Noticias de AI</h2>
     <div id="news-container"></div>
   </section>
 
-  <!-- Sección 9: Widgets Futuristas -->
+  <!-- 9) Widgets Futuristas -->
   <section class="widgets">
     <h2>Widgets Futuristas</h2>
     <div class="widget" id="quote-widget">
@@ -126,20 +129,22 @@
     </div>
   </section>
 
-  <!-- Sección 10: Curso de Fundamentos de la IA -->
+  <!-- 10) Curso de Fundamentos de la IA -->
   <section class="course">
     <h2>Curso de Fundamentos de la IA</h2>
     <div class="course-content">
       <h3>Conceptos, Historia y Perspectivas</h3>
-      <p>Este curso te introduce a la inteligencia artificial desde un enfoque conceptual y humanista, sin entrar en tecnicismos. Aprenderás sobre qué es la IA, cómo ha evolucionado a lo largo de la historia, cuál es su impacto en la sociedad y cuáles son los desafíos éticos y futuros que plantea.</p>
+      <p>Este curso te introduce a la IA de forma conceptual. Conocerás qué es la inteligencia artificial, su evolución histórica, el impacto en la sociedad y los desafíos éticos.</p>
       <h4>1. ¿Qué es la IA?</h4>
-      <p>La Inteligencia Artificial es la capacidad de las máquinas para imitar funciones cognitivas humanas, como el razonamiento, la resolución de problemas y el aprendizaje. Se trata de un campo interdisciplinario que abarca la informática, la neurociencia, la filosofía y la ética.</p>
+      <p>La Inteligencia Artificial es la capacidad de las máquinas para imitar funciones cognitivas humanas, como el razonamiento y el aprendizaje.</p>
       <h4>2. Historia de la IA</h4>
-      <p>Desde el Test de Turing en 1950 hasta la era del deep learning, la historia de la IA está llena de avances y desafíos. Conocerás hitos como la creación de los primeros algoritmos, la IA simbólica de los años 70 y los recientes desarrollos en redes neuronales.</p>
+      <p>Desde el Test de Turing en 1950 hasta los recientes avances en deep learning, la historia de la IA está llena de hitos que han marcado su evolución.</p>
       <h4>3. Impacto en la Sociedad</h4>
-      <p>La IA está transformando diversas industrias, desde la medicina y la educación hasta el transporte y el entretenimiento. Se discuten tanto los beneficios como los posibles riesgos y desafíos éticos.</p>
-      <h4>4. Consideraciones Éticas y Futuro</h4>
-      <p>El desarrollo de la IA plantea importantes cuestiones éticas, como la privacidad, el sesgo algorítmico y el futuro del empleo. Además, se exploran las tendencias futuras y cómo la IA podría seguir moldeando nuestro mundo.</p>
+      <p>La IA está transformando industrias como la medicina, la educación, el transporte y el entretenimiento, abriendo nuevas posibilidades y retos.</p>
+      <h4>4. Retos y Ética</h4>
+      <p>El desarrollo de la IA plantea importantes cuestiones éticas, como la privacidad, el sesgo algorítmico y el futuro del empleo.</p>
+      <h4>5. Perspectivas Futuras</h4>
+      <p>El futuro de la IA promete una integración aún mayor en nuestra vida diaria, transformando la forma en que vivimos y trabajamos.</p>
     </div>
   </section>
 
