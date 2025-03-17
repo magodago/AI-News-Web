@@ -148,15 +148,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       if (!found) attempts--;
-      wordDisplay.textContent = wordArray.join(" ");
-      attemptsElem.textContent = `Intentos restantes: ${attempts}`;
+      if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
+      if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
 
       if (!wordArray.includes("_")) {
-        messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
+        if (messageElem) messageElem.textContent = `🎉 ¡Correcto! La palabra es: ${selectedWord}`;
         checkBtn.disabled = true;
         letterInput.disabled = true;
       } else if (attempts <= 0) {
-        messageElem.textContent = `❌ Sin intentos. La palabra era: ${selectedWord}`;
+        if (messageElem) messageElem.textContent = `❌ Sin intentos. La palabra era: ${selectedWord}`;
         checkBtn.disabled = true;
         letterInput.disabled = true;
       }
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
           opt.style.pointerEvents = "none";
         });
       });
-      triviaAnswersElem.appendChild(div);
+      if (triviaAnswersElem) triviaAnswersElem.appendChild(div);
     });
     if (triviaResultElem) triviaResultElem.textContent = "";
   }
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (codeResetBtn) {
     codeResetBtn.addEventListener("click", () => {
       codeInputs.forEach(inp => inp.value = "");
-      codeFeedback.textContent = "";
+      if (codeFeedback) codeFeedback.textContent = "";
     });
   }
 
@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let userCode = [];
       codeInputs.forEach(inp => userCode.push(inp.value));
       if (userCode.some(v => !v)) {
-        codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar.";
+        if (codeFeedback) codeFeedback.textContent = "Completa los 4 símbolos antes de comprobar.";
         return;
       }
 
@@ -303,20 +303,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (correctPos === codeLength) {
-        codeFeedback.textContent = `🎉 ¡Código descifrado! Era: ${secretCode.join("")}`;
+        if (codeFeedback) codeFeedback.textContent = `🎉 ¡Código descifrado! Era: ${secretCode.join("")}`;
         codeCheckBtn.disabled = true;
-        symbolListElem.style.pointerEvents = "none";
+        if (symbolListElem) symbolListElem.style.pointerEvents = "none";
         codeInputs.forEach(inp => inp.disabled = true);
       } else {
         codeAttempts--;
-        codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
+        if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
         if (codeAttempts <= 0) {
-          codeFeedback.textContent = `❌ Sin intentos. El código era: ${secretCode.join("")}`;
+          if (codeFeedback) codeFeedback.textContent = `❌ Sin intentos. El código era: ${secretCode.join("")}`;
           codeCheckBtn.disabled = true;
-          symbolListElem.style.pointerEvents = "none";
+          if (symbolListElem) symbolListElem.style.pointerEvents = "none";
           codeInputs.forEach(inp => inp.disabled = true);
         } else {
-          codeFeedback.textContent = `Posición exacta: ${correctPos} | Símbolo correcto en otra posición: ${correctSym}`;
+          if (codeFeedback) codeFeedback.textContent = `Posición exacta: ${correctPos} | Símbolo correcto en otra posición: ${correctSym}`;
         }
       }
     });
@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     matchedPairs = 0;
     flippedCards = [];
-    memoryMessage.textContent = "";
+    if (memoryMessage) memoryMessage.textContent = "";
   }
   function flipCard(card) {
     if (card.classList.contains("flipped")) return;
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
       c1.removeEventListener("click", () => flipCard(c1));
       c2.removeEventListener("click", () => flipCard(c2));
       if (matchedPairs === cardSymbols.length / 2) {
-        memoryMessage.textContent = "¡Has encontrado todas las parejas!";
+        if (memoryMessage) memoryMessage.textContent = "¡Has encontrado todas las parejas!";
       }
     } else {
       c1.classList.remove("flipped");
@@ -387,46 +387,48 @@ document.addEventListener("DOMContentLoaded", () => {
   if (memoryContainer) createMemoryBoard();
 
   /*******************************************
-   * 12. Noticias Reales con API de Apitube
+   * 10. Noticias de IA con NewsAPI (sin repetir)
    *******************************************/
+  let displayedNews = new Set();
+
   function loadNews() {
     const newsContainer = document.getElementById("news-container");
     if (!newsContainer) return;
     newsContainer.innerHTML = "";
 
-    // Usamos un proxy para evitar problemas de CORS.
-    const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
-    const apiUrl = "https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov";
-    fetch(proxyUrl + apiUrl)
-      .then(response => {
-          console.log("Respuesta de la API:", response);
-          return response.json();
-      })
+    // Reemplaza YOUR_NEWSAPI_KEY por tu clave válida de NewsAPI.org
+    const apiUrl = "https://newsapi.org/v2/everything?q=artificial+intelligence&sortBy=publishedAt&apiKey=YOUR_NEWSAPI_KEY";
+
+    fetch(apiUrl)
+      .then(response => response.json())
       .then(data => {
-          console.log("Datos recibidos:", data);
-          const noticias = data.news || data.results;
-          if (noticias && Array.isArray(noticias)) {
-              noticias.forEach(item => {
-                  const box = document.createElement("div");
-                  box.classList.add("news-box");
-                  box.innerHTML = `<h3>${item.title}</h3><p>${item.text}</p>`;
-                  newsContainer.appendChild(box);
-              });
-          } else {
-              newsContainer.innerHTML = "<p>No se encontraron noticias.</p>";
-          }
+        console.log("Datos recibidos de NewsAPI:", data);
+        const articles = data.articles || [];
+        // Filtrar artículos que ya se han mostrado (por URL)
+        const newArticles = articles.filter(article => !displayedNews.has(article.url));
+        if (newArticles.length === 0) {
+          newsContainer.innerHTML = "<p>No hay nuevas noticias de IA.</p>";
+          return;
+        }
+        newArticles.forEach(article => {
+          displayedNews.add(article.url);
+          const box = document.createElement("div");
+          box.classList.add("news-box");
+          box.innerHTML = `<h3>${article.title}</h3><p>${article.description || article.content || ""}</p>`;
+          newsContainer.appendChild(box);
+        });
       })
       .catch(error => {
-          console.error("Error fetching news:", error);
-          newsContainer.innerHTML = "<p>Error al cargar noticias.</p>";
+        console.error("Error al cargar noticias:", error);
+        newsContainer.innerHTML = "<p>Error al cargar noticias.</p>";
       });
   }
   loadNews();
-  // Actualizar cada hora (3600000 ms)
+  // Actualizar noticias cada hora (3600000 ms)
   setInterval(loadNews, 3600000);
 
   /*******************************************
-   * 13. Widgets Futuristas
+   * 11. Widgets Futuristas
    *******************************************/
   const quotes = [
     "La IA es la nueva electricidad.",
@@ -519,7 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarPaisesInversion();
 
   /*******************************************
-   * 14. Sopa de Letras AI (seleccionable)
+   * 12. Sopa de Letras AI (seleccionable)
    *******************************************/
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
