@@ -7,27 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Menú futurista con dos ítems de nivel superior -->
-  <nav id="futuristic-menu">
-    <ul>
-      <li class="dropdown">
-        <a href="#" id="menu-juegos">Juegos</a>
-        <ul class="dropdown-content" id="menu-juegos-dropdown">
-          <li><a href="#word-challenge">Adivina la Palabra</a></li>
-          <li><a href="#trivia-ia">Trivia IA</a></li>
-          <li><a href="#crack-the-code">Crack the Code</a></li>
-          <li><a href="#memory-game">Memory AI Cards</a></li>
-          <li><a href="#word-search">Sopa de Letras AI</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#timeline">Explorador de Futuros</a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Espaciador mínimo para el menú -->
-  <div class="menu-spacer"></div>
+  <!-- Eliminamos el menú de "Juegos" para darle protagonismo al Explorador de Futuros -->
 
   <!-- Canvas para efecto de partículas en el fondo -->
   <canvas id="particles-canvas"></canvas>
@@ -41,6 +21,26 @@
       <span id="typing-text"></span>
     </div>
   </header>
+
+  <!-- Nueva Sección: Explorador de Futuros (primera sección) -->
+  <section id="timeline" class="timeline flicker">
+    <h2>Explorador de Futuros</h2>
+    <div id="timeline-container">
+      <ul>
+        <li><strong>1956:</strong> Se celebra la conferencia de Dartmouth, marcando el nacimiento de la IA.</li>
+        <li><strong>1966:</strong> Se crea ELIZA, uno de los primeros programas de procesamiento del lenguaje natural.</li>
+        <li><strong>1980:</strong> Los sistemas expertos y redes neuronales empiezan a ganar popularidad.</li>
+        <li><strong>2000:</strong> Auge del aprendizaje profundo y algoritmos avanzados.</li>
+        <li><strong>2012:</strong> Se populariza el uso de redes neuronales convolucionales en reconocimiento de imágenes.</li>
+        <li><strong>2020:</strong> La IA transforma industrias enteras; ChatGPT y otros modelos conversacionales se consolidan.</li>
+        <li><strong>2025 (proyección):</strong> La IA colaborativa y la integración de sistemas inteligentes en la vida cotidiana se expanden.</li>
+        <li><strong>2030 (proyección):</strong> Se espera que la IA optimice procesos en casi todos los sectores, desde la medicina hasta la educación.</li>
+      </ul>
+      <p class="timeline-desc">
+        Desde sus humildes inicios hasta las proyecciones más ambiciosas, la inteligencia artificial se perfila como la gran protagonista del futuro. Explora cada hito y descubre cómo cada avance nos acerca a un mundo lleno de posibilidades.
+      </p>
+    </div>
+  </section>
 
   <!-- Sección: Adivina la Palabra -->
   <section id="word-challenge" class="word-challenge flicker">
@@ -104,20 +104,6 @@
     </div>
     <button id="reset-wordsearch" class="reset-btn">Nuevo Juego</button>
     <p id="wordsearch-words"></p>
-  </section>
-
-  <!-- Sección: Explorador de Futuros -->
-  <section id="timeline" class="timeline flicker">
-    <h2>Explorador de Futuros</h2>
-    <div id="timeline-container">
-      <ul>
-        <li><strong>1956:</strong> Nace la IA en Dartmouth.</li>
-        <li><strong>1980:</strong> Sistemas expertos y redes neuronales.</li>
-        <li><strong>2000:</strong> Auge del aprendizaje profundo.</li>
-        <li><strong>2020:</strong> IA transforma múltiples industrias.</li>
-        <li><strong>2030 (proyección):</strong> IA colaborativa en la mayoría de trabajos.</li>
-      </ul>
-    </div>
   </section>
 
   <script src="script.js"></script>
