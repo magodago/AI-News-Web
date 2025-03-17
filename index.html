@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI FUTURO</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- CDN de Chart.js para el dashboard interactivo -->
+  <!-- CDN de Chart.js para el Dashboard Interactivo -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Burbujita flotante para WhatsApp -->
+  <!-- Botón flotante para WhatsApp -->
   <a href="https://wa.me/34658237988" target="_blank" class="whatsapp-float">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
 
-  <!-- Canvas para efecto de partículas en el fondo -->
+  <!-- Canvas para efecto de partículas -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- Barra Matrix -->
@@ -177,16 +177,13 @@
     <p>Selecciona tus parámetros para ver una proyección de tu futuro:</p>
     <label for="automation">Nivel de Automatización:</label>
     <input type="range" id="automation" name="automation" min="0" max="100" value="50">
-    <span id="automation-value">50%</span>
-    <br>
+    <span id="automation-value">50%</span><br>
     <label for="robotics">Presencia de Robots Humanoides:</label>
     <input type="range" id="robotics" name="robotics" min="0" max="100" value="50">
-    <span id="robotics-value">50%</span>
-    <br>
+    <span id="robotics-value">50%</span><br>
     <label for="transport">Adopción de Coches Autónomos:</label>
     <input type="range" id="transport" name="transport" min="0" max="100" value="50">
-    <span id="transport-value">50%</span>
-    <br>
+    <span id="transport-value">50%</span><br>
     <button id="simulate-future" class="reset-btn">Simular Futuro</button>
     <div id="future-output"></div>
   </section>
@@ -199,7 +196,7 @@
     <div id="projections-output"></div>
   </section>
 
-  <!-- Sección: Dashboard Interactivo -->
+  <!-- Sección: Dashboard Interactivo (Chart.js) -->
   <section id="interactive-dashboard" class="interactive-dashboard flicker">
     <h2>Dashboard Interactivo</h2>
     <canvas id="dashboardChart"></canvas>
