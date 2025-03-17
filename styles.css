@@ -127,6 +127,29 @@ input[type="text"] {
   margin: 5px;
 }
 
+/* Personalización de sliders para el simulador (barras verdes) */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 80%;
+  background: transparent;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #0f0;
+  border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #0f0;
+  border-radius: 50%;
+  margin-top: -6px;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+
 /* Sección: Adivina la Palabra */
 #word-display {
   font-size: 1.8rem;
@@ -311,6 +334,22 @@ input[type="text"] {
   margin-top: 15px;
   font-size: 1.2rem;
   color: #fff;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Sección: Panel de Proyecciones Interactivas */
+.interactive-projections {
+  text-align: center;
+}
+.interactive-projections button {
+  margin-top: 10px;
+}
+#projections-output {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #0f0;
   background: rgba(0,0,0,0.5);
   padding: 10px;
   border-radius: 5px;
