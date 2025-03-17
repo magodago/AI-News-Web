@@ -49,7 +49,7 @@ html, body {
   background: rgba(0,0,0,0.7);
 }
 
-/* Contenedor de la burbuja WhatsApp */
+/* Burbujita flotante para WhatsApp */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -68,9 +68,6 @@ html, body {
   width: 35px;
   height: 35px;
 }
-
-/* Contenedor de la cita (si se desea en versiones futuras) */
-/* .quote { ... } */
 
 /* Encabezado */
 header {
@@ -366,6 +363,16 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
+/* Efecto holográfico simple */
+.holo-effect {
+  perspective: 800px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.holo-effect:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+  opacity: 0.9;
+}
+
 /* Estilos para el Laberinto */
 .laberinto {
   text-align: center;
@@ -379,7 +386,7 @@ input[type="range"]:focus {
 }
 .lab-cell {
   width: 100%;
-  padding-top: 100%;  /* Mantiene proporción cuadrada */
+  padding-top: 100%;  /* Proporción cuadrada */
   position: relative;
   border: 1px solid #0f0;
 }
@@ -408,16 +415,6 @@ input[type="range"]:focus {
   background: #ff0;
   color: #000;
   font-weight: bold;
-}
-
-/* Efecto holográfico simple */
-.holo-effect {
-  perspective: 800px;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-.holo-effect:hover {
-  transform: rotateY(10deg) rotateX(5deg);
-  opacity: 0.9;
 }
 
 /* Media Query para Sopa de Letras y Laberinto en móvil */
