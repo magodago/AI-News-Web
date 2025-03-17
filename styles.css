@@ -86,7 +86,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones: cada sección con padding, borde y fondo semitransparente */
+/* Secciones */
 section {
   margin: 20px auto;
   width: 90%;
@@ -137,16 +137,16 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* Trivia IA */
+/* Sección: Trivia IA */
 #trivia-container {
-  /* Los estilos se heredan de la regla general de secciones */
+  /* Hereda estilos de sección */
 }
 .trivia-option {
   margin: 5px 0;
   cursor: pointer;
 }
 
-/* Crack the Code */
+/* Sección: Crack the Code */
 .symbol-list {
   display: flex;
   flex-wrap: wrap;
@@ -191,7 +191,7 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* Memory AI Cards en Grid */
+/* Sección: Memory AI Cards en grid */
 #memory-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -224,10 +224,7 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* Sopa de Letras */
-#wordsearch-container {
-  /* Se hereda la estructura de sección */
-}
+/* Sección: Sopa de Letras */
 .wordsearch-row {
   display: flex;
 }
@@ -254,14 +251,8 @@ input[type="text"] {
   font-weight: bold;
 }
 
-/* Nueva Sección: Explorador de Futuros */
+/* Sección: Explorador de Futuros */
 .timeline {
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
   text-align: left;
 }
 .timeline ul {
@@ -278,19 +269,33 @@ input[type="text"] {
   font-size: 0.9rem;
 }
 
-/* Nueva Sección: Simulador de Decisiones Éticas */
+/* Sección: Simulador de Decisiones Éticas */
 .ethical-simulator {
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
   text-align: left;
 }
-.ethical-simulator p {
+.ethical-simulator .ethical-card {
   margin: 10px 0;
-  font-size: 1rem;
+  padding: 10px;
+  border: 1px dashed #0f0;
+  border-radius: 5px;
+}
+
+/* Sección: Dashboard de Tendencias */
+.trends {
+  text-align: center;
+}
+.trend-card {
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  display: inline-block;
+  width: 45%;
+}
+.trends-desc {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 /* Media Query para Sopa de Letras en móvil */
