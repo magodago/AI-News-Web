@@ -610,16 +610,65 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateProjectionsBtn = document.getElementById("update-projections");
   const projectionsOutput = document.getElementById("projections-output");
   const projectionsData = [
-    "Proyección 1: La inversión en IA podría superar los 200 mil millones en 2025.",
-    "Proyección 2: La adopción de coches autónomos crecerá un 30% anual en la próxima década.",
-    "Proyección 3: Robots humanoides podrían operar en el 60% de las industrias para 2030.",
-    "Proyección 4: Ciudades inteligentes integrarán IA en más del 80% de sus servicios para 2035.",
-    "Proyección 5: La fusión de computación cuántica e IA revolucionará la investigación médica para 2040."
+    "La inversión en IA podría superar los 200 mil millones en 2025.",
+    "La adopción de coches autónomos crecerá un 30% anual en la próxima década.",
+    "Robots humanoides podrían operar en el 60% de las industrias para 2030.",
+    "Ciudades inteligentes integrarán IA en más del 80% de sus servicios para 2035.",
+    "La fusión de computación cuántica e IA revolucionará la investigación médica para 2040.",
+    "La integración de IA en la educación podría transformar la formación profesional en los próximos 10 años.",
+    "El uso de asistentes virtuales en hogares se expandirá globalmente en menos de 5 años."
   ];
   if (updateProjectionsBtn) {
     updateProjectionsBtn.addEventListener("click", () => {
       const randomIdx = Math.floor(Math.random() * projectionsData.length);
       projectionsOutput.textContent = projectionsData[randomIdx];
+    });
+  }
+
+  // 15. Juego: Adivina la Frase
+  const phraseDisplay = document.getElementById("phrase-display");
+  const guessInput = document.getElementById("guess-input");
+  const checkPhraseBtn = document.getElementById("check-phrase");
+  const phraseMessage = document.getElementById("phrase-message");
+  const resetPhraseBtn = document.getElementById("reset-phrase");
+  const phrases = [
+    { phrase: "El futuro es ahora", hint: "Una afirmación sobre el presente y el futuro." },
+    { phrase: "La tecnología es poder", hint: "Reflexión sobre la importancia de la tecnología." },
+    { phrase: "Innovar para transformar", hint: "Una invitación a la innovación." },
+    { phrase: "La IA redefine el mañana", hint: "Un eslogan futurista sobre IA." },
+    { phrase: "Sueña, crea, innova", hint: "Tres acciones clave para el futuro." }
+  ];
+  let currentPhraseIndex = Math.floor(Math.random() * phrases.length);
+  function renderPhrase() {
+    const current = phrases[currentPhraseIndex];
+    if (phraseDisplay) {
+      // Se muestra la frase con espacios para cada carácter
+      phraseDisplay.textContent = current.phrase.split("").join(" ");
+    }
+    if (phraseMessage) {
+      phraseMessage.textContent = "Pista: " + current.hint;
+    }
+  }
+  renderPhrase();
+  if (checkPhraseBtn) {
+    checkPhraseBtn.addEventListener("click", () => {
+      const current = phrases[currentPhraseIndex];
+      if (guessInput.value.trim().toLowerCase() === current.phrase.toLowerCase()) {
+        phraseMessage.textContent = "🎉 ¡Correcto! La frase es: " + current.phrase;
+        checkPhraseBtn.disabled = true;
+        guessInput.disabled = true;
+      } else {
+        phraseMessage.textContent = "❌ Incorrecto. Inténtalo de nuevo.";
+      }
+    });
+  }
+  if (resetPhraseBtn) {
+    resetPhraseBtn.addEventListener("click", () => {
+      currentPhraseIndex = Math.floor(Math.random() * phrases.length);
+      guessInput.value = "";
+      guessInput.disabled = false;
+      checkPhraseBtn.disabled = false;
+      renderPhrase();
     });
   }
 });
