@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -550,7 +549,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   if (wordsearchWordsElem) {
-    wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
+    // Se muestra el listado de palabras en orden aleatorio
+    const shuffledWsWords = shuffle([...wsWords]);
+    wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
   }
   function resetWordSearch() {
     grid = Array.from({ length: rows }, () => Array(cols).fill(null));
@@ -578,6 +579,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         wordsearchContainer.appendChild(rowDiv);
       }
+    }
+    if (wordsearchWordsElem) {
+      const shuffledWsWords = shuffle([...wsWords]);
+      wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
     }
   }
   const resetWordSearchBtn = document.getElementById("reset-wordsearch");
@@ -632,16 +637,160 @@ document.addEventListener("DOMContentLoaded", () => {
       const robotics = roboticsSlider.value;
       const transport = transportSlider.value;
       let simulation = "Proyección Futurista: ";
-      if (automation > 70) simulation += "La automatización domina y redefine industrias. ";
-      else if (automation > 40) simulation += "La automatización impulsa procesos, con presencia humana moderada. ";
-      else simulation += "La automatización es limitada, prevaleciendo la intervención humana. ";
-      if (robotics > 70) simulation += "Robots humanoides interactúan cotidianamente en hogares y oficinas. ";
+      if (automation > 70) simulation += "La automatización domina la industria. ";
+      else if (automation > 40) simulation += "La automatización impulsa procesos, con intervención humana moderada. ";
+      else simulation += "La automatización es limitada, prevaleciendo el factor humano. ";
+      if (robotics > 70) simulation += "Robots humanoides conviven en hogares y oficinas. ";
       else if (robotics > 40) simulation += "Se integran robots en tareas específicas. ";
       else simulation += "La presencia de robots es escasa. ";
       if (transport > 70) simulation += "Los coches autónomos son el estándar en transporte urbano. ";
-      else if (transport > 40) simulation += "Conviven vehículos autónomos con los tradicionales. ";
+      else if (transport > 40) simulation += "Conviven vehículos autónomos con tradicionales. ";
       else simulation += "El transporte autónomo aún está en fase experimental. ";
       futureOutput.textContent = simulation;
     });
   }
+
+  /*******************************************
+   * 14. Panel de Proyecciones Interactivas
+   *******************************************/
+  const updateProjectionsBtn = document.getElementById("update-projections");
+  const projectionsOutput = document.getElementById("projections-output");
+  const projectionsData = [
+    "Proyección 1: Se espera que la inversión en IA supere los 200 mil millones en 2025.",
+    "Proyección 2: La adopción de coches autónomos crecerá un 30% anual durante la próxima década.",
+    "Proyección 3: Robots humanoides podrían estar presentes en el 60% de las industrias en 2030.",
+    "Proyección 4: Las ciudades inteligentes integrarán IA en más del 80% de sus servicios en 2035.",
+    "Proyección 5: La computación cuántica y la IA fusionadas podrían revolucionar la investigación médica para 2040."
+  ];
+  if (updateProjectionsBtn) {
+    updateProjectionsBtn.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * projectionsData.length);
+      projectionsOutput.textContent = projectionsData[randomIndex];
+    });
+  }
+
+  /*******************************************
+   * 15. Sopa de Letras AI
+   *******************************************/
+  const wordsearchContainer = document.getElementById("wordsearch-container");
+  const wordsearchWordsElem = document.getElementById("wordsearch-words");
+  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
+  const rows = 10, cols = 10;
+  let grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+  function placeWordHorizontal(word, r, c) {
+    if (c + word.length > cols) return false;
+    for (let i = 0; i < word.length; i++) {
+      if (grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
+    }
+    for (let i = 0; i < word.length; i++) {
+      grid[r][c + i] = word[i];
+    }
+    return true;
+  }
+  function placeWordVertical(word, r, c) {
+    if (r + word.length > rows) return false;
+    for (let i = 0; i < word.length; i++) {
+      if (grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
+    }
+    for (let i = 0; i < word.length; i++) {
+      grid[r + i][c] = word[i];
+    }
+    return true;
+  }
+  function insertWord(word) {
+    let attempts = 100;
+    while (attempts > 0) {
+      attempts--;
+      const orientation = Math.random() < 0.5 ? "H" : "V";
+      const rr = Math.floor(Math.random() * rows);
+      const cc = Math.floor(Math.random() * cols);
+      if (orientation === "H") {
+        if (placeWordHorizontal(word, rr, cc)) return true;
+      } else {
+        if (placeWordVertical(word, rr, cc)) return true;
+      }
+    }
+    return false;
+  }
+  wsWords.forEach(w => insertWord(w));
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (!grid[r][c]) {
+        grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
+      }
+    }
+  }
+  if (wordsearchContainer) {
+    wordsearchContainer.innerHTML = "";
+    for (let r = 0; r < rows; r++) {
+      const rowDiv = document.createElement("div");
+      rowDiv.classList.add("wordsearch-row");
+      for (let c = 0; c < cols; c++) {
+        const cellDiv = document.createElement("div");
+        cellDiv.classList.add("wordsearch-cell");
+        cellDiv.textContent = grid[r][c];
+        cellDiv.addEventListener("click", () => {
+          cellDiv.classList.toggle("highlighted");
+        });
+        rowDiv.appendChild(cellDiv);
+      }
+      wordsearchContainer.appendChild(rowDiv);
+    }
+  }
+  if (wordsearchWordsElem) {
+    const shuffledWsWords = shuffle([...wsWords]);
+    wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
+  }
+  function resetWordSearch() {
+    grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+    wsWords.forEach(w => insertWord(w));
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (!grid[r][c]) {
+          grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+      }
+    }
+    if (wordsearchContainer) {
+      wordsearchContainer.innerHTML = "";
+      for (let r = 0; r < rows; r++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("wordsearch-row");
+        for (let c = 0; c < cols; c++) {
+          const cellDiv = document.createElement("div");
+          cellDiv.classList.add("wordsearch-cell");
+          cellDiv.textContent = grid[r][c];
+          cellDiv.addEventListener("click", () => {
+            cellDiv.classList.toggle("highlighted");
+          });
+          rowDiv.appendChild(cellDiv);
+        }
+        wordsearchContainer.appendChild(rowDiv);
+      }
+    }
+    if (wordsearchWordsElem) {
+      const shuffledWsWords = shuffle([...wsWords]);
+      wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
+    }
+  }
+  const resetWordSearchBtn = document.getElementById("reset-wordsearch");
+  if (resetWordSearchBtn) {
+    resetWordSearchBtn.addEventListener("click", resetWordSearch);
+  }
+
+  /*******************************************
+   * 14. Navegación suave de enlaces internos
+   *******************************************/
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      if (targetId.startsWith("#")) {
+        document.querySelector(targetId).scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
+  });
 });
