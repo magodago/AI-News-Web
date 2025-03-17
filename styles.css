@@ -14,12 +14,10 @@ body {
   to { opacity: 1; }
 }
 
-/* FONDO OSCURO SIN TEXTO, EJEMPLO con placehold.co */
+/* FONDO OSCURO SIN IMAGEN */
 html, body {
   height: 100%;
-  /* Reemplaza esta URL si quieres otra imagen o color */
-  background: url("https://placehold.co/2000x1200/000000/00ff00") no-repeat center center fixed;
-  background-size: cover;
+  background: #000; /* Fondo negro */
   font-family: "Orbitron", sans-serif;
   color: #0f0; /* Verde Matrix */
   overflow-x: hidden;
@@ -37,7 +35,7 @@ html, body {
 /* ENCABEZADO */
 header {
   text-align: center;
-  margin: 20px auto 20px auto;
+  margin: 20px auto;
 }
 
 /* TÍTULO GLITCH (VERDE) */
@@ -81,7 +79,7 @@ section {
   text-align: center;
 }
 
-/* BOTONES ESTILO MATRIX (APLICA A TODOS LOS <button>) */
+/* BOTONES ESTILO MATRIX */
 button {
   background: #111;
   border: 1px solid #0f0;
@@ -214,12 +212,14 @@ input[type="text"] {
   color: #0f0;
 }
 
-/* TICTACTOE CENTRADO */
+/* TICTACTOE */
 .neon-tictactoe {
   margin: 40px auto;
 }
 #tictactoe-container {
-  display: inline-block; /* Importante para centrar */
+  display: grid;
+  grid-template-columns: repeat(10, 100px);
+  grid-gap: 0px;
   margin: 0 auto;
   text-align: center;
 }
@@ -236,7 +236,6 @@ input[type="text"] {
   justify-content: center;
   cursor: pointer;
   transition: 0.3s;
-  margin: 0;
 }
 .tictactoe-cell:hover {
   background: #0f0;
@@ -310,20 +309,8 @@ input[type="text"] {
   line-height: 1.2rem;
   margin-bottom: 10px;
 }
-.news-box a.leer-btn {
-  display: inline-block;
-  background: #0f0;
-  color: #000;
-  padding: 6px 10px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-.news-box a.leer-btn:hover {
-  background: #fff;
-}
 
-/* WIDGETS (max-width 1200) */
+/* WIDGETS */
 .widgets {
   max-width: 1200px;
 }
@@ -371,7 +358,7 @@ input[type="text"] {
   font-size: 0.8rem;
 }
 
-/* ANÁLISIS Y TENDENCIAS (max-width 1000) */
+/* ANÁLISIS Y TENDENCIAS */
 .analisis {
   max-width: 1000px;
 }
@@ -422,10 +409,10 @@ input[type="text"] {
   background: rgba(0,255,0,0.1);
   box-shadow: 0 0 10px #0f0;
   margin: 10px 0;
-  display: inline-block;
-}
-.wordsearch-row {
-  display: flex;
+  /* Grid para una cuadrícula de 10x10 */
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  gap: 2px;
 }
 .wordsearch-cell {
   width: 30px;
@@ -437,7 +424,6 @@ input[type="text"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1px;
   cursor: pointer;
 }
 #wordsearch-words {
@@ -445,13 +431,12 @@ input[type="text"] {
   color: #0f0;
   font-weight: bold;
 }
-/* Para resaltar cuando hacen click en la sopa */
 .highlighted {
   background: #0f0 !important;
   color: #000 !important;
 }
 
-/* MEDIA QUERIES - MÓVILES */
+/* MEDIA QUERIES */
 @media (max-width: 500px) {
   #tictactoe-container {
     grid-template-columns: repeat(3,80px);
