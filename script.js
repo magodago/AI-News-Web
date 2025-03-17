@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         console.log("Datos recibidos de NewsAPI:", data);
         const articles = data.articles || [];
-        // Filtrar artículos que ya se han mostrado (por URL)
+        // Filtrar artículos ya mostrados (usando el URL como identificador)
         const newArticles = articles.filter(article => !displayedNews.has(article.url));
         if (newArticles.length === 0) {
           newsContainer.innerHTML = "<p>No hay nuevas noticias de IA.</p>";
@@ -602,4 +602,15 @@ document.addEventListener("DOMContentLoaded", () => {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
 
+  /*******************************************
+   * Navegación suave del menú futurista
+   *******************************************/
+  document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
 });
