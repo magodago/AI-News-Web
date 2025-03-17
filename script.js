@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /*******************************************
    * 1. Efecto de partículas en el fondo
    *******************************************/
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
   typingInterval = setInterval(typePhrase, 100);
 
   /*******************************************
-   * 7. Desafío: Adivina la Palabra (10 intentos fijos)
+   * 7. Desafío: Adivina la Palabra (10 intentos)
    *******************************************/
   const words = [
     "robot", "computadora", "algoritmo", "datos", "red",
@@ -147,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "bucle", "función", "depuración", "criptografía", "servidor"
   ];
   const randomIndex = Math.floor(Math.random() * words.length);
-  const selectedWord = words[randomIndex];
+  let selectedWord = words[randomIndex];
   const hint = "La palabra es un concepto clave en tecnología.";
   const wordDisplay = document.getElementById("word-display");
   const hintElem = document.getElementById("hint");
@@ -186,6 +187,25 @@ document.addEventListener("DOMContentLoaded", () => {
         letterInput.disabled = true;
       }
     });
+  }
+  // Función para reiniciar "Adivina la Palabra"
+  function resetWordChallenge() {
+    const random = Math.floor(Math.random() * words.length);
+    selectedWord = words[random];
+    wordArray = Array.from(selectedWord).map(() => "_");
+    attempts = 10;
+    if (hintElem) hintElem.textContent = "Pista: " + hint;
+    if (wordDisplay) wordDisplay.textContent = wordArray.join(" ");
+    if (attemptsElem) attemptsElem.textContent = `Intentos restantes: ${attempts}`;
+    if (messageElem) messageElem.textContent = "";
+    if (checkBtn) {
+      checkBtn.disabled = false;
+      letterInput.disabled = false;
+    }
+  }
+  const resetWordChallengeBtn = document.getElementById("reset-word-challenge");
+  if (resetWordChallengeBtn) {
+    resetWordChallengeBtn.addEventListener("click", resetWordChallenge);
   }
 
   /*******************************************
@@ -247,9 +267,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     mostrarPreguntaTrivia();
   }
+  // Función para reiniciar Trivia
+  function resetTrivia() {
+    triviaIndex = 0;
+    triviaScore = 0;
+    if (triviaNextBtn) triviaNextBtn.disabled = false;
+    mostrarPreguntaTrivia();
+  }
+  const resetTriviaBtn = document.getElementById("reset-trivia");
+  if (resetTriviaBtn) {
+    resetTriviaBtn.addEventListener("click", resetTrivia);
+  }
 
   /*******************************************
-   * 9. Crack the Code (emoticonos futuristas, 10 intentos)
+   * 9. Crack the Code (10 intentos)
    *******************************************/
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
@@ -338,6 +369,27 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+  // Función para reiniciar Crack the Code
+  function resetCrackCode() {
+    secretCode = [];
+    for (let i = 0; i < codeLength; i++) {
+      const r = Math.floor(Math.random() * codeSymbols.length);
+      secretCode.push(codeSymbols[r]);
+    }
+    codeAttempts = 10;
+    if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
+    if (codeFeedback) codeFeedback.textContent = "";
+    codeInputs.forEach(inp => {
+      inp.value = "";
+      inp.disabled = false;
+    });
+    if (symbolListElem) symbolListElem.style.pointerEvents = "auto";
+    codeCheckBtn.disabled = false;
+  }
+  const resetCrackCodeBtn = document.getElementById("reset-crack-code");
+  if (resetCrackCodeBtn) {
+    resetCrackCodeBtn.addEventListener("click", resetCrackCode);
+  }
 
   /*******************************************
    * 10. Memory AI Cards
@@ -354,10 +406,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return arr;
   }
-  const shuffledSymbols = shuffleArray([...cardSymbols]);
+  let shuffledSymbols = shuffleArray([...cardSymbols]);
   function createMemoryBoard() {
     if (!memoryContainer) return;
     memoryContainer.innerHTML = "";
+    shuffledSymbols = shuffleArray([...cardSymbols]);
     shuffledSymbols.forEach(sym => {
       const card = document.createElement("div");
       card.classList.add("card");
@@ -398,6 +451,14 @@ document.addEventListener("DOMContentLoaded", () => {
     flippedCards = [];
   }
   if (memoryContainer) createMemoryBoard();
+  // Función para reiniciar Memory AI Cards
+  function resetMemoryGame() {
+    createMemoryBoard();
+  }
+  const resetMemoryBtn = document.getElementById("reset-memory");
+  if (resetMemoryBtn) {
+    resetMemoryBtn.addEventListener("click", resetMemoryGame);
+  }
 
   /*******************************************
    * 11. Sopa de Letras AI
@@ -472,15 +533,42 @@ document.addEventListener("DOMContentLoaded", () => {
   if (wordsearchWordsElem) {
     wordsearchWordsElem.textContent = "Palabras: " + wsWords.join(", ");
   }
+  // Función para reiniciar Sopa de Letras
+  function resetWordSearch() {
+    grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+    wsWords.forEach(w => insertWord(w));
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (!grid[r][c]) {
+          grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+      }
+    }
+    if (wordsearchContainer) {
+      wordsearchContainer.innerHTML = "";
+      for (let r = 0; r < rows; r++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("wordsearch-row");
+        for (let c = 0; c < cols; c++) {
+          const cellDiv = document.createElement("div");
+          cellDiv.classList.add("wordsearch-cell");
+          cellDiv.textContent = grid[r][c];
+          cellDiv.addEventListener("click", () => {
+            cellDiv.classList.toggle("highlighted");
+          });
+          rowDiv.appendChild(cellDiv);
+        }
+        wordsearchContainer.appendChild(rowDiv);
+      }
+    }
+  }
+  const resetWordSearchBtn = document.getElementById("reset-wordsearch");
+  if (resetWordSearchBtn) {
+    resetWordSearchBtn.addEventListener("click", resetWordSearch);
+  }
 
   /*******************************************
-   * 12. Nueva Sección: Explorador de Futuros
-   *******************************************/
-  // Esta sección muestra una línea de tiempo básica.
-  // No se requiere JS adicional para el contenido estático.
-
-  /*******************************************
-   * 13. Navegación suave del menú
+   * 12. Navegación suave del menú
    *******************************************/
   document.querySelectorAll('#futuristic-menu a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -495,7 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*******************************************
-   * 14. Toggle Dropdown para "Juegos"
+   * 13. Toggle Dropdown para "Juegos"
    *******************************************/
   const juegosBtn = document.getElementById("menu-juegos");
   const dropdown = document.getElementById("menu-juegos-dropdown");
