@@ -5,11 +5,11 @@
   box-sizing: border-box;
 }
 
-/* Fondo negro con animación de opacidad */
+/* Fondo negro con animación */
 html, body {
-  background: #000;
+  background: #000;  /* Fondo negro */
   font-family: "Orbitron", sans-serif;
-  color: #0f0;
+  color: #0f0; /* Verde Matrix */
   overflow-x: hidden;
   padding-top: 60px; /* Espacio para el menú fijo */
   animation: fadeIn 1s ease forwards;
@@ -19,7 +19,7 @@ html, body {
   to { opacity: 1; }
 }
 
-/* Menú futurista con un único ítem "Juegos" */
+/* Menú futurista: Único ítem "Juegos" con dropdown */
 #futuristic-menu {
   position: fixed;
   top: 0;
@@ -34,7 +34,7 @@ html, body {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  display: inline-block; /* Para centrar el UL */
+  display: inline-block; /* Centrado */
   position: relative;
 }
 #futuristic-menu li {
@@ -54,7 +54,7 @@ html, body {
   text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
 }
 
-/* Dropdown: oculto por defecto */
+/* Dropdown oculto por defecto */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -74,17 +74,16 @@ html, body {
   padding: 10px;
   font-size: 0.9rem;
 }
-/* Se muestra con la clase .show */
 .dropdown-content.show {
   display: block;
 }
 
-/* Espacio mínimo entre menú y contenido */
+/* Espaciador mínimo */
 .menu-spacer {
   height: 5px;
 }
 
-/* Canvas de partículas de fondo */
+/* Canvas de partículas */
 #particles-canvas {
   position: fixed;
   top: 0;
@@ -196,7 +195,7 @@ input[type="text"] {
   cursor: pointer;
 }
 
-/* Crack the Code (emoticonos futuristas) */
+/* Crack the Code */
 #code-container {
   border: 1px solid #0f0;
   padding: 20px;
