@@ -49,13 +49,28 @@ html, body {
   background: rgba(0,0,0,0.7);
 }
 
-/* Contenedor de la cita */
-.quote {
-  font-size: 1.2rem;
-  text-align: center;
-  margin: 10px auto;
-  color: #0f0;
+/* Contenedor de la burbuja WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 10px #0f0;
 }
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+}
+
+/* Contenedor de la cita (si se desea en versiones futuras) */
+/* .quote { ... } */
 
 /* Encabezado */
 header {
@@ -94,7 +109,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Estilos para secciones */
+/* Secciones */
 section {
   margin: 20px auto;
   width: 90%;
@@ -351,26 +366,6 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Burbujita flotante para WhatsApp */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  box-shadow: 0 0 10px #0f0;
-}
-.whatsapp-float img {
-  width: 35px;
-  height: 35px;
-}
-
 /* Estilos para el Laberinto */
 .laberinto {
   text-align: center;
@@ -384,7 +379,7 @@ input[type="range"]:focus {
 }
 .lab-cell {
   width: 100%;
-  padding-top: 100%;
+  padding-top: 100%;  /* Mantiene proporción cuadrada */
   position: relative;
   border: 1px solid #0f0;
 }
@@ -425,14 +420,14 @@ input[type="range"]:focus {
   opacity: 0.9;
 }
 
-/* Media Query para Sopa de Letras en móvil */
+/* Media Query para Sopa de Letras y Laberinto en móvil */
 @media (max-width: 500px) {
-  .wordsearch-cell {
+  .wordsearch-cell, .lab-cell {
     width: 25px;
     height: 25px;
     font-size: 0.8rem;
   }
-  #wordsearch-container {
+  #wordsearch-container, #laberinto-container {
     padding: 10px;
   }
 }
