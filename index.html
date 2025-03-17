@@ -7,13 +7,11 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Menú futurista con un solo ítem "Juegos" y su desplegable -->
+  <!-- Menú futurista: Ítem raíz "Juegos" con dropdown -->
   <nav id="futuristic-menu">
     <ul>
       <li class="dropdown">
-        <!-- El enlace principal -->
         <a href="#" id="menu-juegos">Juegos</a>
-        <!-- El desplegable que aparece al hacer clic -->
         <ul class="dropdown-content" id="menu-juegos-dropdown">
           <li><a href="#word-challenge">Adivina la Palabra</a></li>
           <li><a href="#trivia-ia">Trivia IA</a></li>
@@ -25,10 +23,10 @@
     </ul>
   </nav>
 
-  <!-- Un pequeño espaciador para que el contenido no quede tapado por el menú -->
+  <!-- Espaciador mínimo para el menú -->
   <div class="menu-spacer"></div>
 
-  <!-- Canvas para el efecto de partículas en el fondo -->
+  <!-- Canvas para efecto de partículas en el fondo -->
   <canvas id="particles-canvas"></canvas>
 
   <!-- Barra Matrix -->
@@ -95,7 +93,7 @@
   <section id="word-search" class="word-search">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
-      <!-- El script genera un 10x10 con 5 palabras: ROBOT, ALGORITMO, RED, DATOS, IA -->
+      <!-- El script generará un grid de 10x10 -->
     </div>
     <p id="wordsearch-words"></p>
   </section>
