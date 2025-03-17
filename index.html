@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Contenedor de frase aleatoria de famosos -->
+  <div id="random-quote" class="quote"></div>
+
   <!-- Burbujita flotante para WhatsApp -->
   <a href="https://wa.me/34658237988" target="_blank" class="whatsapp-float">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
@@ -256,6 +259,14 @@
     </div>
     <button id="reset-wordsearch" class="reset-btn">Nuevo Juego</button>
     <p id="wordsearch-words"></p>
+  </section>
+  
+  <!-- Sección: Escapa del Laberinto -->
+  <section id="laberinto" class="laberinto flicker">
+    <h2>Escapa del Laberinto</h2>
+    <div id="laberinto-container"></div>
+    <p id="laberinto-message"></p>
+    <button id="reset-laberinto" class="reset-btn">Nuevo Laberinto</button>
   </section>
 
   <script src="script.js"></script>
