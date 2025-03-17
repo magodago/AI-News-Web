@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Efecto de partículas en el fondo
+  /* ---------------------------
+     1. Efecto de partículas con líneas conectadas
+  --------------------------- */
   function iniciarParticles() {
     const canvas = document.getElementById("particles-canvas");
     const ctx = canvas.getContext("2d");
@@ -9,8 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+
     const particles = [];
     const numParticles = 100;
+    const maxDistance = 100; // Distancia máxima para conectar partículas
+
+    // Crear partículas
     for (let i = 0; i < numParticles; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -20,9 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: Math.random() * Math.PI * 2
       });
     }
+
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#0f0";
+      
+      // Actualizar y dibujar cada partícula
       particles.forEach(p => {
         p.x += Math.cos(p.direction) * p.speed;
         p.y += Math.sin(p.direction) * p.speed;
@@ -30,29 +39,55 @@ document.addEventListener("DOMContentLoaded", () => {
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
+        
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       });
+
+      // Dibujar líneas entre partículas cercanas
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < maxDistance) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = 1 - (distance / maxDistance);
+            ctx.strokeStyle = `rgba(0,255,0,${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      
       requestAnimationFrame(updateParticles);
     }
     updateParticles();
   }
   iniciarParticles();
 
-  // 2. Cargar fuente Orbitron
+  /* ---------------------------
+     2. Cargar fuente Orbitron
+  --------------------------- */
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
   linkOrbitron.href = "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap";
   document.head.appendChild(linkOrbitron);
 
-  // 3. Efecto Glitch en el Título
+  /* ---------------------------
+     3. Efecto Glitch en el Título
+  --------------------------- */
   const title = document.querySelector(".glitch");
   setInterval(() => {
     if (title) title.classList.toggle("glitch-active");
   }, 2000);
 
-  // 4. Barra Matrix
+  /* ---------------------------
+     4. Barra Matrix
+  --------------------------- */
   function iniciarMatrix() {
     const bar = document.getElementById("matrix-bar");
     const canvas = document.createElement("canvas");
@@ -91,7 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   iniciarMatrix();
 
-  // 5. Cursor Futurista
+  /* ---------------------------
+     5. Cursor Futurista
+  --------------------------- */
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
   document.body.appendChild(cursor);
@@ -99,7 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor.style.transform = `translate3d(${e.pageX}px, ${e.pageY}px, 0)`;
   });
 
-  // 6. Texto "Follow the white rabbit..."
+  /* ---------------------------
+     6. Texto "Follow the white rabbit..."
+  --------------------------- */
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
   let idx = 0;
@@ -125,7 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   typingInterval = setInterval(typePhrase, 100);
 
-  // 7. Desafío: Adivina la Palabra (10 intentos)
+  /* ---------------------------
+     7. Desafío: Adivina la Palabra (10 intentos)
+  --------------------------- */
   const challengeWords = [
     { word: "robot", hint: "Una máquina programada para realizar tareas." },
     { word: "computadora", hint: "Dispositivo electrónico para procesar información." },
