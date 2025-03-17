@@ -12,6 +12,9 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
 
+  <!-- Bola resplandeciente (efecto robot volador) -->
+  <div id="glowing-ball"></div>
+
   <!-- Canvas para efecto de partículas en el fondo -->
   <canvas id="particles-canvas"></canvas>
 
@@ -258,62 +261,27 @@
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- NUEVA SECCIÓN: Galería de Innovaciones Futuristas -->
-  <section id="gallery" class="gallery flicker animate-on-scroll">
-    <h2>Galería de Innovaciones Futuristas</h2>
-    <div class="gallery-container">
-      <img src="https://source.unsplash.com/300x200/?ai,robot" alt="Innovación 1" class="gallery-img">
-      <img src="https://source.unsplash.com/300x200/?technology,robot" alt="Innovación 2" class="gallery-img">
-      <img src="https://source.unsplash.com/300x200/?futuristic,city" alt="Innovación 3" class="gallery-img">
-      <img src="https://source.unsplash.com/300x200/?cyberpunk,ai" alt="Innovación 4" class="gallery-img">
-      <img src="https://source.unsplash.com/300x200/?robot,humanoid" alt="Innovación 5" class="gallery-img">
-    </div>
+  <!-- NUEVA SECCIÓN: Escape del Laberinto -->
+  <section id="labyrinth" class="labyrinth flicker animate-on-scroll">
+    <h2>Escape del Laberinto</h2>
+    <canvas id="labyrinth-canvas"></canvas>
+    <p id="labyrinth-message"></p>
   </section>
 
-  <!-- NUEVA SECCIÓN: Centro de Innovación y Prototipos -->
-  <section id="innovation-center" class="innovation-center flicker animate-on-scroll parallax">
-    <h2>Centro de Innovación y Prototipos</h2>
-    <p>Descubre los últimos prototipos y esquemas de las tecnologías del futuro. Explora simulaciones interactivas y conceptos disruptivos que están cambiando el mundo.</p>
-    <div class="prototypes">
-      <div class="prototype">
-        <img src="https://source.unsplash.com/300x200/?prototype,ai" alt="Prototipo 1">
-        <p>Prototipo de Asistente Virtual</p>
-      </div>
-      <div class="prototype">
-        <img src="https://source.unsplash.com/300x200/?prototype,robot" alt="Prototipo 2">
-        <p>Robot Humanoide Avanzado</p>
-      </div>
+  <!-- NUEVA SECCIÓN: Quiz de Curiosidades -->
+  <section id="quiz" class="quiz flicker animate-on-scroll">
+    <h2>Quiz: Curiosidades de la AI y Tecnología Futurista</h2>
+    <p id="quiz-timer">Tiempo: 120s</p>
+    <p id="quiz-question">Cargando pregunta...</p>
+    <div id="quiz-buttons">
+      <button id="quiz-true">Verdad</button>
+      <button id="quiz-false">Mentira</button>
     </div>
+    <p id="quiz-feedback"></p>
+    <p id="quiz-score"></p>
+    <button id="quiz-restart" class="reset-btn">Nuevo Quiz</button>
   </section>
 
-  <!-- NUEVA SECCIÓN: TOP 5 Series y Películas -->
-  <section id="top-media" class="top-media flicker animate-on-scroll">
-    <h2>TOP 5 Series y Películas de IA y Robot Humanoides</h2>
-    <div class="media-container">
-      <div class="media-section">
-        <h3>TOP 5 Series</h3>
-        <ol>
-          <li>Westworld</li>
-          <li>Black Mirror</li>
-          <li>Altered Carbon</li>
-          <li>Humans</li>
-          <li>Next</li>
-        </ol>
-      </div>
-      <div class="media-section">
-        <h3>TOP 5 Películas</h3>
-        <ol>
-          <li>Ex Machina</li>
-          <li>Blade Runner 2049</li>
-          <li>I, Robot</li>
-          <li>The Matrix</li>
-          <li>A.I. Artificial Intelligence</li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
