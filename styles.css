@@ -275,30 +275,16 @@ input[type="range"]:focus {
 .timeline {
   text-align: left;
 }
-.timeline ul {
-  list-style: none;
-  padding: 0;
-}
-.timeline li {
-  margin: 10px 0;
-  font-size: 1rem;
-}
-.timeline .timeline-desc {
-  margin-top: 10px;
-  font-style: italic;
-  font-size: 0.9rem;
-}
-
-/* Sección: Simulador de Decisiones Éticas */
-.ethical-simulator {
-  text-align: left;
-}
-.ethical-simulator details {
+.timeline details {
   margin: 8px 0;
   padding: 8px;
   border: 1px dashed #0f0;
   border-radius: 5px;
   background: rgba(0,255,0,0.05);
+}
+.timeline summary {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 /* Sección: Dashboard de Tendencias */
@@ -356,7 +342,16 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Holographic effect para secciones (por ejemplo, en el simulador) */
+/* Sección: Dashboard Interactivo */
+.interactive-dashboard {
+  text-align: center;
+  padding: 10px;
+}
+.interactive-dashboard canvas {
+  max-width: 100%;
+}
+
+/* Efecto holográfico para secciones */
 .holo-effect {
   perspective: 800px;
   transition: transform 0.5s ease, opacity 0.5s ease;
@@ -364,6 +359,26 @@ input[type="range"]:focus {
 .holo-effect:hover {
   transform: rotateY(10deg) rotateX(5deg);
   opacity: 0.9;
+}
+
+/* Botón flotante para WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 10px #0f0;
+}
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
 }
 
 /* Media Query para Sopa de Letras en móvil */
