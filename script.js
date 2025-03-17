@@ -394,7 +394,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!newsContainer) return;
     newsContainer.innerHTML = "";
 
-    fetch("https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov")
+    // Usamos un proxy para evitar problemas de CORS.
+    const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
+    const apiUrl = "https://api.apitube.com/news?api_key=api_live_QjyerYEi61p2aHyQldFOwQiYX3sXvuk9k8QTF8lz6ZbMbRFJ9Ov";
+    fetch(proxyUrl + apiUrl)
       .then(response => {
           console.log("Respuesta de la API:", response);
           return response.json();
