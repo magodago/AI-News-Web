@@ -396,16 +396,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!newsContainer) return;
     newsContainer.innerHTML = "";
 
-    // Utilizamos la API de NewsAPI para obtener noticias sobre inteligencia artificial.
-    // Reemplaza la clave en la URL por la tuya: 0346f15d51d8496fb912005b5261618d
+    // URL de NewsAPI con tu clave
     const apiUrl = "https://newsapi.org/v2/everything?q=artificial+intelligence&sortBy=publishedAt&apiKey=0346f15d51d8496fb912005b5261618d";
 
-    fetch(apiUrl)
+    fetch(apiUrl, {
+      mode: "cors",
+      headers: {
+        "Accept": "application/json"
+      }
+    })
       .then(response => response.json())
       .then(data => {
         console.log("Datos recibidos de NewsAPI:", data);
         const articles = data.articles || [];
-        // Filtramos aquellos artículos que ya se han mostrado, usando el URL como identificador
+        // Filtrar artículos que ya se han mostrado (por URL)
         const newArticles = articles.filter(article => !displayedNews.has(article.url));
         if (newArticles.length === 0) {
           newsContainer.innerHTML = "<p>No hay nuevas noticias de IA.</p>";
