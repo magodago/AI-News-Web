@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI FUTURO</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Barra superior con efecto Matrix -->
+  <div id="matrix-bar"></div>
+
+  <header>
+    <h1 class="glitch">AI FUTURO</h1>
+    <!-- Texto que aparece letra a letra: "Follow the white rabbit..." -->
+    <div class="typing-container">
+      <span id="typing-text"></span>
+    </div>
+  </header>
+
+  <!-- 1) DESAFÍO: Adivina la Palabra -->
+  <section class="word-challenge">
+    <h2>Desafío: Adivina la Palabra</h2>
+    <p id="hint">Pista: ...</p>
+    <div id="word-display">_ _ _</div>
+    <input type="text" id="letter-input" maxlength="1" placeholder="Introduce una letra">
+    <button id="check-letter">Comprobar</button>
+    <p id="message"></p>
+    <p id="attempts-remaining"></p>
+  </section>
+
+  <!-- 2) TRIVIA IA -->
+  <section class="trivia-ia">
+    <h2>Trivia IA</h2>
+    <div id="trivia-container">
+      <p id="trivia-question">Cargando pregunta...</p>
+      <div id="trivia-answers"></div>
+      <p id="trivia-result"></p>
+      <button id="trivia-next">Siguiente Pregunta</button>
+    </div>
+  </section>
+
+  <!-- 3) CRACK THE CODE (10 símbolos) -->
+  <section class="crack-the-code">
+    <h2>Crack the Code</h2>
+    <div id="code-container">
+      <p id="code-instructions">
+        Elige 4 símbolos de la lista (máx 10) y comprueba. Tienes 7 intentos.
+      </p>
+      <div class="symbol-list" id="symbol-list"></div>
+      <div id="code-inputs">
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+      </div>
+      <button id="code-reset">Limpiar</button>
+      <button id="code-check">Comprobar</button>
+      <p id="code-feedback"></p>
+      <p id="code-attempts"></p>
+    </div>
+  </section>
+
+  <!-- 4) MEMORY AI CARDS -->
+  <section class="memory-game">
+    <h2>Memory AI Cards</h2>
+    <div id="memory-container"></div>
+    <p id="memory-message"></p>
+  </section>
+
+  <!-- 5) NEON TICTACTOE (centrado) -->
+  <section class="neon-tictactoe">
+    <h2>Neon TicTacToe</h2>
+    <div id="tictactoe-container"></div>
+    <p id="tictactoe-message"></p>
+  </section>
+
+  <!-- 6) AI NUMBER GUESSER -->
+  <section class="ai-number-guessing">
+    <h2>AI Number Guesser</h2>
+    <div id="guesser-container">
+      <p>Piensa un número entre 1 y 100. La IA intentará adivinarlo.</p>
+      <button id="start-guesser">Empezar</button>
+      <p id="guesser-question"></p>
+      <div id="guesser-buttons">
+        <button id="higher">Más alto</button>
+        <button id="lower">Más bajo</button>
+        <button id="correct">¡Correcto!</button>
+      </div>
+      <p id="guesser-feedback"></p>
+    </div>
+  </section>
+
+  <!-- 7) SOPA DE LETRAS AI -->
+  <section class="word-search">
+    <h2>Sopa de Letras AI</h2>
+    <div id="wordsearch-container">
+      <!-- script.js genera un 10x10 con 5 palabras: ROBOT, ALGORITMO, RED, DATOS, IA -->
+    </div>
+    <p id="wordsearch-words"></p>
+  </section>
+
+  <!-- 8) Noticias -->
+  <section class="noticias">
+    <h2>Últimas Noticias de IA</h2>
+    <div id="news-container"></div>
+  </section>
+
+  <!-- 9) Widgets Futuristas -->
+  <section class="widgets">
+    <h2>Widgets Futuristas</h2>
+
+    <div class="widget" id="quote-widget">
+      <h3>🤖 Cita sobre IA</h3>
+      <p id="ai-quote">"La inteligencia artificial no reemplazará a los humanos."</p>
+    </div>
+
+    <div class="widget" id="patents-widget">
+      <h3>🔬 Patentes de IA</h3>
+      <p id="patent-count">Cargando...</p>
+    </div>
+
+    <div class="widget" id="future-predictions">
+      <h3>🔮 Predicciones de IA</h3>
+      <p id="prediction-text">Cargando...</p>
+    </div>
+
+    <div class="widget" id="innovation-map">
+      <h3>🌍 Mapa de Innovación</h3>
+      <div id="map-container">Cargando...</div>
+    </div>
+
+    <div class="widget" id="surprise-widget">
+      <h3>⚡ Sorpresa Diaria</h3>
+      <p id="surprise-text">Cargando sorpresa...</p>
+      <button id="reveal-surprise">Descúbrelo</button>
+    </div>
+
+    <div class="widget" id="countries-widget">
+      <h3>🌎 Países con Mayor Inversión en IA</h3>
+      <div id="countries-container">Cargando...</div>
+    </div>
+  </section>
+
+  <!-- 10) Análisis y Tendencias -->
+  <section class="analisis">
+    <h2>Análisis y Tendencias</h2>
+    <div id="analisis-container">
+      <article>
+        <h3>Visión por Computador</h3>
+        <p>La capacidad de analizar imágenes abre un mundo de aplicaciones.</p>
+      </article>
+      <article>
+        <h3>Robótica Avanzada</h3>
+        <p>La fusión de IA y robótica permite máquinas más autónomas.</p>
+      </article>
+      <article>
+        <h3>Machine Learning en la Empresa</h3>
+        <p>Cómo el ML está transformando la toma de decisiones y la productividad.</p>
+      </article>
+      <article>
+        <h3>Ética y Sesgos en la IA</h3>
+        <p>Reflexiones sobre la responsabilidad y transparencia de algoritmos.</p>
+      </article>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
