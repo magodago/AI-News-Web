@@ -615,7 +615,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Robots humanoides podrían operar en el 60% de las industrias para 2030.",
     "Ciudades inteligentes integrarán IA en más del 80% de sus servicios para 2035.",
     "La fusión de computación cuántica e IA revolucionará la investigación médica para 2040.",
-    "La integración de IA en la educación podría transformar la formación profesional en los próximos 10 años.",
+    "La integración de IA en la educación transformará la formación profesional en los próximos 10 años.",
     "El uso de asistentes virtuales en hogares se expandirá globalmente en menos de 5 años."
   ];
   if (updateProjectionsBtn) {
@@ -625,50 +625,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 15. Juego: Adivina la Frase
-  const phraseDisplay = document.getElementById("phrase-display");
-  const guessInput = document.getElementById("guess-input");
-  const checkPhraseBtn = document.getElementById("check-phrase");
-  const phraseMessage = document.getElementById("phrase-message");
-  const resetPhraseBtn = document.getElementById("reset-phrase");
-  const phrases = [
-    { phrase: "El futuro es ahora", hint: "Una afirmación sobre el presente y el futuro." },
-    { phrase: "La tecnología es poder", hint: "Reflexión sobre la importancia de la tecnología." },
-    { phrase: "Innovar para transformar", hint: "Una invitación a la innovación." },
-    { phrase: "La IA redefine el mañana", hint: "Un eslogan futurista sobre IA." },
-    { phrase: "Sueña, crea, innova", hint: "Tres acciones clave para el futuro." }
-  ];
-  let currentPhraseIndex = Math.floor(Math.random() * phrases.length);
-  function renderPhrase() {
-    const current = phrases[currentPhraseIndex];
-    if (phraseDisplay) {
-      // Se muestra la frase con espacios para cada carácter
-      phraseDisplay.textContent = current.phrase.split("").join(" ");
-    }
-    if (phraseMessage) {
-      phraseMessage.textContent = "Pista: " + current.hint;
-    }
-  }
-  renderPhrase();
-  if (checkPhraseBtn) {
-    checkPhraseBtn.addEventListener("click", () => {
-      const current = phrases[currentPhraseIndex];
-      if (guessInput.value.trim().toLowerCase() === current.phrase.toLowerCase()) {
-        phraseMessage.textContent = "🎉 ¡Correcto! La frase es: " + current.phrase;
-        checkPhraseBtn.disabled = true;
-        guessInput.disabled = true;
-      } else {
-        phraseMessage.textContent = "❌ Incorrecto. Inténtalo de nuevo.";
-      }
-    });
-  }
-  if (resetPhraseBtn) {
-    resetPhraseBtn.addEventListener("click", () => {
-      currentPhraseIndex = Math.floor(Math.random() * phrases.length);
-      guessInput.value = "";
-      guessInput.disabled = false;
-      checkPhraseBtn.disabled = false;
-      renderPhrase();
-    });
-  }
+  // 15. Juego: Desafío: Adivina la Palabra (manteniendo el que más te gusta)
+  // (El código ya se encuentra en la sección 7)
+
+  // 16. Trivia IA (ya incluido en sección 8)
+
+  // 17. Crack the Code (ya incluido en sección 9)
+
+  // 18. Memory AI Cards (ya incluido en sección 10)
+
+  // 19. Sopa de Letras AI (ya incluido en sección 11)
 });
