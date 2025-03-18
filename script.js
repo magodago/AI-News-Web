@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function transicionMatrix(modo, mensaje) {
     matrixText.textContent = "Cargando...";
     const particlesCanvas = document.getElementById("particles-canvas");
-    // Se añade la clase "explosion-glitch" para activar la animación impactante
+    // Se añade la clase "explosion-glitch" para activar la animación
     particlesCanvas.classList.add("explosion-glitch");
     setTimeout(() => {
       particlesCanvas.classList.remove("explosion-glitch");
@@ -48,6 +48,40 @@ document.addEventListener("DOMContentLoaded", () => {
     bluePill.addEventListener("click", () => {
       transicionMatrix("blue-mode", "Has elegido la pastilla azul. La historia termina, despiertas en tu cama y crees lo que quieras.");
     });
+  }
+
+  /* ---------------------------
+     Acceso Secreto: Portal del Oráculo
+     Activación mediante 3 toques sobre el título (elemento con clase "glitch")
+  --------------------------- */
+  let secretClicksTitle = 0;
+  const titleElement = document.querySelector(".glitch");
+  if (titleElement) {
+    titleElement.addEventListener("click", () => {
+      secretClicksTitle++;
+      if (secretClicksTitle >= 3) {
+        activarPortalSecreto();
+        secretClicksTitle = 0;
+      }
+    });
+  }
+
+  function activarPortalSecreto() {
+    // Creamos el overlay del portal si no existe
+    let portal = document.getElementById("secret-portal");
+    if (!portal) {
+      portal = document.createElement("div");
+      portal.id = "secret-portal";
+      document.body.appendChild(portal);
+    }
+    portal.innerHTML = `
+      <div class="portal-content">
+        <h1 class="portal-title">NEO</h1>
+        <p class="portal-message">Bienvenido al Portal del Oráculo. Solo los elegidos conocen la verdad.</p>
+      </div>
+    `;
+    portal.style.display = "flex";
+    portal.classList.add("portal-activate");
   }
 
   /* ---------------------------
@@ -128,9 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------------------------
      Efecto Glitch en el Título
   --------------------------- */
-  const title = document.querySelector(".glitch");
   setInterval(() => {
-    if (title) title.classList.toggle("glitch-active");
+    if (titleElement) titleElement.classList.toggle("glitch-active");
   }, 2000);
 
   /* ---------------------------
