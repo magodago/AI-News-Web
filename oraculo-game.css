@@ -1,0 +1,91 @@
+/* oraculo-game.css */
+
+/* Reset básico y fondo blanco */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* El canvas ocupa toda la ventana */
+#gameCanvas {
+  display: block;
+  background: #fff;
+}
+
+/* Overlay de inicio */
+#startOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  text-align: center;
+  font-family: "Courier New", monospace;
+}
+#startOverlay h1 {
+  font-size: 3rem;
+  color: #000;
+  margin-bottom: 20px;
+}
+#startOverlay button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  border: none;
+  transition: background 0.3s;
+}
+#startOverlay button:hover {
+  background: #333;
+}
+
+/* Botón para volver a la Matrix */
+#backToMatrix {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  z-index: 1001;
+  transition: background 0.3s;
+}
+#backToMatrix:hover {
+  background: #333;
+}
+
+/* Estilo de la palabra acumulada */
+#wordDisplay {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Courier New", monospace;
+  font-size: 2rem;
+  color: #000;
+  z-index: 900;
+}
+
+/* Mensaje final */
+#messageDisplay {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Courier New", monospace;
+  font-size: 1.5rem;
+  color: #000;
+  z-index: 900;
+}

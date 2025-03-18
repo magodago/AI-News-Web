@@ -1,0 +1,118 @@
+// oraculo-game.js
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const wordDisplay = document.getElementById('wordDisplay');
+const messageDisplay = document.getElementById('messageDisplay');
+const startOverlay = document.getElementById('startOverlay');
+const backToMatrixButton = document.getElementById('backToMatrix');
+
+// Ajusta el canvas al tamaño de la ventana
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Clase para las letras que caen
+class FallingLetter {
+  constructor(letter, x, y, speed) {
+    this.letter = letter;
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.size = 30; // Tamaño en píxeles
+  }
+  update() {
+    this.y += this.speed;
+  }
+  draw() {
+    ctx.fillStyle = "#000";
+    ctx.font = this.size + "px Courier New";
+    ctx.fillText(this.letter, this.x, this.y);
+  }
+}
+
+let fallingLetters = [];
+let spawnInterval = 800; // Intervalo de aparición en ms
+let lastSpawn = Date.now();
+
+// La palabra secreta es "TRINITY" (la novia de Neo)
+const secretWord = "TRINITY";
+let collectedWord = "";
+
+// Función para generar una letra aleatoria (A-Z)
+function spawnLetter() {
+  const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+  const x = Math.random() * (canvas.width - 30);
+  const y = -30;
+  const speed = 2 + Math.random() * 3;
+  fallingLetters.push(new FallingLetter(letter, x, y, speed));
+}
+
+function update() {
+  const now = Date.now();
+  if (now - lastSpawn > spawnInterval) {
+    spawnLetter();
+    lastSpawn = now;
+  }
+  fallingLetters.forEach(letter => letter.update());
+  // Eliminar letras que han salido del canvas
+  fallingLetters = fallingLetters.filter(letter => letter.y < canvas.height + 30);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  fallingLetters.forEach(letter => letter.draw());
+}
+
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+let gameStarted = false;
+// Función para iniciar el juego
+function startGame() {
+  gameStarted = true;
+  startOverlay.style.display = "none";
+  gameLoop();
+}
+
+// Evento para el botón de empezar
+document.getElementById("startButton").addEventListener("click", startGame);
+
+// Evento para el botón de volver a la Matrix (redirige a index.html)
+backToMatrixButton.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
+// Al hacer clic en el canvas se comprueba si se ha pulsado sobre alguna letra
+canvas.addEventListener('click', (e) => {
+  if (!gameStarted) return;
+  const rect = canvas.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const clickY = e.clientY - rect.top;
+  
+  // Recorremos las letras de atrás hacia adelante para detectar el clic
+  for (let i = fallingLetters.length - 1; i >= 0; i--) {
+    const letter = fallingLetters[i];
+    if (
+      clickX >= letter.x &&
+      clickX <= letter.x + letter.size &&
+      clickY >= letter.y - letter.size &&
+      clickY <= letter.y
+    ) {
+      collectedWord += letter.letter;
+      wordDisplay.textContent = "Palabra: " + collectedWord;
+      fallingLetters.splice(i, 1);
+      // Si se forma la palabra secreta, se muestra el mensaje de éxito
+      if (collectedWord.includes(secretWord)) {
+        messageDisplay.textContent = "¡Has desbloqueado el secreto del Oráculo!";
+      }
+      break;
+    }
+  }
+});

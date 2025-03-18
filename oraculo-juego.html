@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El Oráculo</title>
+  <link rel="stylesheet" href="oraculo-game.css">
+</head>
+<body>
+  <!-- Overlay de inicio -->
+  <div id="startOverlay">
+    <h1>El Oráculo</h1>
+    <button id="startButton">Empezar</button>
+  </div>
+
+  <!-- Botón para volver a la Matrix -->
+  <button id="backToMatrix">Volver a la Matrix</button>
+
+  <!-- Canvas para el juego -->
+  <canvas id="gameCanvas"></canvas>
+  
+  <!-- Muestra la palabra que el jugador va acumulando -->
+  <div id="wordDisplay">Palabra: </div>
+  
+  <!-- Mensaje final exclusivo -->
+  <div id="messageDisplay"></div>
+  
+  <script src="oraculo-game.js"></script>
+</body>
+</html>
