@@ -25,28 +25,7 @@
     </div>
   </header>
 
-  <!-- Menú desplegable -->
-  <nav id="navbar">
-    <div class="dropdown">
-      <button class="dropbtn">Menú</button>
-      <div class="dropdown-content">
-        <a href="#matrix-game">Juego Matrix</a>
-        <a href="#timeline">Explorador de Futuros</a>
-        <a href="#ethical-simulator">Decisiones Éticas</a>
-        <a href="#trends">Dashboard Tendencias</a>
-        <a href="#custom-future">Futuro Personalizado</a>
-        <a href="#interactive-projections">Proyecciones</a>
-        <a href="#word-challenge">Adivina la Palabra</a>
-        <a href="#trivia-ia">Trivia IA</a>
-        <a href="#crack-the-code">Crack the Code</a>
-        <a href="#memory-game">Memory AI Cards</a>
-        <a href="#word-search">Sopa de Letras</a>
-        <a href="#top-media">Top Media</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- NUEVA SECCIÓN: Juego de la pastilla roja o azul -->
+  <!-- Sección: Juego de la pastilla roja o azul -->
   <section id="matrix-game" class="matrix-game flicker">
     <h2>Elige tu pastilla</h2>
     <div class="pill-buttons">
@@ -122,71 +101,54 @@
     </div>
   </section>
 
-  <!-- Sección: Simulador de Decisiones Éticas en IA -->
+  <!-- Sección: Simulador de Decisiones Éticas en IA (dilemas en cajas) -->
   <section id="ethical-simulator" class="ethical-simulator flicker">
     <h2>Simulador de Decisiones Éticas en IA</h2>
     <div id="ethical-container">
-      <details>
-        <summary>Dilema 1</summary>
+      <div class="dilemma-box">
+        <h3>Dilema 1</h3>
         <p>Un hospital utiliza IA para diagnósticos rápidos, pero el sistema podría tener sesgos. ¿Priorizar la velocidad o la equidad?</p>
-      </details>
-      <details>
-        <summary>Dilema 2</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 2</h3>
         <p>Un vehículo autónomo debe decidir entre salvar a peatones o a sus ocupantes en un choque. ¿Qué opción tomarías?</p>
-      </details>
-      <details>
-        <summary>Dilema 3</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 3</h3>
         <p>Un sistema de IA filtra información para evitar noticias falsas, pero limita la libertad de expresión. ¿Qué valor es más importante?</p>
-      </details>
-      <details>
-        <summary>Dilema 4</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 4</h3>
         <p>La optimización empresarial mediante IA reduce puestos de trabajo. ¿Es aceptable sacrificar empleos por eficiencia?</p>
-      </details>
-      <details>
-        <summary>Dilema 5</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 5</h3>
         <p>Un algoritmo decide quién recibe tratamiento médico prioritario. ¿Cómo equilibrar la eficiencia y la ética?</p>
-      </details>
-      <details>
-        <summary>Dilema 6</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 6</h3>
         <p>La vigilancia con IA mejora la seguridad, pero invade la privacidad. ¿Dónde trazas la línea?</p>
-      </details>
-      <details>
-        <summary>Dilema 7</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 7</h3>
         <p>La personalización publicitaria mediante IA puede manipular decisiones de consumo. ¿Es ético?</p>
-      </details>
-      <details>
-        <summary>Dilema 8</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 8</h3>
         <p>Un algoritmo de créditos bancarios puede discriminar a ciertos grupos. ¿Cómo asegurar la igualdad?</p>
-      </details>
-      <details>
-        <summary>Dilema 9</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 9</h3>
         <p>Un asistente virtual utiliza tus datos personales para mejorar. ¿Cuánta información es demasiada?</p>
-      </details>
-      <details>
-        <summary>Dilema 10</summary>
+      </div>
+      <div class="dilemma-box">
+        <h3>Dilema 10</h3>
         <p>La automatización total con IA puede crear un mundo eficiente, pero ¿a costa de qué valores humanos?</p>
-      </details>
+      </div>
       <p class="ethical-share">
         ¡Comparte estos dilemas con tus amigos y debate los diferentes puntos de vista!
       </p>
     </div>
-  </section>
-
-  <!-- Sección: Dashboard de Tendencias (más dinámico) -->
-  <section id="trends" class="trends flicker">
-    <h2>Dashboard de Tendencias y Datos en Tiempo Real</h2>
-    <div id="trends-container">
-      <!-- Se actualizarán dinámicamente los datos en las tarjetas -->
-      <div class="trend-card"></div>
-      <div class="trend-card"></div>
-      <div class="trend-card"></div>
-      <div class="trend-card"></div>
-    </div>
-    <!-- Canvas para gráfico dinámico -->
-    <canvas id="trends-chart"></canvas>
-    <p class="trends-desc">
-      Datos actualizados automáticamente cada pocos segundos.
-    </p>
   </section>
 
   <!-- Sección: Simulador de Futuro Personalizado -->
@@ -206,7 +168,7 @@
     <div id="future-output"></div>
   </section>
 
-  <!-- Sección: Panel de Proyecciones Interactivas -->
+  <!-- Sección: Panel de Proyecciones Interactivas (con más proyecciones) -->
   <section id="interactive-projections" class="interactive-projections flicker">
     <h2>Panel de Proyecciones Interactivas</h2>
     <p>Haz clic en el botón para actualizar las proyecciones:</p>
