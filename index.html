@@ -19,17 +19,163 @@
   <div id="matrix-bar"></div>
 
   <header>
-    <!-- El título se usa como trigger secreto (3 clics) -->
+    <!-- El título se usa también para activar el acceso secreto (3 clics) -->
     <h1 class="glitch">AI FUTURO</h1>
     <div class="typing-container">
       <span id="typing-text"></span>
     </div>
   </header>
 
-  <!-- Aquí irían las demás secciones de la página principal (si las hay) -->
+  <!-- Sección: Explorador de Futuros -->
+  <section id="timeline" class="timeline flicker">
+    <h2>Explorador de Futuros</h2>
+    <div id="timeline-container">
+      <details>
+        <summary><strong>1956 - 1980:</strong> Inicios y Consolidación</summary>
+        <p>
+          1956: Conferencia de Dartmouth, donde nace la IA.<br>
+          1966: Creación de ELIZA, pionera en NLP.<br>
+          1970: Primeros sistemas expertos y redes neuronales.<br>
+          1980: Consolidación de tecnologías emergentes.
+        </p>
+      </details>
+      <!-- Puedes agregar más detalles según lo necesites -->
+    </div>
+  </section>
 
-  <!-- El overlay del Portal del Oráculo se crea dinámicamente -->
-  
+  <!-- Sección: Simulador de Decisiones Éticas en IA -->
+  <section id="ethical-simulator" class="ethical-simulator flicker">
+    <h2>Simulador de Decisiones Éticas en IA</h2>
+    <div id="ethical-container">
+      <div class="dilemma-box">
+        <h3>Dilema 1</h3>
+        <p>Un hospital utiliza IA para diagnósticos rápidos, pero el sistema podría tener sesgos. ¿Priorizar la velocidad o la equidad?</p>
+      </div>
+      <!-- Agrega más dilemas en cajas según desees -->
+    </div>
+  </section>
+
+  <!-- Sección: Simulador de Futuro Personalizado -->
+  <section id="custom-future" class="custom-future flicker">
+    <h2>Simulador de Futuro Personalizado</h2>
+    <p>Selecciona tus parámetros para ver una proyección de tu futuro:</p>
+    <label for="automation">Nivel de Automatización:</label>
+    <input type="range" id="automation" name="automation" min="0" max="100" value="50">
+    <span id="automation-value">50%</span><br>
+    <label for="robotics">Presencia de Robots Humanoides:</label>
+    <input type="range" id="robotics" name="robotics" min="0" max="100" value="50">
+    <span id="robotics-value">50%</span><br>
+    <label for="transport">Adopción de Coches Autónomos:</label>
+    <input type="range" id="transport" name="transport" min="0" max="100" value="50">
+    <span id="transport-value">50%</span><br>
+    <button id="simulate-future" class="reset-btn">Simular Futuro</button>
+    <div id="future-output"></div>
+  </section>
+
+  <!-- Sección: Panel de Proyecciones Interactivas -->
+  <section id="interactive-projections" class="interactive-projections flicker">
+    <h2>Panel de Proyecciones Interactivas</h2>
+    <p>Haz clic en el botón para actualizar las proyecciones:</p>
+    <button id="update-projections" class="reset-btn">Actualizar Proyecciones</button>
+    <div id="projections-output"></div>
+  </section>
+
+  <!-- Sección: Desafío: Adivina la Palabra -->
+  <section id="word-challenge" class="word-challenge flicker">
+    <h2>Desafío: Adivina la Palabra</h2>
+    <p id="hint">Pista: ...</p>
+    <div id="word-display">_ _ _</div>
+    <input type="text" id="letter-input" maxlength="1" placeholder="Introduce una letra">
+    <button id="check-letter">Comprobar</button>
+    <button id="reset-word-challenge" class="reset-btn">Nuevo Juego</button>
+    <p id="message"></p>
+    <p id="attempts-remaining"></p>
+  </section>
+
+  <!-- Sección: Trivia IA -->
+  <section id="trivia-ia" class="trivia-ia flicker">
+    <h2>Trivia IA</h2>
+    <div id="trivia-container">
+      <p id="trivia-question">Cargando pregunta...</p>
+      <div id="trivia-answers"></div>
+      <p id="trivia-result"></p>
+      <button id="trivia-next">Siguiente Pregunta</button>
+      <button id="reset-trivia" class="reset-btn">Nuevo Juego</button>
+    </div>
+  </section>
+
+  <!-- Sección: Crack the Code -->
+  <section id="crack-the-code" class="crack-the-code flicker">
+    <h2>Crack the Code</h2>
+    <div id="code-container">
+      <p id="code-instructions">Elige 4 emoticonos de la lista y comprueba. Tienes 10 intentos.</p>
+      <div class="symbol-list" id="symbol-list"></div>
+      <div id="code-inputs">
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+      </div>
+      <button id="code-reset">Limpiar</button>
+      <button id="code-check">Comprobar</button>
+      <button id="reset-crack-code" class="reset-btn">Nuevo Juego</button>
+      <p id="code-feedback"></p>
+      <p id="code-attempts"></p>
+    </div>
+  </section>
+
+  <!-- Sección: Memory AI Cards -->
+  <section id="memory-game" class="memory-game flicker">
+    <h2>Memory AI Cards</h2>
+    <div id="memory-container"></div>
+    <button id="reset-memory" class="reset-btn">Nuevo Juego</button>
+    <p id="memory-message"></p>
+  </section>
+
+  <!-- Sección: Sopa de Letras AI -->
+  <section id="word-search" class="word-search flicker">
+    <h2>Sopa de Letras AI</h2>
+    <div id="wordsearch-container">
+      <!-- El grid se genera con JavaScript -->
+    </div>
+    <button id="check-word" class="reset-btn">Comprobar Palabra</button>
+    <button id="reset-wordsearch" class="reset-btn">Nuevo Juego</button>
+    <p id="wordsearch-words"></p>
+  </section>
+
+  <!-- Sección: TOP de series y peliculas AI -->
+  <section id="top-media" class="top-media flicker">
+    <h2>TOP de series y peliculas AI</h2>
+    <div class="media-container">
+      <div class="media-section">
+        <h3>TOP 5 Series</h3>
+        <ol>
+          <li>Westworld</li>
+          <li>Black Mirror</li>
+          <li>Altered Carbon</li>
+          <li>Humans</li>
+          <li>Next</li>
+        </ol>
+      </div>
+      <div class="media-section">
+        <h3>TOP 5 Películas</h3>
+        <ol>
+          <li>Ex Machina</li>
+          <li>Blade Runner 2049</li>
+          <li>I, Robot</li>
+          <li>The Matrix</li>
+          <li>A.I. Artificial Intelligence</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botón "Volver Arriba" -->
+  <button id="back-to-top">Volver Arriba</button>
+
+  <!-- Portal Secreto: Overlay oculto -->
+  <div id="secret-portal" style="display:none;"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
