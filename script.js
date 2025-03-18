@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("section").forEach(section => {
       section.style.display = ""; // Se muestra con el display por defecto
     });
-    // Añadimos la clase correspondiente al body
     document.body.classList.remove("red-mode", "blue-mode");
     document.body.classList.add(modo);
   }
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     1. Efecto de partículas con líneas conectadas
+     Efecto de partículas con líneas conectadas
   --------------------------- */
   function iniciarParticles() {
     const canvas = document.getElementById("particles-canvas");
@@ -49,9 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const particles = [];
     const numParticles = 100;
-    const maxDistance = 100; // Distancia máxima para conectar partículas
+    const maxDistance = 100;
 
-    // Crear partículas
     for (let i = 0; i < numParticles; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -103,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   iniciarParticles();
 
   /* ---------------------------
-     2. Cargar fuente Orbitron
+     Cargar fuente Orbitron
   --------------------------- */
   const linkOrbitron = document.createElement("link");
   linkOrbitron.rel = "stylesheet";
@@ -111,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(linkOrbitron);
 
   /* ---------------------------
-     3. Efecto Glitch en el Título
+     Efecto Glitch en el Título
   --------------------------- */
   const title = document.querySelector(".glitch");
   setInterval(() => {
@@ -119,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 
   /* ---------------------------
-     4. Barra Matrix
+     Barra Matrix
   --------------------------- */
   function iniciarMatrix() {
     const bar = document.getElementById("matrix-bar");
@@ -160,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
   iniciarMatrix();
 
   /* ---------------------------
-     5. Cursor Futurista
+     Cursor Futurista
   --------------------------- */
   const cursor = document.createElement("div");
   cursor.classList.add("custom-cursor");
@@ -170,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------------------------
-     6. Texto "Follow the white rabbit..."
+     Texto "Follow the white rabbit..."
   --------------------------- */
   const typingText = document.getElementById("typing-text");
   const phrase = "Follow the white rabbit...";
@@ -198,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   typingInterval = setInterval(typePhrase, 100);
 
   /* ---------------------------
-     7. Desafío: Adivina la Palabra (10 intentos)
+     Desafío: Adivina la Palabra (10 intentos)
   --------------------------- */
   const challengeWords = [
     { word: "robot", hint: "Una máquina programada para realizar tareas." },
@@ -282,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     8. Trivia IA (shuffle y reinicio)
+     Trivia IA (shuffle y reinicio)
   --------------------------- */
   const triviaQuestions = [
     { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
@@ -361,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     9. Crack the Code (10 intentos)
+     Crack the Code (10 intentos)
   --------------------------- */
   const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
   const codeLength = 4;
@@ -472,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     10. Memory AI Cards
+     Memory AI Cards
   --------------------------- */
   const memoryContainer = document.getElementById("memory-container");
   const memoryMessage = document.getElementById("memory-message");
@@ -540,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     11. Sopa de Letras AI
+     Sopa de Letras AI
   --------------------------- */
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
@@ -633,7 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     12. Navegación suave de enlaces internos
+     Navegación suave
   --------------------------- */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
@@ -648,7 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------------------------
-     13. Simulador de Futuro Personalizado
+     Simulador de Futuro Personalizado
   --------------------------- */
   const automationSlider = document.getElementById("automation");
   const roboticsSlider = document.getElementById("robotics");
@@ -693,7 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     14. Panel de Proyecciones Interactivas (más proyecciones)
+     Panel de Proyecciones Interactivas (más proyecciones)
   --------------------------- */
   const updateProjectionsBtn = document.getElementById("update-projections");
   const projectionsOutput = document.getElementById("projections-output");
