@@ -71,7 +71,7 @@ header {
   100% { text-shadow: 0px 0px 5px #0f0; }
 }
 
-/* Typing container */
+/* Contenedor de escritura */
 .typing-container {
   font-size: 1.1rem;
   margin-top: 5px;
@@ -132,7 +132,7 @@ input[type="text"] {
   margin: 10px 0;
 }
 
-/* Sección: Animate on scroll */
+/* Animate on scroll */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
