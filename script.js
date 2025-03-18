@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Al inicio, ocultamos todas las secciones excepto #matrix-game
+  document.querySelectorAll("section").forEach(section => {
+    if (section.id !== "matrix-game") {
+      section.style.display = "none";
+    }
+  });
+
   /* ---------------------------
      Juego de la pastilla (Matrix)
   --------------------------- */
@@ -6,12 +13,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const bluePill = document.getElementById("blue-pill");
   const matrixText = document.getElementById("matrix-text");
 
+  // Función para revelar toda la página y aplicar el modo de color
+  function revelarPagina(modo) {
+    document.querySelectorAll("section").forEach(section => {
+      section.style.display = ""; // Se muestra con el display por defecto
+    });
+    // Añadimos la clase correspondiente al body
+    document.body.classList.remove("red-mode", "blue-mode");
+    document.body.classList.add(modo);
+  }
+
   if (redPill && bluePill && matrixText) {
     redPill.addEventListener("click", () => {
       matrixText.textContent = "Has elegido la pastilla roja. Te mostraré hasta dónde llega el agujero del conejo.";
+      revelarPagina("red-mode");
     });
     bluePill.addEventListener("click", () => {
       matrixText.textContent = "Has elegido la pastilla azul. La historia termina, despiertas en tu cama y crees lo que quieras.";
+      revelarPagina("blue-mode");
     });
   }
 
