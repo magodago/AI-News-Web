@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ---------------------------
      NUEVA SECCIÓN: Juego de la pastilla
-     --------------------------- */
+  --------------------------- */
   const redPill = document.getElementById("red-pill");
   const bluePill = document.getElementById("blue-pill");
   const matrixText = document.getElementById("matrix-text");
@@ -693,6 +693,25 @@ document.addEventListener("DOMContentLoaded", () => {
     updateProjectionsBtn.addEventListener("click", () => {
       const randomIdx = Math.floor(Math.random() * projectionsData.length);
       projectionsOutput.textContent = projectionsData[randomIdx];
+    });
+  }
+
+  /* ---------------------------
+     BOTÓN: Volver Arriba
+  --------------------------- */
+  const backToTopBtn = document.getElementById("back-to-top");
+  if (backToTopBtn) {
+    // Mostrar u ocultar el botón según el scroll
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 200) {
+        backToTopBtn.style.display = "block";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+    });
+    // Funcionalidad para volver arriba
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 });
