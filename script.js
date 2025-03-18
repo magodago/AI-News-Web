@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const bluePill = document.getElementById("blue-pill");
   const matrixText = document.getElementById("matrix-text");
 
-  // Función para revelar todas las secciones y cambiar solo el fondo de partículas
+  // Función para revelar todas las secciones y cambiar solo el fondo del canvas de partículas
   function revelarPagina(modo) {
     document.querySelectorAll("section").forEach(section => {
       section.style.display = "";
@@ -28,14 +28,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Función de transición con efecto de pixelado y mensaje de carga
+  function transicionMatrix(modo, mensaje) {
+    matrixText.textContent = "Cargando...";
+    const particlesCanvas = document.getElementById("particles-canvas");
+    // Se añade la clase "pixelate" para activar el efecto
+    particlesCanvas.classList.add("pixelate");
+    setTimeout(() => {
+      particlesCanvas.classList.remove("pixelate");
+      matrixText.textContent = mensaje;
+      revelarPagina(modo);
+    }, 2500);
+  }
+
   if (redPill && bluePill && matrixText) {
     redPill.addEventListener("click", () => {
-      matrixText.textContent = "Has elegido la pastilla roja. Te mostraré hasta dónde llega el agujero del conejo.";
-      revelarPagina("red-mode");
+      transicionMatrix("red-mode", "Has elegido la pastilla roja. Te mostraré hasta dónde llega el agujero del conejo.");
     });
     bluePill.addEventListener("click", () => {
-      matrixText.textContent = "Has elegido la pastilla azul. La historia termina, despiertas en tu cama y crees lo que quieras.";
-      revelarPagina("blue-mode");
+      transicionMatrix("blue-mode", "Has elegido la pastilla azul. La historia termina, despiertas en tu cama y crees lo que quieras.");
     });
   }
 
@@ -613,7 +624,7 @@ document.addEventListener("DOMContentLoaded", () => {
           cellDiv.classList.add("wordsearch-cell");
           cellDiv.textContent = grid[r][c];
           cellDiv.addEventListener("click", () => {
-            // Si ya está seleccionado, deseleccionarlo
+            // Si ya está seleccionado, se deselecciona
             if (cellDiv.classList.contains("highlighted")) {
               cellDiv.classList.remove("highlighted");
               wordSearchSelection = wordSearchSelection.filter(item => item !== cellDiv);
