@@ -544,13 +544,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     Sopa de Letras AI (Grid)
+     Sopa de Letras AI (Grid y comprobación)
   --------------------------- */
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
   const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
   const wsRows = 10, wsCols = 10;
   let grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
+  // Variables globales para la selección en la sopa de letras
+  let wordSearchSelection = [];
+  let wordSearchWords = wsWords.slice();
+
   function placeWordHorizontal(word, r, c) {
     if (c + word.length > wsCols) return false;
     for (let i = 0; i < word.length; i++) {
@@ -601,21 +605,29 @@ document.addEventListener("DOMContentLoaded", () => {
       wordsearchContainer.style.display = "grid";
       wordsearchContainer.style.gridTemplateColumns = `repeat(${wsCols}, 30px)`;
       wordsearchContainer.style.gap = "2px";
+      // Vaciar selección
+      wordSearchSelection = [];
       for (let r = 0; r < wsRows; r++) {
         for (let c = 0; c < wsCols; c++) {
           const cellDiv = document.createElement("div");
           cellDiv.classList.add("wordsearch-cell");
           cellDiv.textContent = grid[r][c];
           cellDiv.addEventListener("click", () => {
-            cellDiv.classList.toggle("highlighted");
+            // Si ya está seleccionado, deseleccionarlo
+            if (cellDiv.classList.contains("highlighted")) {
+              cellDiv.classList.remove("highlighted");
+              wordSearchSelection = wordSearchSelection.filter(item => item !== cellDiv);
+            } else {
+              cellDiv.classList.add("highlighted");
+              wordSearchSelection.push(cellDiv);
+            }
           });
           wordsearchContainer.appendChild(cellDiv);
         }
       }
     }
     if (wordsearchWordsElem) {
-      const shuffledWsWords = shuffle([...wsWords]);
-      wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
+      wordsearchWordsElem.innerHTML = "Palabras: " + wordSearchWords.join(", ");
     }
   }
   renderWordSearch();
@@ -629,11 +641,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
+    // Reiniciar lista de palabras sin tachar
+    wordSearchWords = wsWords.slice();
     renderWordSearch();
   }
   const resetWordSearchBtn = document.getElementById("reset-wordsearch");
   if (resetWordSearchBtn) {
     resetWordSearchBtn.addEventListener("click", resetWordSearch);
+  }
+  // Evento para comprobar la palabra seleccionada
+  const checkWordBtn = document.getElementById("check-word");
+  if (checkWordBtn) {
+    checkWordBtn.addEventListener("click", () => {
+      let selectedWord = wordSearchSelection.map(cell => cell.textContent).join("").toUpperCase();
+      if (wsWords.includes(selectedWord)) {
+        alert("¡Palabra encontrada: " + selectedWord + "!");
+        // Tachar la palabra en la lista (actualizar la variable y el HTML)
+        wordSearchWords = wordSearchWords.map(word => word === selectedWord ? `<s>${word}</s>` : word);
+        wordsearchWordsElem.innerHTML = "Palabras: " + wordSearchWords.join(", ");
+      } else {
+        alert("Palabra no encontrada: " + selectedWord);
+      }
+      // Limpiar la selección
+      wordSearchSelection.forEach(cell => cell.classList.remove("highlighted"));
+      wordSearchSelection = [];
+    });
   }
 
   /* ---------------------------
