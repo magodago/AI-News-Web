@@ -1,0 +1,427 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo negro y animación de entrada */
+html, body {
+  background: #000;
+  font-family: "Orbitron", sans-serif;
+  color: #0f0;
+  overflow-x: hidden;
+  /* Se elimina el padding-top para que el contenido suba hasta arriba */
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Efecto Flicker para contenedores */
+.flicker {
+  animation: flicker 2s infinite alternate;
+}
+@keyframes flicker {
+  0% { box-shadow: 0 0 5px #0f0; }
+  50% { box-shadow: 0 0 20px #0f0; }
+  100% { box-shadow: 0 0 5px #0f0; }
+}
+
+/* Canvas de partículas */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: #000;
+}
+
+/* Barra Matrix */
+#matrix-bar {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0,0,0,0.7);
+}
+
+/* Encabezado */
+header {
+  text-align: center;
+  margin: 5px auto;
+}
+.glitch {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px #0f0;
+  animation: glitchShadow 1.5s infinite;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.glitch-active {
+  text-shadow: 0px 0px 8px #0f0, 5px 0px 10px #0f0, -5px 0px 10px #0f0;
+}
+@keyframes glitchShadow {
+  0% { text-shadow: 0px 0px 5px #0f0; }
+  20% { text-shadow: 2px 0px 5px #0f0; }
+  40% { text-shadow: -2px 0px 5px #0f0; }
+  60% { text-shadow: 2px 0px 5px #0f0; }
+  80% { text-shadow: -2px 0px 5px #0f0; }
+  100% { text-shadow: 0px 0px 5px #0f0; }
+}
+
+/* Typing container */
+.typing-container {
+  font-size: 1.1rem;
+  margin-top: 5px;
+  height: 25px;
+  overflow: hidden;
+  color: #0f0;
+}
+.typing-glitch {
+  text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
+}
+
+/* Secciones */
+section {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
+}
+
+/* Botones e inputs */
+button {
+  background: #111;
+  border: 1px solid #0f0;
+  color: #0f0;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background: #0f0;
+  color: #000;
+}
+.reset-btn {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+input[type="text"] {
+  background: #111;
+  border: 1px solid #0f0;
+  color: #0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 5px;
+}
+
+/* Sliders personalizados (barras verdes) */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 80%;
+  background: transparent;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #0f0;
+  border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #0f0;
+  border-radius: 50%;
+  margin-top: -6px;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* Sección: Desafío: Adivina la Palabra */
+#word-display {
+  font-size: 1.8rem;
+  letter-spacing: 8px;
+  margin: 10px 0;
+}
+#hint, #message, #attempts-remaining {
+  color: #0f0;
+}
+
+/* Sección: Trivia IA */
+.trivia-option {
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+/* Sección: Crack the Code */
+.symbol-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.symbol-btn {
+  background: #111;
+  border: 2px solid #0f0;
+  color: #0f0;
+  border-radius: 5px;
+  padding: 6px 8px;
+  margin: 3px;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.symbol-btn:hover {
+  background: #0f0;
+  color: #000;
+}
+#code-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+.code-char {
+  width: 45px;
+  height: 45px;
+  padding: 6px;
+  border: 2px solid #0f0;
+  background: #222;
+  color: #0f0;
+  text-align: center;
+  font-size: 1.4rem;
+  border-radius: 5px;
+}
+#code-feedback {
+  margin: 10px 0;
+  font-weight: bold;
+  color: #0f0;
+}
+
+/* Sección: Memory AI Cards */
+#memory-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  margin-top: 10px;
+}
+.card {
+  width: 80px;
+  height: 80px;
+  background: #111;
+  border: 2px solid #0f0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  user-select: none;
+}
+.card.flipped {
+  background: #0f0;
+  color: #000;
+}
+#memory-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #0f0;
+}
+
+/* Sección: Sopa de Letras */
+.wordsearch-row {
+  display: flex;
+}
+.wordsearch-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0f0;
+  background: #111;
+  color: #0f0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1px;
+  cursor: pointer;
+}
+.wordsearch-cell.highlighted {
+  background: #0f0;
+  color: #000;
+}
+#wordsearch-words {
+  margin-top: 10px;
+  color: #0f0;
+  font-weight: bold;
+}
+
+/* Sección: Explorador de Futuros */
+.timeline {
+  text-align: left;
+}
+.timeline details {
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px dashed #0f0;
+  border-radius: 5px;
+  background: rgba(0,255,0,0.05);
+}
+.timeline summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Sección: Dashboard de Tendencias */
+.trends {
+  text-align: center;
+}
+.trend-card {
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  /* Tamaño fijo para que todas sean iguales */
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: auto;
+}
+.trends-desc {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Sección: Simulador de Futuro Personalizado */
+.custom-future {
+  text-align: center;
+}
+.custom-future label {
+  display: block;
+  margin-top: 10px;
+}
+.custom-future input[type="range"] {
+  width: 80%;
+  margin: 5px 0;
+}
+/* Color de texto verde para el simulador */
+#future-output {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #0f0;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Sección: Panel de Proyecciones Interactivas */
+.interactive-projections {
+  text-align: center;
+}
+.interactive-projections button {
+  margin-top: 10px;
+}
+#projections-output {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #0f0;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Sección: TOP 5 Series y Películas */
+.top-media {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 10px #0f0;
+}
+.media-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+.media-section {
+  width: 45%;
+  text-align: left;
+}
+.media-section h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.media-section ol {
+  margin-left: 20px;
+  text-align: left;
+}
+.media-section li {
+  margin: 5px 0;
+}
+
+/* Burbujita flotante para WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 10px #0f0;
+}
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+}
+
+/* Efecto holográfico simple */
+.holo-effect {
+  perspective: 800px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.holo-effect:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+  opacity: 0.9;
+}
+
+/* Media Query para Sopa de Letras en móvil */
+@media (max-width: 500px) {
+  .wordsearch-cell {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+  }
+  #wordsearch-container {
+    padding: 10px;
+  }
+}
