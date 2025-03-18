@@ -85,7 +85,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones generales */
+/* Secciones */
 section {
   margin: 20px auto;
   width: 90%;
@@ -222,37 +222,59 @@ input[type="range"]:focus {
   height: 35px;
 }
 
-/* Efecto Bola Neurona y Onda */
-#glowing-ball {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,0,1) 0%, rgba(0,128,0,0.8) 60%, rgba(0,0,0,0) 100%);
-  box-shadow: 0 0 15px rgba(0,255,0,0.7);
-  z-index: 2000;
-  pointer-events: auto;
-  cursor: pointer;
+/* Efecto holográfico simple */
+.holo-effect {
+  perspective: 800px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
-.wave-effect {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #0f0;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  transition: transform 1s ease-out, opacity 1s ease-out;
-  pointer-events: none;
-}
-.wave-effect.active {
-  transform: translate(-50%, -50%) scale(20);
-  opacity: 0;
+.holo-effect:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+  opacity: 0.9;
 }
 
-/* Efecto de distorsión (Matrix) cada 10 segundos */
-.reality-distortion {
-  transition: all 0.5s ease-out;
-  filter: blur(2px) hue-rotate(20deg) contrast(1.5);
-  transform: scale(1.02) skew(1deg, 1deg);
+/* Nueva Sección: Bola Fugaz con Ojos y Boca */
+#fugaz-ball {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #0f0 0%, #090 60%, #000 100%);
+  border-radius: 50%;
+  z-index: 3000;
+  box-shadow: 0 0 10px #0f0;
+}
+#fugaz-ball .eye {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  top: 15px;
+}
+#fugaz-ball .eye.left {
+  left: 10px;
+}
+#fugaz-ball .eye.right {
+  right: 10px;
+}
+#fugaz-ball .mouth {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  background: #000;
+  border-radius: 5px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Media Query para Sopa de Letras en móvil */
+@media (max-width: 500px) {
+  .wordsearch-cell {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+  }
+  #wordsearch-container {
+    padding: 10px;
+  }
 }
