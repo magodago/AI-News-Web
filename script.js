@@ -28,14 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Función de transición con efecto de pixelado y mensaje de carga
+  // Función de transición con efecto de explosión, desenfoque y glitch extendido
   function transicionMatrix(modo, mensaje) {
     matrixText.textContent = "Cargando...";
     const particlesCanvas = document.getElementById("particles-canvas");
-    // Se añade la clase "pixelate" para activar el efecto
-    particlesCanvas.classList.add("pixelate");
+    // Se añade la clase "explosion-glitch" para activar la animación impactante
+    particlesCanvas.classList.add("explosion-glitch");
     setTimeout(() => {
-      particlesCanvas.classList.remove("pixelate");
+      particlesCanvas.classList.remove("explosion-glitch");
       matrixText.textContent = mensaje;
       revelarPagina(modo);
     }, 2500);
@@ -624,7 +624,6 @@ document.addEventListener("DOMContentLoaded", () => {
           cellDiv.classList.add("wordsearch-cell");
           cellDiv.textContent = grid[r][c];
           cellDiv.addEventListener("click", () => {
-            // Si ya está seleccionado, se deselecciona
             if (cellDiv.classList.contains("highlighted")) {
               cellDiv.classList.remove("highlighted");
               wordSearchSelection = wordSearchSelection.filter(item => item !== cellDiv);
@@ -652,7 +651,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-    // Reiniciar lista de palabras sin tachar
     wordSearchWords = wsWords.slice();
     renderWordSearch();
   }
@@ -667,13 +665,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let selectedWord = wordSearchSelection.map(cell => cell.textContent).join("").toUpperCase();
       if (wsWords.includes(selectedWord)) {
         alert("¡Palabra encontrada: " + selectedWord + "!");
-        // Tachar la palabra en la lista (actualizar la variable y el HTML)
         wordSearchWords = wordSearchWords.map(word => word === selectedWord ? `<s>${word}</s>` : word);
         wordsearchWordsElem.innerHTML = "Palabras: " + wordSearchWords.join(", ");
       } else {
         alert("Palabra no encontrada: " + selectedWord);
       }
-      // Limpiar la selección
       wordSearchSelection.forEach(cell => cell.classList.remove("highlighted"));
       wordSearchSelection = [];
     });
