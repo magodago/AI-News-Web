@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ---------------------------
-     NUEVA SECCIÓN: Juego de la pastilla
+     Juego de la pastilla (Matrix)
   --------------------------- */
   const redPill = document.getElementById("red-pill");
   const bluePill = document.getElementById("blue-pill");
@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Dibujar partículas
       particles.forEach(p => {
         p.x += Math.cos(p.direction) * p.speed;
         p.y += Math.sin(p.direction) * p.speed;
@@ -61,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fill();
       });
 
-      // Dibujar líneas entre partículas cercanas
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -697,19 +695,75 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     BOTÓN: Volver Arriba
+     Funciones para Dashboard dinámico
+  --------------------------- */
+  function updateDashboard() {
+    const cards = document.querySelectorAll("#trends-container .trend-card");
+    if (cards.length >= 4) {
+      // Tarjeta 1: Inversión en IA
+      const usa = Math.floor(Math.random() * 100);
+      const china = Math.floor(Math.random() * 100);
+      const europa = Math.floor(Math.random() * 100);
+      cards[0].innerHTML = `<h3>Inversión en IA</h3>
+        <p>USA: ${usa}%</p>
+        <p>China: ${china}%</p>
+        <p>Europa: ${europa}%</p>`;
+      // Tarjeta 2: Patentes Registradas
+      const patents = Math.floor(Math.random() * 60000);
+      cards[1].innerHTML = `<h3>Patentes Registradas</h3>
+        <p>${patents} en 5 años</p>`;
+      // Tarjeta 3: Startups Emergentes
+      const startups = Math.floor(Math.random() * 300);
+      cards[2].innerHTML = `<h3>Startups Emergentes</h3>
+        <p>+${startups} en 2023</p>`;
+      // Tarjeta 4: Crecimiento de Inversión
+      const growth = (Math.random() * 30).toFixed(1);
+      cards[3].innerHTML = `<h3>Crecimiento de Inversión</h3>
+        <p>Proyección: ${growth}% anual</p>`;
+    }
+    updateTrendsChart();
+  }
+
+  function updateTrendsChart() {
+    const canvas = document.getElementById("trends-chart");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width = canvas.offsetWidth;
+    const h = canvas.height = canvas.offsetHeight;
+    ctx.clearRect(0, 0, w, h);
+    // Datos simulados (todos en porcentaje para este ejemplo)
+    const data = [
+      { label: "USA", value: Math.floor(Math.random() * 100) },
+      { label: "China", value: Math.floor(Math.random() * 100) },
+      { label: "Europa", value: Math.floor(Math.random() * 100) },
+      { label: "Patentes", value: Math.floor(Math.random() * 100) },
+      { label: "Startups", value: Math.floor(Math.random() * 100) },
+      { label: "Crecimiento", value: Math.floor(Math.random() * 100) }
+    ];
+    const barWidth = w / (data.length * 2);
+    data.forEach((d, i) => {
+      const barHeight = (d.value / 100) * h;
+      const x = i * barWidth * 2 + barWidth / 2;
+      const y = h - barHeight;
+      ctx.fillStyle = "#0f0";
+      ctx.fillRect(x, y, barWidth, barHeight);
+      ctx.fillStyle = "#fff";
+      ctx.font = "10px Orbitron";
+      ctx.fillText(d.label, x, h - 5);
+    });
+  }
+  // Actualiza el Dashboard cada 5 segundos y también al iniciar
+  updateDashboard();
+  setInterval(updateDashboard, 5000);
+
+  /* ---------------------------
+     Botón: Volver Arriba
   --------------------------- */
   const backToTopBtn = document.getElementById("back-to-top");
   if (backToTopBtn) {
-    // Mostrar u ocultar el botón según el scroll
     window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 200) {
-        backToTopBtn.style.display = "block";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
+      backToTopBtn.style.display = window.pageYOffset > 200 ? "block" : "none";
     });
-    // Funcionalidad para volver arriba
     backToTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
