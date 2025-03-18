@@ -40,13 +40,14 @@ html, body {
   background: #000;
 }
 
-/* Clase para efecto pixelate */
-@keyframes pixelateEffect {
-  0% { filter: blur(10px) contrast(300%); }
-  100% { filter: none; }
+/* Animación de transición: Explosión + desenfoque y efecto glitch extendido */
+@keyframes explosionGlitchEffect {
+  0% { filter: blur(10px) contrast(300%); transform: scale(0.8) skew(10deg); }
+  50% { filter: blur(5px) contrast(200%); transform: scale(1.1) skew(-10deg); }
+  100% { filter: blur(0px) contrast(100%); transform: scale(1) skew(0deg); }
 }
-.pixelate {
-  animation: pixelateEffect 2.5s forwards;
+.explosion-glitch {
+  animation: explosionGlitchEffect 2.5s forwards;
 }
 
 /* Barra Matrix */
