@@ -151,7 +151,7 @@ input[type="range"]:focus {
   outline: none;
 }
 
-/* Crack the Code: Ajuste de cajas de código */
+/* Crack the Code: Cajas de código */
 .code-char {
   width: 40px;
   height: 40px;
@@ -164,7 +164,7 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Memory AI Cards: Grid cuadrado y cajas reducidas */
+/* Memory AI Cards: Grid cuadrado (tarjetas 80x80px) */
 #memory-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -188,17 +188,17 @@ input[type="range"]:focus {
   user-select: none;
 }
 
-/* Sopa de Letras AI: Grid */
+/* Sopa de Letras AI: Grid de 10 columnas con celdas de 30x30px */
 #wordsearch-container {
   display: grid;
-  grid-template-columns: repeat(10, 40px);
+  grid-template-columns: repeat(10, 30px);
   gap: 2px;
   justify-content: center;
   margin: 10px auto;
 }
 .wordsearch-cell {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #0f0;
   background: #111;
   color: #0f0;
@@ -207,7 +207,7 @@ input[type="range"]:focus {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 /* Dilema boxes */
@@ -298,12 +298,12 @@ input[type="range"]:focus {
     width: 100%;
   }
   #wordsearch-container {
-    grid-template-columns: repeat(10, 30px);
+    grid-template-columns: repeat(10, 25px);
   }
   .wordsearch-cell {
-    width: 30px;
-    height: 30px;
-    font-size: 0.8rem;
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
   }
 }
 
@@ -345,41 +345,4 @@ input[type="range"]:focus {
 .blue-pill:hover {
   background: #00a;
   color: #000;
-}
-
-/* Modos de color */
-body.red-mode {
-  background: #500;
-  color: #fcc;
-}
-body.red-mode h1,
-body.red-mode h2,
-body.red-mode h3,
-body.red-mode p {
-  color: #fcc;
-}
-body.red-mode button {
-  border-color: #800;
-  color: #fcc;
-}
-body.red-mode .glitch {
-  text-shadow: 0 0 5px #800;
-}
-
-body.blue-mode {
-  background: #005;
-  color: #ccf;
-}
-body.blue-mode h1,
-body.blue-mode h2,
-body.blue-mode h3,
-body.blue-mode p {
-  color: #ccf;
-}
-body.blue-mode button {
-  border-color: #008;
-  color: #ccf;
-}
-body.blue-mode .glitch {
-  text-shadow: 0 0 5px #008;
 }
