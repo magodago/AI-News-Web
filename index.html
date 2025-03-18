@@ -25,20 +25,25 @@
     </div>
   </header>
 
-  <!-- Menú fijo (sticky) -->
+  <!-- Menú desplegable -->
   <nav id="navbar">
-    <a href="#matrix-game">Juego Matrix</a>
-    <a href="#timeline">Explorador de Futuros</a>
-    <a href="#ethical-simulator">Decisiones Éticas</a>
-    <a href="#trends">Dashboard Tendencias</a>
-    <a href="#custom-future">Futuro Personalizado</a>
-    <a href="#interactive-projections">Proyecciones</a>
-    <a href="#word-challenge">Adivina la Palabra</a>
-    <a href="#trivia-ia">Trivia IA</a>
-    <a href="#crack-the-code">Crack the Code</a>
-    <a href="#memory-game">Memory AI Cards</a>
-    <a href="#word-search">Sopa de Letras</a>
-    <a href="#top-media">Top Media</a>
+    <div class="dropdown">
+      <button class="dropbtn">Menú</button>
+      <div class="dropdown-content">
+        <a href="#matrix-game">Juego Matrix</a>
+        <a href="#timeline">Explorador de Futuros</a>
+        <a href="#ethical-simulator">Decisiones Éticas</a>
+        <a href="#trends">Dashboard Tendencias</a>
+        <a href="#custom-future">Futuro Personalizado</a>
+        <a href="#interactive-projections">Proyecciones</a>
+        <a href="#word-challenge">Adivina la Palabra</a>
+        <a href="#trivia-ia">Trivia IA</a>
+        <a href="#crack-the-code">Crack the Code</a>
+        <a href="#memory-game">Memory AI Cards</a>
+        <a href="#word-search">Sopa de Letras</a>
+        <a href="#top-media">Top Media</a>
+      </div>
+    </div>
   </nav>
 
   <!-- NUEVA SECCIÓN: Juego de la pastilla roja o azul -->
@@ -167,31 +172,20 @@
     </div>
   </section>
 
-  <!-- Sección: Dashboard de Tendencias -->
+  <!-- Sección: Dashboard de Tendencias (más dinámico) -->
   <section id="trends" class="trends flicker">
     <h2>Dashboard de Tendencias y Datos en Tiempo Real</h2>
     <div id="trends-container">
-      <div class="trend-card">
-        <h3>Inversión en IA</h3>
-        <p>USA: 90%</p>
-        <p>China: 85%</p>
-        <p>Europa: 70%</p>
-      </div>
-      <div class="trend-card">
-        <h3>Patentes Registradas</h3>
-        <p>Más de 50,000 en 5 años</p>
-      </div>
-      <div class="trend-card">
-        <h3>Startups Emergentes</h3>
-        <p>+120 nuevas en 2023</p>
-      </div>
-      <div class="trend-card">
-        <h3>Crecimiento de Inversión</h3>
-        <p>Proyección: 15% anual</p>
-      </div>
+      <!-- Se actualizarán dinámicamente los datos en las tarjetas -->
+      <div class="trend-card"></div>
+      <div class="trend-card"></div>
+      <div class="trend-card"></div>
+      <div class="trend-card"></div>
     </div>
+    <!-- Canvas para gráfico dinámico -->
+    <canvas id="trends-chart"></canvas>
     <p class="trends-desc">
-      Descubre las últimas tendencias en IA y debate con tus amigos.
+      Datos actualizados automáticamente cada pocos segundos.
     </p>
   </section>
 
