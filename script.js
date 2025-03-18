@@ -244,17 +244,28 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------------------------
      8. Trivia IA (shuffle y reinicio)
   --------------------------- */
+  // Se han quitado las indicaciones de respuesta en el texto
   const triviaQuestions = [
-    { question: "¿Qué es un algoritmo?", answers: ["Un tipo de robot", "Un conjunto de reglas", "Un lenguaje de programación"], correct: 1 },
-    { question: "¿Cuál ciudad es puntera en IA?", answers: ["San Francisco", "El Cairo", "Lisboa"], correct: 0 },
-    { question: "¿Qué es Machine Learning?", answers: ["Aprendizaje automático", "Un sistema de chat", "Una base de datos"], correct: 0 },
-    { question: "¿Qué hace la Visión por Computador?", answers: ["Crea imágenes 3D", "Permite ver e interpretar imágenes", "Diseña páginas web"], correct: 1 },
-    { question: "La ética en la IA es importante para...", answers: ["Evitar sesgos", "Hacer juegos divertidos", "Acelerar la computación"], correct: 0 },
-    { question: "¿Qué es un sensor?", answers: ["Dispositivo que detecta cambios", "Parte de un algoritmo", "Un tipo de robot"], correct: 0 },
-    { question: "¿Qué es hardware?", answers: ["Software especializado", "Componentes físicos", "Un lenguaje de programación"], correct: 1 },
-    { question: "¿Qué es una base de datos?", answers: ["Conjunto organizado de información", "Un algoritmo", "Un hardware"], correct: 0 },
-    { question: "¿Qué significa 'debug'?", answers: ["Depurar", "Codificar", "Optimizar"], correct: 0 },
-    { question: "¿Qué es inteligencia artificial?", answers: ["Imitación de funciones cognitivas", "Un programa de ordenador", "Una base de datos"], correct: 0 }
+    { question: "La inteligencia artificial puede aprender por sí sola.", answers: ["", ""], correct: true },
+    { question: "Los robots humanoides ya realizan tareas domésticas en masa.", answers: ["", ""], correct: false },
+    { question: "La computación cuántica está revolucionando la investigación en IA.", answers: ["", ""], correct: true },
+    { question: "La IA no tiene aplicaciones en la medicina.", answers: ["", ""], correct: false },
+    { question: "Los coches autónomos son solo una idea de ciencia ficción.", answers: ["", ""], correct: false },
+    { question: "La IA puede analizar grandes volúmenes de datos en segundos.", answers: ["", ""], correct: true },
+    { question: "La ética no es relevante en el desarrollo de IA.", answers: ["", ""], correct: false },
+    { question: "Los algoritmos pueden presentar sesgos si se entrenan con datos parciales.", answers: ["", ""], correct: true },
+    { question: "La robótica no influirá en el futuro del trabajo.", answers: ["", ""], correct: false },
+    { question: "La IA se utiliza en la creación de contenido artístico.", answers: ["", ""], correct: true },
+    { question: "El aprendizaje automático es lo mismo que la inteligencia artificial.", answers: ["", ""], correct: false },
+    { question: "Los asistentes virtuales son un ejemplo de IA aplicada.", answers: ["", ""], correct: true },
+    { question: "La tecnología futurista no influirá en el sector educativo.", answers: ["", ""], correct: false },
+    { question: "Los robots pueden tener emociones.", answers: ["", ""], correct: false },
+    { question: "La automatización puede mejorar la productividad.", answers: ["", ""], correct: true },
+    { question: "La IA es incapaz de predecir tendencias de mercado.", answers: ["", ""], correct: false },
+    { question: "La ciberseguridad se beneficia del uso de inteligencia artificial.", answers: ["", ""], correct: true },
+    { question: "La realidad virtual es irrelevante para la formación profesional.", answers: ["", ""], correct: false },
+    { question: "La IA puede ayudar a optimizar el consumo energético.", answers: ["", ""], correct: true },
+    { question: "El futuro de la tecnología no incluye la integración de la IA en la vida cotidiana.", answers: ["", ""], correct: false }
   ];
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -266,59 +277,74 @@ document.addEventListener("DOMContentLoaded", () => {
   let shuffledTrivia = shuffle([...triviaQuestions]);
   let triviaIndex = 0;
   let triviaScore = 0;
-  const triviaQuestionElem = document.getElementById("trivia-question");
-  const triviaAnswersElem = document.getElementById("trivia-answers");
-  const triviaResultElem = document.getElementById("trivia-result");
-  const triviaNextBtn = document.getElementById("trivia-next");
-  function mostrarPreguntaTrivia() {
-    if (triviaIndex >= shuffledTrivia.length) return;
-    const q = shuffledTrivia[triviaIndex];
-    if (triviaQuestionElem) triviaQuestionElem.textContent = q.question;
-    if (triviaAnswersElem) triviaAnswersElem.innerHTML = "";
-    q.answers.forEach((ans, i) => {
-      const div = document.createElement("div");
-      div.classList.add("trivia-option");
-      div.textContent = ans;
-      div.addEventListener("click", () => {
-        if (i === q.correct) {
-          triviaScore++;
-          if (triviaResultElem) triviaResultElem.textContent = "¡Correcto!";
-        } else {
-          if (triviaResultElem) triviaResultElem.textContent = "Respuesta incorrecta.";
-        }
-        Array.from(triviaAnswersElem.children).forEach(opt => {
-          opt.style.pointerEvents = "none";
-        });
-      });
-      if (triviaAnswersElem) triviaAnswersElem.appendChild(div);
-    });
-    if (triviaResultElem) triviaResultElem.textContent = "";
+  let quizTime = 120;
+  let quizTimerInterval;
+  const quizTimerElem = document.getElementById("quiz-timer");
+  const quizQuestionElem = document.getElementById("quiz-question");
+  const quizFeedbackElem = document.getElementById("quiz-feedback");
+  const quizScoreElem = document.getElementById("quiz-score");
+  const quizTrueBtn = document.getElementById("quiz-true");
+  const quizFalseBtn = document.getElementById("quiz-false");
+  const quizStartBtn = document.getElementById("quiz-start");
+  const quizContainer = document.getElementById("quiz-container");
+
+  function mostrarPreguntaQuiz() {
+    if (quizIndex < shuffledTrivia.length) {
+      quizQuestionElem.textContent = shuffledTrivia[quizIndex].question;
+      quizFeedbackElem.textContent = "";
+    } else {
+      terminarQuiz();
+    }
   }
-  if (triviaNextBtn) {
-    triviaNextBtn.addEventListener("click", () => {
-      triviaIndex++;
-      if (triviaIndex < shuffledTrivia.length) {
-        mostrarPreguntaTrivia();
-      } else {
-        if (triviaQuestionElem) triviaQuestionElem.textContent = "¡Completado!";
-        if (triviaAnswersElem) triviaAnswersElem.innerHTML = `Puntuación: ${triviaScore}/${shuffledTrivia.length}`;
-        if (triviaResultElem) triviaResultElem.textContent = "";
-        triviaNextBtn.disabled = true;
+  function terminarQuiz() {
+    clearInterval(quizTimerInterval);
+    if (quizScore >= 15) {
+      quizFeedbackElem.textContent = `¡Ganaste! Puntaje: ${quizScore}/${shuffledTrivia.length}`;
+    } else {
+      quizFeedbackElem.textContent = `Perdiste. Puntaje: ${quizScore}/${shuffledTrivia.length}`;
+    }
+    quizTrueBtn.disabled = true;
+    quizFalseBtn.disabled = true;
+  }
+  function iniciarTemporizadorQuiz() {
+    quizTime = 120;
+    quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
+    quizTimerInterval = setInterval(() => {
+      quizTime--;
+      quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
+      if (quizTime <= 0) {
+        terminarQuiz();
       }
-    });
-    mostrarPreguntaTrivia();
+    }, 1000);
   }
-  function resetTrivia() {
-    shuffledTrivia = shuffle([...triviaQuestions]);
-    triviaIndex = 0;
-    triviaScore = 0;
-    triviaNextBtn.disabled = false;
-    mostrarPreguntaTrivia();
-  }
-  const resetTriviaBtn = document.getElementById("reset-trivia");
-  if (resetTriviaBtn) {
-    resetTriviaBtn.addEventListener("click", resetTrivia);
-  }
+  quizTrueBtn.addEventListener("click", () => {
+    if (shuffledTrivia[quizIndex].answer === true) quizScore++;
+    quizScoreElem.textContent = `Puntaje: ${quizScore}`;
+    quizIndex++;
+    mostrarPreguntaQuiz();
+  });
+  quizFalseBtn.addEventListener("click", () => {
+    if (shuffledTrivia[quizIndex].answer === false) quizScore++;
+    quizScoreElem.textContent = `Puntaje: ${quizScore}`;
+    quizIndex++;
+    mostrarPreguntaQuiz();
+  });
+  quizStartBtn.addEventListener("click", () => {
+    quizStartBtn.style.display = "none";
+    quizContainer.style.display = "block";
+    iniciarTemporizadorQuiz();
+    mostrarPreguntaQuiz();
+  });
+  const quizRestartBtn = document.getElementById("quiz-restart");
+  quizRestartBtn.addEventListener("click", () => {
+    quizIndex = 0;
+    quizScore = 0;
+    quizScoreElem.textContent = `Puntaje: ${quizScore}`;
+    quizTrueBtn.disabled = false;
+    quizFalseBtn.disabled = false;
+    iniciarTemporizadorQuiz();
+    mostrarPreguntaQuiz();
+  });
 
   /* ---------------------------
      9. Crack the Code (10 intentos)
@@ -674,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     15. Escape del Laberinto -> Sustituido por Píldora Roja o Azul
+     15. Píldora Roja o Azul (Juego Matrix)
   --------------------------- */
   const redPillBtn = document.getElementById("red-pill");
   const bluePillBtn = document.getElementById("blue-pill");
@@ -691,33 +717,93 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     16. Quiz de Curiosidades (20 preguntas, Verdadero/Mentira, 2 min)
+     16. Matrix Rain Challenge (Juego basado en Matrix)
+  --------------------------- */
+  const matrixGameCanvas = document.getElementById("matrix-game-canvas");
+  const matrixGameCtx = matrixGameCanvas.getContext("2d");
+  const matrixGameScoreElem = document.getElementById("matrix-game-score");
+  const matrixGameRestartBtn = document.getElementById("matrix-game-restart");
+  let matrixGameScore = 0;
+  let fallingLetters = [];
+  const letterSpeed = 2;
+  const letterInterval = 1000; // nuevo letra cada 1s
+
+  function resizeMatrixGameCanvas() {
+    matrixGameCanvas.width = matrixGameCanvas.parentElement.clientWidth;
+    matrixGameCanvas.height = 400;
+  }
+  resizeMatrixGameCanvas();
+  window.addEventListener("resize", resizeMatrixGameCanvas);
+
+  function crearLetra() {
+    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    fallingLetters.push({
+      letter,
+      x: Math.random() * (matrixGameCanvas.width - 20),
+      y: 0
+    });
+  }
+  setInterval(crearLetra, letterInterval);
+
+  function actualizarMatrixGame() {
+    matrixGameCtx.clearRect(0, 0, matrixGameCanvas.width, matrixGameCanvas.height);
+    matrixGameCtx.fillStyle = "#0f0";
+    matrixGameCtx.font = "20px Orbitron";
+    for (let i = 0; i < fallingLetters.length; i++) {
+      const l = fallingLetters[i];
+      l.y += letterSpeed;
+      matrixGameCtx.fillText(l.letter, l.x, l.y);
+    }
+    // Quitar letras que hayan caído fuera
+    fallingLetters = fallingLetters.filter(l => l.y < matrixGameCanvas.height);
+    requestAnimationFrame(actualizarMatrixGame);
+  }
+  actualizarMatrixGame();
+
+  document.addEventListener("keydown", (e) => {
+    // Buscar si hay alguna letra que coincida con la tecla pulsada
+    const index = fallingLetters.findIndex(l => l.letter.toLowerCase() === e.key.toLowerCase());
+    if (index !== -1) {
+      fallingLetters.splice(index, 1);
+      matrixGameScore++;
+      matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
+    }
+  });
+
+  matrixGameRestartBtn.addEventListener("click", () => {
+    fallingLetters = [];
+    matrixGameScore = 0;
+    matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
+  });
+
+  /* ---------------------------
+     17. Quiz de Curiosidades (20 preguntas, Verdadero/Mentira, 2 min)
   --------------------------- */
   const quizQuestions = [
-    { question: "La inteligencia artificial puede aprender por sí sola. (Verdad)", answer: true },
-    { question: "Los robots humanoides ya realizan tareas domésticas en masa. (Mentira)", answer: false },
-    { question: "La computación cuántica está revolucionando la investigación en IA. (Verdad)", answer: true },
-    { question: "La IA no tiene aplicaciones en la medicina. (Mentira)", answer: false },
-    { question: "Los coches autónomos son solo una idea de ciencia ficción. (Mentira)", answer: false },
-    { question: "La IA puede analizar grandes volúmenes de datos en segundos. (Verdad)", answer: true },
-    { question: "La ética no es relevante en el desarrollo de IA. (Mentira)", answer: false },
-    { question: "Los algoritmos pueden presentar sesgos si se entrenan con datos parciales. (Verdad)", answer: true },
-    { question: "La robótica no influirá en el futuro del trabajo. (Mentira)", answer: false },
-    { question: "La IA se utiliza en la creación de contenido artístico. (Verdad)", answer: true },
-    { question: "El aprendizaje automático es lo mismo que la inteligencia artificial. (Mentira)", answer: false },
-    { question: "Los asistentes virtuales son un ejemplo de IA aplicada. (Verdad)", answer: true },
-    { question: "La tecnología futurista no influirá en el sector educativo. (Mentira)", answer: false },
-    { question: "Los robots pueden tener emociones. (Mentira)", answer: false },
-    { question: "La automatización puede mejorar la productividad. (Verdad)", answer: true },
-    { question: "La IA es incapaz de predecir tendencias de mercado. (Mentira)", answer: false },
-    { question: "La ciberseguridad se beneficia del uso de inteligencia artificial. (Verdad)", answer: true },
-    { question: "La realidad virtual es irrelevante para la formación profesional. (Mentira)", answer: false },
-    { question: "La IA puede ayudar a optimizar el consumo energético. (Verdad)", answer: true },
-    { question: "El futuro de la tecnología no incluye la integración de la IA en la vida cotidiana. (Mentira)", answer: false }
+    { question: "La inteligencia artificial puede aprender por sí sola.", answer: true },
+    { question: "Los robots humanoides ya realizan tareas domésticas en masa.", answer: false },
+    { question: "La computación cuántica está revolucionando la investigación en IA.", answer: true },
+    { question: "La IA no tiene aplicaciones en la medicina.", answer: false },
+    { question: "Los coches autónomos son solo una idea de ciencia ficción.", answer: false },
+    { question: "La IA puede analizar grandes volúmenes de datos en segundos.", answer: true },
+    { question: "La ética no es relevante en el desarrollo de IA.", answer: false },
+    { question: "Los algoritmos pueden presentar sesgos si se entrenan con datos parciales.", answer: true },
+    { question: "La robótica no influirá en el futuro del trabajo.", answer: false },
+    { question: "La IA se utiliza en la creación de contenido artístico.", answer: true },
+    { question: "El aprendizaje automático es lo mismo que la inteligencia artificial.", answer: false },
+    { question: "Los asistentes virtuales son un ejemplo de IA aplicada.", answer: true },
+    { question: "La tecnología futurista no influirá en el sector educativo.", answer: false },
+    { question: "Los robots pueden tener emociones.", answer: false },
+    { question: "La automatización puede mejorar la productividad.", answer: true },
+    { question: "La IA es incapaz de predecir tendencias de mercado.", answer: false },
+    { question: "La ciberseguridad se beneficia del uso de inteligencia artificial.", answer: true },
+    { question: "La realidad virtual es irrelevante para la formación profesional.", answer: false },
+    { question: "La IA puede ayudar a optimizar el consumo energético.", answer: true },
+    { question: "El futuro de la tecnología no incluye la integración de la IA en la vida cotidiana.", answer: false }
   ];
   let quizIndex = 0;
   let quizScore = 0;
-  let quizTime = 120; // 2 minutos
+  let quizTime = 120;
   let quizTimerInterval;
   const quizTimerElem = document.getElementById("quiz-timer");
   const quizQuestionElem = document.getElementById("quiz-question");
@@ -787,7 +873,83 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------------------------
-     16. Efecto Bola Resplandeciente (Robot Volador)
+     17. Conversor a Binario
+  --------------------------- */
+  const binaryInput = document.getElementById("binary-input");
+  const binaryConvertBtn = document.getElementById("binary-convert");
+  const binaryOutput = document.getElementById("binary-output");
+  binaryConvertBtn.addEventListener("click", () => {
+    const text = binaryInput.value;
+    let binaryResult = "";
+    for (let i = 0; i < text.length; i++) {
+      let bin = text.charCodeAt(i).toString(2);
+      // Asegurarse de tener 8 bits
+      bin = "00000000".slice(bin.length) + bin;
+      binaryResult += bin + " ";
+    }
+    binaryOutput.textContent = binaryResult.trim();
+  });
+
+  /* ---------------------------
+     18. Matrix Rain Challenge (Juego basado en Matrix)
+  --------------------------- */
+  const matrixGameCanvas = document.getElementById("matrix-game-canvas");
+  const matrixGameCtx = matrixGameCanvas.getContext("2d");
+  const matrixGameScoreElem = document.getElementById("matrix-game-score");
+  const matrixGameRestartBtn = document.getElementById("matrix-game-restart");
+  let matrixGameScore = 0;
+  let fallingLetters = [];
+  const letterSpeed = 2;
+  const letterInterval = 1000; // cada 1 segundo
+
+  function resizeMatrixGameCanvas() {
+    matrixGameCanvas.width = matrixGameCanvas.parentElement.clientWidth;
+    matrixGameCanvas.height = 400;
+  }
+  resizeMatrixGameCanvas();
+  window.addEventListener("resize", resizeMatrixGameCanvas);
+
+  function crearLetra() {
+    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    fallingLetters.push({
+      letter,
+      x: Math.random() * (matrixGameCanvas.width - 20),
+      y: 0
+    });
+  }
+  setInterval(crearLetra, letterInterval);
+
+  function actualizarMatrixGame() {
+    matrixGameCtx.clearRect(0, 0, matrixGameCanvas.width, matrixGameCanvas.height);
+    matrixGameCtx.fillStyle = "#0f0";
+    matrixGameCtx.font = "20px Orbitron";
+    for (let i = 0; i < fallingLetters.length; i++) {
+      const l = fallingLetters[i];
+      l.y += letterSpeed;
+      matrixGameCtx.fillText(l.letter, l.x, l.y);
+    }
+    fallingLetters = fallingLetters.filter(l => l.y < matrixGameCanvas.height);
+    requestAnimationFrame(actualizarMatrixGame);
+  }
+  actualizarMatrixGame();
+
+  document.addEventListener("keydown", (e) => {
+    const index = fallingLetters.findIndex(l => l.letter.toLowerCase() === e.key.toLowerCase());
+    if (index !== -1) {
+      fallingLetters.splice(index, 1);
+      matrixGameScore++;
+      matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
+    }
+  });
+
+  matrixGameRestartBtn.addEventListener("click", () => {
+    fallingLetters = [];
+    matrixGameScore = 0;
+    matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
+  });
+
+  /* ---------------------------
+     19. Efecto Bola Resplandeciente (Robot Volador)
   --------------------------- */
   const glowingBall = document.getElementById("glowing-ball");
   let ballX = Math.random() * window.innerWidth;
@@ -806,7 +968,7 @@ document.addEventListener("DOMContentLoaded", () => {
   moverBola();
 
   /* ---------------------------
-     17. Efecto de Scroll Animado (Fade In)
+     20. Efecto de Scroll Animado (Fade In)
   --------------------------- */
   const scrollElements = document.querySelectorAll(".animate-on-scroll");
   const elementInView = (el, dividend = 1) => {
