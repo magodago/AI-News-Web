@@ -325,7 +325,7 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* Sección: TOP 5 Series y Películas */
+/* Sección: TOP de series y peliculas AI */
 .top-media {
   margin: 20px auto;
   width: 90%;
@@ -357,6 +357,21 @@ input[type="range"]:focus {
 }
 .media-section li {
   margin: 5px 0;
+}
+
+/* Cajas de dilemas */
+.dilemma-box {
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  background: rgba(0,255,0,0.05);
+  box-shadow: 0 0 10px #0f0;
+  text-align: left;
+}
+.dilemma-box h3 {
+  margin-bottom: 5px;
+  font-size: 1.2rem;
 }
 
 /* Burbujita flotante para WhatsApp */
@@ -407,23 +422,6 @@ input[type="range"]:focus {
   }
 }
 
-/* NUEVOS ESTILOS */
-
-/* Estilos para las cajas de dilemas */
-.dilemma-box {
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-  background: rgba(0,255,0,0.05);
-  box-shadow: 0 0 10px #0f0;
-  text-align: left;
-}
-.dilemma-box h3 {
-  margin-bottom: 5px;
-  font-size: 1.2rem;
-}
-
 /* Botón Volver Arriba */
 #back-to-top {
   position: fixed;
@@ -462,4 +460,41 @@ input[type="range"]:focus {
 .blue-pill:hover {
   background: #6699ff;
   color: #000;
+}
+
+/* Estilos para los modos de color según la pastilla */
+body.red-mode {
+  background: #200;
+  color: red;
+}
+body.red-mode h1, 
+body.red-mode h2, 
+body.red-mode h3, 
+body.red-mode p {
+  color: red;
+}
+body.red-mode button {
+  border-color: red;
+  color: red;
+}
+body.red-mode .glitch {
+  text-shadow: 0 0 5px red;
+}
+
+body.blue-mode {
+  background: #001;
+  color: blue;
+}
+body.blue-mode h1, 
+body.blue-mode h2, 
+body.blue-mode h3, 
+body.blue-mode p {
+  color: blue;
+}
+body.blue-mode button {
+  border-color: blue;
+  color: blue;
+}
+body.blue-mode .glitch {
+  text-shadow: 0 0 5px blue;
 }
