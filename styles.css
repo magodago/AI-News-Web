@@ -40,6 +40,15 @@ html, body {
   background: #000;
 }
 
+/* Clase para efecto pixelate */
+@keyframes pixelateEffect {
+  0% { filter: blur(10px) contrast(300%); }
+  100% { filter: none; }
+}
+.pixelate {
+  animation: pixelateEffect 2.5s forwards;
+}
+
 /* Barra Matrix */
 #matrix-bar {
   width: 100%;
