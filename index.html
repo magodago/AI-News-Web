@@ -17,6 +17,9 @@
 
   <!-- Barra Matrix -->
   <div id="matrix-bar"></div>
+  
+  <!-- Nueva bola neurona -->
+  <div id="glowing-ball"></div>
 
   <header>
     <h1 class="glitch">AI FUTURO</h1>
@@ -26,7 +29,7 @@
   </header>
 
   <!-- Sección: Explorador de Futuros -->
-  <section id="timeline" class="timeline flicker">
+  <section id="timeline" class="timeline flicker animate-on-scroll">
     <h2>Explorador de Futuros</h2>
     <div id="timeline-container">
       <details>
@@ -91,111 +94,25 @@
     </div>
   </section>
 
-  <!-- Sección: Simulador de Decisiones Éticas en IA -->
-  <section id="ethical-simulator" class="ethical-simulator flicker">
-    <h2>Simulador de Decisiones Éticas en IA</h2>
-    <div id="ethical-container">
-      <details>
-        <summary>Dilema 1</summary>
-        <p>Un hospital utiliza IA para diagnósticos rápidos, pero el sistema podría tener sesgos. ¿Priorizar la velocidad o la equidad?</p>
-      </details>
-      <details>
-        <summary>Dilema 2</summary>
-        <p>Un vehículo autónomo debe decidir entre salvar a peatones o a sus ocupantes en un choque. ¿Qué opción tomarías?</p>
-      </details>
-      <details>
-        <summary>Dilema 3</summary>
-        <p>Un sistema de IA filtra información para evitar noticias falsas, pero limita la libertad de expresión. ¿Qué valor es más importante?</p>
-      </details>
-      <details>
-        <summary>Dilema 4</summary>
-        <p>La optimización empresarial mediante IA reduce puestos de trabajo. ¿Es aceptable sacrificar empleos por eficiencia?</p>
-      </details>
-      <details>
-        <summary>Dilema 5</summary>
-        <p>Un algoritmo decide quién recibe tratamiento médico prioritario. ¿Cómo equilibrar la eficiencia y la ética?</p>
-      </details>
-      <details>
-        <summary>Dilema 6</summary>
-        <p>La vigilancia con IA mejora la seguridad, pero invade la privacidad. ¿Dónde trazas la línea?</p>
-      </details>
-      <details>
-        <summary>Dilema 7</summary>
-        <p>La personalización publicitaria mediante IA puede manipular decisiones de consumo. ¿Es ético?</p>
-      </details>
-      <details>
-        <summary>Dilema 8</summary>
-        <p>Un algoritmo de créditos bancarios puede discriminar a ciertos grupos. ¿Cómo asegurar la igualdad?</p>
-      </details>
-      <details>
-        <summary>Dilema 9</summary>
-        <p>Un asistente virtual utiliza tus datos personales para mejorar. ¿Cuánta información es demasiada?</p>
-      </details>
-      <details>
-        <summary>Dilema 10</summary>
-        <p>La automatización total con IA puede crear un mundo eficiente, pero ¿a costa de qué valores humanos?</p>
-      </details>
-      <p class="ethical-share">
-        ¡Comparte estos dilemas con tus amigos y debate los diferentes puntos de vista!
-      </p>
+  <!-- Sección: Trivia de Curiosidades (Quiz) -->
+  <section id="trivia-ia" class="trivia-ia flicker animate-on-scroll">
+    <h2>Trivia de Curiosidades</h2>
+    <button id="quiz-start" class="reset-btn">Iniciar Quiz</button>
+    <div id="quiz-container" style="display:none;">
+      <p id="quiz-timer">Tiempo: 120s</p>
+      <p id="quiz-question">Cargando pregunta...</p>
+      <div id="quiz-buttons">
+        <button id="quiz-true">Verdad</button>
+        <button id="quiz-false">Mentira</button>
+      </div>
+      <p id="quiz-feedback"></p>
+      <p id="quiz-score"></p>
     </div>
-  </section>
-
-  <!-- Sección: Dashboard de Tendencias -->
-  <section id="trends" class="trends flicker">
-    <h2>Dashboard de Tendencias y Datos en Tiempo Real</h2>
-    <div id="trends-container">
-      <div class="trend-card">
-        <h3>Inversión en IA</h3>
-        <p>USA: 90%</p>
-        <p>China: 85%</p>
-        <p>Europa: 70%</p>
-      </div>
-      <div class="trend-card">
-        <h3>Patentes Registradas</h3>
-        <p>Más de 50,000 en 5 años</p>
-      </div>
-      <div class="trend-card">
-        <h3>Startups Emergentes</h3>
-        <p>+120 nuevas en 2023</p>
-      </div>
-      <div class="trend-card">
-        <h3>Crecimiento de Inversión</h3>
-        <p>Proyección: 15% anual</p>
-      </div>
-    </div>
-    <p class="trends-desc">
-      Descubre las últimas tendencias en IA y debate con tus amigos.
-    </p>
-  </section>
-
-  <!-- Sección: Simulador de Futuro Personalizado -->
-  <section id="custom-future" class="custom-future flicker">
-    <h2>Simulador de Futuro Personalizado</h2>
-    <p>Selecciona tus parámetros para ver una proyección de tu futuro:</p>
-    <label for="automation">Nivel de Automatización:</label>
-    <input type="range" id="automation" name="automation" min="0" max="100" value="50">
-    <span id="automation-value">50%</span><br>
-    <label for="robotics">Presencia de Robots Humanoides:</label>
-    <input type="range" id="robotics" name="robotics" min="0" max="100" value="50">
-    <span id="robotics-value">50%</span><br>
-    <label for="transport">Adopción de Coches Autónomos:</label>
-    <input type="range" id="transport" name="transport" min="0" max="100" value="50">
-    <span id="transport-value">50%</span><br>
-    <button id="simulate-future" class="reset-btn">Simular Futuro</button>
-    <div id="future-output"></div>
-  </section>
-
-  <!-- Sección: Panel de Proyecciones Interactivas -->
-  <section id="interactive-projections" class="interactive-projections flicker">
-    <h2>Panel de Proyecciones Interactivas</h2>
-    <p>Haz clic en el botón para actualizar las proyecciones:</p>
-    <button id="update-projections" class="reset-btn">Actualizar Proyecciones</button>
-    <div id="projections-output"></div>
+    <button id="quiz-restart" class="reset-btn">Nuevo Quiz</button>
   </section>
 
   <!-- Sección: Desafío: Adivina la Palabra -->
-  <section id="word-challenge" class="word-challenge flicker">
+  <section id="word-challenge" class="word-challenge flicker animate-on-scroll">
     <h2>Desafío: Adivina la Palabra</h2>
     <p id="hint">Pista: ...</p>
     <div id="word-display">_ _ _</div>
@@ -206,20 +123,8 @@
     <p id="attempts-remaining"></p>
   </section>
 
-  <!-- Sección: Trivia IA -->
-  <section id="trivia-ia" class="trivia-ia flicker">
-    <h2>Trivia IA</h2>
-    <div id="trivia-container">
-      <p id="trivia-question">Cargando pregunta...</p>
-      <div id="trivia-answers"></div>
-      <p id="trivia-result"></p>
-      <button id="trivia-next">Siguiente Pregunta</button>
-      <button id="reset-trivia" class="reset-btn">Nuevo Juego</button>
-    </div>
-  </section>
-
   <!-- Sección: Crack the Code -->
-  <section id="crack-the-code" class="crack-the-code flicker">
+  <section id="crack-the-code" class="crack-the-code flicker animate-on-scroll">
     <h2>Crack the Code</h2>
     <div id="code-container">
       <p id="code-instructions">
@@ -241,7 +146,7 @@
   </section>
 
   <!-- Sección: Memory AI Cards -->
-  <section id="memory-game" class="memory-game flicker">
+  <section id="memory-game" class="memory-game flicker animate-on-scroll">
     <h2>Memory AI Cards</h2>
     <div id="memory-container"></div>
     <button id="reset-memory" class="reset-btn">Nuevo Juego</button>
@@ -249,7 +154,7 @@
   </section>
 
   <!-- Sección: Sopa de Letras AI -->
-  <section id="word-search" class="word-search flicker">
+  <section id="word-search" class="word-search flicker animate-on-scroll">
     <h2>Sopa de Letras AI</h2>
     <div id="wordsearch-container">
       <!-- El script generará un grid de 10x10 -->
@@ -258,8 +163,18 @@
     <p id="wordsearch-words"></p>
   </section>
 
-  <!-- NUEVA SECCIÓN: TOP 5 Series y Películas -->
-  <section id="top-media" class="top-media flicker">
+  <!-- Sección: Píldora Roja o Azul (Juego Matrix) -->
+  <section id="pill-game" class="pill-game flicker animate-on-scroll">
+    <h2>Elige tu Destino: Píldora Roja o Azul</h2>
+    <div class="pill-buttons">
+      <button id="red-pill" class="pill red-pill">Píldora Roja</button>
+      <button id="blue-pill" class="pill blue-pill">Píldora Azul</button>
+    </div>
+    <p id="pill-message"></p>
+  </section>
+
+  <!-- Sección: TOP 5 Series y Películas -->
+  <section id="top-media" class="top-media flicker animate-on-scroll">
     <h2>TOP 5 Series y Películas de IA y Robot Humanoides</h2>
     <div class="media-container">
       <div class="media-section">
