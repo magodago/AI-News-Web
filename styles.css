@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Fondo y tipografía */
+/* Fondo y tipografía para index */
 html, body {
   background: #000;
   font-family: "Orbitron", sans-serif;
@@ -40,7 +40,8 @@ html, body {
   background: #000;
 }
 
-/* Animación de transición para el portal (Explosión + desenfoque y glitch) */
+/* Animación de transición para efectos (utilizada en otras partes, si aplica) */
+/* (Aquí se conserva la animación de explosión-glitch que se usa en otras funciones) */
 @keyframes explosionGlitchEffect {
   0% { filter: blur(10px) contrast(300%); transform: scale(0.8) skew(10deg); }
   50% { filter: blur(5px) contrast(200%); transform: scale(1.1) skew(-10deg); }
@@ -59,7 +60,7 @@ html, body {
   background: rgba(0,0,0,0.7);
 }
 
-/* Encabezado */
+/* Encabezado y Trigger Secreto */
 header {
   text-align: center;
   margin: 5px auto;
@@ -97,216 +98,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Secciones: fondo más suave */
-section {
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.05);
-  box-shadow: 0 0 10px #0f0;
-}
-
-/* Botones e inputs */
-button {
-  background: #111;
-  border: 1px solid #0f0;
-  color: #0f0;
-  padding: 6px 10px;
-  border-radius: 5px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-button:hover {
-  background: #0f0;
-  color: #000;
-  transform: scale(1.05);
-}
-.reset-btn {
-  margin-top: 10px;
-  font-size: 0.9rem;
-}
-input[type="text"] {
-  background: #111;
-  border: 1px solid #0f0;
-  color: #0f0;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin: 5px;
-}
-
-/* Sliders personalizados */
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 80%;
-  background: transparent;
-}
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 8px;
-  background: #0f0;
-  border-radius: 5px;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #0f0;
-  border-radius: 50%;
-  margin-top: -6px;
-}
-input[type="range"]:focus {
-  outline: none;
-}
-
-/* Crack the Code: Cajas de código */
-.code-char {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border: 2px solid #0f0;
-  background: #222;
-  color: #0f0;
-  text-align: center;
-  font-size: 1.2rem;
-  border-radius: 5px;
-}
-
-/* Memory AI Cards: Grid cuadrado (tarjetas 80x80px) */
-#memory-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 10px;
-  justify-items: center;
-  margin-top: 10px;
-}
-.card {
-  width: 80px;
-  height: 80px;
-  background: #111;
-  border: 2px solid #0f0;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-  user-select: none;
-}
-
-/* Sopa de Letras AI: Grid de 10 columnas con celdas de 30x30px */
-#wordsearch-container {
-  display: grid;
-  grid-template-columns: repeat(10, 30px);
-  gap: 2px;
-  justify-content: center;
-  margin: 10px auto;
-}
-.wordsearch-cell {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #0f0;
-  background: #111;
-  color: #0f0;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-/* Efecto para iluminar la celda seleccionada */
-.wordsearch-cell.highlighted {
-  background: #0f0;
-  color: #000;
-  box-shadow: 0 0 8px 2px rgba(255,255,255,0.8);
-}
-
-/* Dilema boxes */
-.dilemma-box {
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-  background: rgba(0,255,0,0.05);
-  box-shadow: 0 0 10px #0f0;
-  text-align: left;
-}
-.dilemma-box h3 {
-  margin-bottom: 5px;
-  font-size: 1.2rem;
-}
-
-/* Sección: TOP de series y peliculas AI */
-.top-media {
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  padding: 15px;
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.05);
-  box-shadow: 0 0 10px #0f0;
-}
-.media-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 15px;
-}
-.media-section {
-  width: 45%;
-  text-align: left;
-}
-.media-section h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-.media-section ol {
-  margin-left: 20px;
-  text-align: left;
-}
-.media-section li {
-  margin: 5px 0;
-}
-
-/* Burbujita flotante para WhatsApp */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  box-shadow: 0 0 10px #0f0;
-}
-.whatsapp-float img {
-  width: 35px;
-  height: 35px;
-}
-
-/* Efecto holográfico */
-.holo-effect {
-  perspective: 800px;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-.holo-effect:hover {
-  transform: rotateY(10deg) rotateX(5deg);
-  opacity: 0.9;
-}
-
-/* Estilos del Portal del Oráculo */
+/* Estilos del Portal Secreto */
 #secret-portal {
   position: fixed;
   top: 0;
@@ -338,27 +130,45 @@ input[type="range"]:focus {
   font-size: 1.5rem;
   max-width: 600px;
   margin: 0 auto;
+  margin-bottom: 20px;
+}
+/* Botón "ENTRAR" parpadeante en verde */
+#enterSecret {
+  background: #000;
+  color: #0f0;
+  border: 2px solid #0f0;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  animation: blinkGreen 1s infinite;
+}
+@keyframes blinkGreen {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* Media Query para móviles */
-@media (max-width: 500px) {
-  section {
-    padding: 5px;
-  }
-  .media-section {
-    width: 100%;
-  }
-  #wordsearch-container {
-    grid-template-columns: repeat(10, 25px);
-  }
-  .wordsearch-cell {
-    width: 25px;
-    height: 25px;
-    font-size: 0.7rem;
-  }
+/* Burbujita flotante para WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 10px #0f0;
+}
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
 }
 
-/* Botón Volver Arriba */
+/* Botón Volver Arriba (si se usa) */
 #back-to-top {
   position: fixed;
   bottom: 20px;
@@ -378,59 +188,4 @@ input[type="range"]:focus {
   color: #000;
 }
 
-/* Botones del juego Matrix */
-.red-pill {
-  background: #800;
-  border: 2px solid #800;
-  color: #fcc;
-}
-.red-pill:hover {
-  background: #a00;
-  color: #000;
-}
-.blue-pill {
-  background: #008;
-  border: 2px solid #008;
-  color: #ccf;
-}
-.blue-pill:hover {
-  background: #00a;
-  color: #000;
-}
-
-/* Modos de color */
-body.red-mode {
-  background: #500;
-  color: #fcc;
-}
-body.red-mode h1,
-body.red-mode h2,
-body.red-mode h3,
-body.red-mode p {
-  color: #fcc;
-}
-body.red-mode button {
-  border-color: #800;
-  color: #fcc;
-}
-body.red-mode .glitch {
-  text-shadow: 0 0 5px #800;
-}
-
-body.blue-mode {
-  background: #005;
-  color: #ccf;
-}
-body.blue-mode h1,
-body.blue-mode h2,
-body.blue-mode h3,
-body.blue-mode p {
-  color: #ccf;
-}
-body.blue-mode button {
-  border-color: #008;
-  color: #ccf;
-}
-body.blue-mode .glitch {
-  text-shadow: 0 0 5px #008;
-}
+/* (Aquí se pueden incluir otros estilos de secciones si los tienes) */
