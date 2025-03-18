@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función para revelar toda la página y aplicar el modo de color
   function revelarPagina(modo) {
     document.querySelectorAll("section").forEach(section => {
-      section.style.display = ""; // Se muestra con el display por defecto
+      section.style.display = "";
     });
     document.body.classList.remove("red-mode", "blue-mode");
     document.body.classList.add(modo);
