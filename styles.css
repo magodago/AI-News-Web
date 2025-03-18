@@ -222,7 +222,7 @@ input[type="range"]:focus {
   height: 35px;
 }
 
-/* Efecto Bola Neurona */
+/* Efecto Bola Neurona y Onda */
 #glowing-ball {
   position: fixed;
   width: 40px;
@@ -234,8 +234,6 @@ input[type="range"]:focus {
   pointer-events: auto;
   cursor: pointer;
 }
-
-/* Efecto de onda expansiva al tocar la neurona */
 .wave-effect {
   position: absolute;
   width: 20px;
@@ -250,4 +248,11 @@ input[type="range"]:focus {
 .wave-effect.active {
   transform: translate(-50%, -50%) scale(20);
   opacity: 0;
+}
+
+/* Efecto de distorsión (Matrix) cada 10 segundos */
+.reality-distortion {
+  transition: all 0.5s ease-out;
+  filter: blur(2px) hue-rotate(20deg) contrast(1.5);
+  transform: scale(1.02) skew(1deg, 1deg);
 }
