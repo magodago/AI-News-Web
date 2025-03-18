@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función para revelar toda la página y aplicar el modo de color
   function revelarPagina(modo) {
     document.querySelectorAll("section").forEach(section => {
-      section.style.display = "";
+      section.style.display = ""; // Se muestra con el display por defecto
     });
     document.body.classList.remove("red-mode", "blue-mode");
     document.body.classList.add(modo);
@@ -538,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     Sopa de Letras AI
+     Sopa de Letras AI (Grid)
   --------------------------- */
   const wordsearchContainer = document.getElementById("wordsearch-container");
   const wordsearchWordsElem = document.getElementById("wordsearch-words");
@@ -592,9 +592,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderWordSearch() {
     if (wordsearchContainer) {
       wordsearchContainer.innerHTML = "";
+      // Configuramos el contenedor como grid
+      wordsearchContainer.style.display = "grid";
+      wordsearchContainer.style.gridTemplateColumns = `repeat(${wsCols}, 40px)`;
+      wordsearchContainer.style.gap = "2px";
       for (let r = 0; r < wsRows; r++) {
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("wordsearch-row");
         for (let c = 0; c < wsCols; c++) {
           const cellDiv = document.createElement("div");
           cellDiv.classList.add("wordsearch-cell");
@@ -602,9 +604,8 @@ document.addEventListener("DOMContentLoaded", () => {
           cellDiv.addEventListener("click", () => {
             cellDiv.classList.toggle("highlighted");
           });
-          rowDiv.appendChild(cellDiv);
+          wordsearchContainer.appendChild(cellDiv);
         }
-        wordsearchContainer.appendChild(rowDiv);
       }
     }
     if (wordsearchWordsElem) {
