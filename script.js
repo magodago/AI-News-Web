@@ -1,5 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ---------------------------
+     NUEVA SECCIÓN: Juego de la pastilla
+     --------------------------- */
+  const redPill = document.getElementById("red-pill");
+  const bluePill = document.getElementById("blue-pill");
+  const matrixText = document.getElementById("matrix-text");
+
+  if (redPill && bluePill && matrixText) {
+    redPill.addEventListener("click", () => {
+      matrixText.textContent = "Has elegido la pastilla roja. Te mostraré hasta dónde llega el agujero del conejo.";
+    });
+    bluePill.addEventListener("click", () => {
+      matrixText.textContent = "Has elegido la pastilla azul. La historia termina, despiertas en tu cama y crees lo que quieras.";
+    });
+  }
+
+  /* ---------------------------
      1. Efecto de partículas con líneas conectadas
   --------------------------- */
   function iniciarParticles() {
