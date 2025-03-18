@@ -1,176 +1,175 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI FUTURO</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Burbujita flotante para WhatsApp -->
+  <a href="https://wa.me/34658237988" target="_blank" class="whatsapp-float">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
 
-/* Fondo negro y animación de entrada */
-html, body {
-  background: #000;
-  font-family: "Orbitron", sans-serif;
-  color: #0f0;
-  overflow-x: hidden;
-  animation: fadeIn 1s ease forwards;
-  opacity: 0;
-}
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
+  <!-- Canvas para efecto de partículas en el fondo -->
+  <canvas id="particles-canvas"></canvas>
 
-/* Efecto Flicker */
-.flicker {
-  animation: flicker 2s infinite alternate;
-}
-@keyframes flicker {
-  0% { box-shadow: 0 0 5px #0f0; }
-  50% { box-shadow: 0 0 20px #0f0; }
-  100% { box-shadow: 0 0 5px #0f0; }
-}
+  <!-- Barra Matrix -->
+  <div id="matrix-bar"></div>
 
-/* Canvas y Barra */
-#particles-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background: #000;
-}
-#matrix-bar {
-  width: 100%;
-  height: 60px;
-  position: relative;
-  overflow: hidden;
-  background: rgba(0,0,0,0.7);
-}
+  <header>
+    <h1 class="glitch">AI FUTURO</h1>
+    <div class="typing-container">
+      <span id="typing-text"></span>
+    </div>
+  </header>
 
-/* Encabezado */
-header {
-  text-align: center;
-  margin: 5px auto;
-}
-.glitch {
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  text-shadow: 0 0 5px #0f0;
-  animation: glitchShadow 1.5s infinite;
-  margin-bottom: 10px;
-  display: inline-block;
-}
-.glitch-active {
-  text-shadow: 0px 0px 8px #0f0, 5px 0px 10px #0f0, -5px 0px 10px #0f0;
-}
-@keyframes glitchShadow {
-  0% { text-shadow: 0px 0px 5px #0f0; }
-  20% { text-shadow: 2px 0px 5px #0f0; }
-  40% { text-shadow: -2px 0px 5px #0f0; }
-  60% { text-shadow: 2px 0px 5px #0f0; }
-  80% { text-shadow: -2px 0px 5px #0f0; }
-  100% { text-shadow: 0px 0px 5px #0f0; }
-}
+  <!-- Sección: Explorador de Futuros -->
+  <section id="timeline" class="timeline flicker animate-on-scroll">
+    <h2>Explorador de Futuros</h2>
+    <div id="timeline-container">
+      <details>
+        <summary><strong>1956 - 1980:</strong> Inicios y Consolidación</summary>
+        <p>
+          1956: Conferencia de Dartmouth, donde nace la IA.<br>
+          1966: Creación de ELIZA, pionera en NLP.<br>
+          1970: Primeros sistemas expertos y redes neuronales.<br>
+          1980: Consolidación de tecnologías emergentes.
+        </p>
+      </details>
+      <details>
+        <summary><strong>1981 - 2000:</strong> Avances y Experimentación</summary>
+        <p>
+          1985: Expansión de aplicaciones industriales de IA.<br>
+          1990: Experimentación con sistemas basados en reglas.<br>
+          1995: Aplicaciones en comercio y finanzas.<br>
+          2000: Auge del aprendizaje profundo.
+        </p>
+      </details>
+      <details>
+        <summary><strong>2001 - 2015:</strong> Revolución Digital</summary>
+        <p>
+          2005: Aplicaciones de IA en redes sociales.<br>
+          2010: Uso masivo de datos para entrenar modelos.<br>
+          2012: Revolución en reconocimiento de imágenes.<br>
+          2015: Integración de asistentes virtuales en hogares.
+        </p>
+      </details>
+      <details>
+        <summary><strong>2016 - 2020:</strong> Transformación Industrial</summary>
+        <p>
+          2016: Modelos de IA superan a humanos en tareas específicas.<br>
+          2018: IA en medicina y automoción.<br>
+          2020: Modelos conversacionales como ChatGPT consolidan su presencia.
+        </p>
+      </details>
+      <details>
+        <summary><strong>2021 - 2025 (Proyección):</strong> Integración y Automatización</summary>
+        <p>
+          2021: Robots humanoides en entornos controlados.<br>
+          2023: Coches autónomos en fase avanzada de pruebas.<br>
+          2025: Asistentes virtuales en cada hogar y automatización en salud y seguridad.
+        </p>
+      </details>
+      <details>
+        <summary><strong>2026 - 2030 (Proyección):</strong> Ciudades Inteligentes</summary>
+        <p>
+          2026: Expansión de ciudades inteligentes.<br>
+          2028: Optimización de procesos urbanos.<br>
+          2030: IA colaborativa transforma la educación y la gestión urbana.
+        </p>
+      </details>
+      <details>
+        <summary><strong>2031 - 2040 (Proyección):</strong> Futuro Cuántico y Sostenible</summary>
+        <p>
+          2032: Avances en computación cuántica e IA.<br>
+          2035: Proyectos sostenibles para mitigar el cambio climático.<br>
+          2040: Nuevas fronteras en investigación gracias a la fusión de tecnologías emergentes.
+        </p>
+      </details>
+    </div>
+  </section>
 
-/* Typing container */
-.typing-container {
-  font-size: 1.1rem;
-  margin-top: 5px;
-  height: 25px;
-  overflow: hidden;
-  color: #0f0;
-}
-.typing-glitch {
-  text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
-}
+  <!-- Sección: Trivia de Curiosidades (Quiz) -->
+  <section id="trivia-ia" class="trivia-ia flicker animate-on-scroll">
+    <h2>Trivia de Curiosidades</h2>
+    <button id="quiz-start" class="reset-btn">Iniciar Quiz</button>
+    <div id="quiz-container" style="display:none;">
+      <p id="quiz-timer">Tiempo: 120s</p>
+      <p id="quiz-question">Cargando pregunta...</p>
+      <div id="quiz-buttons">
+        <button id="quiz-true">Verdad</button>
+        <button id="quiz-false">Mentira</button>
+      </div>
+      <p id="quiz-feedback"></p>
+      <p id="quiz-score"></p>
+    </div>
+    <button id="quiz-restart" class="reset-btn">Nuevo Quiz</button>
+  </section>
 
-/* Secciones generales */
-section {
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #0f0;
-  border-radius: 10px;
-  background: rgba(0,255,0,0.1);
-  box-shadow: 0 0 10px #0f0;
-}
+  <!-- Sección: Desafío: Adivina la Palabra -->
+  <section id="word-challenge" class="word-challenge flicker animate-on-scroll">
+    <h2>Desafío: Adivina la Palabra</h2>
+    <p id="hint">Pista: ...</p>
+    <div id="word-display">_ _ _</div>
+    <input type="text" id="letter-input" maxlength="1" placeholder="Introduce una letra">
+    <button id="check-letter">Comprobar</button>
+    <button id="reset-word-challenge" class="reset-btn">Nuevo Juego</button>
+    <p id="message"></p>
+    <p id="attempts-remaining"></p>
+  </section>
 
-/* Botones e inputs */
-button {
-  background: #111;
-  border: 1px solid #0f0;
-  color: #0f0;
-  padding: 6px 10px;
-  border-radius: 5px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-button:hover {
-  background: #0f0;
-  color: #000;
-}
-.reset-btn {
-  margin-top: 10px;
-  font-size: 0.9rem;
-}
-input[type="text"] {
-  background: #111;
-  border: 1px solid #0f0;
-  color: #0f0;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin: 5px;
-}
+  <!-- Sección: Crack the Code -->
+  <section id="crack-the-code" class="crack-the-code flicker animate-on-scroll">
+    <h2>Crack the Code</h2>
+    <div id="code-container">
+      <p id="code-instructions">
+        Elige 4 emoticonos de la lista y comprueba. Tienes 10 intentos.
+      </p>
+      <div class="symbol-list" id="symbol-list"></div>
+      <div id="code-inputs">
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+        <input type="text" class="code-char" maxlength="1" readonly>
+      </div>
+      <button id="code-reset">Limpiar</button>
+      <button id="code-check">Comprobar</button>
+      <button id="reset-crack-code" class="reset-btn">Nuevo Juego</button>
+      <p id="code-feedback"></p>
+      <p id="code-attempts"></p>
+    </div>
+  </section>
 
-/* Temporizador y Quiz */
-#quiz-timer,
-#quiz-question,
-#quiz-feedback,
-#quiz-score {
-  margin: 10px 0;
-}
+  <!-- Sección: Memory AI Cards -->
+  <section id="memory-game" class="memory-game flicker animate-on-scroll">
+    <h2>Memory AI Cards</h2>
+    <div id="memory-container"></div>
+    <button id="reset-memory" class="reset-btn">Nuevo Juego</button>
+    <p id="memory-message"></p>
+  </section>
 
-/* Sección: Animate on scroll */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.animate-on-scroll.scrolled {
-  opacity: 1;
-  transform: translateY(0);
-}
+  <!-- Sección: Sopa de Letras AI -->
+  <section id="word-search" class="word-search flicker animate-on-scroll">
+    <h2>Sopa de Letras AI</h2>
+    <div id="wordsearch-container">
+      <!-- El script generará un grid de 10x10 -->
+    </div>
+    <button id="reset-wordsearch" class="reset-btn">Nuevo Juego</button>
+    <p id="wordsearch-words"></p>
+  </section>
 
-/* Burbujita WhatsApp */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  box-shadow: 0 0 10px #0f0;
-}
-.whatsapp-float img {
-  width: 35px;
-  height: 35px;
-}
+  <!-- Sección: Píldora Roja o Azul (Juego Matrix) -->
+  <section id="pill-game" class="pill-game flicker animate-on-scroll">
+    <h2>Elige tu Destino: Píldora Roja o Azul</h2>
+    <div class="pill-buttons">
+      <button id="red-pill" class="pill red-pill">Píldora Roja</button>
+      <button id="blue-pill" class="pill blue-pill">Píldora Azul</button>
+    </div>
+    <p id="pill-message"></p>
+  </section>
 
-/* Efecto Bola Resplandeciente */
-#glowing-ball {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,0,1) 0%, rgba(0,128,0,0.8) 60%, rgba(0,0,0,0) 100%);
-  box-shadow: 0 0 15px rgba(0,255,0,0.7);
-  z-index: 2000;
-  pointer-events: none;
-}
+  <script src="script.js"></script>
+</body>
+</html>
