@@ -209,6 +209,12 @@ input[type="range"]:focus {
   cursor: pointer;
   font-size: 0.8rem;
 }
+/* Efecto para iluminar la celda seleccionada */
+.wordsearch-cell.highlighted {
+  background: #0f0;
+  color: #000;
+  box-shadow: 0 0 8px 2px rgba(255,255,255,0.8);
+}
 
 /* Dilema boxes */
 .dilemma-box {
@@ -345,4 +351,41 @@ input[type="range"]:focus {
 .blue-pill:hover {
   background: #00a;
   color: #000;
+}
+
+/* Modos de color */
+body.red-mode {
+  background: #500;
+  color: #fcc;
+}
+body.red-mode h1,
+body.red-mode h2,
+body.red-mode h3,
+body.red-mode p {
+  color: #fcc;
+}
+body.red-mode button {
+  border-color: #800;
+  color: #fcc;
+}
+body.red-mode .glitch {
+  text-shadow: 0 0 5px #800;
+}
+
+body.blue-mode {
+  background: #005;
+  color: #ccf;
+}
+body.blue-mode h1,
+body.blue-mode h2,
+body.blue-mode h3,
+body.blue-mode p {
+  color: #ccf;
+}
+body.blue-mode button {
+  border-color: #008;
+  color: #ccf;
+}
+body.blue-mode .glitch {
+  text-shadow: 0 0 5px #008;
 }
