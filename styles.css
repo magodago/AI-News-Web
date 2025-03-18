@@ -311,6 +311,16 @@ input[type="range"]:focus {
   font-style: italic;
   font-size: 0.9rem;
 }
+/* Canvas gráfico en el Dashboard */
+#trends-chart {
+  width: 100%;
+  max-width: 600px;
+  height: 200px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+}
 
 /* Sección: Simulador de Futuro Personalizado */
 .custom-future {
@@ -433,6 +443,51 @@ input[type="range"]:focus {
 
 /* NUEVOS ESTILOS */
 
+/* Dropdown menú */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropbtn {
+  background-color: #111;
+  color: #0f0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.dropbtn:hover {
+  background-color: #0f0;
+  color: #000;
+  transform: scale(1.1);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #111;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,255,0,0.2);
+  z-index: 1;
+  border: 1px solid #0f0;
+  border-radius: 5px;
+}
+.dropdown-content a {
+  color: #0f0;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  transition: background 0.2s;
+}
+.dropdown-content a:hover {
+  background-color: #0f0;
+  color: #000;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* Menú fijo (sticky) */
 #navbar {
   position: sticky;
@@ -440,21 +495,9 @@ input[type="range"]:focus {
   background: rgba(0, 0, 0, 0.8);
   padding: 10px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
   z-index: 100;
   border-bottom: 1px solid #0f0;
-}
-#navbar a {
-  color: #0f0;
-  text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.2s, color 0.2s;
-}
-#navbar a:hover {
-  transform: scale(1.1);
-  color: #fff;
 }
 
 /* Botón Volver Arriba */
@@ -474,5 +517,25 @@ input[type="range"]:focus {
 #back-to-top:hover {
   transform: scale(1.1);
   background: #0f0;
+  color: #000;
+}
+
+/* Botones del juego Matrix en rojo y azul */
+.red-pill {
+  background: red !important;
+  border: 2px solid red;
+  color: #fff;
+}
+.red-pill:hover {
+  background: #ff6666;
+  color: #000;
+}
+.blue-pill {
+  background: blue !important;
+  border: 2px solid blue;
+  color: #fff;
+}
+.blue-pill:hover {
+  background: #6699ff;
   color: #000;
 }
