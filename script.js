@@ -13,13 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const bluePill = document.getElementById("blue-pill");
   const matrixText = document.getElementById("matrix-text");
 
-  // Función para revelar toda la página y aplicar el modo de color
+  // Función para revelar todas las secciones y cambiar solo el fondo de partículas
   function revelarPagina(modo) {
     document.querySelectorAll("section").forEach(section => {
-      section.style.display = ""; // Se muestra con el display por defecto
+      section.style.display = "";
     });
-    document.body.classList.remove("red-mode", "blue-mode");
-    document.body.classList.add(modo);
+    const particlesCanvas = document.getElementById("particles-canvas");
+    if (modo === "red-mode") {
+      particlesCanvas.style.background = "#400";  // Fondo rojo moderado
+    } else if (modo === "blue-mode") {
+      particlesCanvas.style.background = "#004";  // Fondo azul moderado
+    } else {
+      particlesCanvas.style.background = "#000";
+    }
   }
 
   if (redPill && bluePill && matrixText) {
@@ -592,9 +598,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderWordSearch() {
     if (wordsearchContainer) {
       wordsearchContainer.innerHTML = "";
-      // Configuramos el contenedor como grid
       wordsearchContainer.style.display = "grid";
-      wordsearchContainer.style.gridTemplateColumns = `repeat(${wsCols}, 40px)`;
+      wordsearchContainer.style.gridTemplateColumns = `repeat(${wsCols}, 30px)`;
       wordsearchContainer.style.gap = "2px";
       for (let r = 0; r < wsRows; r++) {
         for (let c = 0; c < wsCols; c++) {
