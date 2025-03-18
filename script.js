@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
-
     const particles = [];
     const numParticles = 100;
     const maxDistance = 100;
-
     for (let i = 0; i < numParticles; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
         direction: Math.random() * Math.PI * 2
       });
     }
-
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
@@ -242,41 +239,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     8. Trivia IA (shuffle y reinicio)
+     8. Trivia IA / Quiz de Curiosidades (20 preguntas, Verdadero/Mentira, 2 min)
   --------------------------- */
-  // Se han quitado las indicaciones de respuesta en el texto
-  const triviaQuestions = [
-    { question: "La inteligencia artificial puede aprender por sí sola.", answers: ["", ""], correct: true },
-    { question: "Los robots humanoides ya realizan tareas domésticas en masa.", answers: ["", ""], correct: false },
-    { question: "La computación cuántica está revolucionando la investigación en IA.", answers: ["", ""], correct: true },
-    { question: "La IA no tiene aplicaciones en la medicina.", answers: ["", ""], correct: false },
-    { question: "Los coches autónomos son solo una idea de ciencia ficción.", answers: ["", ""], correct: false },
-    { question: "La IA puede analizar grandes volúmenes de datos en segundos.", answers: ["", ""], correct: true },
-    { question: "La ética no es relevante en el desarrollo de IA.", answers: ["", ""], correct: false },
-    { question: "Los algoritmos pueden presentar sesgos si se entrenan con datos parciales.", answers: ["", ""], correct: true },
-    { question: "La robótica no influirá en el futuro del trabajo.", answers: ["", ""], correct: false },
-    { question: "La IA se utiliza en la creación de contenido artístico.", answers: ["", ""], correct: true },
-    { question: "El aprendizaje automático es lo mismo que la inteligencia artificial.", answers: ["", ""], correct: false },
-    { question: "Los asistentes virtuales son un ejemplo de IA aplicada.", answers: ["", ""], correct: true },
-    { question: "La tecnología futurista no influirá en el sector educativo.", answers: ["", ""], correct: false },
-    { question: "Los robots pueden tener emociones.", answers: ["", ""], correct: false },
-    { question: "La automatización puede mejorar la productividad.", answers: ["", ""], correct: true },
-    { question: "La IA es incapaz de predecir tendencias de mercado.", answers: ["", ""], correct: false },
-    { question: "La ciberseguridad se beneficia del uso de inteligencia artificial.", answers: ["", ""], correct: true },
-    { question: "La realidad virtual es irrelevante para la formación profesional.", answers: ["", ""], correct: false },
-    { question: "La IA puede ayudar a optimizar el consumo energético.", answers: ["", ""], correct: true },
-    { question: "El futuro de la tecnología no incluye la integración de la IA en la vida cotidiana.", answers: ["", ""], correct: false }
+  const quizQuestions = [
+    { question: "La inteligencia artificial puede aprender por sí sola.", answer: true },
+    { question: "Los robots humanoides ya realizan tareas domésticas en masa.", answer: false },
+    { question: "La computación cuántica está revolucionando la investigación en IA.", answer: true },
+    { question: "La IA no tiene aplicaciones en la medicina.", answer: false },
+    { question: "Los coches autónomos son solo una idea de ciencia ficción.", answer: false },
+    { question: "La IA puede analizar grandes volúmenes de datos en segundos.", answer: true },
+    { question: "La ética no es relevante en el desarrollo de IA.", answer: false },
+    { question: "Los algoritmos pueden presentar sesgos si se entrenan con datos parciales.", answer: true },
+    { question: "La robótica no influirá en el futuro del trabajo.", answer: false },
+    { question: "La IA se utiliza en la creación de contenido artístico.", answer: true },
+    { question: "El aprendizaje automático es lo mismo que la inteligencia artificial.", answer: false },
+    { question: "Los asistentes virtuales son un ejemplo de IA aplicada.", answer: true },
+    { question: "La tecnología futurista no influirá en el sector educativo.", answer: false },
+    { question: "Los robots pueden tener emociones.", answer: false },
+    { question: "La automatización puede mejorar la productividad.", answer: true },
+    { question: "La IA es incapaz de predecir tendencias de mercado.", answer: false },
+    { question: "La ciberseguridad se beneficia del uso de inteligencia artificial.", answer: true },
+    { question: "La realidad virtual es irrelevante para la formación profesional.", answer: false },
+    { question: "La IA puede ayudar a optimizar el consumo energético.", answer: true },
+    { question: "El futuro de la tecnología no incluye la integración de la IA en la vida cotidiana.", answer: false }
   ];
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-  let shuffledTrivia = shuffle([...triviaQuestions]);
-  let triviaIndex = 0;
-  let triviaScore = 0;
+  let quizIndex = 0;
+  let quizScore = 0;
   let quizTime = 120;
   let quizTimerInterval;
   const quizTimerElem = document.getElementById("quiz-timer");
@@ -289,8 +277,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const quizContainer = document.getElementById("quiz-container");
 
   function mostrarPreguntaQuiz() {
-    if (quizIndex < shuffledTrivia.length) {
-      quizQuestionElem.textContent = shuffledTrivia[quizIndex].question;
+    if (quizIndex < quizQuestions.length) {
+      quizQuestionElem.textContent = quizQuestions[quizIndex].question;
       quizFeedbackElem.textContent = "";
     } else {
       terminarQuiz();
@@ -299,14 +287,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function terminarQuiz() {
     clearInterval(quizTimerInterval);
     if (quizScore >= 15) {
-      quizFeedbackElem.textContent = `¡Ganaste! Puntaje: ${quizScore}/${shuffledTrivia.length}`;
+      quizFeedbackElem.textContent = `¡Ganaste! Puntaje: ${quizScore}/${quizQuestions.length}`;
     } else {
-      quizFeedbackElem.textContent = `Perdiste. Puntaje: ${quizScore}/${shuffledTrivia.length}`;
+      quizFeedbackElem.textContent = `Perdiste. Puntaje: ${quizScore}/${quizQuestions.length}`;
     }
     quizTrueBtn.disabled = true;
     quizFalseBtn.disabled = true;
   }
   function iniciarTemporizadorQuiz() {
+    // Asegurarse de limpiar cualquier temporizador anterior
+    clearInterval(quizTimerInterval);
     quizTime = 120;
     quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
     quizTimerInterval = setInterval(() => {
@@ -318,13 +308,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
   quizTrueBtn.addEventListener("click", () => {
-    if (shuffledTrivia[quizIndex].answer === true) quizScore++;
+    if (quizQuestions[quizIndex].answer === true) quizScore++;
     quizScoreElem.textContent = `Puntaje: ${quizScore}`;
     quizIndex++;
     mostrarPreguntaQuiz();
   });
   quizFalseBtn.addEventListener("click", () => {
-    if (shuffledTrivia[quizIndex].answer === false) quizScore++;
+    if (quizQuestions[quizIndex].answer === false) quizScore++;
     quizScoreElem.textContent = `Puntaje: ${quizScore}`;
     quizIndex++;
     mostrarPreguntaQuiz();
@@ -337,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const quizRestartBtn = document.getElementById("quiz-restart");
   quizRestartBtn.addEventListener("click", () => {
+    clearInterval(quizTimerInterval);
     quizIndex = 0;
     quizScore = 0;
     quizScoreElem.textContent = `Puntaje: ${quizScore}`;
@@ -717,67 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ---------------------------
-     16. Matrix Rain Challenge (Juego basado en Matrix)
-  --------------------------- */
-  const matrixGameCanvas = document.getElementById("matrix-game-canvas");
-  const matrixGameCtx = matrixGameCanvas.getContext("2d");
-  const matrixGameScoreElem = document.getElementById("matrix-game-score");
-  const matrixGameRestartBtn = document.getElementById("matrix-game-restart");
-  let matrixGameScore = 0;
-  let fallingLetters = [];
-  const letterSpeed = 2;
-  const letterInterval = 1000; // nuevo letra cada 1s
-
-  function resizeMatrixGameCanvas() {
-    matrixGameCanvas.width = matrixGameCanvas.parentElement.clientWidth;
-    matrixGameCanvas.height = 400;
-  }
-  resizeMatrixGameCanvas();
-  window.addEventListener("resize", resizeMatrixGameCanvas);
-
-  function crearLetra() {
-    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    fallingLetters.push({
-      letter,
-      x: Math.random() * (matrixGameCanvas.width - 20),
-      y: 0
-    });
-  }
-  setInterval(crearLetra, letterInterval);
-
-  function actualizarMatrixGame() {
-    matrixGameCtx.clearRect(0, 0, matrixGameCanvas.width, matrixGameCanvas.height);
-    matrixGameCtx.fillStyle = "#0f0";
-    matrixGameCtx.font = "20px Orbitron";
-    for (let i = 0; i < fallingLetters.length; i++) {
-      const l = fallingLetters[i];
-      l.y += letterSpeed;
-      matrixGameCtx.fillText(l.letter, l.x, l.y);
-    }
-    // Quitar letras que hayan caído fuera
-    fallingLetters = fallingLetters.filter(l => l.y < matrixGameCanvas.height);
-    requestAnimationFrame(actualizarMatrixGame);
-  }
-  actualizarMatrixGame();
-
-  document.addEventListener("keydown", (e) => {
-    // Buscar si hay alguna letra que coincida con la tecla pulsada
-    const index = fallingLetters.findIndex(l => l.letter.toLowerCase() === e.key.toLowerCase());
-    if (index !== -1) {
-      fallingLetters.splice(index, 1);
-      matrixGameScore++;
-      matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
-    }
-  });
-
-  matrixGameRestartBtn.addEventListener("click", () => {
-    fallingLetters = [];
-    matrixGameScore = 0;
-    matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
-  });
-
-  /* ---------------------------
-     17. Quiz de Curiosidades (20 preguntas, Verdadero/Mentira, 2 min)
+     16. Quiz de Curiosidades (20 preguntas, Verdadero/Mentira, 2 min)
   --------------------------- */
   const quizQuestions = [
     { question: "La inteligencia artificial puede aprender por sí sola.", answer: true },
@@ -833,6 +764,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quizFalseBtn.disabled = true;
   }
   function iniciarTemporizadorQuiz() {
+    clearInterval(quizTimerInterval);
     quizTime = 120;
     quizTimerElem.textContent = `Tiempo: ${quizTime}s`;
     quizTimerInterval = setInterval(() => {
@@ -863,6 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const quizRestartBtn = document.getElementById("quiz-restart");
   quizRestartBtn.addEventListener("click", () => {
+    clearInterval(quizTimerInterval);
     quizIndex = 0;
     quizScore = 0;
     quizScoreElem.textContent = `Puntaje: ${quizScore}`;
@@ -873,83 +806,294 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------------------------
-     17. Conversor a Binario
+     17. Crack the Code (10 intentos)
   --------------------------- */
-  const binaryInput = document.getElementById("binary-input");
-  const binaryConvertBtn = document.getElementById("binary-convert");
-  const binaryOutput = document.getElementById("binary-output");
-  binaryConvertBtn.addEventListener("click", () => {
-    const text = binaryInput.value;
-    let binaryResult = "";
-    for (let i = 0; i < text.length; i++) {
-      let bin = text.charCodeAt(i).toString(2);
-      // Asegurarse de tener 8 bits
-      bin = "00000000".slice(bin.length) + bin;
-      binaryResult += bin + " ";
-    }
-    binaryOutput.textContent = binaryResult.trim();
-  });
-
-  /* ---------------------------
-     18. Matrix Rain Challenge (Juego basado en Matrix)
-  --------------------------- */
-  const matrixGameCanvas = document.getElementById("matrix-game-canvas");
-  const matrixGameCtx = matrixGameCanvas.getContext("2d");
-  const matrixGameScoreElem = document.getElementById("matrix-game-score");
-  const matrixGameRestartBtn = document.getElementById("matrix-game-restart");
-  let matrixGameScore = 0;
-  let fallingLetters = [];
-  const letterSpeed = 2;
-  const letterInterval = 1000; // cada 1 segundo
-
-  function resizeMatrixGameCanvas() {
-    matrixGameCanvas.width = matrixGameCanvas.parentElement.clientWidth;
-    matrixGameCanvas.height = 400;
+  const codeSymbols = ["🤖", "🚀", "🛸", "⚡", "💫", "🌌", "👾", "🔮", "🧬", "🛰️"];
+  const codeLength = 4;
+  let secretCode = [];
+  for (let i = 0; i < codeLength; i++) {
+    const r = Math.floor(Math.random() * codeSymbols.length);
+    secretCode.push(codeSymbols[r]);
   }
-  resizeMatrixGameCanvas();
-  window.addEventListener("resize", resizeMatrixGameCanvas);
-
-  function crearLetra() {
-    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    fallingLetters.push({
-      letter,
-      x: Math.random() * (matrixGameCanvas.width - 20),
-      y: 0
+  let codeAttempts = 10;
+  const codeFeedback = document.getElementById("code-feedback");
+  const codeAttemptsElem = document.getElementById("code-attempts");
+  const codeCheckBtn = document.getElementById("code-check");
+  const codeResetBtn = document.getElementById("code-reset");
+  const codeInputs = document.querySelectorAll(".code-char");
+  const symbolListElem = document.getElementById("symbol-list");
+  if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
+  if (symbolListElem) {
+    let html = "";
+    codeSymbols.forEach(sym => {
+      html += `<button class="symbol-btn">${sym}</button>`;
+    });
+    symbolListElem.innerHTML = html;
+    const symbolBtns = symbolListElem.querySelectorAll(".symbol-btn");
+    symbolBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        for (let i = 0; i < codeInputs.length; i++) {
+          if (!codeInputs[i].value) {
+            codeInputs[i].value = btn.textContent;
+            break;
+          }
+        }
+      });
     });
   }
-  setInterval(crearLetra, letterInterval);
-
-  function actualizarMatrixGame() {
-    matrixGameCtx.clearRect(0, 0, matrixGameCanvas.width, matrixGameCanvas.height);
-    matrixGameCtx.fillStyle = "#0f0";
-    matrixGameCtx.font = "20px Orbitron";
-    for (let i = 0; i < fallingLetters.length; i++) {
-      const l = fallingLetters[i];
-      l.y += letterSpeed;
-      matrixGameCtx.fillText(l.letter, l.x, l.y);
-    }
-    fallingLetters = fallingLetters.filter(l => l.y < matrixGameCanvas.height);
-    requestAnimationFrame(actualizarMatrixGame);
+  if (codeResetBtn) {
+    codeResetBtn.addEventListener("click", () => {
+      codeInputs.forEach(inp => inp.value = "");
+      if (codeFeedback) codeFeedback.textContent = "";
+    });
   }
-  actualizarMatrixGame();
-
-  document.addEventListener("keydown", (e) => {
-    const index = fallingLetters.findIndex(l => l.letter.toLowerCase() === e.key.toLowerCase());
-    if (index !== -1) {
-      fallingLetters.splice(index, 1);
-      matrixGameScore++;
-      matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
+  if (codeCheckBtn) {
+    codeCheckBtn.addEventListener("click", () => {
+      if (codeAttempts <= 0) return;
+      let userCode = [];
+      codeInputs.forEach(inp => userCode.push(inp.value));
+      if (userCode.some(v => !v)) {
+        if (codeFeedback) codeFeedback.textContent = "Completa los 4 símbolos.";
+        return;
+      }
+      let correctPos = 0;
+      let correctSym = 0;
+      let secretCopy = [...secretCode];
+      let userCopy = [...userCode];
+      for (let i = 0; i < codeLength; i++) {
+        if (userCopy[i] === secretCopy[i]) {
+          correctPos++;
+          secretCopy[i] = null;
+          userCopy[i] = null;
+        }
+      }
+      for (let i = 0; i < codeLength; i++) {
+        if (userCopy[i]) {
+          const idx = secretCopy.indexOf(userCopy[i]);
+          if (idx !== -1) {
+            correctSym++;
+            secretCopy[idx] = null;
+          }
+        }
+      }
+      if (correctPos === codeLength) {
+        if (codeFeedback) codeFeedback.textContent = `🎉 ¡Descifrado! Era: ${secretCode.join("")}`;
+        codeCheckBtn.disabled = true;
+        if (symbolListElem) symbolListElem.style.pointerEvents = "none";
+        codeInputs.forEach(inp => inp.disabled = true);
+      } else {
+        codeAttempts--;
+        if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
+        if (codeAttempts <= 0) {
+          if (codeFeedback) codeFeedback.textContent = `❌ Sin intentos. Era: ${secretCode.join("")}`;
+          codeCheckBtn.disabled = true;
+          if (symbolListElem) symbolListElem.style.pointerEvents = "none";
+          codeInputs.forEach(inp => inp.disabled = true);
+        } else {
+          if (codeFeedback) codeFeedback.textContent = `Exactos: ${correctPos} | Otros: ${correctSym}`;
+        }
+      }
+    });
+  }
+  function resetCrackCode() {
+    secretCode = [];
+    for (let i = 0; i < codeLength; i++) {
+      const r = Math.floor(Math.random() * codeSymbols.length);
+      secretCode.push(codeSymbols[r]);
     }
-  });
+    codeAttempts = 10;
+    if (codeAttemptsElem) codeAttemptsElem.textContent = `Intentos restantes: ${codeAttempts}`;
+    if (codeFeedback) codeFeedback.textContent = "";
+    codeInputs.forEach(inp => {
+      inp.value = "";
+      inp.disabled = false;
+    });
+    if (symbolListElem) symbolListElem.style.pointerEvents = "auto";
+    codeCheckBtn.disabled = false;
+  }
+  const resetCrackCodeBtn = document.getElementById("reset-crack-code");
+  if (resetCrackCodeBtn) {
+    resetCrackCodeBtn.addEventListener("click", resetCrackCode);
+  }
 
-  matrixGameRestartBtn.addEventListener("click", () => {
-    fallingLetters = [];
-    matrixGameScore = 0;
-    matrixGameScoreElem.textContent = `Puntaje: ${matrixGameScore}`;
+  /* ---------------------------
+     10. Memory AI Cards
+  --------------------------- */
+  const memoryContainer = document.getElementById("memory-container");
+  const memoryMessage = document.getElementById("memory-message");
+  const cardSymbols = ["🤖", "⚙️", "💻", "🤖", "⚙️", "💻", "🔮", "🎉", "🔮", "🎉", "🌐", "🌐"];
+  let flippedCards = [];
+  let matchedPairs = 0;
+  function shuffleArrayMem(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+  let shuffledSymbols = shuffleArrayMem([...cardSymbols]);
+  function createMemoryBoard() {
+    if (!memoryContainer) return;
+    memoryContainer.innerHTML = "";
+    shuffledSymbols = shuffleArrayMem([...cardSymbols]);
+    shuffledSymbols.forEach(sym => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = "?";
+      card.dataset.symbol = sym;
+      card.addEventListener("click", () => flipCard(card));
+      memoryContainer.appendChild(card);
+    });
+    matchedPairs = 0;
+    flippedCards = [];
+    if (memoryMessage) memoryMessage.textContent = "";
+  }
+  function flipCard(card) {
+    if (card.classList.contains("flipped")) return;
+    if (flippedCards.length === 2) return;
+    card.classList.add("flipped");
+    card.textContent = card.dataset.symbol;
+    flippedCards.push(card);
+    if (flippedCards.length === 2) {
+      setTimeout(checkMatch, 600);
+    }
+  }
+  function checkMatch() {
+    const [c1, c2] = flippedCards;
+    if (c1.dataset.symbol === c2.dataset.symbol) {
+      matchedPairs++;
+      c1.removeEventListener("click", () => flipCard(c1));
+      c2.removeEventListener("click", () => flipCard(c2));
+      if (matchedPairs === cardSymbols.length / 2) {
+        if (memoryMessage) memoryMessage.textContent = "¡Todas las parejas encontradas!";
+      }
+    } else {
+      c1.classList.remove("flipped");
+      c1.textContent = "?";
+      c2.classList.remove("flipped");
+      c2.textContent = "?";
+    }
+    flippedCards = [];
+  }
+  if (memoryContainer) createMemoryBoard();
+  function resetMemoryGame() {
+    createMemoryBoard();
+  }
+  const resetMemoryBtn = document.getElementById("reset-memory");
+  if (resetMemoryBtn) {
+    resetMemoryBtn.addEventListener("click", resetMemoryGame);
+  }
+
+  /* ---------------------------
+     11. Sopa de Letras AI
+  --------------------------- */
+  const wordsearchContainer = document.getElementById("wordsearch-container");
+  const wordsearchWordsElem = document.getElementById("wordsearch-words");
+  const wsWords = ["ROBOT", "ALGORITMO", "RED", "DATOS", "IA", "CPU", "MEMORIA", "SOFTWARE", "HARDWARE", "CÓDIGO"];
+  const wsRows = 10, wsCols = 10;
+  let grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
+  function placeWordHorizontal(word, r, c) {
+    if (c + word.length > wsCols) return false;
+    for (let i = 0; i < word.length; i++) {
+      if (grid[r][c + i] && grid[r][c + i] !== word[i]) return false;
+    }
+    for (let i = 0; i < word.length; i++) {
+      grid[r][c + i] = word[i];
+    }
+    return true;
+  }
+  function placeWordVertical(word, r, c) {
+    if (r + word.length > wsRows) return false;
+    for (let i = 0; i < word.length; i++) {
+      if (grid[r + i][c] && grid[r + i][c] !== word[i]) return false;
+    }
+    for (let i = 0; i < word.length; i++) {
+      grid[r + i][c] = word[i];
+    }
+    return true;
+  }
+  function insertWord(word) {
+    let attempts = 100;
+    while (attempts > 0) {
+      attempts--;
+      const orientation = Math.random() < 0.5 ? "H" : "V";
+      const rr = Math.floor(Math.random() * wsRows);
+      const cc = Math.floor(Math.random() * wsCols);
+      if (orientation === "H") {
+        if (placeWordHorizontal(word, rr, cc)) return true;
+      } else {
+        if (placeWordVertical(word, rr, cc)) return true;
+      }
+    }
+    return false;
+  }
+  wsWords.forEach(w => insertWord(w));
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let r = 0; r < wsRows; r++) {
+    for (let c = 0; c < wsCols; c++) {
+      if (!grid[r][c]) {
+        grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
+      }
+    }
+  }
+  function renderWordSearch() {
+    if (wordsearchContainer) {
+      wordsearchContainer.innerHTML = "";
+      for (let r = 0; r < wsRows; r++) {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("wordsearch-row");
+        for (let c = 0; c < wsCols; c++) {
+          const cellDiv = document.createElement("div");
+          cellDiv.classList.add("wordsearch-cell");
+          cellDiv.textContent = grid[r][c];
+          cellDiv.addEventListener("click", () => {
+            cellDiv.classList.toggle("highlighted");
+          });
+          rowDiv.appendChild(cellDiv);
+        }
+        wordsearchContainer.appendChild(rowDiv);
+      }
+    }
+    if (wordsearchWordsElem) {
+      const shuffledWsWords = shuffle([...wsWords]);
+      wordsearchWordsElem.textContent = "Palabras: " + shuffledWsWords.join(", ");
+    }
+  }
+  renderWordSearch();
+  function resetWordSearch() {
+    grid = Array.from({ length: wsRows }, () => Array(wsCols).fill(null));
+    wsWords.forEach(w => insertWord(w));
+    for (let r = 0; r < wsRows; r++) {
+      for (let c = 0; c < wsCols; c++) {
+        if (!grid[r][c]) {
+          grid[r][c] = letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+      }
+    }
+    renderWordSearch();
+  }
+  const resetWordSearchBtn = document.getElementById("reset-wordsearch");
+  if (resetWordSearchBtn) {
+    resetWordSearchBtn.addEventListener("click", resetWordSearch);
+  }
+
+  /* ---------------------------
+     12. Navegación suave de enlaces internos
+  --------------------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      if (targetId.startsWith("#")) {
+        document.querySelector(targetId).scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
   });
 
   /* ---------------------------
-     19. Efecto Bola Resplandeciente (Robot Volador)
+     13. Efecto Bola Resplandeciente (Robot Volador)
   --------------------------- */
   const glowingBall = document.getElementById("glowing-ball");
   let ballX = Math.random() * window.innerWidth;
@@ -968,7 +1112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   moverBola();
 
   /* ---------------------------
-     20. Efecto de Scroll Animado (Fade In)
+     14. Efecto de Scroll Animado (Fade In)
   --------------------------- */
   const scrollElements = document.querySelectorAll(".animate-on-scroll");
   const elementInView = (el, dividend = 1) => {
