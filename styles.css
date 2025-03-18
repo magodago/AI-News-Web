@@ -128,7 +128,7 @@ input[type="text"] {
   margin: 5px;
 }
 
-/* Sliders */
+/* Sliders personalizados */
 input[type="range"] {
   -webkit-appearance: none;
   width: 80%;
@@ -149,6 +149,59 @@ input[type="range"]::-webkit-slider-thumb {
 }
 input[type="range"]:focus {
   outline: none;
+}
+
+/* Crack the Code: Ajuste de cajas de código */
+.code-char {
+  width: 40px; /* Reducido de 45px */
+  height: 40px; /* Reducido de 45px */
+  padding: 5px; /* Reducido */
+  border: 2px solid #0f0;
+  background: #222;
+  color: #0f0;
+  text-align: center;
+  font-size: 1.2rem; /* Ligeramente menor */
+  border-radius: 5px;
+}
+
+/* Memory AI Cards: Grid cuadrado */
+#memory-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Aumentado a 100px */
+  gap: 10px;
+  justify-items: center;
+  margin-top: 10px;
+}
+.card {
+  width: 100px;  /* Aumentado de 80px */
+  height: 100px; /* Aumentado de 80px */
+  background: #111;
+  border: 2px solid #0f0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  user-select: none;
+}
+
+/* Sopa de Letras AI: Ajuste de celdas */
+.wordsearch-cell {
+  width: 40px; /* Aumentado de 30px */
+  height: 40px; /* Aumentado de 30px */
+  border: 1px solid #0f0;
+  background: #111;
+  color: #0f0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1px;
+  cursor: pointer;
+  font-size: 1rem; /* Ligeramente mayor para mejorar legibilidad */
 }
 
 /* Dilema boxes */
@@ -239,8 +292,8 @@ input[type="range"]:focus {
     width: 100%;
   }
   .wordsearch-cell {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     font-size: 0.8rem;
   }
   #wordsearch-container {
@@ -268,9 +321,9 @@ input[type="range"]:focus {
   color: #000;
 }
 
-/* Botones del juego Matrix con menos intensidad */
+/* Botones del juego Matrix con colores menos intensos */
 .red-pill {
-  background: #800; /* tono rojo menos saturado */
+  background: #800; /* tono rojo moderado */
   border: 2px solid #800;
   color: #fcc;
 }
@@ -279,7 +332,7 @@ input[type="range"]:focus {
   color: #000;
 }
 .blue-pill {
-  background: #008; /* tono azul menos saturado */
+  background: #008; /* tono azul moderado */
   border: 2px solid #008;
   color: #ccf;
 }
