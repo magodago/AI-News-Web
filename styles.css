@@ -40,7 +40,7 @@ html, body {
   background: #000;
 }
 
-/* Animación de transición para efectos (si se usa) */
+/* Animación de transición para efectos (si se usa en otros contextos) */
 @keyframes explosionGlitchEffect {
   0% { filter: blur(10px) contrast(300%); transform: scale(0.8) skew(10deg); }
   50% { filter: blur(5px) contrast(200%); transform: scale(1.1) skew(-10deg); }
@@ -97,7 +97,7 @@ header {
   text-shadow: 0 0 5px #0f0, 0 0 8px #0f0;
 }
 
-/* Estilos de las secciones */
+/* Secciones (juegos, simuladores, etc.) */
 section {
   margin: 20px auto;
   width: 90%;
@@ -137,6 +137,46 @@ input[type="text"] {
   border-radius: 5px;
   font-size: 1rem;
   margin: 5px;
+}
+
+/* Botón "Volver Arriba" */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #111;
+  color: #0f0;
+  border: 1px solid #0f0;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 200;
+  transition: transform 0.2s, background 0.2s;
+}
+#back-to-top:hover {
+  transform: scale(1.1);
+  background: #0f0;
+  color: #000;
+}
+
+/* Burbujita flotante para WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 10px #0f0;
+}
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
 }
 
 /* Estilos del Portal Secreto */
@@ -189,44 +229,4 @@ input[type="text"] {
   100% { opacity: 1; }
 }
 
-/* Burbujita flotante para WhatsApp */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  box-shadow: 0 0 10px #0f0;
-}
-.whatsapp-float img {
-  width: 35px;
-  height: 35px;
-}
-
-/* Botón Volver Arriba */
-#back-to-top {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #111;
-  color: #0f0;
-  border: 1px solid #0f0;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  z-index: 200;
-  transition: transform 0.2s, background 0.2s;
-}
-#back-to-top:hover {
-  transform: scale(1.1);
-  background: #0f0;
-  color: #000;
-}
-
-/* (Aquí se pueden incluir otros estilos para secciones adicionales) */
+/* (Aquí se pueden incluir estilos adicionales para otros elementos o secciones) */
